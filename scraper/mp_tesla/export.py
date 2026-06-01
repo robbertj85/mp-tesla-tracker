@@ -27,7 +27,10 @@ def _facets(active: list[dict]) -> dict:
 
 def build_payload(listings: dict, history: dict, model_result: dict,
                   run_date: str, source_query: str) -> dict:
-    active = [r for r in listings.values() if r.get("active", True)]
+    # Only ship listings with a trustworthy price (drops lease/teaser rows whose
+    # real asking price couldn't be recovered).
+    active = [r for r in listings.values()
+              if r.get("active", True) and r.get("price_eur") is not None]
     preds = model_result.get("predictions", {})
 
     out_listings = []
@@ -36,7 +39,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
         pred = preds.get(rid, {})
         out_listings.append({
             **{k: r.get(k) for k in (
-                "id", "url", "title", "model", "trim", "is_highland", "year",
+                "id", "url", "title", "model", "trim", "is_highland", "is_juniper", "year",
                 "mileage_km", "price_eur", "price_type", "condition", "color",
                 "interior_color", "body", "drivetrain", "power_hp", "range_km",
                 "num_seats", "fsd", "autopilot_package", "soh_percent",

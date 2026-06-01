@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Activity, Car, Gauge, TrendingUp, Github } from "lucide-react";
+import { Activity, Car, Gauge, TrendingUp } from "lucide-react";
 import type { Dataset, Listing } from "@/lib/types";
+import { SiteHeader } from "@/components/site-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { eur, km } from "@/lib/utils";
@@ -21,23 +22,8 @@ export function Dashboard({ data }: { data: Dataset }) {
 
   return (
     <div className="container max-w-7xl py-8">
-      <header className="mb-6 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Tesla Prijstracker</h1>
-          <p className="text-sm text-muted-foreground">
-            Model 3 &amp; Model Y op Marktplaats · bijgewerkt {data.generatedAt} ·{" "}
-            {data.summary.count} actieve advertenties
-          </p>
-        </div>
-        <a
-          href="https://www.marktplaats.nl/l/auto-s/tesla/"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
-        >
-          <Github className="h-4 w-4" /> bron: Marktplaats
-        </a>
-      </header>
+      <SiteHeader active="dashboard"
+        subtitle={`Model 3 & Model Y op Marktplaats · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
 
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatCard icon={<Car className="h-4 w-4" />} label="Actieve auto's" value={String(data.summary.count)}

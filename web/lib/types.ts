@@ -7,6 +7,7 @@ export interface Listing {
   model: string;
   trim: string | null;
   is_highland: boolean;
+  is_juniper: boolean;
   year: number | null;
   mileage_km: number | null;
   price_eur: number | null;

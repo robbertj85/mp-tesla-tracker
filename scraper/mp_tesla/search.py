@@ -42,6 +42,7 @@ def _build_params(offset: int, limit: int) -> list[tuple[str, str]]:
         ("attributesById[]", str(config.MODEL_ATTR_IDS["Model Y"])),
         ("attributeRanges[]", f"constructionYear:{config.CONSTRUCTION_YEAR_FROM}:null"),
         ("attributeRanges[]", f"PriceCents:null:{config.PRICE_CENTS_TO}"),
+        ("postcode", config.POSTCODE),  # makes location.distanceMeters relative to 3051
         ("limit", str(limit)),
         ("offset", str(offset)),
         ("sortBy", config.SORT_BY),

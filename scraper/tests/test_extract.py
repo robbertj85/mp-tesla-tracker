@@ -1,11 +1,17 @@
 from mp_tesla import extract, infer
 
 
-def test_trim_highland_rwd():
+def test_trim_base_and_highland_flag():
     text = "Tesla Model 3 Achterwielaandrijving / RWD (Highland) Pearl White"
     assert extract.detect_highland(text)
-    assert extract.detect_trim(text) == "RWD (Highland)"
+    # detect_trim returns the BASE trim; the refresh suffix is added by record.py.
+    assert extract.detect_trim(text) == "RWD"
     assert extract.detect_drivetrain(text) == "RWD"
+
+
+def test_juniper_keyword():
+    assert extract.detect_juniper("Tesla Model Y Juniper Long Range")
+    assert not extract.detect_juniper("Tesla Model Y Long Range 2022")
 
 
 def test_trim_long_range_awd():
@@ -67,3 +73,26 @@ def test_performance_guarded_off():
     text = "Tesla Model 3 2019 RWD, sportieve performance velgen"
     assert extract.detect_trim(text, allow_performance=False) != "Performance"
     assert extract.detect_trim(text, allow_performance=True) == "Performance"
+
+
+def test_price_from_text_keyword():
+    assert extract.extract_price_from_text("Prijs: €36.490,- incl. BTW") == 36490
+    assert extract.extract_price_from_text("Vraagprijs € 24.950") == 24950
+
+
+def test_price_from_text_ignores_lease_and_newprice():
+    txt = "Lease vanaf €299 per maand. Nieuwprijs was €58.000. Vraagprijs €31.500."
+    assert extract.extract_price_from_text(txt) == 31500
+
+
+def test_price_from_text_single_neutral_amount():
+    assert extract.extract_price_from_text("Mooie Tesla, € 27.900 en rijklaar") == 27900
+
+
+def test_price_from_text_ambiguous_returns_none():
+    # Two unlabeled amounts -> too ambiguous to trust.
+    assert extract.extract_price_from_text("zie € 22.000 of € 45.000") is None
+
+
+def test_price_from_text_below_floor_ignored():
+    assert extract.extract_price_from_text("slechts €299 per maand") is None

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 
-from . import extract, infer
+from . import config, extract, infer
 
 
 def _search_attr(raw: dict, key: str):
@@ -18,6 +18,38 @@ def _to_int(val):
         return None
     m = re.search(r"\d+", str(val).replace(".", ""))
     return int(m.group()) if m else None
+
+
+def derive_refresh_trim_hw(model, year, text, drivetrain, power_hp):
+    """Compute (is_highland, is_juniper, trim, hw) — the model+year-aware bits.
+
+    Shared by build_record and the re-derive path so the two never drift. A refresh
+    needs both its keyword/year signal AND to be no older than its production floor.
+    """
+    is_highland = (
+        model == "Model 3"
+        and (extract.detect_highland(text) or (year is not None and year >= config.HIGHLAND_FROM_YEAR))
+        and (year is None or year >= config.HIGHLAND_MIN_YEAR)
+    )
+    is_juniper = (
+        model == "Model Y"
+        and (extract.detect_juniper(text) or (year is not None and year >= config.JUNIPER_FROM_YEAR))
+        and (year is None or year >= config.JUNIPER_MIN_YEAR)
+    )
+    allow_perf = drivetrain != "RWD" and (power_hp is None or power_hp >= 380)
+    base = extract.detect_trim(text, allow_performance=allow_perf)
+    suffix = " (Highland)" if is_highland else " (Juniper)" if is_juniper else ""
+    trim = (f"{base}{suffix}" if base else suffix.strip(" ()")) or None
+    hw = infer.infer_hw_platform(model, year, is_highland, extract.detect_hw_mention(text))
+    return is_highland, is_juniper, trim, hw
+
+
+def _distance_km(meters):
+    """Distance from the search postcode in km, or None when unknown (the API
+    returns a negative sentinel like -1000 when it can't compute one)."""
+    if not isinstance(meters, (int, float)) or meters < 0:
+        return None
+    return round(meters / 1000)
 
 
 def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
@@ -41,6 +73,16 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
     title = raw.get("title", "")
     description = detail.get("description", "") or raw.get("description", "")
 
+    # Reject implausibly low headline prices (monthly lease / "vanaf" teasers) and
+    # try to recover the real asking price from the description instead.
+    price_source = "headline"
+    if price_eur is None or price_eur < config.MIN_PRICE_EUR:
+        recovered = extract.extract_price_from_text(description)
+        if recovered is not None:
+            price_eur, price_source = recovered, "description"
+        else:
+            price_eur, price_source = None, "unreliable"
+
     heur = extract.extract_all(
         title=title,
         description=description,
@@ -48,18 +90,11 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
         structured_color=detail.get("color"),
     )
 
-    # Performance is always Dual-Motor AWD with high power; reject the trim when
-    # the drivetrain/power contradict it (kills "performance" prose false-hits).
+    text = f"{title}\n{description}"
     power_hp = _to_int(detail.get("power_hp"))
     drivetrain = heur["drivetrain"]
-    allow_perf = drivetrain != "RWD" and (power_hp is None or power_hp >= 380)
-    trim = extract.detect_trim(f"{title}\n{description}", allow_performance=allow_perf)
-
-    hw = infer.infer_hw_platform(
-        model=model,
-        year=year,
-        is_highland=heur["is_highland"],
-        explicit_mention=heur["hw_mention"],
+    is_highland, is_juniper, trim, hw = derive_refresh_trim_hw(
+        model, year, text, drivetrain, power_hp
     )
 
     location = raw.get("location", {}) or {}
@@ -75,11 +110,13 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
         "title": title,
         "model": model,
         "trim": trim,
-        "is_highland": heur["is_highland"],
+        "is_highland": is_highland,
+        "is_juniper": is_juniper,
         "year": year,
         "mileage_km": mileage,
         "price_eur": price_eur,
         "price_type": price_type,
+        "price_source": price_source,
         "condition": detail.get("condition"),
         "color": heur["color"],
         "interior_color": detail.get("interior_color"),
@@ -97,7 +134,7 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
         "hw_source": hw["source"],
         "hw_confidence": hw["confidence"],
         "city": location.get("cityName"),
-        "distance_km": round(location.get("distanceMeters", 0) / 1000) or None,
+        "distance_km": _distance_km(location.get("distanceMeters")),
         "seller_name": seller.get("sellerName"),
         "seller_id": seller.get("sellerId"),
         "view_count": detail.get("view_count"),
@@ -105,6 +142,8 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
         "post_date": detail.get("post_date"),
         "license_plate": detail.get("license_plate"),
         "thumbnail": thumb,
+        # full description kept for debugging + re-derivation without re-scraping
+        "description": description,
         # bookkeeping (filled/maintained by store.py)
         "first_seen": run_date,
         "last_seen": run_date,

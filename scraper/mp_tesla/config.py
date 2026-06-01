@@ -73,9 +73,21 @@ TRIM_PATTERNS: list[tuple[str, list[str]]] = [
     ]),
 ]
 
-# "Highland" = the refreshed Model 3 (production from ~Oct 2023). Detected separately
-# because a car can be e.g. "Long Range (Highland)".
-HIGHLAND_PATTERNS = [r"highland", r"facelift", r"nieuwe?\s*model\s*3", r"vernieuwde"]
+# "Highland" = the refreshed Model 3 (production from ~Oct 2023, EU deliveries 2024).
+HIGHLAND_PATTERNS = [r"highland", r"nieuwe?\s*model\s*3"]
+# "Juniper" = the refreshed Model Y (production from ~Jan 2025).
+JUNIPER_PATTERNS = [r"juniper", r"nieuwe?\s*model\s*y"]
+# Generic refresh wording — mapped to the right name based on the car's model.
+# (Deliberately NOT "vernieuwde": too generic — it appears in unrelated ad prose.)
+GENERIC_REFRESH_PATTERNS = [r"facelift", r"\brefresh\b"]
+# Build-year fallbacks: a model built this year or later is the refreshed version
+# even when the ad doesn't say so.
+HIGHLAND_FROM_YEAR = 2024
+JUNIPER_FROM_YEAR = 2025
+# Hard floors: the refresh cannot predate production, so ignore a keyword match on
+# an older car (sellers sometimes mention "Highland" on a pre-Highland listing).
+HIGHLAND_MIN_YEAR = 2023
+JUNIPER_MIN_YEAR = 2025
 
 # Drivetrain detection (independent of trim label).
 DRIVETRAIN_PATTERNS = {
@@ -117,6 +129,20 @@ COLOR_NORMALISE = {
     "rood": "Red", "ultra red": "Red",
     "groen": "Green", "bruin of beige": "Beige",
 }
+
+# --- Price sanity ----------------------------------------------------------------
+# A real Model 3/Y never sells below this; a lower headline price is a monthly
+# lease quote or "vanaf" teaser. When the headline is below the floor we try to
+# recover the true asking price from the description, else drop the listing.
+MIN_PRICE_EUR = 5000
+MAX_PRICE_EUR = 250000
+# Words that, just before a € amount, mark it as the asking price.
+PRICE_KEYWORDS = ["vraagprijs", "verkoopprijs", "rijklaar", "all-in", "all in", "prijs"]
+# Words that mark a € amount as NOT the asking price (new price, lease, etc.).
+PRICE_NEGATIVE_KEYWORDS = [
+    "nieuw", "catalogus", "advies", "vanaf", "origine", "bijtelling",
+    "per maand", "p/m", "pm", "lease", "huur", "borg", "aanbetaling", "korting",
+]
 
 # --- HW3/HW4 inference thresholds (best-effort; tunable) -------------------------
 # Production-history heuristics for when the listing doesn't state the platform.

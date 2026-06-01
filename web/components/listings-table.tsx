@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
 import { PriceHistoryChart } from "@/components/price-history-chart";
 
-type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur";
+type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km";
 
 const dealBadge: Record<string, { variant: "good" | "warn" | "bad"; label: string }> = {
   good_deal: { variant: "good", label: "Koopje" },
@@ -27,8 +27,13 @@ export function ListingsTable({ listings, history }: {
 
   const sorted = React.useMemo(() => {
     const arr = [...listings];
+    // Unknown distance sorts last regardless of direction; other nulls -> 0.
+    const miss = sort === "distance_km" ? Infinity : 0;
     arr.sort((a, b) => {
-      const av = (a[sort] ?? 0) as number, bv = (b[sort] ?? 0) as number;
+      const av = (a[sort] ?? miss) as number, bv = (b[sort] ?? miss) as number;
+      if (av === bv) return 0;
+      if (av === Infinity) return 1;
+      if (bv === Infinity) return -1;
       return asc ? av - bv : bv - av;
     });
     return arr;
@@ -36,7 +41,8 @@ export function ListingsTable({ listings, history }: {
 
   const toggle = (k: SortKey) => {
     if (k === sort) setAsc(!asc);
-    else { setSort(k); setAsc(k === "residualEur"); }
+    // Distance & deal-difference read best ascending (nearest / best deal first).
+    else { setSort(k); setAsc(k === "residualEur" || k === "distance_km"); }
   };
 
   const Th = ({ k, children, className }: { k: SortKey; children: React.ReactNode; className?: string }) => (
@@ -56,6 +62,7 @@ export function ListingsTable({ listings, history }: {
                 <th className="px-3 py-2 text-left font-medium">Auto</th>
                 <Th k="year">Jaar</Th>
                 <Th k="mileage_km">Km-stand</Th>
+                <Th k="distance_km">Afstand</Th>
                 <th className="px-3 py-2 text-left font-medium">HW</th>
                 <th className="px-3 py-2 text-left font-medium">FSD</th>
                 <Th k="price_eur">Vraagprijs</Th>
@@ -78,6 +85,9 @@ export function ListingsTable({ listings, history }: {
                       </td>
                       <td className="px-3 py-2">{l.year ?? "—"}</td>
                       <td className="px-3 py-2">{km(l.mileage_km)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
+                        {l.distance_km != null ? `${l.distance_km} km` : "—"}
+                      </td>
                       <td className="px-3 py-2">
                         {l.hw_platform ? (
                           <Badge variant={l.hw_confidence ? hwBadge[l.hw_confidence] ?? "warn" : "warn"}>
@@ -109,7 +119,7 @@ export function ListingsTable({ listings, history }: {
                     </tr>
                     {isOpen && hist && (
                       <tr className="border-b bg-muted/30">
-                        <td colSpan={9} className="px-4 py-3">
+                        <td colSpan={10} className="px-4 py-3">
                           <div className="mb-1 text-xs font-medium text-muted-foreground">Prijsverloop</div>
                           <PriceHistoryChart points={hist} />
                         </td>
@@ -123,6 +133,7 @@ export function ListingsTable({ listings, history }: {
         </div>
         <p className="px-3 py-2 text-xs text-muted-foreground">
           * HW-platform afgeleid (niet expliciet vermeld). Verschil = vraagprijs − modelschatting.
+          Afstand is gemeten vanaf postcode 3051 (Rotterdam).
         </p>
       </CardContent>
     </Card>
