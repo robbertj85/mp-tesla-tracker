@@ -1,0 +1,5436 @@
+{
+ "listings": [
+  {
+   "itemId": "m2405170185",
+   "title": "Tesla Model 3 Achterwielaandrijving / RWD van 05-2026",
+   "description": "Per direct beschikbaar: tesla model 3 achterwielaandrijving van 28-05-2026. Nog maar 95 km gereden. 534 Km wltp actieradius gecombineerd 64 kwh bruto (60 kwh netto) lfp accupakket maximum laadvermogen",
+   "categorySpecificDescription": "Per direct beschikbaar: tesla model 3 achterwielaandrijving van 28-05-2026. Nog maar 95 km gereden. 534 Km wltp actieradius gecombineerd 64 kwh bruto (60 kwh netto) lfp accupakket maximum laadvermogen van 175 kw! Prijs: €36.490,- Incl. Btw incl. Bp...",
+   "thinContent": false,
+   "priceInfo": {
+    "priceCents": 3649000,
+    "priceType": "FIXED"
+   },
+   "location": {
+    "cityName": "Emmen",
+    "countryName": "Nederland",
+    "countryAbbreviation": "NL",
+    "distanceMeters": -1000,
+    "isBuyerLocation": false,
+    "onCountryLevel": false,
+    "abroad": false,
+    "latitude": 52.749081647198,
+    "longitude": 6.9384831136502
+   },
+   "date": "Vandaag",
+   "imageUrls": [
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_82.jpg"
+   ],
+   "sellerInformation": {
+    "sellerId": 40180405,
+    "sellerName": "e-magine Mobility",
+    "showSoiUrl": true,
+    "showWebsiteUrl": false,
+    "isVerified": false
+   },
+   "categoryId": 2830,
+   "priorityProduct": "DAGTOPPER",
+   "videoOnVip": false,
+   "urgencyFeatureActive": false,
+   "napAvailable": false,
+   "attributes": [
+    {
+     "key": "constructionYear",
+     "value": "2026",
+     "values": [
+      "2026"
+     ]
+    },
+    {
+     "key": "mileage",
+     "value": "95",
+     "unit": "km",
+     "values": [
+      "95"
+     ]
+    },
+    {
+     "key": "fuel",
+     "value": "Elektrisch",
+     "values": [
+      "Elektrisch"
+     ]
+    },
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "body",
+     "value": "Sedan",
+     "values": [
+      "Sedan"
+     ]
+    },
+    {
+     "key": "model",
+     "value": "Model 3",
+     "values": [
+      "Model 3"
+     ]
+    },
+    {
+     "key": "options",
+     "value": "Adaptive Cruise Control",
+     "values": [
+      "Adaptive Cruise Control",
+      "Cruise Control",
+      "Parkeercamera",
+      "Climate control",
+      "Panoramadak",
+      "Startonderbreker",
+      "Winterpakket",
+      "Isofix",
+      "Elektrische buitenspiegels",
+      "Verwarmde buitenspiegels",
+      "Hill-Hold Control",
+      "Airconditioning",
+      "ABS",
+      "Sound system",
+      "Stoelverwarming",
+      "Stuurwielverwarming",
+      "Metallic lak",
+      "Multifunctioneel stuurwiel",
+      "Emergency brake assist",
+      "Electronic Stability Program (ESP)",
+      "Adaptieve lichten",
+      "Elektronische parkeerrem",
+      "Automatische klimaatregeling",
+      "USB",
+      "Elektrische ramen",
+      "Spraakbediening",
+      "Elektrische stoelverstelling",
+      "Lane Departure Warning",
+      "Inductieladen voor smartphones",
+      "Navigatiesysteem",
+      "LED verlichting",
+      "Standkachel",
+      "Bluetooth",
+      "Traction-control",
+      "Lichtsensor",
+      "Verblindingsvrij grootlicht",
+      "Regensensor",
+      "Achteruitrijcamera",
+      "Verkeersbordherkenning",
+      "Geheel digitaal combi-instrument",
+      "Koplamp volledig LED",
+      "Alarm",
+      "Airbags",
+      "Centrale vergrendeling",
+      "Grootlichtassistent",
+      "Elektrische achterklep",
+      "Vooruitrijcamera",
+      "Vermoeidheidsdetectie",
+      "LED dagrijverlichting",
+      "Bochtverlichting",
+      "Boordcomputer",
+      "360° camera",
+      "Keyless entry",
+      "Digitale radio-ontvangst",
+      "Warmtepomp",
+      "Radio",
+      "Dodehoekdetectie"
+     ]
+    },
+    {
+     "key": "priceType",
+     "value": "Te koop",
+     "values": [
+      "Te koop"
+     ]
+    }
+   ],
+   "extendedAttributes": [
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "upholstery",
+     "value": "Leder en Stof",
+     "values": [
+      "Leder en Stof"
+     ]
+    },
+    {
+     "key": "emptyWeightCars",
+     "value": "1747 kg",
+     "values": [
+      "1747 kg"
+     ]
+    },
+    {
+     "key": "towingWeightBrakes",
+     "value": "1000 kg",
+     "values": [
+      "1000 kg"
+     ]
+    }
+   ],
+   "traits": [
+    "DEALER_PACKAGE_BASIC",
+    "VIP_MORE_FROM_THIS_SELLER",
+    "URL",
+    "NO_PROFILE_PHOTO",
+    "TRADE_IN_REQUEST_AVAILABLE",
+    "DAG_TOPPER_7DAYS",
+    "FEED_BOOSTER_REMOVER",
+    "CALL_TRACKING",
+    "TEST_DRIVE_REQUEST_AVAILABLE",
+    "CALL_BACK_REQUEST_AVAILABLE",
+    "EXTERNAL_REVIEWS",
+    "PACKAGE_PREMIUM",
+    "NO_RESPONSE_TIME_IN_VIP",
+    "AUTOMOTIVE_EXTENDED_ASQ",
+    "REQUEST_BUYER_LOCATION_IN_ASQ"
+   ],
+   "verticals": [
+    "cars",
+    "automotive",
+    "tesla"
+   ],
+   "pictures": [
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7fe15eae-fa19-4a26-880f-b17b3abdbb37?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    }
+   ],
+   "searchType": "TokenMatch",
+   "reserved": false,
+   "vipUrl": "/v/auto-s/tesla/m2405170185-tesla-model-3-achterwielaandrijving-rwd-van-05-2026",
+   "shortTitle": "Tesla Model 3",
+   "displayTitle": "Achterwielaandrijving / RWD van 05-2026"
+  },
+  {
+   "itemId": "m2398652934",
+   "title": "Tesla Model Y LONG RANGE AWD 75 KWH 351 PK + ENHANCED AUTOPI",
+   "description": "Tesla model y long range awd 75 kwh 351 pk + enhanced autopilot | 20 inch lmv algemene informatie aantal deuren: 5 modeljaar: 2021 kleur: wit technische informatie vermogen: 258 kw (351 pk) koppel: 52",
+   "categorySpecificDescription": "Tesla model y long range awd 75 kwh 351 pk + enhanced autopilot | 20 inch lmv algemene informatie aantal deuren: 5 modeljaar: 2021 kleur: wit technische informatie vermogen: 258 kw (351 pk) koppel: 527 nm aandrijving actieradius: 533 km prestaties accelerati...",
+   "thinContent": false,
+   "priceInfo": {
+    "priceCents": 2495000,
+    "priceType": "FIXED"
+   },
+   "location": {
+    "cityName": "Ochten",
+    "countryName": "Nederland",
+    "countryAbbreviation": "NL",
+    "distanceMeters": -1000,
+    "isBuyerLocation": false,
+    "onCountryLevel": false,
+    "abroad": false,
+    "latitude": 51.909070966066,
+    "longitude": 5.5514055845307
+   },
+   "date": "Vandaag",
+   "imageUrls": [
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_82.jpg",
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_82.jpg",
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_82.jpg"
+   ],
+   "sellerInformation": {
+    "sellerId": 110698,
+    "sellerName": "Autobedrijf Hazet B.V.",
+    "showSoiUrl": true,
+    "showWebsiteUrl": false,
+    "sellerLogoUrl": "//images.marktplaats.com/api/v1/hz-mp-pro-profile/images/21/21148199-b958-42a0-bd0f-d0787532946c?rule=ecg_mp_eps$_82",
+    "isVerified": false
+   },
+   "categoryId": 2830,
+   "priorityProduct": "DAGTOPPER",
+   "videoOnVip": true,
+   "urgencyFeatureActive": false,
+   "napAvailable": true,
+   "trustIndicators": [
+    {
+     "key": "napCheck"
+    },
+    {
+     "key": "FinanceAvailable"
+    },
+    {
+     "key": "LezSuitable"
+    }
+   ],
+   "highlights": [
+    {
+     "key": "napCheck"
+    },
+    {
+     "key": "FinanceAvailable"
+    },
+    {
+     "key": "LezSuitable"
+    }
+   ],
+   "attributes": [
+    {
+     "key": "constructionYear",
+     "value": "2021",
+     "values": [
+      "2021"
+     ]
+    },
+    {
+     "key": "mileage",
+     "value": "240858",
+     "unit": "km",
+     "values": [
+      "240858"
+     ]
+    },
+    {
+     "key": "condition",
+     "value": "Gebruikt",
+     "values": [
+      "Gebruikt"
+     ]
+    },
+    {
+     "key": "fuel",
+     "value": "Elektrisch",
+     "values": [
+      "Elektrisch"
+     ]
+    },
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "body",
+     "value": "SUV of Terreinwagen",
+     "values": [
+      "SUV of Terreinwagen"
+     ]
+    },
+    {
+     "key": "model",
+     "value": "Model Y",
+     "values": [
+      "Model Y"
+     ]
+    },
+    {
+     "key": "options",
+     "value": "Stoelverwarming",
+     "values": [
+      "Climate control",
+      "Panoramadak",
+      "Stoelverwarming",
+      "Electronic Stability Program (ESP)",
+      "Navigatiesysteem",
+      "Startonderbreker",
+      "4x4",
+      "Mistlampen",
+      "Elektrische buitenspiegels",
+      "Verwarmde buitenspiegels",
+      "Alarm",
+      "Airbags",
+      "Keyless entry",
+      "Airconditioning",
+      "Automatische klimaatregeling",
+      "Verwarming stoelen achter",
+      "Spraakbediening",
+      "Elektrische stoelverstelling",
+      "Bluetooth",
+      "Traction-control",
+      "ABS",
+      "Lichtmetalen velgen",
+      "Radio",
+      "Dodehoekdetectie"
+     ]
+    },
+    {
+     "key": "priceType",
+     "value": "Te koop",
+     "values": [
+      "Te koop"
+     ]
+    },
+    {
+     "key": "range",
+     "value": "533 km",
+     "values": [
+      "533 km"
+     ]
+    }
+   ],
+   "extendedAttributes": [
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "upholstery",
+     "value": "Stof",
+     "values": [
+      "Stof"
+     ]
+    },
+    {
+     "key": "condition",
+     "value": "Gebruikt",
+     "values": [
+      "Gebruikt"
+     ]
+    },
+    {
+     "key": "batteryChargeTime",
+     "value": "495 min",
+     "values": [
+      "495 min"
+     ]
+    }
+   ],
+   "traits": [
+    "MICROTIP",
+    "EXTRA_BRANDING",
+    "VIP_MORE_FROM_THIS_SELLER",
+    "TRADE_IN_REQUEST_AVAILABLE",
+    "NO_COMMERCIAL_CONTENT",
+    "DAG_TOPPER_7DAYS",
+    "WARRANTY_LABEL",
+    "TEST_DRIVE_REQUEST_AVAILABLE",
+    "CALL_BACK_REQUEST_AVAILABLE",
+    "FINANCE_AVAILABLE",
+    "VIDEO",
+    "PACKAGE_PREMIUM",
+    "AUTOMOTIVE_EXTENDED_ASQ",
+    "REQUEST_BUYER_LOCATION_IN_ASQ",
+    "EXTRA_LARGE_PHOTOS",
+    "CALL_TRACKING",
+    "FEED_BOOSTER_HIGH",
+    "EXTRA_IMAGES_SNIPPET",
+    "HIGHLIGHTS",
+    "CONTACT_SALES_REPRESENTATIVES",
+    "DELIVERY_PACKAGES",
+    "DEALER_PACKAGE_PREMIUM",
+    "EXTERNAL_REVIEWS",
+    "NO_RESPONSE_TIME_IN_VIP",
+    "COMPANY_PHOTO_AND_LOGO"
+   ],
+   "verticals": [
+    "cars",
+    "automotive",
+    "tesla"
+   ],
+   "pictures": [
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/057ff0ff-7c25-4a88-9bc0-48d35d106eec?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    },
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fdc12663-e98f-4a18-9a64-b27255674da6?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    },
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8192a2b9-1e18-4264-80ac-a2220ebd7421?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    }
+   ],
+   "searchType": "TokenMatch",
+   "reserved": false,
+   "vipUrl": "/v/auto-s/tesla/m2398652934-tesla-model-y-long-range-awd-75-kwh-351-pk-enhanced-autopi",
+   "shortTitle": "Tesla Model Y",
+   "displayTitle": "LONG RANGE AWD 75 KWH 351 PK + ENHANCED AUTOPI"
+  },
+  {
+   "itemId": "m2399493174",
+   "title": "Tesla Model 3 LONG RANGE AWD 75 kWh + TREKHAAK | 560 KM WLTP",
+   "description": "Tesla model 3 long range awd 75 kwh + trekhaak | 560 km wltp | 1000 kg trekgewicht op kenteken algemene informatie aantal deuren: 5 modelreeks: 2018 - 2023 kleur: grijs technische informatie vermogen:",
+   "categorySpecificDescription": "Tesla model 3 long range awd 75 kwh + trekhaak | 560 km wltp | 1000 kg trekgewicht op kenteken algemene informatie aantal deuren: 5 modelreeks: 2018 - 2023 kleur: grijs technische informatie vermogen: 258 kw (351 pk) koppel: 527 nm aandrijving actieradius...",
+   "thinContent": false,
+   "priceInfo": {
+    "priceCents": 2375000,
+    "priceType": "FIXED"
+   },
+   "location": {
+    "cityName": "Ochten",
+    "countryName": "Nederland",
+    "countryAbbreviation": "NL",
+    "distanceMeters": -1000,
+    "isBuyerLocation": false,
+    "onCountryLevel": false,
+    "abroad": false,
+    "latitude": 51.909070966066,
+    "longitude": 5.5514055845307
+   },
+   "date": "Vandaag",
+   "imageUrls": [
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_82.jpg",
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_82.jpg",
+    "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_82.jpg"
+   ],
+   "sellerInformation": {
+    "sellerId": 110698,
+    "sellerName": "Autobedrijf Hazet B.V.",
+    "showSoiUrl": true,
+    "showWebsiteUrl": false,
+    "sellerLogoUrl": "//images.marktplaats.com/api/v1/hz-mp-pro-profile/images/21/21148199-b958-42a0-bd0f-d0787532946c?rule=ecg_mp_eps$_82",
+    "isVerified": false
+   },
+   "categoryId": 2830,
+   "priorityProduct": "DAGTOPPER",
+   "videoOnVip": true,
+   "urgencyFeatureActive": false,
+   "napAvailable": true,
+   "trustIndicators": [
+    {
+     "key": "napCheck"
+    },
+    {
+     "key": "FinanceAvailable"
+    },
+    {
+     "key": "LezSuitable"
+    }
+   ],
+   "highlights": [
+    {
+     "key": "napCheck"
+    },
+    {
+     "key": "FinanceAvailable"
+    },
+    {
+     "key": "LezSuitable"
+    }
+   ],
+   "attributes": [
+    {
+     "key": "constructionYear",
+     "value": "2020",
+     "values": [
+      "2020"
+     ]
+    },
+    {
+     "key": "mileage",
+     "value": "137732",
+     "unit": "km",
+     "values": [
+      "137732"
+     ]
+    },
+    {
+     "key": "energyLabel",
+     "value": "A",
+     "values": [
+      "A"
+     ]
+    },
+    {
+     "key": "fuel",
+     "value": "Elektrisch",
+     "values": [
+      "Elektrisch"
+     ]
+    },
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "body",
+     "value": "Hatchback",
+     "values": [
+      "Hatchback"
+     ]
+    },
+    {
+     "key": "model",
+     "value": "Model 3",
+     "values": [
+      "Model 3"
+     ]
+    },
+    {
+     "key": "options",
+     "value": "Electronic Stability Program (ESP)",
+     "values": [
+      "Adaptive Cruise Control",
+      "Trekhaak",
+      "Cruise Control",
+      "Climate control",
+      "Panoramadak",
+      "Electronic Stability Program (ESP)",
+      "Navigatiesysteem",
+      "Startonderbreker",
+      "4x4",
+      "Mistlampen",
+      "Elektrische buitenspiegels",
+      "Verwarmde buitenspiegels",
+      "Alarm",
+      "Airbags",
+      "Keyless entry",
+      "Airconditioning",
+      "Stoelverwarming",
+      "Start-stop-systeem",
+      "Automatische klimaatregeling",
+      "Verwarming stoelen achter",
+      "Spraakbediening",
+      "Elektrische stoelverstelling",
+      "Bluetooth",
+      "Traction-control",
+      "ABS",
+      "Lichtmetalen velgen",
+      "Radio",
+      "Dodehoekdetectie"
+     ]
+    },
+    {
+     "key": "priceType",
+     "value": "Te koop",
+     "values": [
+      "Te koop"
+     ]
+    },
+    {
+     "key": "range",
+     "value": "602 km",
+     "values": [
+      "602 km"
+     ]
+    }
+   ],
+   "extendedAttributes": [
+    {
+     "key": "transmission",
+     "value": "Automaat",
+     "values": [
+      "Automaat"
+     ]
+    },
+    {
+     "key": "upholstery",
+     "value": "Stof",
+     "values": [
+      "Stof"
+     ]
+    },
+    {
+     "key": "imported",
+     "value": "Origineel Nederlands",
+     "values": [
+      "Origineel Nederlands"
+     ]
+    },
+    {
+     "key": "engineHorsepower",
+     "value": "351 pk",
+     "values": [
+      "351 pk"
+     ]
+    }
+   ],
+   "traits": [
+    "MICROTIP",
+    "EXTRA_BRANDING",
+    "VIP_MORE_FROM_THIS_SELLER",
+    "TRADE_IN_REQUEST_AVAILABLE",
+    "NO_COMMERCIAL_CONTENT",
+    "DAG_TOPPER_7DAYS",
+    "WARRANTY_LABEL",
+    "TEST_DRIVE_REQUEST_AVAILABLE",
+    "CALL_BACK_REQUEST_AVAILABLE",
+    "FINANCE_AVAILABLE",
+    "VIDEO",
+    "PACKAGE_PREMIUM",
+    "AUTOMOTIVE_EXTENDED_ASQ",
+    "REQUEST_BUYER_LOCATION_IN_ASQ",
+    "EXTRA_LARGE_PHOTOS",
+    "CALL_TRACKING",
+    "FEED_BOOSTER_HIGH",
+    "EXTRA_IMAGES_SNIPPET",
+    "HIGHLIGHTS",
+    "CONTACT_SALES_REPRESENTATIVES",
+    "DELIVERY_PACKAGES",
+    "DEALER_PACKAGE_PREMIUM",
+    "EXTERNAL_REVIEWS",
+    "NO_RESPONSE_TIME_IN_VIP",
+    "COMPANY_PHOTO_AND_LOGO"
+   ],
+   "verticals": [
+    "cars",
+    "automotive",
+    "tesla"
+   ],
+   "pictures": [
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d85f5be7-9e73-46d0-b686-08214c999ede?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    },
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2bf43c06-1b2c-49e2-8595-495f2a3cfc08?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    },
+    {
+     "id": 0,
+     "mediaId": "",
+     "url": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_#.jpg",
+     "extraSmallUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_14.jpg",
+     "mediumUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_82.jpg",
+     "largeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_83.jpg",
+     "extraExtraLargeUrl": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22e21a5f-2fd0-436a-8c82-e586423d155d?rule=ecg_mp_eps$_85.jpg",
+     "aspectRatio": {
+      "width": 4,
+      "height": 3
+     }
+    }
+   ],
+   "searchType": "TokenMatch",
+   "reserved": false,
+   "vipUrl": "/v/auto-s/tesla/m2399493174-tesla-model-3-long-range-awd-75-kwh-trekhaak-560-km-wltp",
+   "shortTitle": "Tesla Model 3",
+   "displayTitle": "LONG RANGE AWD 75 kWh + TREKHAAK | 560 KM WLTP"
+  }
+ ],
+ "topBlock": [],
+ "facets": [
+  {
+   "id": 2166,
+   "key": "advertiser",
+   "type": "AttributeGroupFacet",
+   "label": "Adverteerder",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Particulier",
+     "attributeValueId": 10898,
+     "attributeValueLabel": "Particulier",
+     "histogramCount": 78,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bedrijf",
+     "attributeValueId": 10899,
+     "attributeValueLabel": "Bedrijf",
+     "histogramCount": 478,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2162,
+   "key": "priceType",
+   "type": "AttributeGroupFacet",
+   "label": "Type advertentie",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Vraagprijs",
+     "attributeValueId": 10882,
+     "attributeValueLabel": "Te koop",
+     "histogramCount": 559,
+     "selected": true,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Leaseprijs",
+     "attributeValueId": 10883,
+     "attributeValueLabel": "Lease",
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "key": "PriceCents",
+   "type": "AttributeRangeFacet",
+   "range": {
+    "to": 4500000
+   }
+  },
+  {
+   "id": 1597,
+   "key": "constructionYear",
+   "type": "AttributeRangeFacet",
+   "label": "Bouwjaar",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": ""
+     },
+     {
+      "value": 2026,
+      "label": "2026"
+     },
+     {
+      "value": 2025,
+      "label": "2025"
+     },
+     {
+      "value": 2024,
+      "label": "2024"
+     },
+     {
+      "value": 2023,
+      "label": "2023"
+     },
+     {
+      "value": 2022,
+      "label": "2022"
+     },
+     {
+      "value": 2021,
+      "label": "2021"
+     },
+     {
+      "value": 2020,
+      "label": "2020"
+     },
+     {
+      "value": 2019,
+      "label": "2019"
+     },
+     {
+      "value": 2018,
+      "label": "2018"
+     },
+     {
+      "value": 2017,
+      "label": "2017"
+     },
+     {
+      "value": 2016,
+      "label": "2016"
+     },
+     {
+      "value": 2015,
+      "label": "2015"
+     },
+     {
+      "value": 2014,
+      "label": "2014"
+     },
+     {
+      "value": 2013,
+      "label": "2013"
+     },
+     {
+      "value": 2012,
+      "label": "2012"
+     },
+     {
+      "value": 2011,
+      "label": "2011"
+     },
+     {
+      "value": 2010,
+      "label": "2010"
+     },
+     {
+      "value": 2009,
+      "label": "2009"
+     },
+     {
+      "value": 2008,
+      "label": "2008"
+     },
+     {
+      "value": 2007,
+      "label": "2007"
+     },
+     {
+      "value": 2006,
+      "label": "2006"
+     },
+     {
+      "value": 2005,
+      "label": "2005"
+     },
+     {
+      "value": 2004,
+      "label": "2004"
+     },
+     {
+      "value": 2003,
+      "label": "2003"
+     },
+     {
+      "value": 2002,
+      "label": "2002"
+     },
+     {
+      "value": 2001,
+      "label": "2001"
+     },
+     {
+      "value": 2000,
+      "label": "2000"
+     },
+     {
+      "value": 1999,
+      "label": "1999"
+     },
+     {
+      "value": 1998,
+      "label": "1998"
+     },
+     {
+      "value": 1997,
+      "label": "1997"
+     },
+     {
+      "value": 1996,
+      "label": "1996"
+     },
+     {
+      "value": 1995,
+      "label": "1995"
+     },
+     {
+      "value": 1994,
+      "label": "1994"
+     },
+     {
+      "value": 1993,
+      "label": "1993"
+     },
+     {
+      "value": 1992,
+      "label": "1992"
+     },
+     {
+      "value": 1991,
+      "label": "1991"
+     },
+     {
+      "value": 1990,
+      "label": "1990"
+     },
+     {
+      "value": 1989,
+      "label": "1989"
+     },
+     {
+      "value": 1988,
+      "label": "1988"
+     },
+     {
+      "value": 1987,
+      "label": "1987"
+     },
+     {
+      "value": 1986,
+      "label": "1986"
+     },
+     {
+      "value": 1985,
+      "label": "1985"
+     },
+     {
+      "value": 1984,
+      "label": "1984"
+     },
+     {
+      "value": 1983,
+      "label": "1983"
+     },
+     {
+      "value": 1982,
+      "label": "1982"
+     },
+     {
+      "value": 1981,
+      "label": "1981"
+     },
+     {
+      "value": 1980,
+      "label": "1980"
+     },
+     {
+      "value": 1979,
+      "label": "1979"
+     },
+     {
+      "value": 1978,
+      "label": "1978"
+     },
+     {
+      "value": 1977,
+      "label": "1977"
+     },
+     {
+      "value": 1976,
+      "label": "1976"
+     },
+     {
+      "value": 1975,
+      "label": "1975"
+     },
+     {
+      "value": 1974,
+      "label": "1974"
+     },
+     {
+      "value": 1973,
+      "label": "1973"
+     },
+     {
+      "value": 1972,
+      "label": "1972"
+     },
+     {
+      "value": 1971,
+      "label": "1971"
+     },
+     {
+      "value": 1970,
+      "label": "1970"
+     },
+     {
+      "value": 1969,
+      "label": "1969"
+     },
+     {
+      "value": 1968,
+      "label": "1968"
+     },
+     {
+      "value": 1967,
+      "label": "1967"
+     },
+     {
+      "value": 1966,
+      "label": "1966"
+     },
+     {
+      "value": 1965,
+      "label": "1965"
+     },
+     {
+      "value": 1964,
+      "label": "1964"
+     },
+     {
+      "value": 1963,
+      "label": "1963"
+     },
+     {
+      "value": 1962,
+      "label": "1962"
+     },
+     {
+      "value": 1961,
+      "label": "1961"
+     },
+     {
+      "value": 1960,
+      "label": "1960"
+     },
+     {
+      "value": 1959,
+      "label": "1959"
+     },
+     {
+      "value": 1958,
+      "label": "1958"
+     },
+     {
+      "value": 1957,
+      "label": "1957"
+     },
+     {
+      "value": 1956,
+      "label": "1956"
+     },
+     {
+      "value": 1955,
+      "label": "1955"
+     },
+     {
+      "value": 1954,
+      "label": "1954"
+     },
+     {
+      "value": 1953,
+      "label": "1953"
+     },
+     {
+      "value": 1952,
+      "label": "1952"
+     },
+     {
+      "value": 1951,
+      "label": "1951"
+     },
+     {
+      "value": 1950,
+      "label": "1950"
+     },
+     {
+      "value": 1949,
+      "label": "1949"
+     },
+     {
+      "value": 1948,
+      "label": "1948"
+     },
+     {
+      "value": 1947,
+      "label": "1947"
+     },
+     {
+      "value": 1946,
+      "label": "1946"
+     },
+     {
+      "value": 1945,
+      "label": "1945"
+     },
+     {
+      "value": 1944,
+      "label": "1944"
+     },
+     {
+      "value": 1943,
+      "label": "1943"
+     },
+     {
+      "value": 1942,
+      "label": "1942"
+     },
+     {
+      "value": 1941,
+      "label": "1941"
+     },
+     {
+      "value": 1940,
+      "label": "1940"
+     },
+     {
+      "value": 1939,
+      "label": "1939"
+     },
+     {
+      "value": 1938,
+      "label": "1938"
+     },
+     {
+      "value": 1937,
+      "label": "1937"
+     },
+     {
+      "value": 1936,
+      "label": "1936"
+     },
+     {
+      "value": 1935,
+      "label": "1935"
+     },
+     {
+      "value": 1934,
+      "label": "1934"
+     },
+     {
+      "value": 1933,
+      "label": "1933"
+     },
+     {
+      "value": 1932,
+      "label": "1932"
+     },
+     {
+      "value": 1931,
+      "label": "1931"
+     },
+     {
+      "value": 1930,
+      "label": "1930"
+     },
+     {
+      "value": 1929,
+      "label": "1929"
+     },
+     {
+      "value": 1928,
+      "label": "1928"
+     },
+     {
+      "value": 1927,
+      "label": "1927"
+     },
+     {
+      "value": 1926,
+      "label": "1926"
+     },
+     {
+      "value": 1925,
+      "label": "1925"
+     },
+     {
+      "value": 1924,
+      "label": "1924"
+     },
+     {
+      "value": 1923,
+      "label": "1923"
+     },
+     {
+      "value": 1922,
+      "label": "1922"
+     },
+     {
+      "value": 1921,
+      "label": "1921"
+     },
+     {
+      "value": 1920,
+      "label": "1920"
+     },
+     {
+      "value": 1919,
+      "label": "1919"
+     },
+     {
+      "value": 1918,
+      "label": "1918"
+     },
+     {
+      "value": 1917,
+      "label": "1917"
+     },
+     {
+      "value": 1916,
+      "label": "1916"
+     },
+     {
+      "value": 1915,
+      "label": "1915"
+     },
+     {
+      "value": 1914,
+      "label": "1914"
+     },
+     {
+      "value": 1913,
+      "label": "1913"
+     },
+     {
+      "value": 1912,
+      "label": "1912"
+     },
+     {
+      "value": 1911,
+      "label": "1911"
+     },
+     {
+      "value": 1910,
+      "label": "1910"
+     },
+     {
+      "value": 1909,
+      "label": "1909"
+     },
+     {
+      "value": 1908,
+      "label": "1908"
+     },
+     {
+      "value": 1907,
+      "label": "1907"
+     },
+     {
+      "value": 1906,
+      "label": "1906"
+     },
+     {
+      "value": 1905,
+      "label": "1905"
+     },
+     {
+      "value": 1904,
+      "label": "1904"
+     },
+     {
+      "value": 1903,
+      "label": "1903"
+     },
+     {
+      "value": 1902,
+      "label": "1902"
+     },
+     {
+      "value": 1901,
+      "label": "1901"
+     },
+     {
+      "value": 1900,
+      "label": "1900"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": ""
+     },
+     {
+      "value": 2026,
+      "label": "2026"
+     },
+     {
+      "value": 2025,
+      "label": "2025"
+     },
+     {
+      "value": 2024,
+      "label": "2024"
+     },
+     {
+      "value": 2023,
+      "label": "2023"
+     },
+     {
+      "value": 2022,
+      "label": "2022"
+     },
+     {
+      "value": 2021,
+      "label": "2021"
+     },
+     {
+      "value": 2020,
+      "label": "2020"
+     },
+     {
+      "value": 2019,
+      "label": "2019"
+     },
+     {
+      "value": 2018,
+      "label": "2018"
+     },
+     {
+      "value": 2017,
+      "label": "2017"
+     }
+    ]
+   },
+   "categoryId": 2830,
+   "range": {
+    "from": 2017
+   }
+  },
+  {
+   "id": 1598,
+   "key": "mileage",
+   "type": "AttributeRangeFacet",
+   "label": "Kilometerstand",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 km"
+     },
+     {
+      "value": 2501,
+      "label": "2.500 km"
+     },
+     {
+      "value": 5001,
+      "label": "5.000 km"
+     },
+     {
+      "value": 10001,
+      "label": "10.000 km"
+     },
+     {
+      "value": 20001,
+      "label": "20.000 km"
+     },
+     {
+      "value": 30001,
+      "label": "30.000 km"
+     },
+     {
+      "value": 40001,
+      "label": "40.000 km"
+     },
+     {
+      "value": 50001,
+      "label": "50.000 km"
+     },
+     {
+      "value": 60001,
+      "label": "60.000 km"
+     },
+     {
+      "value": 70001,
+      "label": "70.000 km"
+     },
+     {
+      "value": 80001,
+      "label": "80.000 km"
+     },
+     {
+      "value": 90001,
+      "label": "90.000 km"
+     },
+     {
+      "value": 100001,
+      "label": "100.000 km"
+     },
+     {
+      "value": 125001,
+      "label": "125.000 km"
+     },
+     {
+      "value": 150001,
+      "label": "150.000 km"
+     },
+     {
+      "value": 175001,
+      "label": "175.000 km"
+     },
+     {
+      "value": 200001,
+      "label": "200.000 km"
+     },
+     {
+      "value": 250001,
+      "label": "250.000 km"
+     },
+     {
+      "value": 300001,
+      "label": "300.000 km"
+     },
+     {
+      "value": 400001,
+      "label": "400.000 km"
+     },
+     {
+      "value": 500001,
+      "label": "500.000 km"
+     },
+     {
+      "value": 600001,
+      "label": "600.000 km"
+     },
+     {
+      "value": 700001,
+      "label": "700.000 km"
+     },
+     {
+      "value": 800001,
+      "label": "800.000 km"
+     },
+     {
+      "value": 900001,
+      "label": "900.000 km"
+     },
+     {
+      "value": 1000000,
+      "label": "boven 1.000.000 km"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": "0 km"
+     },
+     {
+      "value": 2501,
+      "label": "2.500 km"
+     },
+     {
+      "value": 5001,
+      "label": "5.000 km"
+     },
+     {
+      "value": 10001,
+      "label": "10.000 km"
+     },
+     {
+      "value": 20001,
+      "label": "20.000 km"
+     },
+     {
+      "value": 30001,
+      "label": "30.000 km"
+     },
+     {
+      "value": 40001,
+      "label": "40.000 km"
+     },
+     {
+      "value": 50001,
+      "label": "50.000 km"
+     },
+     {
+      "value": 60001,
+      "label": "60.000 km"
+     },
+     {
+      "value": 70001,
+      "label": "70.000 km"
+     },
+     {
+      "value": 80001,
+      "label": "80.000 km"
+     },
+     {
+      "value": 90001,
+      "label": "90.000 km"
+     },
+     {
+      "value": 100001,
+      "label": "100.000 km"
+     },
+     {
+      "value": 125001,
+      "label": "125.000 km"
+     },
+     {
+      "value": 150001,
+      "label": "150.000 km"
+     },
+     {
+      "value": 175001,
+      "label": "175.000 km"
+     },
+     {
+      "value": 200001,
+      "label": "200.000 km"
+     },
+     {
+      "value": 250001,
+      "label": "250.000 km"
+     },
+     {
+      "value": 300001,
+      "label": "300.000 km"
+     },
+     {
+      "value": 400001,
+      "label": "400.000 km"
+     },
+     {
+      "value": 500001,
+      "label": "500.000 km"
+     },
+     {
+      "value": 600001,
+      "label": "600.000 km"
+     },
+     {
+      "value": 700001,
+      "label": "700.000 km"
+     },
+     {
+      "value": 800001,
+      "label": "800.000 km"
+     },
+     {
+      "value": 900001,
+      "label": "900.000 km"
+     },
+     {
+      "value": 1000000,
+      "label": "boven 1.000.000 km"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "key": "RelevantCategories",
+   "type": "CategoryTreeFacet",
+   "categories": [
+    {
+     "id": 91,
+     "selected": false,
+     "isValuableForSeo": true,
+     "dominant": false,
+     "label": "Auto's",
+     "key": "auto-s",
+     "parentId": null,
+     "parentKey": false
+    },
+    {
+     "id": 2830,
+     "histogramCount": 559,
+     "selected": true,
+     "isValuableForSeo": true,
+     "dominant": false,
+     "label": "Tesla",
+     "key": "tesla",
+     "parentId": 91,
+     "parentKey": "auto-s"
+    }
+   ]
+  },
+  {
+   "id": 1628,
+   "key": "warranty",
+   "type": "AttributeGroupFacet",
+   "label": "Garantie",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Met garantie (alle)",
+     "attributeValueId": 8783,
+     "attributeValueLabel": "Met garantie (alle)",
+     "histogramCount": 41,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2314,
+   "key": "model",
+   "type": "AttributeGroupFacet",
+   "label": "Model",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Model 3",
+     "attributeValueId": 11736,
+     "attributeValueLabel": "Model 3",
+     "histogramCount": 364,
+     "selected": true,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Model S",
+     "attributeValueId": 11735,
+     "attributeValueLabel": "Model S",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Model X",
+     "attributeValueId": 11737,
+     "attributeValueLabel": "Model X",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Model Y",
+     "attributeValueId": 13853,
+     "attributeValueLabel": "Model Y",
+     "histogramCount": 195,
+     "selected": true,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Roadster",
+     "attributeValueId": 14018,
+     "attributeValueLabel": "Roadster",
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 99,
+   "key": "fuel",
+   "type": "AttributeGroupFacet",
+   "label": "Brandstof",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Benzine",
+     "attributeValueId": 473,
+     "attributeValueLabel": "Benzine",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Diesel",
+     "attributeValueId": 474,
+     "attributeValueLabel": "Diesel",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Elektrisch",
+     "attributeValueId": 11756,
+     "attributeValueLabel": "Elektrisch",
+     "histogramCount": 559,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Hybride ElektrischBenzine",
+     "attributeValueId": 13838,
+     "attributeValueLabel": "Hybride Elektrisch/Benzine",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Hybride ElektrischDiesel",
+     "attributeValueId": 13839,
+     "attributeValueLabel": "Hybride Elektrisch/Diesel",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "LPG",
+     "attributeValueId": 475,
+     "attributeValueLabel": "LPG",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "CNG",
+     "attributeValueId": 13840,
+     "attributeValueLabel": "CNG (Aardgas)",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Waterstof",
+     "attributeValueId": 13841,
+     "attributeValueLabel": "Waterstof",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Overige brandstoffen",
+     "attributeValueId": 476,
+     "attributeValueLabel": "Overige brandstoffen",
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2918,
+   "key": "range",
+   "type": "AttributeRangeFacet",
+   "label": "Actieradius (min.)",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 km"
+     },
+     {
+      "value": 50,
+      "label": "50 km"
+     },
+     {
+      "value": 100,
+      "label": "100 km"
+     },
+     {
+      "value": 200,
+      "label": "200 km"
+     },
+     {
+      "value": 300,
+      "label": "300 km"
+     },
+     {
+      "value": 400,
+      "label": "400 km"
+     },
+     {
+      "value": 500,
+      "label": "500 km"
+     },
+     {
+      "value": 600,
+      "label": "600 km"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2929,
+   "key": "hybridType",
+   "type": "AttributeGroupFacet",
+   "label": "Type hybride",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Half hybride",
+     "attributeValueId": 13954,
+     "attributeValueLabel": "Half hybride",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Volledig hybride",
+     "attributeValueId": 13955,
+     "attributeValueLabel": "Volledig hybride",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Plug-in hybride",
+     "attributeValueId": 13956,
+     "attributeValueLabel": "Plug-in hybride",
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2919,
+   "key": "batteryChargeTime",
+   "type": "AttributeRangeFacet",
+   "label": "Accu-laadtijd (max.)",
+   "options": {
+    "to": [
+     {
+      "value": 0,
+      "label": "0 uur"
+     },
+     {
+      "value": 360,
+      "label": "6 uur"
+     },
+     {
+      "value": 540,
+      "label": "9 uur"
+     },
+     {
+      "value": 720,
+      "label": "12 uur"
+     },
+     {
+      "value": 900,
+      "label": "15 uur"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2920,
+   "key": "batteryFastChargeTime",
+   "type": "AttributeRangeFacet",
+   "label": "Accu-snellaadtijd (max.)",
+   "options": {
+    "to": [
+     {
+      "value": 0,
+      "label": "0 minuten"
+     },
+     {
+      "value": 30,
+      "label": "30 minuten"
+     },
+     {
+      "value": 60,
+      "label": "60 minuten"
+     },
+     {
+      "value": 120,
+      "label": "120 minuten"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2921,
+   "key": "batteryCapacity",
+   "type": "AttributeRangeFacet",
+   "label": "Accu-capaciteit",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 kWh"
+     },
+     {
+      "value": 10,
+      "label": "10 kWh"
+     },
+     {
+      "value": 20,
+      "label": "20 kWh"
+     },
+     {
+      "value": 30,
+      "label": "30 kWh"
+     },
+     {
+      "value": 40,
+      "label": "40 kWh"
+     },
+     {
+      "value": 50,
+      "label": "50 kWh"
+     },
+     {
+      "value": 60,
+      "label": "60 kWh"
+     },
+     {
+      "value": 70,
+      "label": "70 kWh"
+     },
+     {
+      "value": 80,
+      "label": "80 kWh"
+     },
+     {
+      "value": 90,
+      "label": "90 kWh"
+     },
+     {
+      "value": 100,
+      "label": "100 kWh"
+     },
+     {
+      "value": 110,
+      "label": "110 kWh"
+     },
+     {
+      "value": 120,
+      "label": "120 kWh"
+     },
+     {
+      "value": 130,
+      "label": "130 kWh"
+     },
+     {
+      "value": 140,
+      "label": "140 kWh"
+     },
+     {
+      "value": 150,
+      "label": "150 kWh"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": "0 kWh"
+     },
+     {
+      "value": 10,
+      "label": "10 kWh"
+     },
+     {
+      "value": 20,
+      "label": "20 kWh"
+     },
+     {
+      "value": 30,
+      "label": "30 kWh"
+     },
+     {
+      "value": 40,
+      "label": "40 kWh"
+     },
+     {
+      "value": 50,
+      "label": "50 kWh"
+     },
+     {
+      "value": 60,
+      "label": "60 kWh"
+     },
+     {
+      "value": 70,
+      "label": "70 kWh"
+     },
+     {
+      "value": 80,
+      "label": "80 kWh"
+     },
+     {
+      "value": 90,
+      "label": "90 kWh"
+     },
+     {
+      "value": 100,
+      "label": "100 kWh"
+     },
+     {
+      "value": 110,
+      "label": "110 kWh"
+     },
+     {
+      "value": 120,
+      "label": "120 kWh"
+     },
+     {
+      "value": 130,
+      "label": "130 kWh"
+     },
+     {
+      "value": 140,
+      "label": "140 kWh"
+     },
+     {
+      "value": 150,
+      "label": "150 kWh"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2295,
+   "key": "fuelConsumption",
+   "type": "AttributeGroupFacet",
+   "label": "Verbruik",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "0-7",
+     "attributeValueId": 186,
+     "attributeValueLabel": "< 7 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "8-10",
+     "attributeValueId": 187,
+     "attributeValueLabel": "7-10 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "11-15",
+     "attributeValueId": 188,
+     "attributeValueLabel": "10-15 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "16-20",
+     "attributeValueId": 189,
+     "attributeValueLabel": "15-20 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "21-25",
+     "attributeValueId": 190,
+     "attributeValueLabel": "20-25 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "25-1000",
+     "attributeValueId": 191,
+     "attributeValueLabel": "> 25 km/l",
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2319,
+   "key": "euronormBE",
+   "type": "AttributeGroupFacet",
+   "label": "Emissieklasse",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Euro 1",
+     "attributeValueId": 11781,
+     "attributeValueLabel": "Euro 1",
+     "histogramCount": 5,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Euro 2",
+     "attributeValueId": 11782,
+     "attributeValueLabel": "Euro 2",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Euro 3",
+     "attributeValueId": 11783,
+     "attributeValueLabel": "Euro 3",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Euro 4",
+     "attributeValueId": 11784,
+     "attributeValueLabel": "Euro 4",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Euro 5",
+     "attributeValueId": 11785,
+     "attributeValueLabel": "Euro 5",
+     "histogramCount": 1,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Euro 6",
+     "attributeValueId": 11786,
+     "attributeValueLabel": "Euro 6",
+     "histogramCount": 11,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2928,
+   "key": "energyLabel",
+   "type": "AttributeGroupFacet",
+   "label": "Energielabel",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "A",
+     "attributeValueId": 13947,
+     "attributeValueLabel": "A",
+     "histogramCount": 142,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "B",
+     "attributeValueId": 13948,
+     "attributeValueLabel": "B",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "C",
+     "attributeValueId": 13949,
+     "attributeValueLabel": "C",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "D",
+     "attributeValueId": 13950,
+     "attributeValueLabel": "D",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "E",
+     "attributeValueId": 13951,
+     "attributeValueLabel": "E",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "F",
+     "attributeValueId": 13952,
+     "attributeValueLabel": "F",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "G",
+     "attributeValueId": 13953,
+     "attributeValueLabel": "G",
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 102,
+   "key": "body",
+   "type": "AttributeGroupFacet",
+   "label": "Carrosserie",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Cabriolet",
+     "attributeValueId": 485,
+     "attributeValueLabel": "Cabriolet",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Coupé",
+     "attributeValueId": 486,
+     "attributeValueLabel": "Coupé",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Hatchback (3/5-deurs)",
+     "attributeValueId": 481,
+     "attributeValueLabel": "Hatchback",
+     "histogramCount": 143,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "MPV",
+     "attributeValueId": 482,
+     "attributeValueLabel": "MPV",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Sedan (2/4-deurs)",
+     "attributeValueId": 483,
+     "attributeValueLabel": "Sedan",
+     "histogramCount": 199,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Stationwagon",
+     "attributeValueId": 484,
+     "attributeValueLabel": "Stationwagon",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "SUV of Terreinwagen",
+     "attributeValueId": 488,
+     "attributeValueLabel": "SUV of Terreinwagen",
+     "histogramCount": 182,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Overige carrosserieën",
+     "attributeValueId": 487,
+     "attributeValueLabel": "Overige carrosserieën",
+     "histogramCount": 33,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2924,
+   "key": "emptyWeightCars",
+   "type": "AttributeRangeFacet",
+   "label": "Leeggewicht (max.)",
+   "options": {
+    "to": [
+     {
+      "value": 0,
+      "label": "0 kg"
+     },
+     {
+      "value": 600,
+      "label": "600 kg"
+     },
+     {
+      "value": 700,
+      "label": "700 kg"
+     },
+     {
+      "value": 800,
+      "label": "800 kg"
+     },
+     {
+      "value": 900,
+      "label": "900 kg"
+     },
+     {
+      "value": 1000,
+      "label": "1000 kg"
+     },
+     {
+      "value": 1100,
+      "label": "1100 kg"
+     },
+     {
+      "value": 1200,
+      "label": "1200 kg"
+     },
+     {
+      "value": 1300,
+      "label": "1300 kg"
+     },
+     {
+      "value": 1400,
+      "label": "1400 kg"
+     },
+     {
+      "value": 1500,
+      "label": "1500 kg"
+     },
+     {
+      "value": 1600,
+      "label": "1600 kg"
+     },
+     {
+      "value": 1700,
+      "label": "1700 kg"
+     },
+     {
+      "value": 1800,
+      "label": "1800 kg"
+     },
+     {
+      "value": 1900,
+      "label": "1900 kg"
+     },
+     {
+      "value": 2000,
+      "label": "2000 kg"
+     },
+     {
+      "value": 2100,
+      "label": "2100 kg"
+     },
+     {
+      "value": 2200,
+      "label": "2200 kg"
+     },
+     {
+      "value": 2300,
+      "label": "2300 kg"
+     },
+     {
+      "value": 2400,
+      "label": "2400 kg"
+     },
+     {
+      "value": 2500,
+      "label": "2500 kg"
+     },
+     {
+      "value": 2600,
+      "label": "2600 kg"
+     },
+     {
+      "value": 2700,
+      "label": "2700 kg"
+     },
+     {
+      "value": 2800,
+      "label": "2800 kg"
+     },
+     {
+      "value": 2900,
+      "label": "2900 kg"
+     },
+     {
+      "value": 3000,
+      "label": "3000 kg"
+     },
+     {
+      "value": 3100,
+      "label": "3100 kg"
+     },
+     {
+      "value": 3200,
+      "label": "3200 kg"
+     },
+     {
+      "value": 3300,
+      "label": "3300 kg"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2925,
+   "key": "numberOfCilindersCars",
+   "type": "AttributeRangeFacet",
+   "label": "Aantal cilinders",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 cilinders"
+     },
+     {
+      "value": 1,
+      "label": "1 cilinder"
+     },
+     {
+      "value": 2,
+      "label": "2 cilinders"
+     },
+     {
+      "value": 3,
+      "label": "3 cilinders"
+     },
+     {
+      "value": 4,
+      "label": "4 cilinders"
+     },
+     {
+      "value": 5,
+      "label": "5 cilinders"
+     },
+     {
+      "value": 6,
+      "label": "6 cilinders"
+     },
+     {
+      "value": 7,
+      "label": "7 cilinders"
+     },
+     {
+      "value": 8,
+      "label": "8 cilinders"
+     },
+     {
+      "value": 9,
+      "label": "9 cilinders"
+     },
+     {
+      "value": 10,
+      "label": "10 cilinders"
+     },
+     {
+      "value": 11,
+      "label": "11 cilinders"
+     },
+     {
+      "value": 12,
+      "label": "12 cilinders"
+     },
+     {
+      "value": 13,
+      "label": "13 cilinders"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": "0 cilinders"
+     },
+     {
+      "value": 1,
+      "label": "1 cilinder"
+     },
+     {
+      "value": 2,
+      "label": "2 cilinders"
+     },
+     {
+      "value": 3,
+      "label": "3 cilinders"
+     },
+     {
+      "value": 4,
+      "label": "4 cilinders"
+     },
+     {
+      "value": 5,
+      "label": "5 cilinders"
+     },
+     {
+      "value": 6,
+      "label": "6 cilinders"
+     },
+     {
+      "value": 7,
+      "label": "7 cilinders"
+     },
+     {
+      "value": 8,
+      "label": "8 cilinders"
+     },
+     {
+      "value": 9,
+      "label": "9 cilinders"
+     },
+     {
+      "value": 10,
+      "label": "10 cilinders"
+     },
+     {
+      "value": 11,
+      "label": "11 cilinders"
+     },
+     {
+      "value": 12,
+      "label": "12 cilinders"
+     },
+     {
+      "value": 13,
+      "label": "13 cilinders"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2241,
+   "key": "numberOfDoors",
+   "type": "AttributeGroupFacet",
+   "label": "Aantal deuren",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "1-3",
+     "attributeValueId": 171,
+     "attributeValueLabel": "2 of 3 deuren",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "4-5",
+     "attributeValueId": 172,
+     "attributeValueLabel": "4 of 5 deuren",
+     "histogramCount": 520,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "6-20",
+     "attributeValueId": 173,
+     "attributeValueLabel": "6 deuren of meer",
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2242,
+   "key": "numberOfSeats",
+   "type": "AttributeRangeFacet",
+   "label": "Aantal stoelen",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": ""
+     },
+     {
+      "value": 1,
+      "label": "1 stoel"
+     },
+     {
+      "value": 2,
+      "label": "2 stoelen"
+     },
+     {
+      "value": 3,
+      "label": "3 stoelen"
+     },
+     {
+      "value": 4,
+      "label": "4 stoelen"
+     },
+     {
+      "value": 5,
+      "label": "5 stoelen"
+     },
+     {
+      "value": 6,
+      "label": "6 stoelen"
+     },
+     {
+      "value": 7,
+      "label": "7 stoelen"
+     },
+     {
+      "value": 8,
+      "label": "8 stoelen"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": ""
+     },
+     {
+      "value": 1,
+      "label": "1 stoel"
+     },
+     {
+      "value": 2,
+      "label": "2 stoelen"
+     },
+     {
+      "value": 3,
+      "label": "3 stoelen"
+     },
+     {
+      "value": 4,
+      "label": "4 stoelen"
+     },
+     {
+      "value": 5,
+      "label": "5 stoelen"
+     },
+     {
+      "value": 6,
+      "label": "6 stoelen"
+     },
+     {
+      "value": 7,
+      "label": "7 stoelen"
+     },
+     {
+      "value": 8,
+      "label": "8 stoelen"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 104,
+   "key": "transmission",
+   "type": "AttributeGroupFacet",
+   "label": "Transmissie",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Automaat",
+     "attributeValueId": 534,
+     "attributeValueLabel": "Automaat",
+     "histogramCount": 559,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Handgeschakeld",
+     "attributeValueId": 535,
+     "attributeValueLabel": "Handgeschakeld",
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2171,
+   "key": "APK",
+   "type": "AttributeGroupFacet",
+   "label": "APK",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Minimaal een jaar",
+     "attributeValueId": 168,
+     "attributeValueLabel": "Minimaal een jaar",
+     "histogramCount": 191,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Minimaal 6 maanden",
+     "attributeValueId": 169,
+     "attributeValueLabel": "Minimaal 6 maanden",
+     "histogramCount": 377,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2904,
+   "key": "imported",
+   "type": "AttributeGroupFacet",
+   "label": "Import auto",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Nee",
+     "attributeValueId": 13813,
+     "attributeValueLabel": "Origineel Nederlands",
+     "histogramCount": 350,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Ja",
+     "attributeValueId": 13812,
+     "attributeValueLabel": "Geïmporteerd",
+     "histogramCount": 116,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 98,
+   "key": "color",
+   "type": "AttributeGroupFacet",
+   "label": "Kleur",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Beige",
+     "attributeValueId": 468,
+     "attributeValueLabel": "Beige",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Blauw",
+     "attributeValueId": 287,
+     "attributeValueLabel": "Blauw",
+     "histogramCount": 74,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bruin",
+     "attributeValueId": 469,
+     "attributeValueLabel": "Bruin",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Geel",
+     "attributeValueId": 443364,
+     "attributeValueLabel": "Geel",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Groen",
+     "attributeValueId": 288,
+     "attributeValueLabel": "Groen",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Rood",
+     "attributeValueId": 465,
+     "attributeValueLabel": "Rood",
+     "histogramCount": 26,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Wit",
+     "attributeValueId": 471,
+     "attributeValueLabel": "Wit",
+     "histogramCount": 198,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Zilver of Grijs",
+     "attributeValueId": 466,
+     "attributeValueLabel": "Zilver of Grijs",
+     "histogramCount": 123,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Zwart",
+     "attributeValueId": 290,
+     "attributeValueLabel": "Zwart",
+     "histogramCount": 135,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Overige kleuren",
+     "attributeValueId": 293,
+     "attributeValueLabel": "Overige kleuren",
+     "histogramCount": 1,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2318,
+   "key": "interiorcolor",
+   "type": "AttributeGroupFacet",
+   "label": "Interieur",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Beige",
+     "attributeValueId": 11776,
+     "attributeValueLabel": "Beige",
+     "histogramCount": 1,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Blauw",
+     "attributeValueId": 11777,
+     "attributeValueLabel": "Blauw",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bruin",
+     "attributeValueId": 11778,
+     "attributeValueLabel": "Bruin",
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Grijs",
+     "attributeValueId": 11779,
+     "attributeValueLabel": "Grijs",
+     "histogramCount": 3,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Zwart",
+     "attributeValueId": 11780,
+     "attributeValueLabel": "Zwart",
+     "histogramCount": 413,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Overige kleuren",
+     "attributeValueId": 12155,
+     "attributeValueLabel": "Overige kleuren",
+     "histogramCount": 32,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2932,
+   "key": "upholstery",
+   "type": "AttributeGroupFacet",
+   "label": "Bekleding",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Alcantara",
+     "attributeValueId": 13977,
+     "attributeValueLabel": "Alcantara",
+     "histogramCount": 1,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Kunstmatig leder",
+     "attributeValueId": 13978,
+     "attributeValueLabel": "Kunstmatig leder",
+     "histogramCount": 28,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Leder",
+     "attributeValueId": 13979,
+     "attributeValueLabel": "Leder",
+     "histogramCount": 261,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Leder en Alcantara",
+     "attributeValueId": 13980,
+     "attributeValueLabel": "Leder en Alcantara",
+     "histogramCount": 3,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Leder en Stof",
+     "attributeValueId": 13981,
+     "attributeValueLabel": "Leder en Stof",
+     "histogramCount": 4,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Stof",
+     "attributeValueId": 13982,
+     "attributeValueLabel": "Stof",
+     "histogramCount": 50,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Velours",
+     "attributeValueId": 13983,
+     "attributeValueLabel": "Velours",
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Overige",
+     "attributeValueId": 13984,
+     "attributeValueLabel": "Overige bekleding",
+     "histogramCount": 1,
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2245,
+   "key": "engineHorsepower",
+   "type": "AttributeRangeFacet",
+   "label": "Vermogen",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 pk"
+     },
+     {
+      "value": 50,
+      "label": "50 pk"
+     },
+     {
+      "value": 75,
+      "label": "75 pk"
+     },
+     {
+      "value": 100,
+      "label": "100 pk"
+     },
+     {
+      "value": 110,
+      "label": "110 pk"
+     },
+     {
+      "value": 120,
+      "label": "120 pk"
+     },
+     {
+      "value": 130,
+      "label": "130 pk"
+     },
+     {
+      "value": 140,
+      "label": "140 pk"
+     },
+     {
+      "value": 150,
+      "label": "150 pk"
+     },
+     {
+      "value": 175,
+      "label": "175 pk"
+     },
+     {
+      "value": 200,
+      "label": "200 pk"
+     },
+     {
+      "value": 225,
+      "label": "225 pk"
+     },
+     {
+      "value": 250,
+      "label": "250 pk"
+     },
+     {
+      "value": 300,
+      "label": "300 pk"
+     },
+     {
+      "value": 350,
+      "label": "350 pk"
+     },
+     {
+      "value": 400,
+      "label": "400 pk"
+     },
+     {
+      "value": 450,
+      "label": "450 pk"
+     },
+     {
+      "value": 500,
+      "label": "500 pk"
+     },
+     {
+      "value": 550,
+      "label": "550 pk"
+     },
+     {
+      "value": 600,
+      "label": "meer dan 600 pk"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": "0 pk"
+     },
+     {
+      "value": 50,
+      "label": "50 pk"
+     },
+     {
+      "value": 75,
+      "label": "75 pk"
+     },
+     {
+      "value": 100,
+      "label": "100 pk"
+     },
+     {
+      "value": 110,
+      "label": "110 pk"
+     },
+     {
+      "value": 120,
+      "label": "120 pk"
+     },
+     {
+      "value": 130,
+      "label": "130 pk"
+     },
+     {
+      "value": 140,
+      "label": "140 pk"
+     },
+     {
+      "value": 150,
+      "label": "150 pk"
+     },
+     {
+      "value": 175,
+      "label": "175 pk"
+     },
+     {
+      "value": 200,
+      "label": "200 pk"
+     },
+     {
+      "value": 225,
+      "label": "225 pk"
+     },
+     {
+      "value": 250,
+      "label": "250 pk"
+     },
+     {
+      "value": 300,
+      "label": "300 pk"
+     },
+     {
+      "value": 350,
+      "label": "350 pk"
+     },
+     {
+      "value": 400,
+      "label": "400 pk"
+     },
+     {
+      "value": 450,
+      "label": "450 pk"
+     },
+     {
+      "value": 500,
+      "label": "500 pk"
+     },
+     {
+      "value": 550,
+      "label": "550 pk"
+     },
+     {
+      "value": 600,
+      "label": "meer dan 600 pk"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 1607,
+   "key": "engineDisplacement",
+   "type": "AttributeRangeFacet",
+   "label": "Motorinhoud",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 liter"
+     },
+     {
+      "value": 1050,
+      "label": "1.0 liter"
+     },
+     {
+      "value": 1250,
+      "label": "1.2 liter"
+     },
+     {
+      "value": 1450,
+      "label": "1.4 liter"
+     },
+     {
+      "value": 1650,
+      "label": "1.6 liter"
+     },
+     {
+      "value": 1850,
+      "label": "1.8 liter"
+     },
+     {
+      "value": 2050,
+      "label": "2.0 liter"
+     },
+     {
+      "value": 2250,
+      "label": "2.2 liter"
+     },
+     {
+      "value": 2550,
+      "label": "2.5 liter"
+     },
+     {
+      "value": 2750,
+      "label": "2.7 liter"
+     },
+     {
+      "value": 3050,
+      "label": "3.0 liter"
+     },
+     {
+      "value": 3550,
+      "label": "3.5 liter"
+     },
+     {
+      "value": 4050,
+      "label": "4.0 liter"
+     },
+     {
+      "value": 5050,
+      "label": "5.0 liter"
+     }
+    ],
+    "to": [
+     {
+      "value": 0,
+      "label": "0 liter"
+     },
+     {
+      "value": 1050,
+      "label": "1.0 liter"
+     },
+     {
+      "value": 1250,
+      "label": "1.2 liter"
+     },
+     {
+      "value": 1450,
+      "label": "1.4 liter"
+     },
+     {
+      "value": 1650,
+      "label": "1.6 liter"
+     },
+     {
+      "value": 1850,
+      "label": "1.8 liter"
+     },
+     {
+      "value": 2050,
+      "label": "2.0 liter"
+     },
+     {
+      "value": 2250,
+      "label": "2.2 liter"
+     },
+     {
+      "value": 2550,
+      "label": "2.5 liter"
+     },
+     {
+      "value": 2750,
+      "label": "2.7 liter"
+     },
+     {
+      "value": 3050,
+      "label": "3.0 liter"
+     },
+     {
+      "value": 3550,
+      "label": "3.5 liter"
+     },
+     {
+      "value": 4050,
+      "label": "4.0 liter"
+     },
+     {
+      "value": 5050,
+      "label": "5.0 liter"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2922,
+   "key": "towingWeightBrakes",
+   "type": "AttributeRangeFacet",
+   "label": "Trekgewicht (geremd) (min.)",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 kg"
+     },
+     {
+      "value": 500,
+      "label": "500 kg"
+     },
+     {
+      "value": 600,
+      "label": "600 kg"
+     },
+     {
+      "value": 700,
+      "label": "700 kg"
+     },
+     {
+      "value": 800,
+      "label": "800 kg"
+     },
+     {
+      "value": 900,
+      "label": "900 kg"
+     },
+     {
+      "value": 1000,
+      "label": "1000 kg"
+     },
+     {
+      "value": 1100,
+      "label": "1100 kg"
+     },
+     {
+      "value": 1200,
+      "label": "1200 kg"
+     },
+     {
+      "value": 1300,
+      "label": "1300 kg"
+     },
+     {
+      "value": 1400,
+      "label": "1400 kg"
+     },
+     {
+      "value": 1500,
+      "label": "1500 kg"
+     },
+     {
+      "value": 1600,
+      "label": "1600 kg"
+     },
+     {
+      "value": 1700,
+      "label": "1700 kg"
+     },
+     {
+      "value": 1800,
+      "label": "1800 kg"
+     },
+     {
+      "value": 1900,
+      "label": "1900 kg"
+     },
+     {
+      "value": 2000,
+      "label": "2000 kg"
+     },
+     {
+      "value": 2100,
+      "label": "2100 kg"
+     },
+     {
+      "value": 2200,
+      "label": "2200 kg"
+     },
+     {
+      "value": 2300,
+      "label": "2300 kg"
+     },
+     {
+      "value": 2400,
+      "label": "2400 kg"
+     },
+     {
+      "value": 2500,
+      "label": "2500 kg"
+     },
+     {
+      "value": 2600,
+      "label": "2600 kg"
+     },
+     {
+      "value": 2700,
+      "label": "2700 kg"
+     },
+     {
+      "value": 2800,
+      "label": "2800 kg"
+     },
+     {
+      "value": 2900,
+      "label": "2900 kg"
+     },
+     {
+      "value": 3000,
+      "label": "3000 kg"
+     },
+     {
+      "value": 3100,
+      "label": "3100 kg"
+     },
+     {
+      "value": 3200,
+      "label": "3200 kg"
+     },
+     {
+      "value": 3300,
+      "label": "3300 kg"
+     },
+     {
+      "value": 3400,
+      "label": "3400 kg"
+     },
+     {
+      "value": 3500,
+      "label": "3500 kg"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2927,
+   "key": "driveTrain",
+   "type": "AttributeGroupFacet",
+   "label": "Aandrijving",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Voorwielaandrijving",
+     "attributeValueId": 13943,
+     "attributeValueLabel": "Voorwielaandrijving",
+     "histogramCount": 3,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Achterwielaandrijving",
+     "attributeValueId": 13944,
+     "attributeValueLabel": "Achterwielaandrijving",
+     "histogramCount": 217,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Vierwielaandrijving",
+     "attributeValueId": 13945,
+     "attributeValueLabel": "Vierwielaandrijving",
+     "histogramCount": 267,
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2940,
+   "key": "towingWeightNoBrakes",
+   "type": "AttributeRangeFacet",
+   "label": "Trekgewicht (ongeremd) (min.)",
+   "options": {
+    "from": [
+     {
+      "value": 0,
+      "label": "0 kg"
+     },
+     {
+      "value": 200,
+      "label": "200 kg"
+     },
+     {
+      "value": 250,
+      "label": "250 kg"
+     },
+     {
+      "value": 300,
+      "label": "300 kg"
+     },
+     {
+      "value": 350,
+      "label": "350 kg"
+     },
+     {
+      "value": 400,
+      "label": "400 kg"
+     },
+     {
+      "value": 450,
+      "label": "450 kg"
+     },
+     {
+      "value": 500,
+      "label": "500 kg"
+     },
+     {
+      "value": 550,
+      "label": "550 kg"
+     },
+     {
+      "value": 600,
+      "label": "600 kg"
+     },
+     {
+      "value": 650,
+      "label": "650 kg"
+     },
+     {
+      "value": 700,
+      "label": "700 kg"
+     },
+     {
+      "value": 750,
+      "label": "750 kg"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2931,
+   "key": "condition",
+   "type": "AttributeGroupFacet",
+   "label": "Conditie",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Nieuw",
+     "attributeValueId": 30,
+     "attributeValueLabel": "Nieuw",
+     "histogramCount": 2,
+     "selected": false,
+     "isValuableForSeo": true
+    },
+    {
+     "attributeValueKey": "Gebruikt",
+     "attributeValueId": 14049,
+     "attributeValueLabel": "Gebruikt",
+     "histogramCount": 457,
+     "selected": false,
+     "isValuableForSeo": true
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 100,
+   "key": "napNationalCarPass",
+   "type": "AttributeGroupFacet",
+   "label": "NAP Nationale Auto Pas",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Ja",
+     "attributeValueId": 477,
+     "attributeValueLabel": "Ja",
+     "histogramCount": 306,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Nee",
+     "attributeValueId": 478,
+     "attributeValueLabel": "Nee",
+     "histogramCount": 253,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2923,
+   "key": "roadTax",
+   "type": "AttributeRangeFacet",
+   "label": "Wegenbelasting (max.)",
+   "options": {
+    "to": [
+     {
+      "value": 0,
+      "label": "0 p/m"
+     },
+     {
+      "value": 25,
+      "label": "€25 p/m"
+     },
+     {
+      "value": 50,
+      "label": "€50 p/m"
+     },
+     {
+      "value": 75,
+      "label": "€75 p/m"
+     },
+     {
+      "value": 100,
+      "label": "€100 p/m"
+     },
+     {
+      "value": 125,
+      "label": "€125 p/m"
+     },
+     {
+      "value": 150,
+      "label": "€150 p/m"
+     },
+     {
+      "value": 175,
+      "label": "€175 p/m"
+     },
+     {
+      "value": 200,
+      "label": "€200 p/m"
+     }
+    ]
+   },
+   "categoryId": 2830
+  },
+  {
+   "id": 2303,
+   "key": "urgency",
+   "type": "AttributeGroupFacet",
+   "label": "Moet nu weg",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Moet nu weg",
+     "attributeValueId": 11603,
+     "attributeValueLabel": "Moet nu weg",
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2404,
+   "key": "delivery",
+   "type": "AttributeGroupFacet",
+   "label": "Levering",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Ophalen",
+     "attributeValueId": 33,
+     "attributeValueLabel": "Ophalen",
+     "histogramCount": 63,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Verzenden",
+     "attributeValueId": 34,
+     "attributeValueLabel": "Verzenden",
+     "histogramCount": 3,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 987654321,
+   "key": "offeredSince",
+   "type": "AttributeGroupFacet",
+   "label": "Aangeboden sinds",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Vandaag",
+     "selected": false,
+     "isValuableForSeo": false,
+     "default": false
+    },
+    {
+     "attributeValueKey": "Gisteren",
+     "histogramCount": 17,
+     "selected": false,
+     "isValuableForSeo": false,
+     "default": false
+    },
+    {
+     "attributeValueKey": "Een week",
+     "histogramCount": 185,
+     "selected": false,
+     "isValuableForSeo": false,
+     "default": false
+    },
+    {
+     "attributeValueKey": "Altijd",
+     "histogramCount": 559,
+     "selected": true,
+     "isValuableForSeo": false,
+     "default": true
+    }
+   ],
+   "singleSelect": true,
+   "categoryId": 0
+  },
+  {
+   "id": 2296,
+   "key": "options",
+   "type": "AttributeGroupFacet",
+   "label": "Opties",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "360 camera",
+     "attributeValueId": 13975,
+     "attributeValueLabel": "360° camera",
+     "histogramCount": 43,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "4x4",
+     "attributeValueId": 11787,
+     "attributeValueLabel": "4x4",
+     "histogramCount": 243,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Aangepast voor mindervaliden",
+     "attributeValueId": 13962,
+     "attributeValueLabel": "Aangepast voor mindervaliden",
+     "histogramCount": 5,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "ABS",
+     "attributeValueId": 11548,
+     "attributeValueLabel": "ABS",
+     "histogramCount": 494,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Achteruitrijcamera",
+     "attributeValueId": 13974,
+     "attributeValueLabel": "Achteruitrijcamera",
+     "histogramCount": 324,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Adaptieve-lichten",
+     "attributeValueId": 11788,
+     "attributeValueLabel": "Adaptieve lichten",
+     "histogramCount": 45,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "AdaptiveCruiseControl",
+     "attributeValueId": 11914,
+     "attributeValueLabel": "Adaptive Cruise Control",
+     "histogramCount": 417,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Airbags",
+     "attributeValueId": 11549,
+     "attributeValueLabel": "Airbags",
+     "histogramCount": 469,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Climate control Airconditioning",
+     "attributeValueId": 11553,
+     "attributeValueLabel": "Airconditioning",
+     "histogramCount": 503,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Alarm",
+     "attributeValueId": 11789,
+     "attributeValueLabel": "Alarm",
+     "histogramCount": 350,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Android Auto",
+     "attributeValueId": 13963,
+     "attributeValueLabel": "Android Auto",
+     "histogramCount": 28,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Apple Carplay",
+     "attributeValueId": 13964,
+     "attributeValueLabel": "Apple Carplay",
+     "histogramCount": 39,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Automatische klimaatregeling",
+     "attributeValueId": 443365,
+     "attributeValueLabel": "Automatische klimaatregeling",
+     "histogramCount": 440,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Autonomous Driving",
+     "attributeValueId": 13972,
+     "attributeValueLabel": "Autonomous Driving",
+     "histogramCount": 36,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bi-directioneel laden",
+     "attributeValueId": 443366,
+     "attributeValueLabel": "Bi-directioneel laden",
+     "histogramCount": 9,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bi-Xenon koplampen",
+     "attributeValueId": 443367,
+     "attributeValueLabel": "Bi-Xenon koplampen",
+     "histogramCount": 17,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bluetooth",
+     "attributeValueId": 11790,
+     "attributeValueLabel": "Bluetooth",
+     "histogramCount": 498,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bochtverlichting",
+     "attributeValueId": 13965,
+     "attributeValueLabel": "Bochtverlichting",
+     "histogramCount": 44,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Boordcomputer",
+     "attributeValueId": 11551,
+     "attributeValueLabel": "Boordcomputer",
+     "histogramCount": 226,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Centrale vergrendeling",
+     "attributeValueId": 11552,
+     "attributeValueLabel": "Centrale vergrendeling",
+     "histogramCount": 315,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Climate control",
+     "attributeValueId": 11602,
+     "attributeValueLabel": "Climate control",
+     "histogramCount": 469,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Cruise Control",
+     "attributeValueId": 11565,
+     "attributeValueLabel": "Cruise Control",
+     "histogramCount": 425,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Dakrails",
+     "attributeValueId": 13966,
+     "attributeValueLabel": "Dakrails",
+     "histogramCount": 14,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Digitale radio-ontvangst",
+     "attributeValueId": 443368,
+     "attributeValueLabel": "Digitale radio-ontvangst",
+     "histogramCount": 200,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Dodehoekdetectie",
+     "attributeValueId": 11910,
+     "attributeValueLabel": "Dodehoekdetectie",
+     "histogramCount": 464,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Electronict Stability Program",
+     "attributeValueId": 11555,
+     "attributeValueLabel": "Electronic Stability Program (ESP)",
+     "histogramCount": 300,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Elektrische achterklep",
+     "attributeValueId": 11803,
+     "attributeValueLabel": "Elektrische achterklep",
+     "histogramCount": 44,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Elektrische buitenspiegels",
+     "attributeValueId": 11792,
+     "attributeValueLabel": "Elektrische buitenspiegels",
+     "histogramCount": 506,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Elektrische ramen",
+     "attributeValueId": 11554,
+     "attributeValueLabel": "Elektrische ramen",
+     "histogramCount": 317,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Elektrische stoelverstelling",
+     "attributeValueId": 11793,
+     "attributeValueLabel": "Elektrische stoelverstelling",
+     "histogramCount": 474,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Elektronische parkeerrem",
+     "attributeValueId": 443369,
+     "attributeValueLabel": "Elektronische parkeerrem",
+     "histogramCount": 186,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Emergency brake assist",
+     "attributeValueId": 11804,
+     "attributeValueLabel": "Emergency brake assist",
+     "histogramCount": 52,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Geheel digitaal combi-instrument",
+     "attributeValueId": 443370,
+     "attributeValueLabel": "Geheel digitaal combi-instrument",
+     "histogramCount": 53,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Grootlichtassistent",
+     "attributeValueId": 443371,
+     "attributeValueLabel": "Grootlichtassistent",
+     "histogramCount": 201,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Head-up Display",
+     "attributeValueId": 13967,
+     "attributeValueLabel": "Head-up Display",
+     "histogramCount": 7,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Hill-Hold Control",
+     "attributeValueId": 443372,
+     "attributeValueLabel": "Hill-Hold Control",
+     "histogramCount": 260,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Inductieladen voor smartphones",
+     "attributeValueId": 443373,
+     "attributeValueLabel": "Inductieladen voor smartphones",
+     "histogramCount": 179,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Isofix",
+     "attributeValueId": 11556,
+     "attributeValueLabel": "Isofix",
+     "histogramCount": 317,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Keyless entry",
+     "attributeValueId": 11913,
+     "attributeValueLabel": "Keyless entry",
+     "histogramCount": 475,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Koplamp volledig LED",
+     "attributeValueId": 443374,
+     "attributeValueLabel": "Koplamp volledig LED",
+     "histogramCount": 34,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Lane Departure Warning",
+     "attributeValueId": 13968,
+     "attributeValueLabel": "Lane Departure Warning",
+     "histogramCount": 60,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Lane Keeping Assist",
+     "attributeValueId": 13969,
+     "attributeValueLabel": "Lane Keeping Assist",
+     "histogramCount": 47,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Laserlicht",
+     "attributeValueId": 443375,
+     "attributeValueLabel": "Laserlicht",
+     "histogramCount": 10,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "LED dagrijverlichting",
+     "attributeValueId": 443376,
+     "attributeValueLabel": "LED dagrijverlichting",
+     "histogramCount": 208,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "LED verlichting",
+     "attributeValueId": 13961,
+     "attributeValueLabel": "LED verlichting",
+     "histogramCount": 313,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Bekleding leder",
+     "attributeValueId": 11550,
+     "attributeValueLabel": "Lederen bekleding",
+     "histogramCount": 237,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Lichtmetalen velgen",
+     "attributeValueId": 11557,
+     "attributeValueLabel": "Lichtmetalen velgen",
+     "histogramCount": 493,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Lichtsensor",
+     "attributeValueId": 13970,
+     "attributeValueLabel": "Lichtsensor",
+     "histogramCount": 63,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Luifel",
+     "attributeValueId": 443377,
+     "attributeValueLabel": "Luifel",
+     "histogramCount": 4,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Metallic lak",
+     "attributeValueId": 11558,
+     "attributeValueLabel": "Metallic lak",
+     "histogramCount": 272,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Mistlampen",
+     "attributeValueId": 11794,
+     "attributeValueLabel": "Mistlampen",
+     "histogramCount": 296,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Multifunctioneel stuurwiel",
+     "attributeValueId": 443378,
+     "attributeValueLabel": "Multifunctioneel stuurwiel",
+     "histogramCount": 307,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Navigatiesysteem",
+     "attributeValueId": 11559,
+     "attributeValueLabel": "Navigatiesysteem",
+     "histogramCount": 513,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Night view assist",
+     "attributeValueId": 443379,
+     "attributeValueLabel": "Night view assist",
+     "histogramCount": 17,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Open of panorama dak",
+     "attributeValueId": 11560,
+     "attributeValueLabel": "Open dak",
+     "histogramCount": 10,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Panoramadak",
+     "attributeValueId": 11809,
+     "attributeValueLabel": "Panoramadak",
+     "histogramCount": 509,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Parkeerassistent",
+     "attributeValueId": 11795,
+     "attributeValueLabel": "Parkeerassistent",
+     "histogramCount": 88,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Parkeercamera",
+     "attributeValueId": 11791,
+     "attributeValueLabel": "Parkeercamera",
+     "histogramCount": 324,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Parkeersensor",
+     "attributeValueId": 11561,
+     "attributeValueLabel": "Parkeersensor",
+     "histogramCount": 323,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Radio",
+     "attributeValueId": 11796,
+     "attributeValueLabel": "Radio",
+     "histogramCount": 475,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Regensensor",
+     "attributeValueId": 13971,
+     "attributeValueLabel": "Regensensor",
+     "histogramCount": 177,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Shuifdeur",
+     "attributeValueId": 11807,
+     "attributeValueLabel": "Schuifdeur",
+     "histogramCount": 4,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Skiluik",
+     "attributeValueId": 443380,
+     "attributeValueLabel": "Skiluik",
+     "histogramCount": 10,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Sound system",
+     "attributeValueId": 443381,
+     "attributeValueLabel": "Sound system",
+     "histogramCount": 49,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Sportpakket",
+     "attributeValueId": 11797,
+     "attributeValueLabel": "Sportpakket",
+     "histogramCount": 19,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Sportstoelen",
+     "attributeValueId": 11562,
+     "attributeValueLabel": "Sportstoelen",
+     "histogramCount": 19,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Spraakbediening",
+     "attributeValueId": 11915,
+     "attributeValueLabel": "Spraakbediening",
+     "histogramCount": 456,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Standkachel",
+     "attributeValueId": 443382,
+     "attributeValueLabel": "Standkachel",
+     "histogramCount": 170,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Start-stop-systeem",
+     "attributeValueId": 11799,
+     "attributeValueLabel": "Start-stop-systeem",
+     "histogramCount": 130,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Startonderbreker",
+     "attributeValueId": 11798,
+     "attributeValueLabel": "Startonderbreker",
+     "histogramCount": 282,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Stoelmassage",
+     "attributeValueId": 11912,
+     "attributeValueLabel": "Stoelmassage",
+     "histogramCount": 6,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Stoelventilatie",
+     "attributeValueId": 11911,
+     "attributeValueLabel": "Stoelventilatie",
+     "histogramCount": 20,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Stoelverwarming",
+     "attributeValueId": 11563,
+     "attributeValueLabel": "Stoelverwarming",
+     "histogramCount": 509,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Stuurwielverwarming",
+     "attributeValueId": 11916,
+     "attributeValueLabel": "Stuurwielverwarming",
+     "histogramCount": 106,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Traction-control",
+     "attributeValueId": 11800,
+     "attributeValueLabel": "Traction-control",
+     "histogramCount": 480,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Trekhaak",
+     "attributeValueId": 11564,
+     "attributeValueLabel": "Trekhaak",
+     "histogramCount": 115,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "USB",
+     "attributeValueId": 11808,
+     "attributeValueLabel": "USB",
+     "histogramCount": 52,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Verblindingsvrij grootlicht",
+     "attributeValueId": 443383,
+     "attributeValueLabel": "Verblindingsvrij grootlicht",
+     "histogramCount": 133,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Verkeersbordherkenning",
+     "attributeValueId": 11805,
+     "attributeValueLabel": "Verkeersbordherkenning",
+     "histogramCount": 52,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Vermoeidheidsdetectie",
+     "attributeValueId": 11806,
+     "attributeValueLabel": "Vermoeidheidsdetectie",
+     "histogramCount": 40,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Verwarmde buitenspiegels",
+     "attributeValueId": 11801,
+     "attributeValueLabel": "Verwarmde buitenspiegels",
+     "histogramCount": 429,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Verwarming stoelen achter",
+     "attributeValueId": 443384,
+     "attributeValueLabel": "Verwarming stoelen achter",
+     "histogramCount": 286,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Vooruitrijcamera",
+     "attributeValueId": 13973,
+     "attributeValueLabel": "Vooruitrijcamera",
+     "histogramCount": 180,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Warmtepomp",
+     "attributeValueId": 443385,
+     "attributeValueLabel": "Warmtepomp",
+     "histogramCount": 118,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Winterpakket",
+     "attributeValueId": 443386,
+     "attributeValueLabel": "Winterpakket",
+     "histogramCount": 17,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Xenon verlichting",
+     "attributeValueId": 11802,
+     "attributeValueLabel": "Xenon verlichting",
+     "histogramCount": 26,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2943,
+   "key": "assurancesCars",
+   "type": "AttributeGroupFacet",
+   "label": "Zekerheden",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Keurmerk 100 Onderhouden",
+     "attributeValueId": 13976,
+     "attributeValueLabel": "Keurmerk '100% Onderhouden'",
+     "histogramCount": 14,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2743,
+   "key": "serviceHistory",
+   "type": "AttributeGroupFacet",
+   "label": "Onderhoud",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "Dealer onderhouden",
+     "attributeValueId": 13183,
+     "attributeValueLabel": "Dealer onderhouden",
+     "histogramCount": 119,
+     "selected": false,
+     "isValuableForSeo": false
+    },
+    {
+     "attributeValueKey": "Onderhoudsboekje",
+     "attributeValueId": 13184,
+     "attributeValueLabel": "Onderhoudsboekje",
+     "histogramCount": 217,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  },
+  {
+   "id": 2668,
+   "key": "btwv",
+   "type": "AttributeGroupFacet",
+   "label": "BTW verrekenbaar",
+   "attributeGroup": [
+    {
+     "attributeValueKey": "BTW verrekenbaar",
+     "attributeValueId": 13149,
+     "attributeValueLabel": "BTW verrekenbaar",
+     "histogramCount": 356,
+     "selected": false,
+     "isValuableForSeo": false
+    }
+   ],
+   "singleSelect": false,
+   "categoryId": 2830
+  }
+ ],
+ "totalResultCount": 559,
+ "maxAllowedPageNumber": 112,
+ "correlationId": "6bd62546-4760-4eca-8e96-79a809a1e31a",
+ "sortOptions": [
+  {
+   "sortBy": "OPTIMIZED",
+   "sortOrder": "DECREASING"
+  },
+  {
+   "sortBy": "SORT_INDEX",
+   "sortOrder": "DECREASING"
+  },
+  {
+   "sortBy": "SORT_INDEX",
+   "sortOrder": "INCREASING"
+  },
+  {
+   "sortBy": "PRICE",
+   "sortOrder": "INCREASING"
+  },
+  {
+   "sortBy": "PRICE",
+   "sortOrder": "DECREASING"
+  },
+  {
+   "sortBy": "ATTRIBUTE",
+   "sortOrder": "DECREASING",
+   "sortAttribute": "constructionYear"
+  },
+  {
+   "sortBy": "ATTRIBUTE",
+   "sortOrder": "INCREASING",
+   "sortAttribute": "constructionYear"
+  },
+  {
+   "sortBy": "ATTRIBUTE",
+   "sortOrder": "INCREASING",
+   "sortAttribute": "mileage"
+  },
+  {
+   "sortBy": "ATTRIBUTE",
+   "sortOrder": "DECREASING",
+   "sortAttribute": "mileage"
+  }
+ ],
+ "isSearchSaved": false,
+ "hasErrors": false,
+ "alternativeLocales": [],
+ "searchRequest": {
+  "originalRequest": {
+   "categories": {
+    "l1Category": {
+     "id": 91,
+     "key": "auto-s",
+     "fullName": "Auto's"
+    },
+    "l2Category": {
+     "id": 2830,
+     "key": "tesla",
+     "fullName": "Tesla"
+    }
+   },
+   "attributes": {
+    "undefined": [
+     {
+      "attributeValueId": 10882
+     },
+     {
+      "attributeValueId": 11736
+     },
+     {
+      "attributeValueId": 13853
+     }
+    ]
+   },
+   "attributesById": [
+    10882,
+    11736,
+    13853
+   ],
+   "attributesByKey": [],
+   "attributeRanges": [
+    {
+     "attributeKey": "constructionYear",
+     "from": 2017
+    },
+    {
+     "attributeKey": "PriceCents",
+     "to": 4500000
+    }
+   ],
+   "attributeLabels": [
+    null,
+    null,
+    null
+   ],
+   "sortOptions": {
+    "sortBy": "",
+    "sortOrder": "",
+    "sortAttribute": ""
+   },
+   "pagination": {
+    "offset": 0,
+    "limit": 5
+   },
+   "distance": {
+    "postcode": ""
+   },
+   "viewOptions": {
+    "kind": "list-view"
+   },
+   "bypassSpellingSuggestion": true
+  },
+  "categories": {
+   "l1Category": {
+    "id": 91,
+    "key": "auto-s",
+    "fullName": "Auto's"
+   },
+   "l2Category": {
+    "id": 2830,
+    "key": "tesla",
+    "fullName": "Tesla"
+   }
+  },
+  "attributes": {
+   "undefined": [
+    {
+     "attributeValueId": 10882
+    },
+    {
+     "attributeValueId": 11736
+    },
+    {
+     "attributeValueId": 13853
+    }
+   ]
+  },
+  "attributesById": [
+   10882,
+   11736,
+   13853
+  ],
+  "attributesByKey": [],
+  "attributeRanges": [
+   {
+    "attributeKey": "constructionYear",
+    "from": 2017
+   },
+   {
+    "attributeKey": "PriceCents",
+    "to": 4500000
+   }
+  ],
+  "attributeLabels": [
+   null,
+   null,
+   null
+  ],
+  "sortOptions": {
+   "sortBy": "",
+   "sortOrder": "",
+   "sortAttribute": ""
+  },
+  "pagination": {
+   "offset": 0,
+   "limit": 5
+  },
+  "distance": {
+   "postcode": ""
+  },
+  "viewOptions": {
+   "kind": "list-view"
+  },
+  "bypassSpellingSuggestion": true
+ },
+ "showSuggestionTooltip": false,
+ "showAttributeTooltip": false,
+ "searchCategory": 2830,
+ "searchCategoryOptions": [
+  {
+   "fullName": "Auto's",
+   "id": 91,
+   "key": "auto-s",
+   "name": "Auto's"
+  },
+  {
+   "fullName": "Abarth",
+   "id": 2932,
+   "key": "abarth",
+   "name": "Abarth",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Aiways",
+   "id": 3217,
+   "key": "aiways",
+   "name": "Aiways",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Aixam",
+   "id": 2152,
+   "key": "aixam",
+   "name": "Aixam",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Alfa Romeo",
+   "id": 92,
+   "key": "alfa-romeo",
+   "name": "Alfa Romeo",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Alpina",
+   "id": 2937,
+   "key": "alpina",
+   "name": "Alpina",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Aston Martin",
+   "id": 2153,
+   "key": "aston-martin",
+   "name": "Aston Martin",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Alpine",
+   "id": 2936,
+   "key": "alpine",
+   "name": "Alpine",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Audi",
+   "id": 93,
+   "key": "audi",
+   "name": "Audi",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Austin",
+   "id": 2154,
+   "key": "austin",
+   "name": "Austin",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Bentley",
+   "id": 2148,
+   "key": "bentley",
+   "name": "Bentley",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Bestelauto's",
+   "id": 95,
+   "key": "bestelauto-s",
+   "name": "Bestelauto's",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "BMW",
+   "id": 96,
+   "key": "bmw",
+   "name": "BMW",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Bugatti",
+   "id": 2938,
+   "key": "bugatti",
+   "name": "Bugatti",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Buick",
+   "id": 97,
+   "key": "buick",
+   "name": "Buick",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "BYD",
+   "id": 3213,
+   "key": "byd",
+   "name": "BYD",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Cadillac",
+   "id": 98,
+   "key": "cadillac",
+   "name": "Cadillac",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Chevrolet",
+   "id": 99,
+   "key": "chevrolet",
+   "name": "Chevrolet",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Chrysler",
+   "id": 100,
+   "key": "chrysler",
+   "name": "Chrysler",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Citroën",
+   "id": 101,
+   "key": "citroen",
+   "name": "Citroën",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Cupra",
+   "id": 3051,
+   "key": "cupra",
+   "name": "Cupra",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Dacia",
+   "id": 2660,
+   "key": "dacia",
+   "name": "Dacia",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Daewoo",
+   "id": 103,
+   "key": "daewoo",
+   "name": "Daewoo",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Daihatsu",
+   "id": 105,
+   "key": "daihatsu",
+   "name": "Daihatsu",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Dodge",
+   "id": 108,
+   "key": "dodge",
+   "name": "Dodge",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Dongfeng",
+   "id": 3227,
+   "key": "dongfeng",
+   "name": "Dongfeng",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Donkervoort",
+   "id": 109,
+   "key": "donkervoort",
+   "name": "Donkervoort",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "DS",
+   "id": 2933,
+   "key": "ds",
+   "name": "DS",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Ferrari",
+   "id": 110,
+   "key": "ferrari",
+   "name": "Ferrari",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Fiat",
+   "id": 111,
+   "key": "fiat",
+   "name": "Fiat",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Fisker",
+   "id": 2829,
+   "key": "fisker",
+   "name": "Fisker",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Ford",
+   "id": 112,
+   "key": "ford",
+   "name": "Ford",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Ford Usa",
+   "id": 113,
+   "key": "ford-usa",
+   "name": "Ford Usa",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Genesis",
+   "id": 3223,
+   "key": "genesis",
+   "name": "Genesis",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "GMC",
+   "id": 2949,
+   "key": "gmc",
+   "name": "GMC",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Honda",
+   "id": 114,
+   "key": "honda",
+   "name": "Honda",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Hummer",
+   "id": 2149,
+   "key": "hummer",
+   "name": "Hummer",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Hongqi",
+   "id": 3221,
+   "key": "hongqi",
+   "name": "Hongqi",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Hyundai",
+   "id": 115,
+   "key": "hyundai",
+   "name": "Hyundai",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Infiniti",
+   "id": 2659,
+   "key": "infiniti",
+   "name": "Infiniti",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Isuzu",
+   "id": 3212,
+   "key": "isuzu",
+   "name": "Isuzu",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Jaguar",
+   "id": 117,
+   "key": "jaguar",
+   "name": "Jaguar",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Jeep",
+   "id": 118,
+   "key": "jeep",
+   "name": "Jeep",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Kia",
+   "id": 119,
+   "key": "kia",
+   "name": "Kia",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lada",
+   "id": 2155,
+   "key": "lada",
+   "name": "Lada",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lamborghini",
+   "id": 122,
+   "key": "lamborghini",
+   "name": "Lamborghini",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lancia",
+   "id": 123,
+   "key": "lancia",
+   "name": "Lancia",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Land Rover",
+   "id": 124,
+   "key": "land-rover",
+   "name": "Land Rover",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Landwind",
+   "id": 2831,
+   "key": "landwind",
+   "name": "Landwind",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Leapmotor",
+   "id": 3226,
+   "key": "leapmotor",
+   "name": "Leapmotor",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lexus",
+   "id": 125,
+   "key": "lexus",
+   "name": "Lexus",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lincoln",
+   "id": 2150,
+   "key": "lincoln",
+   "name": "Lincoln",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lotus",
+   "id": 127,
+   "key": "lotus",
+   "name": "Lotus",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lucid",
+   "id": 3218,
+   "key": "lucid",
+   "name": "Lucid",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Lynk & Co",
+   "id": 3211,
+   "key": "lynk-co",
+   "name": "Lynk & Co",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Maserati",
+   "id": 128,
+   "key": "maserati",
+   "name": "Maserati",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Mazda",
+   "id": 129,
+   "key": "mazda",
+   "name": "Mazda",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "McLaren",
+   "id": 2935,
+   "key": "mclaren",
+   "name": "McLaren",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Mercedes-Benz",
+   "id": 130,
+   "key": "mercedes-benz",
+   "name": "Mercedes-Benz",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Mercury",
+   "id": 131,
+   "key": "mercury",
+   "name": "Mercury",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "MG",
+   "id": 132,
+   "key": "mg",
+   "name": "MG",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Mini",
+   "id": 133,
+   "key": "mini",
+   "name": "Mini",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Mitsubishi",
+   "id": 134,
+   "key": "mitsubishi",
+   "name": "Mitsubishi",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "NIO",
+   "id": 3214,
+   "key": "nio",
+   "name": "NIO",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Nissan",
+   "id": 135,
+   "key": "nissan",
+   "name": "Nissan",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Oldsmobile",
+   "id": 136,
+   "key": "oldsmobile",
+   "name": "Oldsmobile",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Oldtimers",
+   "id": 137,
+   "key": "oldtimers",
+   "name": "Oldtimers",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Opel",
+   "id": 138,
+   "key": "opel",
+   "name": "Opel",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Peugeot",
+   "id": 140,
+   "key": "peugeot",
+   "name": "Peugeot",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Polestar",
+   "id": 2934,
+   "key": "polestar",
+   "name": "Polestar",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Pontiac",
+   "id": 143,
+   "key": "pontiac",
+   "name": "Pontiac",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Porsche",
+   "id": 144,
+   "key": "porsche",
+   "name": "Porsche",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Renault",
+   "id": 146,
+   "key": "renault",
+   "name": "Renault",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Rolls-Royce",
+   "id": 2156,
+   "key": "rolls-royce",
+   "name": "Rolls-Royce",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Rover",
+   "id": 147,
+   "key": "rover",
+   "name": "Rover",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Saab",
+   "id": 148,
+   "key": "saab",
+   "name": "Saab",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Seat",
+   "id": 150,
+   "key": "seat",
+   "name": "Seat",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Seres",
+   "id": 3220,
+   "key": "seres",
+   "name": "Seres",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Skoda",
+   "id": 151,
+   "key": "skoda",
+   "name": "Skoda",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Smart",
+   "id": 152,
+   "key": "smart",
+   "name": "Smart",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Spyker",
+   "id": 2939,
+   "key": "spyker",
+   "name": "Spyker",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "SsangYong",
+   "id": 2151,
+   "key": "ssangyong",
+   "name": "SsangYong",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Subaru",
+   "id": 153,
+   "key": "subaru",
+   "name": "Subaru",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Suzuki",
+   "id": 154,
+   "key": "suzuki",
+   "name": "Suzuki",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Tesla",
+   "id": 2830,
+   "key": "tesla",
+   "name": "Tesla",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Toyota",
+   "id": 155,
+   "key": "toyota",
+   "name": "Toyota",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Triumph",
+   "id": 156,
+   "key": "triumph",
+   "name": "Triumph",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Vinfast",
+   "id": 3216,
+   "key": "vinfast",
+   "name": "Vinfast",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Volkswagen",
+   "id": 157,
+   "key": "volkswagen",
+   "name": "Volkswagen",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Volvo",
+   "id": 158,
+   "key": "volvo",
+   "name": "Volvo",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Voyah",
+   "id": 3225,
+   "key": "voyah",
+   "name": "Voyah",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Vrachtwagens",
+   "id": 159,
+   "key": "vrachtwagens",
+   "name": "Vrachtwagens",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "XPENG",
+   "id": 3215,
+   "key": "xpeng",
+   "name": "XPENG",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "ZEEKR",
+   "id": 3224,
+   "key": "zeekr",
+   "name": "ZEEKR",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  },
+  {
+   "fullName": "Overige Auto's",
+   "id": 139,
+   "key": "overige-auto-s",
+   "name": "Overige Auto's",
+   "parentId": 91,
+   "parentKey": "auto-s"
+  }
+ ],
+ "seoFriendlyAttributes": [
+  "model",
+  "fuel",
+  "transmission",
+  "condition",
+  "driveTrain",
+  "energyLabel",
+  "hybridType",
+  "upholstery"
+ ],
+ "seoFriendlyTextAttributes": {},
+ "attributeHierarchy": {
+  "priceType": [
+   {
+    "attributeValueId": 10882,
+    "attributeValueLabel": "Te koop",
+    "attributeValueKey": "Vraagprijs",
+    "attributeLabel": "Type advertentie"
+   }
+  ],
+  "model": [
+   {
+    "attributeValueId": 11736,
+    "attributeValueLabel": "Model 3",
+    "attributeValueKey": "Model 3",
+    "attributeLabel": "Model"
+   },
+   {
+    "attributeValueId": 13853,
+    "attributeValueLabel": "Model Y",
+    "attributeValueKey": "Model Y",
+    "attributeLabel": "Model"
+   }
+  ],
+  "offeredSince": [
+   {
+    "attributeValueId": null,
+    "attributeValueLabel": null,
+    "attributeValueKey": "Altijd",
+    "attributeLabel": "Aangeboden sinds",
+    "isDefault": true
+   }
+  ]
+ },
+ "categoriesById": {
+  "91": {
+   "fullName": "Auto's",
+   "id": 91,
+   "key": "auto-s",
+   "name": "Auto's"
+  },
+  "2830": {
+   "fullName": "Tesla",
+   "id": 2830,
+   "key": "tesla",
+   "name": "Tesla",
+   "parentId": 91
+  }
+ },
+ "metaTags": {
+  "metaTitle": "≥ Tesla | Model 3 + Model Y - Marktplaats",
+  "metaDescription": "Vind Model 3 + Model Y in Tesla op Marktplaats ✅ 559 Lokale aanbiedingen - Ga ervoor!",
+  "pageTitleH1": "<span>Je hebt gezocht in </span><h1>Tesla met filter Model 3</h1>."
+ },
+ "paaContent": null,
+ "hubPage": null
+}

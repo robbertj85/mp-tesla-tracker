@@ -1,0 +1,30 @@
+[project]
+name = "mp-tesla-scraper"
+version = "0.1.0"
+description = "Scrape & track Tesla Model 3 / Model Y listings from Marktplaats and model fair prices"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27",
+    "selectolax>=0.3.21",
+    "tenacity>=8.2",
+    "pandas>=2.1",
+    "scikit-learn>=1.4",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+browser = ["playwright>=1.44"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+mp-tesla = "mp_tesla.run:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["mp_tesla*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
