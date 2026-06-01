@@ -104,12 +104,13 @@ def _linear_export(spec: dict, ridge: Ridge) -> dict:
     }
 
 
-def train(records: list[dict], run_year: int) -> dict:
-    """Fit models and return {predictions, linearModel, metrics, importances}.
+def _fit(df: pd.DataFrame) -> dict:
+    """Fit one Ridge model on an already-built frame.
 
+    Returns {predictions, linearModel, metrics, importances}. Shared by the
+    pooled (combined) model and each per-`model` group model.
     predictions: {id: {predictedEur, residualEur, dealLabel}}
     """
-    df = _frame(records, run_year)
     n = len(df)
     result = {"predictions": {}, "linearModel": None, "metrics": {"n": n},
               "importances": []}
@@ -181,3 +182,54 @@ def train(records: list[dict], run_year: int) -> dict:
     log.info("regression: n=%d linear_mae=%s r2=%s", n,
              result["metrics"].get("linear_mae"), result["metrics"].get("linear_r2"))
     return result
+
+
+# Key for the pooled model in the exported `models` map.
+COMBINED_KEY = "__combined__"
+
+
+def train(records: list[dict], run_year: int) -> dict:
+    """Fit a pooled model plus one model per `model` group.
+
+    Returns the pooled model at the top level (backwards-compatible) and a
+    `models` map keyed by group name (+ COMBINED_KEY) so the estimator can let
+    the user switch between "all listings" and per-model regressions::
+
+        {
+          predictions, linearModel, metrics, importances,   # pooled (combined)
+          models: {
+            "__combined__": {label, linearModel, metrics},
+            "Model 3":      {label, linearModel, metrics},
+            "Model Y":      {label, linearModel, metrics},
+          }
+        }
+
+    Per-listing predictions/deal labels stay sourced from the pooled model so
+    every listing is scored on one consistent scale.
+    """
+    df = _frame(records, run_year)
+    combined = _fit(df)
+
+    models: dict[str, dict] = {COMBINED_KEY: {
+        "label": "Alle modellen",
+        "linearModel": combined["linearModel"],
+        "metrics": combined["metrics"],
+    }}
+    for grp in sorted(df["model"].astype(str).unique()):
+        sub = df[df["model"].astype(str) == grp]
+        fit = _fit(sub)
+        models[grp] = {
+            "label": grp,
+            "linearModel": fit["linearModel"],
+            "metrics": fit["metrics"],
+        }
+        log.info("per-model fit: %s n=%d r2=%s", grp, fit["metrics"].get("n"),
+                 fit["metrics"].get("linear_r2"))
+
+    return {
+        "predictions": combined["predictions"],
+        "linearModel": combined["linearModel"],
+        "metrics": combined["metrics"],
+        "importances": combined["importances"],
+        "models": models,
+    }

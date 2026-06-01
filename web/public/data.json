@@ -153,6 +153,298 @@
    "condition"
   ]
  },
+ "models": {
+  "__combined__": {
+   "label": "Alle modellen",
+   "linearModel": {
+    "intercept": 29956.74799858803,
+    "numeric": {
+     "age": {
+      "median": 5.0,
+      "mean": 4.634011090573013,
+      "std": 1.682537360744818,
+      "coef": -3465.7139484511335
+     },
+     "mileage_km": {
+      "median": 85305.0,
+      "mean": 90029.60628465805,
+      "std": 47310.53688639561,
+      "coef": -2277.5088990762406
+     },
+     "power_hp": {
+      "median": 325.0,
+      "mean": 326.264325323475,
+      "std": 94.34123379837824,
+      "coef": 258.6799128303685
+     },
+     "range_km": {
+      "median": 513.0,
+      "mean": 506.40850277264326,
+      "std": 46.74939522155191,
+      "coef": 387.55609474025925
+     }
+    },
+    "categorical": {
+     "model": {
+      "Model 3": -1948.0510452934052,
+      "Model Y": 1948.0510452934088
+     },
+     "trim": {
+      "AWD / Dual Motor": 487.1618377760738,
+      "AWD / Dual Motor (Highland)": -88.5448404089317,
+      "Highland": 61.62883130950552,
+      "Long Range": 41.94789509820589,
+      "Long Range (Highland)": 441.0900432256336,
+      "Long Range (Juniper)": 253.79060714843888,
+      "Performance": 1111.8270830925137,
+      "RWD": -486.3129375022251,
+      "RWD (Highland)": -691.1329763480219,
+      "Standard Range": -620.8817735147478,
+      "Standard Range (Highland)": 888.8652983186346,
+      "Standard Range Plus": -821.0888063751706,
+      "unknown": -578.3502618198949
+     },
+     "drivetrain": {
+      "AWD": 1308.1076274760628,
+      "RWD": -917.0642057618625,
+      "unknown": -391.04342171448957
+     },
+     "hw_platform": {
+      "HW3": -657.604703701799,
+      "HW4": 657.6047037018111
+     },
+     "fsd": {
+      "no": -317.7202691601753,
+      "yes": 317.7202691601762
+     },
+     "color": {
+      "Black": 164.90282164966726,
+      "Blue": 169.23053351589405,
+      "Grey": 255.05416088861946,
+      "Red": -159.16078073197735,
+      "White": -232.62418297225153,
+      "unknown": -197.40255234980023
+     },
+     "condition": {
+      "NEW": 217.6731736413677,
+      "USED": 173.9571197929548,
+      "unknown": -391.63029343443196
+     }
+    },
+    "numericFeatures": [
+     "age",
+     "mileage_km",
+     "power_hp",
+     "range_km"
+    ],
+    "categoricalFeatures": [
+     "model",
+     "trim",
+     "drivetrain",
+     "hw_platform",
+     "fsd",
+     "color",
+     "condition"
+    ]
+   },
+   "metrics": {
+    "n": 541,
+    "linear_mae": 1322,
+    "linear_r2": 0.935,
+    "gbr_mae": 1352
+   }
+  },
+  "Model 3": {
+   "label": "Model 3",
+   "linearModel": {
+    "intercept": 26119.368731820196,
+    "numeric": {
+     "age": {
+      "median": 6.0,
+      "mean": 5.385714285714286,
+      "std": 1.525898865239363,
+      "coef": -3187.139704531694
+     },
+     "mileage_km": {
+      "median": 92085.0,
+      "mean": 97070.80571428571,
+      "std": 50222.53600460337,
+      "coef": -2299.7677965630946
+     },
+     "power_hp": {
+      "median": 306.0,
+      "mean": 315.2371428571429,
+      "std": 93.54392882709259,
+      "coef": 328.6681139508188
+     },
+     "range_km": {
+      "median": 513.0,
+      "mean": 506.4457142857143,
+      "std": 50.35509531804896,
+      "coef": 370.6751144727765
+     }
+    },
+    "categorical": {
+     "model": {
+      "Model 3": 0.0
+     },
+     "trim": {
+      "AWD / Dual Motor": 576.2338081955871,
+      "AWD / Dual Motor (Highland)": -66.57936970718441,
+      "Highland": 84.84460028208268,
+      "Long Range": 67.59770833431241,
+      "Long Range (Highland)": 452.86487009431033,
+      "Performance": 657.7069032002377,
+      "RWD": -400.94625916787663,
+      "RWD (Highland)": -716.53858306469,
+      "Standard Range": -343.0582671909498,
+      "Standard Range (Highland)": 925.9759681463963,
+      "Standard Range Plus": -825.0848259503578,
+      "unknown": -413.0165531718884
+     },
+     "drivetrain": {
+      "AWD": 1220.0712936732734,
+      "RWD": -863.3555454101987,
+      "unknown": -356.7157482630739
+     },
+     "hw_platform": {
+      "HW3": -680.567485750937,
+      "HW4": 680.5674857509398
+     },
+     "fsd": {
+      "no": -318.93756804590646,
+      "yes": 318.9375680459068
+     },
+     "color": {
+      "Black": 95.32883947862399,
+      "Blue": 120.4310563971527,
+      "Grey": 223.6101955726724,
+      "Red": -265.34421901463185,
+      "White": -99.72901762631501,
+      "unknown": -74.29685480751107
+     },
+     "condition": {
+      "NEW": 132.78355824651655,
+      "USED": 101.96632222841744,
+      "unknown": -234.74988047491325
+     }
+    },
+    "numericFeatures": [
+     "age",
+     "mileage_km",
+     "power_hp",
+     "range_km"
+    ],
+    "categoricalFeatures": [
+     "model",
+     "trim",
+     "drivetrain",
+     "hw_platform",
+     "fsd",
+     "color",
+     "condition"
+    ]
+   },
+   "metrics": {
+    "n": 350,
+    "linear_mae": 1262,
+    "linear_r2": 0.898,
+    "gbr_mae": 1290
+   }
+  },
+  "Model Y": {
+   "label": "Model Y",
+   "linearModel": {
+    "intercept": 36012.935640142096,
+    "numeric": {
+     "age": {
+      "median": 3.0,
+      "mean": 3.256544502617801,
+      "std": 0.9049871115675,
+      "coef": -1487.616038298067
+     },
+     "mileage_km": {
+      "median": 69100.0,
+      "mean": 77126.88481675393,
+      "std": 38216.58631207122,
+      "coef": -1995.1195621947224
+     },
+     "power_hp": {
+      "median": 351.0,
+      "mean": 346.36649214659684,
+      "std": 92.73139574494127,
+      "coef": 330.43693596938266
+     },
+     "range_km": {
+      "median": 514.0,
+      "mean": 506.67015706806285,
+      "std": 39.351165678915606,
+      "coef": 520.2660211726524
+     }
+    },
+    "categorical": {
+     "model": {
+      "Model Y": 0.0
+     },
+     "trim": {
+      "AWD / Dual Motor": 145.29504545178483,
+      "Long Range": 15.523749015940133,
+      "Long Range (Juniper)": 272.4996545187317,
+      "Performance": 1152.4888506009395,
+      "RWD": -627.17348145187,
+      "Standard Range": -561.779174208125,
+      "unknown": -396.8546439273903
+     },
+     "drivetrain": {
+      "AWD": 986.8381759799723,
+      "RWD": -986.8381759799727
+     },
+     "hw_platform": {
+      "HW3": -629.4915322485723,
+      "HW4": 629.4915322485755
+     },
+     "fsd": {
+      "no": -347.05437499912364,
+      "yes": 347.05437499911886
+     },
+     "color": {
+      "Black": 51.19516234868609,
+      "Blue": 26.242904638208362,
+      "Grey": 266.523537840948,
+      "Red": 406.7610893628518,
+      "White": -556.7680396953195,
+      "unknown": -193.95465449538963
+     },
+     "condition": {
+      "NEW": 190.56225812554587,
+      "USED": 56.61592615345,
+      "unknown": -247.17818427900983
+     }
+    },
+    "numericFeatures": [
+     "age",
+     "mileage_km",
+     "power_hp",
+     "range_km"
+    ],
+    "categoricalFeatures": [
+     "model",
+     "trim",
+     "drivetrain",
+     "hw_platform",
+     "fsd",
+     "color",
+     "condition"
+    ]
+   },
+   "metrics": {
+    "n": 191,
+    "linear_mae": 1448,
+    "linear_r2": 0.8,
+    "gbr_mae": 1662
+   }
+  }
+ },
  "facets": {
   "models": [
    "Model 3",

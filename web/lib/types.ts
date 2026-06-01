@@ -55,6 +55,24 @@ export interface LinearModel {
   categoricalFeatures: string[];
 }
 
+export interface ModelMetrics {
+  n: number;
+  linear_mae?: number;
+  linear_r2?: number;
+  gbr_mae?: number;
+  note?: string;
+}
+
+/** A trained regression + its metrics. One pooled entry ("__combined__") plus
+ *  one per `model` group (e.g. "Model 3", "Model Y"). */
+export interface ModelEntry {
+  label: string;
+  linearModel: LinearModel | null;
+  metrics: ModelMetrics;
+}
+
+export const COMBINED_KEY = "__combined__";
+
 export interface Importance {
   feature: string;
   importance: number;
@@ -74,15 +92,11 @@ export interface Dataset {
     avgMileageKm: number | null;
     byModel: Record<string, number>;
   };
-  metrics: {
-    n: number;
-    linear_mae?: number;
-    linear_r2?: number;
-    gbr_mae?: number;
-    note?: string;
-  };
+  metrics: ModelMetrics;
   importances: Importance[];
   linearModel: LinearModel | null;
+  /** Pooled + per-`model` regressions. Optional for back-compat with older data.json. */
+  models?: Record<string, ModelEntry>;
   facets: {
     models: string[];
     trims: string[];

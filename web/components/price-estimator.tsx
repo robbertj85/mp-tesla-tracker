@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { Calculator } from "lucide-react";
-import type { Dataset } from "@/lib/types";
+import type { Dataset, ModelEntry } from "@/lib/types";
+import { COMBINED_KEY } from "@/lib/types";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { predictPrice } from "@/lib/predict";
@@ -10,10 +11,12 @@ import { eur } from "@/lib/utils";
 
 const CURRENT_YEAR = 2026;
 
+type Mode = "separate" | "combined";
+
 export function PriceEstimator({ data }: { data: Dataset }) {
-  const model = data.linearModel;
   const f = data.facets;
   const [state, setState] = React.useState({
+    mode: "separate" as Mode,
     model: f.models[0] ?? "Model 3",
     trim: f.trims[0] ?? "unknown",
     drivetrain: f.drivetrains[0] ?? "unknown",
@@ -24,15 +27,29 @@ export function PriceEstimator({ data }: { data: Dataset }) {
     mileage_km: 80000,
   });
 
-  if (!model) {
+  // Pooled model, with a fallback to the legacy top-level fields for older data.json.
+  const combined: ModelEntry = data.models?.[COMBINED_KEY] ?? {
+    label: "Alle modellen",
+    linearModel: data.linearModel,
+    metrics: data.metrics,
+  };
+  const group = data.models?.[state.model];
+
+  // In "separate" mode use the selected model's own regression; if that group
+  // had too little data to train, transparently fall back to the pooled model.
+  const fellBack = state.mode === "separate" && !group?.linearModel;
+  const active: ModelEntry = state.mode === "combined" || fellBack ? combined : group!;
+  const lm = active.linearModel;
+
+  if (!lm) {
     return (
       <Card><CardContent className="py-10 text-center text-muted-foreground">
-        Nog te weinig data om een model te trainen ({data.metrics.note ?? "minimaal 15 auto's nodig"}).
+        Nog te weinig data om een model te trainen ({active.metrics.note ?? "minimaal 15 auto's nodig"}).
       </CardContent></Card>
     );
   }
 
-  const estimate = predictPrice(model, {
+  const estimate = predictPrice(lm, {
     ...state,
     age: Math.max(0, CURRENT_YEAR - state.year),
   });
@@ -52,14 +69,44 @@ export function PriceEstimator({ data }: { data: Dataset }) {
     </div>
   );
 
+  const ModeBtn = ({ value, children }: { value: Mode; children: React.ReactNode }) => (
+    <button
+      type="button"
+      onClick={() => set({ mode: value })}
+      className={
+        "rounded-md px-3 py-1 text-xs font-medium transition-colors " +
+        (state.mode === value
+          ? "bg-background text-foreground shadow"
+          : "text-muted-foreground hover:text-foreground")
+      }
+    >
+      {children}
+    </button>
+  );
+
   return (
     <div className="grid gap-4 md:grid-cols-[1fr_320px]">
       <Card>
         <CardHeader>
-          <CardTitle>Schat een redelijke prijs</CardTitle>
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <CardTitle>Schat een redelijke prijs</CardTitle>
+            <div className="inline-flex items-center rounded-lg bg-muted p-1">
+              <ModeBtn value="separate">Per model</ModeBtn>
+              <ModeBtn value="combined">Gecombineerd</ModeBtn>
+            </div>
+          </div>
           <CardDescription>
-            Op basis van de lineaire regressie over {data.metrics.n} advertenties (R² {data.metrics.linear_r2}).
+            {state.mode === "combined" ? (
+              <>Eén regressie over alle modellen samen ({active.metrics.n} advertenties, R² {active.metrics.linear_r2}).</>
+            ) : (
+              <>Aparte regressie voor {state.model} ({active.metrics.n} advertenties, R² {active.metrics.linear_r2}).</>
+            )}{" "}
             Berekend in je browser — exact dezelfde formule als het Python-model.
+            {fellBack && (
+              <span className="mt-1 block text-amber-600">
+                Te weinig {state.model}-data voor een aparte regressie — gecombineerd model gebruikt.
+              </span>
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-3">
