@@ -48,8 +48,10 @@ class Brand:
     brand_attr_id: int | None = None   # brand facet id (Tesla); None when l2 suffices
     fuel_ids: tuple = ()           # fuel attributeValueIds to filter on (Skoda)
     transmission_ids: tuple = ()   # transmission attributeValueIds to filter on
+    body_ids: tuple = ()           # body/carrosserie attributeValueIds to filter on
     allowed_fuels: tuple = ()      # fuel labels accepted by the post-fetch guard
     allowed_transmissions: tuple = ()  # transmission labels accepted by the guard
+    allowed_bodies: tuple = ()     # body labels accepted by the post-fetch guard
 
     @property
     def search_attr_ids(self) -> list[int]:
@@ -60,6 +62,7 @@ class Brand:
         ids.extend(self.models.values())
         ids.extend(self.fuel_ids)
         ids.extend(self.transmission_ids)
+        ids.extend(self.body_ids)
         return ids
 
 
@@ -85,13 +88,16 @@ BRANDS: dict[str, Brand] = {
         fuel_ids=(473, 13838),
         # Automaat only — manuals are skipped.
         transmission_ids=(534,),
+        # Stationwagon (Combi) only — sedans/hatchbacks excluded.
+        body_ids=(484,),
         allowed_fuels=("Benzine", "Hybride Elektrisch/Benzine"),
         allowed_transmissions=("Automaat",),
+        allowed_bodies=("Stationwagon",),
         year_from=2019,
         price_cents_to=6_000_000,
         min_price_eur=3500,
         pipeline="skoda",
-        source_query="auto-s/skoda | Octavia + Superb | benzine + PHEV | automaat | constructionYear>=2019",
+        source_query="auto-s/skoda | Octavia + Superb Combi | benzine + PHEV | automaat | constructionYear>=2019",
     ),
 }
 

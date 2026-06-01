@@ -93,18 +93,19 @@ def test_model_train_handles_small_data():
 def test_skoda_search_guard():
     """The Skoda canonical-model guard requires an allowed fuel + transmission."""
     from mp_tesla import search
-    ok = {"title": "Skoda Superb", "attributes": [
-        {"key": "model", "value": "Superb"},
-        {"key": "fuel", "value": "Benzine"},
-        {"key": "transmission", "value": "Automaat"}]}
-    diesel = {"title": "Skoda Superb", "attributes": [
-        {"key": "model", "value": "Superb"},
-        {"key": "fuel", "value": "Diesel"},
-        {"key": "transmission", "value": "Automaat"}]}
-    manual = {"title": "Skoda Octavia", "attributes": [
-        {"key": "model", "value": "Octavia"},
-        {"key": "fuel", "value": "Benzine"},
-        {"key": "transmission", "value": "Handgeschakeld"}]}
+
+    def listing(model, fuel, transmission, body):
+        return {"title": f"Skoda {model}", "attributes": [
+            {"key": "model", "value": model},
+            {"key": "fuel", "value": fuel},
+            {"key": "transmission", "value": transmission},
+            {"key": "body", "value": body}]}
+
+    ok = listing("Superb", "Benzine", "Automaat", "Stationwagon")
+    diesel = listing("Superb", "Diesel", "Automaat", "Stationwagon")
+    manual = listing("Octavia", "Benzine", "Handgeschakeld", "Stationwagon")
+    sedan = listing("Octavia", "Benzine", "Automaat", "Sedan")
     assert search._canonical_model(ok, SKODA) == "Superb"
     assert search._canonical_model(diesel, SKODA) is None
     assert search._canonical_model(manual, SKODA) is None
+    assert search._canonical_model(sedan, SKODA) is None  # only Combi/station wagon

@@ -93,6 +93,8 @@ def _canonical_model(listing: dict, brand: Brand) -> str | None:
         return None
     if brand.allowed_transmissions and _attr(listing, "transmission") not in brand.allowed_transmissions:
         return None
+    if brand.allowed_bodies and _attr(listing, "body") not in brand.allowed_bodies:
+        return None
     return matched
 
 

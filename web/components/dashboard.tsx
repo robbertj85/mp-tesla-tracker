@@ -75,7 +75,7 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
       <footer className="mt-10 text-xs text-muted-foreground">
         {brand.dimensions.hw
           ? "HW3/HW4 is deels afgeleid uit bouwjaar en model (zie betrouwbaarheidslabel). FSD, trim en accugezondheid komen uit de advertentietekst en kunnen ontbreken."
-          : "Alleen automaat, benzine en plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
+          : "Alleen stationwagons (Combi) met automaat, benzine of plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
       </footer>
     </div>
   );
