@@ -25,6 +25,9 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history so the post-scrape rebase-onto-latest-main push works.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -51,7 +54,25 @@ jobs:
           git add data/ web/public/tesla.json web/public/skoda.json
           if git diff --cached --quiet; then
             echo "No data changes."
-          else
-            git commit -m "data: scrape $(date -u +%F)"
-            git push
+            exit 0
           fi
+          git commit -m "data: scrape $(date -u +%F)"
+          # A full two-brand scrape runs for many minutes, so origin/main may have
+          # advanced meanwhile (a concurrent push), making the push non-fast-forward.
+          # Rebase our regenerated-data commit onto the latest main and retry; on a
+          # data-file conflict the freshly scraped version wins.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"; exit 0
+            fi
+            echo "push rejected; rebasing onto origin/main (attempt $attempt)"
+            git fetch origin main
+            if ! git rebase origin/main; then
+              for f in $(git diff --name-only --diff-filter=U); do
+                git checkout --theirs -- "$f"
+              done
+              git add -A
+              GIT_EDITOR=true git rebase --continue
+            fi
+          done
+          echo "::error::failed to push scraped data after 5 attempts"; exit 1
