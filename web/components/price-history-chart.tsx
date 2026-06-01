@@ -11,7 +11,7 @@ export function PriceHistoryChart({ points }: { points: PricePoint[] }) {
         <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(d) => d.slice(5)} />
         <YAxis tick={{ fontSize: 10 }} width={44} domain={["dataMin", "dataMax"]}
           tickFormatter={(v) => `${Math.round(v / 1000)}k`} />
-        <Tooltip formatter={(v: number) => eur(v)} labelClassName="text-xs" />
+        <Tooltip formatter={(v) => eur(Number(v))} labelClassName="text-xs" />
         <Line type="stepAfter" dataKey="priceEur" stroke="#2563eb" strokeWidth={2} dot />
       </LineChart>
     </ResponsiveContainer>

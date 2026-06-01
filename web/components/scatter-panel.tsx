@@ -84,7 +84,8 @@ export function ScatterPanel({ listings }: { listings: Listing[] }) {
       if (!byModel.has(p.model)) byModel.set(p.model, []);
       byModel.get(p.model)!.push({ x: p.x, y: p.y });
     }
-    const out: { model: string; segment: { x: number; y: number }[] }[] = [];
+    type Pt = { x: number; y: number };
+    const out: { model: string; segment: [Pt, Pt] }[] = [];
     for (const [model, pts] of byModel) {
       const fit = ols(pts);
       if (!fit) continue;

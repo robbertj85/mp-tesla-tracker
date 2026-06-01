@@ -43,7 +43,7 @@ export function ModelInsight({ data }: { data: Dataset }) {
             <BarChart data={imp} layout="vertical" margin={{ left: 20, right: 20 }}>
               <XAxis type="number" tickFormatter={(v) => `${Math.round(v * 100)}%`} tick={{ fontSize: 12 }} />
               <YAxis type="category" dataKey="label" width={90} tick={{ fontSize: 12 }} />
-              <Tooltip formatter={(v: number) => `${Math.round(v * 100)}%`} />
+              <Tooltip formatter={(v) => `${Math.round(Number(v) * 100)}%`} />
               <Bar dataKey="importance" radius={[0, 4, 4, 0]}>
                 {imp.map((_, i) => <Cell key={i} fill="#2563eb" />)}
               </Bar>
