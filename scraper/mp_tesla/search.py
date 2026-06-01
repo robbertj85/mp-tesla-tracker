@@ -1,8 +1,9 @@
-"""Call Marktplaats' internal search API and yield Model 3 / Model Y listings.
+"""Call Marktplaats' internal search API and yield listings for a given brand.
 
-The endpoint returns structured JSON. We pass the Tesla brand attribute plus the
-Model 3 and Model Y attribute IDs, so results are pre-filtered to the two models
-we care about (a title guard catches any stragglers).
+The endpoint returns structured JSON. Each `Brand` (config.BRANDS) supplies the
+category + attributeValueIds so results are pre-filtered server-side to the models /
+fuels / transmissions we care about. A post-fetch guard catches any stragglers and
+stamps the canonical model + brand on each raw listing.
 """
 from __future__ import annotations
 
@@ -15,33 +16,35 @@ import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from . import config
+from .config import Brand
 
 log = logging.getLogger(__name__)
 
 
-def _client() -> httpx.Client:
+def _client(brand: Brand) -> httpx.Client:
     return httpx.Client(
         headers={
             "User-Agent": config.USER_AGENT,
             "Accept": "application/json",
             "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
-            "Referer": f"{config.BASE_URL}/l/auto-s/tesla/",
+            "Referer": f"{config.BASE_URL}/l/auto-s/{brand.key}/",
         },
         timeout=config.REQUEST_TIMEOUT,
         follow_redirects=True,
     )
 
 
-def _build_params(offset: int, limit: int) -> list[tuple[str, str]]:
+def _build_params(brand: Brand, offset: int, limit: int) -> list[tuple[str, str]]:
     """Query params mirroring the site's own XHR (order-independent, repeated keys)."""
     params: list[tuple[str, str]] = [
         ("l1CategoryId", str(config.L1_CATEGORY_ID)),
-        ("l2CategoryId", str(config.L2_CATEGORY_ID)),
-        ("attributesById[]", str(config.TESLA_BRAND_ATTR_ID)),
-        ("attributesById[]", str(config.MODEL_ATTR_IDS["Model 3"])),
-        ("attributesById[]", str(config.MODEL_ATTR_IDS["Model Y"])),
-        ("attributeRanges[]", f"constructionYear:{config.CONSTRUCTION_YEAR_FROM}:null"),
-        ("attributeRanges[]", f"PriceCents:null:{config.PRICE_CENTS_TO}"),
+        ("l2CategoryId", str(brand.l2_category_id)),
+    ]
+    for attr_id in brand.search_attr_ids:
+        params.append(("attributesById[]", str(attr_id)))
+    params += [
+        ("attributeRanges[]", f"constructionYear:{brand.year_from}:null"),
+        ("attributeRanges[]", f"PriceCents:null:{brand.price_cents_to}"),
         ("postcode", config.POSTCODE),  # makes location.distanceMeters relative to 3051
         ("limit", str(limit)),
         ("offset", str(offset)),
@@ -57,47 +60,62 @@ def _build_params(offset: int, limit: int) -> list[tuple[str, str]]:
     stop=stop_after_attempt(config.MAX_RETRIES),
     reraise=True,
 )
-def _fetch_page(client: httpx.Client, offset: int, limit: int) -> dict:
-    resp = client.get(config.SEARCH_URL, params=_build_params(offset, limit))
+def _fetch_page(client: httpx.Client, brand: Brand, offset: int, limit: int) -> dict:
+    resp = client.get(config.SEARCH_URL, params=_build_params(brand, offset, limit))
     resp.raise_for_status()
     return resp.json()
 
 
-def _is_model_3_or_y(listing: dict) -> str | None:
-    """Return canonical 'Model 3' / 'Model Y' or None, from attributes or title."""
+def _attr(listing: dict, key: str) -> str:
     for attr in listing.get("attributes", []):
-        if attr.get("key") == "model":
-            val = attr.get("value", "")
-            if "Model 3" in val:
-                return "Model 3"
-            if "Model Y" in val:
-                return "Model Y"
+        if attr.get("key") == key:
+            return attr.get("value", "") or ""
+    return ""
+
+
+def _canonical_model(listing: dict, brand: Brand) -> str | None:
+    """Return the brand's canonical model name, or None to skip the listing.
+
+    Matches the structured `model` attribute first, then the title. For brands
+    with fuel/transmission constraints (Skoda) we also guard those, even though
+    the server already filtered — cheap insurance against an unexpected straggler.
+    """
+    model_attr = _attr(listing, "model")
     title = listing.get("title", "")
-    if "Model 3" in title:
-        return "Model 3"
-    if "Model Y" in title:
-        return "Model Y"
-    return None
+    matched = None
+    for name in brand.models:
+        if name in model_attr or name in title:
+            matched = name
+            break
+    if matched is None:
+        return None
+    if brand.allowed_fuels and _attr(listing, "fuel") not in brand.allowed_fuels:
+        return None
+    if brand.allowed_transmissions and _attr(listing, "transmission") not in brand.allowed_transmissions:
+        return None
+    return matched
 
 
-def iter_search_listings(max_pages: int | None = None) -> Iterator[dict]:
-    """Yield raw listing dicts (Model 3/Y only), paginating until exhausted."""
+def iter_search_listings(brand: Brand, max_pages: int | None = None) -> Iterator[dict]:
+    """Yield raw listing dicts for `brand` (model-guarded), paginating until exhausted."""
     max_pages = max_pages or config.MAX_PAGES
     seen_total: int | None = None
-    with _client() as client:
+    with _client(brand) as client:
         for page in range(max_pages):
             offset = page * config.PAGE_SIZE
             if seen_total is not None and offset >= seen_total:
                 break
-            data = _fetch_page(client, offset, config.PAGE_SIZE)
+            data = _fetch_page(client, brand, offset, config.PAGE_SIZE)
             seen_total = data.get("totalResultCount", 0)
             listings = data.get("listings", [])
             if not listings:
                 break
-            log.info("search page %d: %d listings (total=%s)", page, len(listings), seen_total)
+            log.info("[%s] search page %d: %d listings (total=%s)",
+                     brand.key, page, len(listings), seen_total)
             for raw in listings:
-                model = _is_model_3_or_y(raw)
+                model = _canonical_model(raw, brand)
                 if model:
+                    raw["_brand"] = brand.key
                     raw["_canonical_model"] = model
                     yield raw
             time.sleep(random.uniform(*config.SEARCH_DELAY_RANGE))

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Activity, Car, Gauge, TrendingUp } from "lucide-react";
 import type { Dataset, Listing } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { SiteHeader } from "@/components/site-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,14 +14,19 @@ import { ListingsTable } from "@/components/listings-table";
 import { PriceEstimator } from "@/components/price-estimator";
 import { ModelInsight } from "@/components/model-insight";
 
-export function Dashboard({ data }: { data: Dataset }) {
+export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }) {
   // Year bounds default to the actual data range (the facet years), so the
   // dropdowns show real, selectable years.
   const years = data.facets.years;
-  const base: Filters = React.useMemo(
-    () => ({ ...defaultFilters, yearMin: years[0] ?? 2017, yearMax: years[years.length - 1] ?? 2026 }),
-    [years]
-  );
+  const base: Filters = React.useMemo(() => {
+    const maxPrice = Math.max(5000, ...data.listings.map((l) => l.price_eur ?? 0));
+    return {
+      ...defaultFilters,
+      yearMin: years[0] ?? 2017,
+      yearMax: years[years.length - 1] ?? 2026,
+      priceMax: Math.ceil(maxPrice / 5000) * 5000,
+    };
+  }, [years, data.listings]);
   const [filters, setFilters] = React.useState<Filters>(base);
   const filtered: Listing[] = React.useMemo(
     () => data.listings.filter((l) => applyFilters(l, filters)),
@@ -29,8 +35,8 @@ export function Dashboard({ data }: { data: Dataset }) {
 
   return (
     <div className="container max-w-7xl py-8">
-      <SiteHeader active="dashboard"
-        subtitle={`Model 3 & Model Y op Marktplaats · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
+      <SiteHeader brand={brand} active="dashboard"
+        subtitle={`${brand.modelsLabel} op Marktplaats · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
 
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatCard icon={<Car className="h-4 w-4" />} label="Actieve auto's" value={String(data.summary.count)}
@@ -42,7 +48,7 @@ export function Dashboard({ data }: { data: Dataset }) {
           sub={data.metrics.linear_mae != null ? `± ${eur(data.metrics.linear_mae)} MAE · n=${data.metrics.n}` : data.metrics.note} />
       </div>
 
-      <FilterBar data={data} filters={filters} setFilters={setFilters} resetTo={base} resultCount={filtered.length} />
+      <FilterBar data={data} brand={brand} filters={filters} setFilters={setFilters} resetTo={base} resultCount={filtered.length} />
 
       <Tabs defaultValue="scatter" className="mt-6">
         <TabsList>
@@ -53,22 +59,23 @@ export function Dashboard({ data }: { data: Dataset }) {
         </TabsList>
 
         <TabsContent value="scatter">
-          <ScatterPanel listings={filtered} />
+          <ScatterPanel listings={filtered} brand={brand} />
         </TabsContent>
         <TabsContent value="listings">
-          <ListingsTable listings={filtered} history={data.priceHistory} />
+          <ListingsTable listings={filtered} history={data.priceHistory} brand={brand} />
         </TabsContent>
         <TabsContent value="estimator">
-          <PriceEstimator data={data} />
+          <PriceEstimator data={data} brand={brand} />
         </TabsContent>
         <TabsContent value="insight">
-          <ModelInsight data={data} />
+          <ModelInsight data={data} brand={brand} />
         </TabsContent>
       </Tabs>
 
       <footer className="mt-10 text-xs text-muted-foreground">
-        HW3/HW4 is deels afgeleid uit bouwjaar en model (zie betrouwbaarheidslabel). FSD,
-        trim en accugezondheid komen uit de advertentietekst en kunnen ontbreken.
+        {brand.dimensions.hw
+          ? "HW3/HW4 is deels afgeleid uit bouwjaar en model (zie betrouwbaarheidslabel). FSD, trim en accugezondheid komen uit de advertentietekst en kunnen ontbreken."
+          : "Alleen automaat, benzine en plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
       </footer>
     </div>
   );

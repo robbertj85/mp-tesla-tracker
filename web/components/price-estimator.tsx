@@ -4,6 +4,7 @@ import * as React from "react";
 import { Calculator } from "lucide-react";
 import type { Dataset, ModelEntry } from "@/lib/types";
 import { COMBINED_KEY } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { predictPrice } from "@/lib/predict";
@@ -13,8 +14,9 @@ const CURRENT_YEAR = 2026;
 
 type Mode = "separate" | "combined";
 
-export function PriceEstimator({ data }: { data: Dataset }) {
+export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandConfig }) {
   const f = data.facets;
+  const dim = brand.dimensions;
   const [state, setState] = React.useState({
     mode: "separate" as Mode,
     model: f.models[0] ?? "Model 3",
@@ -22,6 +24,8 @@ export function PriceEstimator({ data }: { data: Dataset }) {
     drivetrain: f.drivetrains[0] ?? "unknown",
     hw_platform: f.hwPlatforms[0] ?? "unknown",
     fsd: "no",
+    fuel: f.fuels[0] ?? "unknown",
+    transmission: f.transmissions[0] ?? "unknown",
     condition: f.conditions[0] ?? "unknown",
     year: 2021,
     mileage_km: 80000,
@@ -111,10 +115,12 @@ export function PriceEstimator({ data }: { data: Dataset }) {
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-3">
           <Sel label="Model" value={state.model} onChange={(v) => set({ model: v })} options={f.models} />
-          <Sel label="Trim" value={state.trim} onChange={(v) => set({ trim: v })} options={f.trims} />
-          <Sel label="Aandrijving" value={state.drivetrain} onChange={(v) => set({ drivetrain: v })} options={f.drivetrains} />
-          <Sel label="Hardware" value={state.hw_platform} onChange={(v) => set({ hw_platform: v })} options={f.hwPlatforms} />
-          <Sel label="FSD" value={state.fsd} onChange={(v) => set({ fsd: v })} options={["no", "yes"]} />
+          {dim.trim && <Sel label="Trim" value={state.trim} onChange={(v) => set({ trim: v })} options={f.trims} />}
+          {dim.fuel && <Sel label="Brandstof" value={state.fuel} onChange={(v) => set({ fuel: v })} options={f.fuels} />}
+          {dim.transmission && <Sel label="Transmissie" value={state.transmission} onChange={(v) => set({ transmission: v })} options={f.transmissions} />}
+          {dim.drivetrain && <Sel label="Aandrijving" value={state.drivetrain} onChange={(v) => set({ drivetrain: v })} options={f.drivetrains} />}
+          {dim.hw && <Sel label="Hardware" value={state.hw_platform} onChange={(v) => set({ hw_platform: v })} options={f.hwPlatforms} />}
+          {dim.fsd && <Sel label="FSD" value={state.fsd} onChange={(v) => set({ fsd: v })} options={["no", "yes"]} />}
           <Sel label="Staat" value={state.condition} onChange={(v) => set({ condition: v })} options={f.conditions} />
           <div className="flex flex-col gap-1">
             <label className="text-xs text-muted-foreground">Bouwjaar: {state.year}</label>
@@ -135,7 +141,7 @@ export function PriceEstimator({ data }: { data: Dataset }) {
           <div className="text-sm text-muted-foreground">Geschatte redelijke prijs</div>
           <div className="mt-1 text-4xl font-bold tabular-nums">{eur(estimate)}</div>
           <div className="mt-3 text-xs text-muted-foreground">
-            {state.model} {state.trim} · {state.year} · {state.mileage_km.toLocaleString("nl-NL")} km
+            {state.model} {dim.trim ? state.trim : dim.fuel ? state.fuel : ""} · {state.year} · {state.mileage_km.toLocaleString("nl-NL")} km
           </div>
         </CardContent>
       </Card>

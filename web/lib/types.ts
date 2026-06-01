@@ -2,6 +2,7 @@ export type DealLabel = "good_deal" | "fair" | "overpriced";
 
 export interface Listing {
   id: string;
+  brand: string | null;
   url: string;
   title: string;
   model: string;
@@ -17,6 +18,8 @@ export interface Listing {
   interior_color: string | null;
   body: string | null;
   drivetrain: string | null;
+  fuel: string | null;
+  transmission: string | null;
   power_hp: number | null;
   range_km: number | null;
   num_seats: number | null;
@@ -84,6 +87,7 @@ export interface PricePoint {
 }
 
 export interface Dataset {
+  brand: string;
   generatedAt: string;
   sourceQuery: string;
   summary: {
@@ -104,6 +108,8 @@ export interface Dataset {
     hwPlatforms: string[];
     conditions: string[];
     drivetrains: string[];
+    fuels: string[];
+    transmissions: string[];
     years: number[];
   };
   listings: Listing[];

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import type { Dataset, Listing } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { eur } from "@/lib/utils";
@@ -11,6 +12,9 @@ export interface Filters {
   trim: string;
   hw: string;
   fsd: string;
+  fuel: string;
+  transmission: string;
+  drivetrain: string;
   condition: string;
   yearMin: number;
   yearMax: number;
@@ -23,10 +27,13 @@ export const defaultFilters: Filters = {
   trim: "all",
   hw: "all",
   fsd: "all",
+  fuel: "all",
+  transmission: "all",
+  drivetrain: "all",
   condition: "all",
   yearMin: 2017,
   yearMax: 2026,
-  priceMax: 45000,
+  priceMax: 100000,
   mileageMax: 400000,
 };
 
@@ -36,6 +43,9 @@ export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.hw !== "all" && l.hw_platform !== f.hw) return false;
   if (f.fsd === "yes" && !l.fsd) return false;
   if (f.fsd === "no" && l.fsd) return false;
+  if (f.fuel !== "all" && l.fuel !== f.fuel) return false;
+  if (f.transmission !== "all" && l.transmission !== f.transmission) return false;
+  if (f.drivetrain !== "all" && l.drivetrain !== f.drivetrain) return false;
   if (f.condition !== "all" && l.condition !== f.condition) return false;
   if (l.year != null && (l.year < f.yearMin || l.year > f.yearMax)) return false;
   if (l.price_eur != null && l.price_eur > f.priceMax) return false;
@@ -61,23 +71,45 @@ function Dropdown({ label, value, onChange, options }: {
   );
 }
 
-export function FilterBar({ data, filters, setFilters, resetTo, resultCount }: {
-  data: Dataset; filters: Filters; setFilters: (f: Filters) => void; resetTo: Filters; resultCount: number;
+export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCount }: {
+  data: Dataset; brand: BrandConfig; filters: Filters; setFilters: (f: Filters) => void;
+  resetTo: Filters; resultCount: number;
 }) {
+  const dim = brand.dimensions;
   const set = (patch: Partial<Filters>) => setFilters({ ...filters, ...patch });
   const opt = (vals: (string | number)[]) => [
     { value: "all", label: "Alle" },
     ...vals.map((v) => ({ value: String(v), label: String(v) })),
   ];
+  // Price slider ceiling: round the most expensive listing up to the next €5k.
+  const priceCeil = React.useMemo(() => {
+    const max = Math.max(5000, ...data.listings.map((l) => l.price_eur ?? 0));
+    return Math.ceil(max / 5000) * 5000;
+  }, [data.listings]);
 
   return (
     <div className="rounded-lg border bg-card p-4">
       <div className="flex flex-wrap items-end gap-3">
         <Dropdown label="Model" value={filters.model} onChange={(v) => set({ model: v })} options={opt(data.facets.models)} />
-        <Dropdown label="Trim" value={filters.trim} onChange={(v) => set({ trim: v })} options={opt(data.facets.trims)} />
-        <Dropdown label="Hardware" value={filters.hw} onChange={(v) => set({ hw: v })} options={opt(data.facets.hwPlatforms)} />
-        <Dropdown label="FSD" value={filters.fsd} onChange={(v) => set({ fsd: v })}
-          options={[{ value: "all", label: "Alle" }, { value: "yes", label: "Met FSD" }, { value: "no", label: "Zonder FSD" }]} />
+        {dim.trim && (
+          <Dropdown label="Trim" value={filters.trim} onChange={(v) => set({ trim: v })} options={opt(data.facets.trims)} />
+        )}
+        {dim.hw && (
+          <Dropdown label="Hardware" value={filters.hw} onChange={(v) => set({ hw: v })} options={opt(data.facets.hwPlatforms)} />
+        )}
+        {dim.fsd && (
+          <Dropdown label="FSD" value={filters.fsd} onChange={(v) => set({ fsd: v })}
+            options={[{ value: "all", label: "Alle" }, { value: "yes", label: "Met FSD" }, { value: "no", label: "Zonder FSD" }]} />
+        )}
+        {dim.fuel && (
+          <Dropdown label="Brandstof" value={filters.fuel} onChange={(v) => set({ fuel: v })} options={opt(data.facets.fuels)} />
+        )}
+        {dim.transmission && (
+          <Dropdown label="Transmissie" value={filters.transmission} onChange={(v) => set({ transmission: v })} options={opt(data.facets.transmissions)} />
+        )}
+        {dim.drivetrain && (
+          <Dropdown label="Aandrijving" value={filters.drivetrain} onChange={(v) => set({ drivetrain: v })} options={opt(data.facets.drivetrains)} />
+        )}
         <Dropdown label="Staat" value={filters.condition} onChange={(v) => set({ condition: v })} options={opt(data.facets.conditions)} />
         <Dropdown label="Bouwjaar van" value={String(filters.yearMin)}
           onChange={(v) => set({ yearMin: Number(v) })}
@@ -88,7 +120,7 @@ export function FilterBar({ data, filters, setFilters, resetTo, resultCount }: {
 
         <div className="flex min-w-[170px] flex-col gap-1">
           <label className="text-xs text-muted-foreground">Max. prijs: {eur(filters.priceMax)}</label>
-          <input type="range" min={5000} max={45000} step={500} value={filters.priceMax}
+          <input type="range" min={5000} max={priceCeil} step={500} value={Math.min(filters.priceMax, priceCeil)}
             onChange={(e) => set({ priceMax: Number(e.target.value) })} className="accent-primary" />
         </div>
         <div className="flex min-w-[170px] flex-col gap-1">

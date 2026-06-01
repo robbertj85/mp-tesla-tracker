@@ -4,6 +4,7 @@ import {
   Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 import type { Dataset } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { eur } from "@/lib/utils";
 
@@ -11,10 +12,11 @@ const FEATURE_LABELS: Record<string, string> = {
   age: "Leeftijd", mileage_km: "Kilometerstand", power_hp: "Vermogen",
   range_km: "Actieradius", model: "Model", trim: "Trim",
   drivetrain: "Aandrijving", hw_platform: "Hardware", fsd: "FSD",
+  fuel: "Brandstof", transmission: "Transmissie", body: "Carrosserie",
   color: "Kleur", condition: "Staat",
 };
 
-export function ModelInsight({ data }: { data: Dataset }) {
+export function ModelInsight({ data, brand }: { data: Dataset; brand: BrandConfig }) {
   const imp = data.importances.map((i) => ({ ...i, label: FEATURE_LABELS[i.feature] ?? i.feature }));
   const lm = data.linearModel;
 
@@ -25,8 +27,14 @@ export function ModelInsight({ data }: { data: Dataset }) {
     if (mileage) drivers.push({ label: "Per 50.000 km meer", value: eur((mileage.coef / mileage.std) * 50000) });
     const age = lm.numeric.age;
     if (age) drivers.push({ label: "Per jaar ouder", value: eur((age.coef / age.std) * 1) });
-    const fsd = lm.categorical.fsd;
-    if (fsd && fsd.yes != null && fsd.no != null) drivers.push({ label: "FSD aanwezig", value: eur(fsd.yes - fsd.no) });
+    if (brand.dimensions.fsd) {
+      const fsd = lm.categorical.fsd;
+      if (fsd && fsd.yes != null && fsd.no != null) drivers.push({ label: "FSD aanwezig", value: eur(fsd.yes - fsd.no) });
+    }
+    if (brand.dimensions.fuel) {
+      const fuel = lm.categorical.fuel;
+      if (fuel && fuel.PHEV != null && fuel.Petrol != null) drivers.push({ label: "PHEV vs. benzine", value: eur(fuel.PHEV - fuel.Petrol) });
+    }
     const power = lm.numeric.power_hp;
     if (power) drivers.push({ label: "Per 100 pk meer", value: eur((power.coef / power.std) * 100) });
   }

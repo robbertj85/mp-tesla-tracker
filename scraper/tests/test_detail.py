@@ -1,9 +1,11 @@
 import json
 from pathlib import Path
 
-from mp_tesla import detail, record, store, model
+from mp_tesla import config, detail, record, store, model
 
 FIXTURES = Path(__file__).parent / "fixtures"
+TESLA = config.BRANDS["tesla"]
+SKODA = config.BRANDS["skoda"]
 
 
 def test_parse_real_vip_fixture():
@@ -21,11 +23,46 @@ def test_build_record_from_fixtures():
     det = detail.parse_detail(html)
     raw = search["listings"][0]
     raw["_canonical_model"] = "Model 3" if "Model 3" in raw.get("title", "") else "Model Y"
-    rec = record.build_record(raw, det, run_date="2026-06-01")
+    rec = record.build_record(raw, det, "2026-06-01", TESLA)
     assert rec["id"]
+    assert rec["brand"] == "Tesla"
     assert rec["model"] in ("Model 3", "Model Y")
     assert rec["price_eur"] is not None
+    assert rec["fuel"] == "Electric"
+    assert rec["transmission"] == "Automatic"
     assert rec["first_seen"] == "2026-06-01"
+
+
+def test_build_record_skoda():
+    """A Skoda search listing yields fuel/transmission/drivetrain and no HW/FSD."""
+    raw = {
+        "itemId": "s1",
+        "title": "Skoda Octavia 1.4 TSI iV PHEV DSG",
+        "vipUrl": "/v/auto-s/skoda/s1",
+        "priceInfo": {"priceCents": 2399500, "priceType": "FIXED"},
+        "attributes": [
+            {"key": "constructionYear", "value": "2022"},
+            {"key": "mileage", "value": "60.000"},
+            {"key": "fuel", "value": "Hybride Elektrisch/Benzine"},
+            {"key": "transmission", "value": "Automaat"},
+            {"key": "model", "value": "Octavia"},
+        ],
+        "_brand": "skoda",
+        "_canonical_model": "Octavia",
+    }
+    det = {"power_hp": "204", "drivetrain_attr": "Voorwielaandrijving", "condition": "USED"}
+    rec = record.build_record(raw, det, "2026-06-01", SKODA)
+    assert rec["brand"] == "Skoda"
+    assert rec["model"] == "Octavia"
+    assert rec["fuel"] == "PHEV"
+    assert rec["transmission"] == "Automatic"
+    assert rec["drivetrain"] == "FWD"
+    assert rec["price_eur"] == 23995
+    assert rec["mileage_km"] == 60000
+    # No Tesla-only signals leak into a Skoda record.
+    assert rec["hw_platform"] is None
+    assert rec["trim"] is None
+    assert rec["fsd"] is False
 
 
 def test_store_upsert_idempotent(tmp_path):
@@ -47,6 +84,27 @@ def test_store_upsert_idempotent(tmp_path):
 
 def test_model_train_handles_small_data():
     res = model.train([{"id": "m1", "active": True, "price_eur": 30000,
-                        "year": 2022, "mileage_km": 40000}], run_year=2026)
+                        "year": 2022, "mileage_km": 40000}], 2026,
+                       config.FEATURE_SPECS["tesla"])
     assert res["metrics"]["n"] == 1
     assert res["linearModel"] is None  # not enough data
+
+
+def test_skoda_search_guard():
+    """The Skoda canonical-model guard requires an allowed fuel + transmission."""
+    from mp_tesla import search
+    ok = {"title": "Skoda Superb", "attributes": [
+        {"key": "model", "value": "Superb"},
+        {"key": "fuel", "value": "Benzine"},
+        {"key": "transmission", "value": "Automaat"}]}
+    diesel = {"title": "Skoda Superb", "attributes": [
+        {"key": "model", "value": "Superb"},
+        {"key": "fuel", "value": "Diesel"},
+        {"key": "transmission", "value": "Automaat"}]}
+    manual = {"title": "Skoda Octavia", "attributes": [
+        {"key": "model", "value": "Octavia"},
+        {"key": "fuel", "value": "Benzine"},
+        {"key": "transmission", "value": "Handgeschakeld"}]}
+    assert search._canonical_model(ok, SKODA) == "Superb"
+    assert search._canonical_model(diesel, SKODA) is None
+    assert search._canonical_model(manual, SKODA) is None

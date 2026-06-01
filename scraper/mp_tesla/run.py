@@ -25,10 +25,17 @@ log = logging.getLogger(__name__)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = REPO_ROOT / "data"
-DEFAULT_OUTPUT = REPO_ROOT / "web" / "public" / "data.json"
-SOURCE_QUERY = (
-    "auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000"
-)
+DEFAULT_WEB_PUBLIC = REPO_ROOT / "web" / "public"
+
+
+def brand_data_dir(data_dir: Path, brand_key: str) -> Path:
+    """Per-brand store directory, e.g. data/tesla/ — keeps brands unmixed."""
+    return data_dir / brand_key
+
+
+def brand_output(web_public: Path, brand_key: str) -> Path:
+    """Per-brand exported dataset, e.g. web/public/tesla.json."""
+    return web_public / f"{brand_key}.json"
 
 
 def _fetch_detail(vip_url: str, use_browser: bool) -> dict | None:
@@ -51,16 +58,57 @@ def _fetch_detail(vip_url: str, use_browser: bool) -> dict | None:
         return None
 
 
+def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> None:
+    """Scrape → upsert → regress → export one brand into its own store/output."""
+    use_browser = not args.no_browser
+    records: list[dict] = []
+    count = 0
+    for raw in search.iter_search_listings(brand):
+        if args.limit and count >= args.limit:
+            break
+        count += 1
+        det = None
+        if not args.no_detail:
+            det = _fetch_detail(raw.get("vipUrl", ""), use_browser)
+            time.sleep(random.uniform(*config.DETAIL_DELAY_RANGE))
+        rec = record.build_record(raw, det, run_date, brand)
+        rec["last_seen"] = run_date
+        records.append(rec)
+        log.info("[%s %d] %s | %s %s | €%s | %skm | fuel=%s drv=%s",
+                 brand.key, count, rec["id"], rec["model"], rec.get("trim") or "",
+                 rec.get("price_eur"), rec.get("mileage_km"),
+                 rec.get("fuel"), rec.get("drivetrain"))
+
+    log.info("[%s] scraped %d listings; upserting", brand.key, len(records))
+    data_dir = brand_data_dir(args.data_dir, brand.key)
+    listings_path = data_dir / "listings.json"
+    history_path = data_dir / "price_history.json"
+    store.upsert(records, run_date, listings_path, history_path)
+
+    # Reload the full store (including still-active listings from prior runs).
+    import json
+    listings = json.loads(listings_path.read_text(encoding="utf-8"))
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+
+    feature_spec = config.FEATURE_SPECS[brand.pipeline]
+    model_result = model.train(list(listings.values()), run_year, feature_spec)
+    payload = export.build_payload(listings, history, model_result, run_date,
+                                   brand.source_query, brand.label)
+    export.write_payload(payload, brand_output(args.web_public, brand.key))
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Marktplaats Tesla scraper")
-    parser.add_argument("--limit", type=int, default=None, help="max listings to process")
+    parser = argparse.ArgumentParser(description="Marktplaats multi-brand car scraper")
+    parser.add_argument("--brand", choices=[*config.BRANDS, "all"], default="all",
+                        help="brand to scrape (default: all brands in the registry)")
+    parser.add_argument("--limit", type=int, default=None, help="max listings to process per brand")
     parser.add_argument("--no-detail", action="store_true", help="skip detail-page fetch")
     parser.add_argument("--no-browser", action="store_true",
                         help="disable Playwright fallback for blocked pages")
     parser.add_argument("--run-date", default=date.today().isoformat(),
                         help="ISO date stamped on records (default: today)")
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--web-public", type=Path, default=DEFAULT_WEB_PUBLIC)
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -71,39 +119,12 @@ def main() -> None:
 
     run_date = args.run_date
     run_year = datetime.fromisoformat(run_date).year
-    use_browser = not args.no_browser
+    brand_keys = list(config.BRANDS) if args.brand == "all" else [args.brand]
 
-    records: list[dict] = []
-    count = 0
-    for raw in search.iter_search_listings():
-        if args.limit and count >= args.limit:
-            break
-        count += 1
-        det = None
-        if not args.no_detail:
-            det = _fetch_detail(raw.get("vipUrl", ""), use_browser)
-            time.sleep(random.uniform(*config.DETAIL_DELAY_RANGE))
-        rec = record.build_record(raw, det, run_date)
-        rec["last_seen"] = run_date
-        records.append(rec)
-        log.info("[%d] %s | %s %s | €%s | %skm | HW=%s(%s) | FSD=%s",
-                 count, rec["id"], rec["model"], rec.get("trim"), rec.get("price_eur"),
-                 rec.get("mileage_km"), rec.get("hw_platform"), rec.get("hw_confidence"),
-                 rec.get("fsd"))
-
-    log.info("scraped %d listings; upserting", len(records))
-    listings_path = args.data_dir / "listings.json"
-    history_path = args.data_dir / "price_history.json"
-    store.upsert(records, run_date, listings_path, history_path)
-
-    # Reload the full store (including still-active listings from prior runs).
-    import json
-    listings = json.loads(listings_path.read_text(encoding="utf-8"))
-    history = json.loads(history_path.read_text(encoding="utf-8"))
-
-    model_result = model.train(list(listings.values()), run_year)
-    payload = export.build_payload(listings, history, model_result, run_date, SOURCE_QUERY)
-    export.write_payload(payload, args.output)
+    for key in brand_keys:
+        brand = config.BRANDS[key]
+        log.info("=== scraping brand: %s ===", brand.label)
+        _scrape_brand(brand, args, run_date, run_year)
     log.info("done.")
 
 

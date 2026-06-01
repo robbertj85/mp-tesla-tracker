@@ -21,13 +21,22 @@ from sklearn.model_selection import KFold, cross_val_predict
 
 log = logging.getLogger(__name__)
 
-NUMERIC_FEATURES = ["age", "mileage_km", "power_hp", "range_km"]
-CATEGORICAL_FEATURES = ["model", "trim", "drivetrain", "hw_platform", "fsd",
-                        "color", "condition"]
 TARGET = "price_eur"
 
 
-def _frame(records: list[dict], run_year: int) -> pd.DataFrame:
+def _cell(r: dict, feat: str, run_year: int):
+    """Pull one feature value from a record, normalising the special encodings."""
+    if feat == "age":
+        return max(0, run_year - r["year"])
+    if feat == "fsd":
+        return "yes" if r.get("fsd") else "no"
+    val = r.get(feat)
+    # Numerics stay None (imputed later); categoricals fall back to "unknown".
+    return val
+
+
+def _frame(records: list[dict], run_year: int, numeric: list[str],
+           categorical: list[str]) -> pd.DataFrame:
     rows = []
     for r in records:
         if not r.get("active", True):
@@ -36,31 +45,23 @@ def _frame(records: list[dict], run_year: int) -> pd.DataFrame:
             continue
         if r.get("mileage_km") is None:
             continue
-        rows.append({
-            "id": r["id"],
-            "age": max(0, run_year - r["year"]),
-            "mileage_km": r["mileage_km"],
-            "power_hp": r.get("power_hp"),
-            "range_km": r.get("range_km"),
-            "model": r.get("model") or "unknown",
-            "trim": r.get("trim") or "unknown",
-            "drivetrain": r.get("drivetrain") or "unknown",
-            "hw_platform": r.get("hw_platform") or "unknown",
-            "fsd": "yes" if r.get("fsd") else "no",
-            "color": r.get("color") or "unknown",
-            "condition": r.get("condition") or "unknown",
-            "price_eur": r["price_eur"],
-        })
+        row = {"id": r["id"], "price_eur": r["price_eur"]}
+        for feat in numeric:
+            row[feat] = _cell(r, feat, run_year)
+        for feat in categorical:
+            val = _cell(r, feat, run_year)
+            row[feat] = val if val not in (None, "") else "unknown"
+        rows.append(row)
     return pd.DataFrame(rows)
 
 
-def _encode(df: pd.DataFrame):
+def _encode(df: pd.DataFrame, numeric: list[str], categorical: list[str]):
     """Manual encoding -> (matrix X, spec). spec lets JS reproduce predictions."""
     spec = {"numeric": {}, "categorical": {}, "columns": []}
     cols = []
 
     # Numerics: median-impute then standardize.
-    for feat in NUMERIC_FEATURES:
+    for feat in numeric:
         vals = pd.to_numeric(df[feat], errors="coerce")
         median = float(vals.median()) if vals.notna().any() else 0.0
         vals = vals.fillna(median)
@@ -71,7 +72,7 @@ def _encode(df: pd.DataFrame):
         spec["columns"].append(f"num::{feat}")
 
     # Categoricals: one-hot (every observed value gets a column).
-    for feat in CATEGORICAL_FEATURES:
+    for feat in categorical:
         values = sorted(df[feat].fillna("unknown").astype(str).unique())
         spec["categorical"][feat] = values
         for val in values:
@@ -82,29 +83,30 @@ def _encode(df: pd.DataFrame):
     return X, spec
 
 
-def _linear_export(spec: dict, ridge: Ridge) -> dict:
+def _linear_export(spec: dict, ridge: Ridge, numeric: list[str],
+                   categorical: list[str]) -> dict:
     """Repackage fitted Ridge coefficients into a JS-evaluable structure."""
     coef = ridge.coef_
-    numeric = {}
-    categorical = {}
+    numeric_out = {}
+    categorical_out = {}
     for i, colname in enumerate(spec["columns"]):
         c = float(coef[i])
         if colname.startswith("num::"):
             feat = colname[5:]
-            numeric[feat] = {**spec["numeric"][feat], "coef": c}
+            numeric_out[feat] = {**spec["numeric"][feat], "coef": c}
         else:
             _, feat, val = colname.split("::", 2)
-            categorical.setdefault(feat, {})[val] = c
+            categorical_out.setdefault(feat, {})[val] = c
     return {
         "intercept": float(ridge.intercept_),
-        "numeric": numeric,
-        "categorical": categorical,
-        "numericFeatures": NUMERIC_FEATURES,
-        "categoricalFeatures": CATEGORICAL_FEATURES,
+        "numeric": numeric_out,
+        "categorical": categorical_out,
+        "numericFeatures": numeric,
+        "categoricalFeatures": categorical,
     }
 
 
-def _fit(df: pd.DataFrame) -> dict:
+def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str]) -> dict:
     """Fit one Ridge model on an already-built frame.
 
     Returns {predictions, linearModel, metrics, importances}. Shared by the
@@ -119,7 +121,7 @@ def _fit(df: pd.DataFrame) -> dict:
         result["metrics"]["note"] = "not enough data to train (need >= 15)"
         return result
 
-    X, spec = _encode(df)
+    X, spec = _encode(df, numeric, categorical)
     y = df[TARGET].to_numpy(dtype=float)
 
     ridge = Ridge(alpha=10.0)
@@ -151,7 +153,7 @@ def _fit(df: pd.DataFrame) -> dict:
             "dealLabel": label,
         }
 
-    result["linearModel"] = _linear_export(spec, ridge)
+    result["linearModel"] = _linear_export(spec, ridge, numeric, categorical)
     result["metrics"].update({"linear_mae": round(mae), "linear_r2": round(r2, 3)})
 
     # Feature importance from the standardized linear coefficients (interpretable
@@ -163,7 +165,7 @@ def _fit(df: pd.DataFrame) -> dict:
         agg.setdefault(feat, []).append(float(ridge.coef_[i]))
     strength = {}
     for feat, coefs in agg.items():
-        strength[feat] = abs(coefs[0]) if feat in NUMERIC_FEATURES else float(np.std(coefs))
+        strength[feat] = abs(coefs[0]) if feat in numeric else float(np.std(coefs))
     total = sum(strength.values()) or 1.0
     result["importances"] = sorted(
         ({"feature": f, "importance": round(v / total, 3)} for f, v in strength.items()),
@@ -188,8 +190,11 @@ def _fit(df: pd.DataFrame) -> dict:
 COMBINED_KEY = "__combined__"
 
 
-def train(records: list[dict], run_year: int) -> dict:
+def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
     """Fit a pooled model plus one model per `model` group.
+
+    `feature_spec` is `{"numeric": [...], "categorical": [...]}` for the brand
+    (see config.FEATURE_SPECS), so Tesla and Skoda train on the right columns.
 
     Returns the pooled model at the top level (backwards-compatible) and a
     `models` map keyed by group name (+ COMBINED_KEY) so the estimator can let
@@ -207,8 +212,10 @@ def train(records: list[dict], run_year: int) -> dict:
     Per-listing predictions/deal labels stay sourced from the pooled model so
     every listing is scored on one consistent scale.
     """
-    df = _frame(records, run_year)
-    combined = _fit(df)
+    numeric = feature_spec["numeric"]
+    categorical = feature_spec["categorical"]
+    df = _frame(records, run_year, numeric, categorical)
+    combined = _fit(df, numeric, categorical)
 
     models: dict[str, dict] = {COMBINED_KEY: {
         "label": "Alle modellen",
@@ -217,7 +224,7 @@ def train(records: list[dict], run_year: int) -> dict:
     }}
     for grp in sorted(df["model"].astype(str).unique()):
         sub = df[df["model"].astype(str) == grp]
-        fit = _fit(sub)
+        fit = _fit(sub, numeric, categorical)
         models[grp] = {
             "label": grp,
             "linearModel": fit["linearModel"],

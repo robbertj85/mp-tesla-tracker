@@ -1,10 +1,17 @@
-"""Central configuration: search params, attribute IDs, and extraction heuristics.
+"""Central configuration: brand registry, search params, and extraction heuristics.
 
 All values here were validated against the live Marktplaats endpoints on
 2026-06-01 (see README "How the scraping works"). Keep tunable knobs here so the
 rest of the package stays declarative.
+
+The scraper tracks multiple brands (Tesla, Skoda). Everything brand-specific lives
+in the `BRANDS` registry below; the rest of the package is brand-generic and takes
+a `Brand` as input. Tesla and Skoda are stored, modelled and exported separately —
+they are never mixed.
 """
 from __future__ import annotations
+
+from dataclasses import dataclass
 
 # --- Marktplaats search endpoint -------------------------------------------------
 # The site's own internal JSON API. A plain GET with a realistic User-Agent works
@@ -12,26 +19,104 @@ from __future__ import annotations
 SEARCH_URL = "https://www.marktplaats.nl/lrp/api/search"
 BASE_URL = "https://www.marktplaats.nl"
 
-# Category + attribute IDs (decoded from the real XHR the site fires).
-L1_CATEGORY_ID = 91     # Auto's
-L2_CATEGORY_ID = 2830   # Tesla
-TESLA_BRAND_ATTR_ID = 10882
+L1_CATEGORY_ID = 91      # Auto's (shared by all car brands)
+POSTCODE = "3051VM"      # makes location.distanceMeters relative to Rotterdam 3051
+PAGE_SIZE = 30           # site default; keep modest to look human
+MAX_PAGES = 40           # safety cap (~1200 listings/brand)
+SORT_BY = "SORT_INDEX"   # default relevance
 
-# Model facet attributeValueId -> canonical model name. We only track 3 and Y.
-MODEL_ATTR_IDS = {
-    "Model 3": 11736,
-    "Model Y": 13853,
+
+# =================================================================================
+# Brand registry
+# =================================================================================
+# attributeValueIds passed via `attributesById[]`. Multiple values of the SAME
+# attribute (e.g. two models, two fuels) are OR'd; values of DIFFERENT attributes
+# are AND'd. So [Octavia, Superb, Benzine, PHEV, Automaat] means
+# (Octavia OR Superb) AND (Benzine OR PHEV) AND Automaat. All IDs verified live.
+
+@dataclass(frozen=True)
+class Brand:
+    key: str                       # "tesla" | "skoda" (used for paths/routes)
+    label: str                     # "Tesla" | "Skoda"
+    l2_category_id: int            # Marktplaats brand sub-category of Auto's (91)
+    models: dict                   # canonical model name -> model attributeValueId
+    year_from: int                 # constructionYear floor
+    price_cents_to: int            # PriceCents ceiling for the search
+    min_price_eur: int             # reject headline prices below this (lease/teaser)
+    pipeline: str                  # "tesla" | "skoda" — selects extraction/features
+    source_query: str              # human-readable description shown in the UI
+    brand_attr_id: int | None = None   # brand facet id (Tesla); None when l2 suffices
+    fuel_ids: tuple = ()           # fuel attributeValueIds to filter on (Skoda)
+    transmission_ids: tuple = ()   # transmission attributeValueIds to filter on
+    allowed_fuels: tuple = ()      # fuel labels accepted by the post-fetch guard
+    allowed_transmissions: tuple = ()  # transmission labels accepted by the guard
+
+    @property
+    def search_attr_ids(self) -> list[int]:
+        """All `attributesById[]` values for this brand's search query."""
+        ids: list[int] = []
+        if self.brand_attr_id is not None:
+            ids.append(self.brand_attr_id)
+        ids.extend(self.models.values())
+        ids.extend(self.fuel_ids)
+        ids.extend(self.transmission_ids)
+        return ids
+
+
+BRANDS: dict[str, Brand] = {
+    "tesla": Brand(
+        key="tesla",
+        label="Tesla",
+        l2_category_id=2830,
+        brand_attr_id=10882,
+        models={"Model 3": 11736, "Model Y": 13853},
+        year_from=2017,
+        price_cents_to=4_500_000,
+        min_price_eur=5000,
+        pipeline="tesla",
+        source_query="auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000",
+    ),
+    "skoda": Brand(
+        key="skoda",
+        label="Skoda",
+        l2_category_id=151,
+        models={"Octavia": 1185, "Superb": 1186},
+        # Benzine (petrol) + Hybride Elektrisch/Benzine (PHEV); diesel/EV excluded.
+        fuel_ids=(473, 13838),
+        # Automaat only — manuals are skipped.
+        transmission_ids=(534,),
+        allowed_fuels=("Benzine", "Hybride Elektrisch/Benzine"),
+        allowed_transmissions=("Automaat",),
+        year_from=2019,
+        price_cents_to=6_000_000,
+        min_price_eur=3500,
+        pipeline="skoda",
+        source_query="auto-s/skoda | Octavia + Superb | benzine + PHEV | automaat | constructionYear>=2019",
+    ),
 }
 
-# Mirror of the user's reference query:
-#   constructionYearFrom:2017 | PriceCentsTo:4500000 | postcode 3051VM
-CONSTRUCTION_YEAR_FROM = 2017
-PRICE_CENTS_TO = 4_500_000
-POSTCODE = "3051VM"
 
-PAGE_SIZE = 30           # site default; keep modest to look human
-MAX_PAGES = 40           # safety cap (~1200 listings) — plenty for 3+Y
-SORT_BY = "SORT_INDEX"   # default relevance
+# Per-pipeline regression features. The frame builder (model.py) and JS estimator
+# (predict.ts) both read these, so the two brands train on the right columns.
+FEATURE_SPECS: dict[str, dict] = {
+    "tesla": {
+        "numeric": ["age", "mileage_km", "power_hp", "range_km"],
+        "categorical": ["model", "trim", "drivetrain", "hw_platform", "fsd",
+                        "color", "condition"],
+    },
+    "skoda": {
+        "numeric": ["age", "mileage_km", "power_hp"],
+        "categorical": ["model", "fuel", "transmission", "drivetrain", "body",
+                        "color", "condition"],
+    },
+}
+
+# Skoda fuel-label normalisation (Marktplaats Dutch labels -> our canonical names).
+FUEL_NORMALISE = {
+    "benzine": "Petrol",
+    "hybride elektrisch/benzine": "PHEV",
+    "hybride elektrischbenzine": "PHEV",
+}
 
 # --- Politeness ------------------------------------------------------------------
 USER_AGENT = (

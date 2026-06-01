@@ -1,9 +1,18 @@
-"""Assemble a normalized listing record from search + detail + heuristics."""
+"""Assemble a normalized listing record from search + detail + heuristics.
+
+Records share a common core (brand, model, year, mileage, price, color, …) plus a
+brand-specific block selected by `brand.pipeline`:
+  * tesla — trim/Highland/HW/FSD/SoH/range from free-text heuristics.
+  * skoda — fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
+Every record carries the union of keys (brand-irrelevant ones are None) so the
+exporter and regression frame stay uniform.
+"""
 from __future__ import annotations
 
 import re
 
 from . import config, extract, infer
+from .config import Brand
 
 
 def _search_attr(raw: dict, key: str):
@@ -52,11 +61,83 @@ def _distance_km(meters):
     return round(meters / 1000)
 
 
-def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
+# Tesla-only fields, defaulted to None on non-Tesla records so the schema is uniform.
+_TESLA_NULL_FIELDS = {
+    "trim": None, "is_highland": False, "is_juniper": False,
+    "hw_platform": None, "hw_source": None, "hw_confidence": None,
+    "fsd": False, "autopilot_package": None, "soh_percent": None,
+    "range_km": None, "interior_color": None, "upholstery": None,
+}
+
+
+def _normalise_skoda_drivetrain(structured: str | None) -> str | None:
+    """Map Marktplaats' Dutch 'Aandrijving' value to FWD / AWD / RWD."""
+    if not structured:
+        return None
+    s = structured.lower()
+    if "voorwiel" in s or "fwd" in s or "front" in s:
+        return "FWD"
+    if "vierwiel" in s or "4wd" in s or "4x4" in s or "awd" in s or "all" in s:
+        return "AWD"
+    if "achterwiel" in s or "rwd" in s or "rear" in s:
+        return "RWD"
+    return None
+
+
+def _derive_tesla(raw: dict, detail: dict, model: str, year, title: str,
+                  description: str, power_hp) -> dict:
+    heur = extract.extract_all(
+        title=title,
+        description=description,
+        structured_drivetrain=detail.get("drivetrain_attr"),
+        structured_color=detail.get("color"),
+    )
+    text = f"{title}\n{description}"
+    drivetrain = heur["drivetrain"]
+    is_highland, is_juniper, trim, hw = derive_refresh_trim_hw(
+        model, year, text, drivetrain, power_hp
+    )
+    return {
+        "color": heur["color"],
+        "drivetrain": drivetrain,
+        "fuel": "Electric",
+        "transmission": "Automatic",
+        "trim": trim,
+        "is_highland": is_highland,
+        "is_juniper": is_juniper,
+        "fsd": heur["fsd"],
+        "autopilot_package": heur["autopilot_package"],
+        "soh_percent": heur["soh_percent"],
+        "hw_platform": hw["value"],
+        "hw_source": hw["source"],
+        "hw_confidence": hw["confidence"],
+        "range_km": detail.get("range_km") or _to_int(_search_attr(raw, "range")),
+        "interior_color": detail.get("interior_color"),
+        "upholstery": detail.get("upholstery"),
+    }
+
+
+def _derive_skoda(raw: dict, detail: dict) -> dict:
+    raw_fuel = (_search_attr(raw, "fuel") or detail.get("fuel") or "")
+    fuel = config.FUEL_NORMALISE.get(raw_fuel.strip().lower(), raw_fuel or None)
+    drivetrain = _normalise_skoda_drivetrain(detail.get("drivetrain_attr"))
+    out = {
+        "color": extract.normalise_color(detail.get("color")),
+        "drivetrain": drivetrain,
+        "fuel": fuel,
+        # The search is filtered to Automaat only, so transmission is always automatic.
+        "transmission": "Automatic",
+    }
+    out.update(_TESLA_NULL_FIELDS)
+    return out
+
+
+def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) -> dict:
     """Merge a search listing (`raw`) with parsed detail (`detail`, may be None).
 
     `run_date` is an ISO date string supplied by the caller (no wall-clock here,
-    so runs are deterministic / re-runnable).
+    so runs are deterministic / re-runnable). The brand selects which derived
+    block (Tesla heuristics vs Skoda engine/driveline) is attached.
     """
     detail = detail or {}
     model = raw.get("_canonical_model") or ""
@@ -76,26 +157,14 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
     # Reject implausibly low headline prices (monthly lease / "vanaf" teasers) and
     # try to recover the real asking price from the description instead.
     price_source = "headline"
-    if price_eur is None or price_eur < config.MIN_PRICE_EUR:
+    if price_eur is None or price_eur < brand.min_price_eur:
         recovered = extract.extract_price_from_text(description)
         if recovered is not None:
             price_eur, price_source = recovered, "description"
         else:
             price_eur, price_source = None, "unreliable"
 
-    heur = extract.extract_all(
-        title=title,
-        description=description,
-        structured_drivetrain=detail.get("drivetrain_attr"),
-        structured_color=detail.get("color"),
-    )
-
-    text = f"{title}\n{description}"
     power_hp = _to_int(detail.get("power_hp"))
-    drivetrain = heur["drivetrain"]
-    is_highland, is_juniper, trim, hw = derive_refresh_trim_hw(
-        model, year, text, drivetrain, power_hp
-    )
 
     location = raw.get("location", {}) or {}
     seller = raw.get("sellerInformation", {}) or {}
@@ -104,35 +173,22 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
     if thumb and thumb.startswith("//"):
         thumb = "https:" + thumb
 
-    return {
+    rec = {
         "id": raw.get("itemId"),
+        "brand": brand.label,
         "url": "https://www.marktplaats.nl" + raw.get("vipUrl", ""),
         "title": title,
         "model": model,
-        "trim": trim,
-        "is_highland": is_highland,
-        "is_juniper": is_juniper,
         "year": year,
         "mileage_km": mileage,
         "price_eur": price_eur,
         "price_type": price_type,
         "price_source": price_source,
         "condition": detail.get("condition"),
-        "color": heur["color"],
-        "interior_color": detail.get("interior_color"),
-        "upholstery": detail.get("upholstery"),
         "body": detail.get("body") or _search_attr(raw, "body"),
-        "drivetrain": heur["drivetrain"],
-        "power_hp": _to_int(detail.get("power_hp")),
-        "range_km": detail.get("range_km") or _to_int(_search_attr(raw, "range")),
+        "power_hp": power_hp,
         "num_doors": _to_int(detail.get("num_doors")),
         "num_seats": _to_int(detail.get("num_seats")),
-        "fsd": heur["fsd"],
-        "autopilot_package": heur["autopilot_package"],
-        "soh_percent": heur["soh_percent"],
-        "hw_platform": hw["value"],
-        "hw_source": hw["source"],
-        "hw_confidence": hw["confidence"],
         "city": location.get("cityName"),
         "distance_km": _distance_km(location.get("distanceMeters")),
         "seller_name": seller.get("sellerName"),
@@ -149,3 +205,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str) -> dict:
         "last_seen": run_date,
         "active": True,
     }
+
+    if brand.pipeline == "skoda":
+        rec.update(_derive_skoda(raw, detail))
+    else:
+        rec.update(_derive_tesla(raw, detail, model, year, title, description, power_hp))
+    return rec

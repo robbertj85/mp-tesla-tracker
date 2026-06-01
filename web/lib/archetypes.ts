@@ -1,23 +1,28 @@
 import type { Listing, LinearModel } from "./types";
+import type { BrandConfig } from "./brands";
 import { predictPrice } from "./predict";
 
 const CURRENT_YEAR = 2026;
 
 export type Tier = "Standard" | "Long Range" | "Performance";
+
+/** One representative configuration. Tesla groups by generation × tier; Skoda by
+ *  fuel × drivetrain. Brand-irrelevant descriptor fields are null. */
 export interface Archetype {
   key: string;
   model: string;
-  generation: string; // e.g. "Highland", "Pre-Highland", "Juniper", "Pre-Juniper"
-  tier: Tier;
+  label: string;           // the row's primary descriptor (tier or fuel)
+  generation: string | null;
+  fuel: string | null;
+  drivetrain: string | null;
   count: number;
   medianYear: number | null;
   medianMileage: number | null;
   medianRange: number | null;
+  medianPower: number | null;
   modeHw: string | null;
-  fsd: boolean; // representative (majority) FSD
+  fsd: boolean;
   fsdShare: number;
-  modeTrim: string | null;
-  modeDrivetrain: string | null;
   medianAsking: number | null;
   estimatedEur: number | null;
 }
@@ -55,7 +60,49 @@ function mode<T>(xs: T[]): T | null {
   return best;
 }
 
-export function buildArchetypes(listings: Listing[], lm: LinearModel | null): Archetype[] {
+/** Shared aggregation over a group of listings, with an estimate from the model. */
+function summarise(ls: Listing[], lm: LinearModel | null): Omit<Archetype, "key" | "model" | "label" | "generation" | "fuel" | "drivetrain"> {
+  const num = (f: (l: Listing) => number | null) => ls.map(f).filter((x): x is number => x != null);
+  const medianYear = median(num((l) => l.year));
+  const medianMileage = median(num((l) => l.mileage_km));
+  const medianRange = median(num((l) => l.range_km));
+  const medianPower = median(num((l) => l.power_hp));
+  const modeHw = mode(ls.map((l) => l.hw_platform).filter(Boolean) as string[]);
+  const fsdShare = ls.filter((l) => l.fsd).length / ls.length;
+  const modeTrim = mode(ls.map((l) => l.trim).filter(Boolean) as string[]);
+  const modeDrivetrain = mode(ls.map((l) => l.drivetrain).filter(Boolean) as string[]);
+  const modeFuel = mode(ls.map((l) => l.fuel).filter(Boolean) as string[]);
+  const modeCondition = mode(ls.map((l) => l.condition).filter(Boolean) as string[]) ?? "USED";
+  const modeColor = mode(ls.map((l) => l.color).filter(Boolean) as string[]) ?? "unknown";
+  const modeBody = mode(ls.map((l) => l.body).filter(Boolean) as string[]) ?? "unknown";
+  const medianAsking = median(num((l) => l.price_eur));
+
+  let estimatedEur: number | null = null;
+  if (lm && medianYear != null) {
+    estimatedEur = predictPrice(lm, {
+      age: Math.max(0, CURRENT_YEAR - medianYear),
+      mileage_km: medianMileage ?? undefined,
+      power_hp: medianPower ?? undefined,
+      range_km: medianRange ?? undefined,
+      model: ls[0].model,
+      trim: modeTrim ?? "unknown",
+      drivetrain: modeDrivetrain ?? "unknown",
+      hw_platform: modeHw ?? "unknown",
+      fsd: fsdShare >= 0.5 ? "yes" : "no",
+      fuel: modeFuel ?? "unknown",
+      transmission: "Automatic",
+      body: modeBody,
+      color: modeColor,
+      condition: modeCondition,
+    });
+  }
+  return {
+    count: ls.length, medianYear, medianMileage, medianRange, medianPower,
+    modeHw, fsd: fsdShare >= 0.5, fsdShare, medianAsking, estimatedEur,
+  };
+}
+
+function buildTesla(listings: Listing[], lm: LinearModel | null): Archetype[] {
   const groups = new Map<string, Listing[]>();
   for (const l of listings) {
     const tier = tierOf(l);
@@ -65,54 +112,43 @@ export function buildArchetypes(listings: Listing[], lm: LinearModel | null): Ar
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(l);
   }
-
   const rows: Archetype[] = [];
   for (const [key, ls] of groups) {
-    const [model, generation, tier] = key.split("|") as [string, string, Tier];
-    const num = (f: (l: Listing) => number | null) =>
-      ls.map(f).filter((x): x is number => x != null);
-    const medianYear = median(num((l) => l.year));
-    const medianMileage = median(num((l) => l.mileage_km));
-    const medianRange = median(num((l) => l.range_km));
-    const medianPower = median(num((l) => l.power_hp));
-    const modeHw = mode(ls.map((l) => l.hw_platform).filter(Boolean) as string[]);
-    const fsdCount = ls.filter((l) => l.fsd).length;
-    const fsdShare = fsdCount / ls.length;
-    const fsd = fsdShare >= 0.5;
-    const modeTrim = mode(ls.map((l) => l.trim).filter(Boolean) as string[]);
-    const modeDrivetrain = mode(ls.map((l) => l.drivetrain).filter(Boolean) as string[]);
-    const modeCondition = mode(ls.map((l) => l.condition).filter(Boolean) as string[]) ?? "USED";
-    const modeColor = mode(ls.map((l) => l.color).filter(Boolean) as string[]) ?? "unknown";
-    const medianAsking = median(num((l) => l.price_eur));
-
-    let estimatedEur: number | null = null;
-    if (lm && medianYear != null) {
-      estimatedEur = predictPrice(lm, {
-        age: Math.max(0, CURRENT_YEAR - medianYear),
-        mileage_km: medianMileage ?? undefined,
-        power_hp: medianPower ?? undefined,
-        range_km: medianRange ?? undefined,
-        model,
-        trim: modeTrim ?? "unknown",
-        drivetrain: modeDrivetrain ?? "unknown",
-        hw_platform: modeHw ?? "unknown",
-        fsd: fsd ? "yes" : "no",
-        color: modeColor,
-        condition: modeCondition,
-      });
-    }
-
-    rows.push({
-      key, model, generation, tier, count: ls.length,
-      medianYear, medianMileage, medianRange, modeHw, fsd, fsdShare,
-      modeTrim, modeDrivetrain, medianAsking, estimatedEur,
-    });
+    const [model, generation, tier] = key.split("|");
+    rows.push({ key, model, label: tier, generation, fuel: null, drivetrain: null, ...summarise(ls, lm) });
   }
-
   rows.sort((a, b) =>
     a.model.localeCompare(b.model) ||
-    GEN_ORDER.indexOf(a.generation) - GEN_ORDER.indexOf(b.generation) ||
-    TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier)
+    GEN_ORDER.indexOf(a.generation ?? "") - GEN_ORDER.indexOf(b.generation ?? "") ||
+    TIER_ORDER.indexOf(a.label as Tier) - TIER_ORDER.indexOf(b.label as Tier)
   );
   return rows;
+}
+
+function buildSkoda(listings: Listing[], lm: LinearModel | null): Archetype[] {
+  const groups = new Map<string, Listing[]>();
+  for (const l of listings) {
+    if (!l.fuel) continue;
+    const drv = l.drivetrain ?? "—";
+    const key = `${l.model}|${l.fuel}|${drv}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(l);
+  }
+  const rows: Archetype[] = [];
+  for (const [key, ls] of groups) {
+    const [model, fuel, drivetrain] = key.split("|");
+    rows.push({ key, model, label: fuel, generation: null, fuel, drivetrain, ...summarise(ls, lm) });
+  }
+  // Petrol before PHEV, then by drivetrain, per model.
+  const fuelOrder = ["Petrol", "PHEV"];
+  rows.sort((a, b) =>
+    a.model.localeCompare(b.model) ||
+    fuelOrder.indexOf(a.fuel ?? "") - fuelOrder.indexOf(b.fuel ?? "") ||
+    (a.drivetrain ?? "").localeCompare(b.drivetrain ?? "")
+  );
+  return rows;
+}
+
+export function buildArchetypes(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
+  return brand.key === "skoda" ? buildSkoda(listings, lm) : buildTesla(listings, lm);
 }

@@ -10,6 +10,9 @@ export interface EstimatorInput {
   drivetrain: string;
   hw_platform: string;
   fsd: string; // "yes" | "no"
+  fuel: string;
+  transmission: string;
+  body: string;
   color: string;
   condition: string;
 }

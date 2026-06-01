@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ChevronDown, ExternalLink, History } from "lucide-react";
 import type { Listing, PricePoint } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
@@ -18,9 +19,10 @@ const dealBadge: Record<string, { variant: "good" | "warn" | "bad"; label: strin
 
 const hwBadge: Record<string, "good" | "warn"> = { high: "good", medium: "warn", low: "warn" };
 
-export function ListingsTable({ listings, history }: {
-  listings: Listing[]; history: Record<string, PricePoint[]>;
+export function ListingsTable({ listings, history, brand }: {
+  listings: Listing[]; history: Record<string, PricePoint[]>; brand: BrandConfig;
 }) {
+  const teslaCols = brand.dimensions.hw; // Tesla shows HW/FSD; Skoda shows fuel/power
   const [sort, setSort] = React.useState<SortKey>("residualEur");
   const [asc, setAsc] = React.useState(true);
   const [open, setOpen] = React.useState<string | null>(null);
@@ -63,8 +65,17 @@ export function ListingsTable({ listings, history }: {
                 <Th k="year">Jaar</Th>
                 <Th k="mileage_km">Km-stand</Th>
                 <Th k="distance_km">Afstand</Th>
-                <th className="px-3 py-2 text-left font-medium">HW</th>
-                <th className="px-3 py-2 text-left font-medium">FSD</th>
+                {teslaCols ? (
+                  <>
+                    <th className="px-3 py-2 text-left font-medium">HW</th>
+                    <th className="px-3 py-2 text-left font-medium">FSD</th>
+                  </>
+                ) : (
+                  <>
+                    <th className="px-3 py-2 text-left font-medium">Brandstof</th>
+                    <th className="px-3 py-2 text-left font-medium">Vermogen</th>
+                  </>
+                )}
                 <Th k="price_eur">Vraagprijs</Th>
                 <th className="px-3 py-2 text-left font-medium">Schatting</th>
                 <Th k="residualEur">Verschil</Th>
@@ -88,15 +99,26 @@ export function ListingsTable({ listings, history }: {
                       <td className="px-3 py-2 whitespace-nowrap">
                         {l.distance_km != null ? `${l.distance_km} km` : "—"}
                       </td>
-                      <td className="px-3 py-2">
-                        {l.hw_platform ? (
-                          <Badge variant={l.hw_confidence ? hwBadge[l.hw_confidence] ?? "warn" : "warn"}>
-                            {l.hw_platform}{l.hw_source === "inferred" ? "*" : ""}
-                          </Badge>
-                        ) : "—"}
-                      </td>
-                      <td className="px-3 py-2">{l.fsd ? <Badge variant="good">FSD</Badge> :
-                        l.autopilot_package === "eap" ? <Badge variant="secondary">EAP</Badge> : "—"}</td>
+                      {teslaCols ? (
+                        <>
+                          <td className="px-3 py-2">
+                            {l.hw_platform ? (
+                              <Badge variant={l.hw_confidence ? hwBadge[l.hw_confidence] ?? "warn" : "warn"}>
+                                {l.hw_platform}{l.hw_source === "inferred" ? "*" : ""}
+                              </Badge>
+                            ) : "—"}
+                          </td>
+                          <td className="px-3 py-2">{l.fsd ? <Badge variant="good">FSD</Badge> :
+                            l.autopilot_package === "eap" ? <Badge variant="secondary">EAP</Badge> : "—"}</td>
+                        </>
+                      ) : (
+                        <>
+                          <td className="px-3 py-2">
+                            {l.fuel ? <Badge variant={l.fuel === "PHEV" ? "good" : "secondary"}>{l.fuel}</Badge> : "—"}
+                          </td>
+                          <td className="px-3 py-2 whitespace-nowrap">{l.power_hp ? `${l.power_hp} pk` : "—"}</td>
+                        </>
+                      )}
                       <td className="px-3 py-2 font-medium">{eur(l.price_eur)}</td>
                       <td className="px-3 py-2 text-muted-foreground">{eur(l.predictedEur)}</td>
                       <td className="px-3 py-2">
@@ -132,7 +154,8 @@ export function ListingsTable({ listings, history }: {
           </table>
         </div>
         <p className="px-3 py-2 text-xs text-muted-foreground">
-          * HW-platform afgeleid (niet expliciet vermeld). Verschil = vraagprijs − modelschatting.
+          {teslaCols && "* HW-platform afgeleid (niet expliciet vermeld). "}
+          Verschil = vraagprijs − modelschatting.
           Afstand is gemeten vanaf postcode 3051 (Rotterdam).
         </p>
       </CardContent>

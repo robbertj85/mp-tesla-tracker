@@ -6,6 +6,7 @@ import {
   Tooltip, XAxis, YAxis, Legend,
 } from "recharts";
 import type { Listing } from "@/lib/types";
+import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { eur } from "@/lib/utils";
@@ -19,15 +20,10 @@ const X_AXES = {
 } as const;
 type XKey = keyof typeof X_AXES;
 
-const COLOR_BY = ["model", "trim", "hw_platform", "dealLabel"] as const;
-type ColorKey = (typeof COLOR_BY)[number];
+type ColorKey = string;
 
 const PALETTE = ["#2563eb", "#dc2626", "#059669", "#d97706", "#7c3aed", "#0891b2",
   "#db2777", "#65a30d", "#475569", "#ca8a04"];
-
-// Fixed colours per model so the dots and that model's regression line always match.
-const MODEL_COLORS: Record<string, string> = { "Model 3": "#2563eb", "Model Y": "#dc2626" };
-const modelColor = (m: string, fallback: string) => MODEL_COLORS[m] ?? fallback;
 
 function xValue(l: Listing, key: XKey): number | null {
   if (key === "age") return l.year ? CURRENT_YEAR - l.year : null;
@@ -48,7 +44,19 @@ function ols(points: { x: number; y: number }[]) {
   return { a, b };
 }
 
-export function ScatterPanel({ listings }: { listings: Listing[] }) {
+export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: BrandConfig }) {
+  const dim = brand.dimensions;
+  // Fixed colours per model so dots and that model's regression line always match.
+  const modelColor = (m: string, fallback: string) => brand.modelColors[m] ?? fallback;
+  const colorOptions: ColorKey[] = React.useMemo(() => {
+    const opts = ["model"];
+    if (dim.trim) opts.push("trim");
+    if (dim.hw) opts.push("hw_platform");
+    if (dim.fuel) opts.push("fuel");
+    if (dim.drivetrain) opts.push("drivetrain");
+    opts.push("dealLabel");
+    return opts;
+  }, [dim]);
   const [xKey, setXKey] = React.useState<XKey>("mileage_km");
   const [colorKey, setColorKey] = React.useState<ColorKey>("model");
 
@@ -58,7 +66,7 @@ export function ScatterPanel({ listings }: { listings: Listing[] }) {
         .map((l) => ({
           x: xValue(l, xKey),
           y: l.price_eur,
-          group: String((l[colorKey] as string | null) ?? "onbekend"),
+          group: String((l as unknown as Record<string, unknown>)[colorKey] ?? "onbekend"),
           model: l.model,
           listing: l,
         }))
@@ -120,7 +128,7 @@ export function ScatterPanel({ listings }: { listings: Listing[] }) {
           <Select value={colorKey} onValueChange={(v) => setColorKey(v as ColorKey)}>
             <SelectTrigger className="w-[170px]"><SelectValue /></SelectTrigger>
             <SelectContent>
-              {COLOR_BY.map((k) => (
+              {colorOptions.map((k) => (
                 <SelectItem key={k} value={k}>Kleur: {k}</SelectItem>
               ))}
             </SelectContent>

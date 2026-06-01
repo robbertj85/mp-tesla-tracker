@@ -1,31 +1,46 @@
-# Tesla Prijstracker — Marktplaats Model 3 & Model Y
+# Marktplaats Prijstracker — Tesla & Skoda
 
-Tracks second-hand **Tesla Model 3 and Model Y** listings on Marktplaats.nl over
-time and estimates a fair price for any feature set using regression, with an
-interactive dashboard (scatter plots, per-model trend lines, filters, a
-client-side price estimator, and price-history charts).
+Tracks second-hand car listings on Marktplaats.nl over time and estimates a fair
+price for any feature set using regression, with an interactive dashboard (scatter
+plots, per-model trend lines, filters, a client-side price estimator, and
+price-history charts).
+
+**Two brands are tracked completely separately** (own data files, own regression,
+own dashboard route) and are never mixed:
+
+| Brand | Models | Scope |
+|-------|--------|-------|
+| **Tesla** | Model 3 & Model Y | build year ≥ 2017; HW3/HW4, FSD, trim, battery SoH |
+| **Skoda** | Octavia & Superb | build year ≥ 2019; **petrol + PHEV only**, **automatic only**; brand/model/engine-driveline/odometer/price |
+
+Everything brand-specific lives in the `BRANDS` registry in
+`scraper/mp_tesla/config.py`; the rest of the pipeline is brand-generic and takes a
+`Brand` as input.
 
 ```
-┌─ GitHub Action (daily) ─────────────┐      ┌─ Vercel (Next.js) ─────────┐
-│ python -m mp_tesla.run              │      │ reads web/public/data.json │
-│  scrape → extract → upsert JSON     │ ───▶ │ scatter · filters · table  │
-│  → regression → export data.json    │ git  │ · fair-price estimator     │
-│  → commit data/ + web/public        │push  │ auto-redeploy on commit    │
-└─────────────────────────────────────┘      └────────────────────────────┘
+┌─ GitHub Action (daily) ──────────────┐      ┌─ Vercel (Next.js) ───────────────┐
+│ python -m mp_tesla.run               │      │ reads web/public/<brand>.json    │
+│  for each brand:                     │ ───▶ │ /tesla · /skoda  (separate)      │
+│  scrape → extract → upsert JSON      │ git  │ scatter · filters · table        │
+│  → regression → export <brand>.json  │push  │ · fair-price estimator           │
+│  → commit data/<brand> + web/public  │      │ auto-redeploy on commit          │
+└──────────────────────────────────────┘      └──────────────────────────────────┘
 ```
 
-No database — the dataset lives in committed JSON files. The daily Action commits
-updates, which triggers a Vercel redeploy.
+No database — each brand's dataset lives in committed JSON files. The daily Action
+commits updates, which triggers a Vercel redeploy.
 
 ## Layout
 
 | Path | What |
 |------|------|
-| `scraper/mp_tesla/` | Python scraper + feature extraction + regression |
-| `data/listings.json` | Canonical store: `{id: record}` with `first_seen`/`last_seen`/`active` |
-| `data/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
+| `scraper/mp_tesla/` | Python scraper + feature extraction + regression (brand-generic; `config.BRANDS` registry) |
+| `data/<brand>/listings.json` | Canonical store per brand: `{id: record}` with `first_seen`/`last_seen`/`active` |
+| `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
-| `web/public/data.json` | Generated artifact the frontend reads |
+| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda` (+ `/modellen`) |
+| `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
 ## How the scraping works
@@ -33,55 +48,64 @@ updates, which triggers a Vercel redeploy.
 Marktplaats exposes an internal JSON search API; a plain request with a realistic
 User-Agent works server-side (validated 2026-06-01).
 
-1. **Search** (`search.py`) — `GET /lrp/api/search` filtered to Tesla (`attributesById 10882`)
-   + Model 3 (`11736`) + Model Y (`13853`), `constructionYear>=2017`, `price<=€45k`.
-   Returns structured price/year/mileage/model.
+1. **Search** (`search.py`) — `GET /lrp/api/search` with the brand's category +
+   `attributesById[]` value-ids. Tesla: `Tesla 10882` + Model 3 `11736` + Model Y
+   `13853`, year ≥ 2017. Skoda: category `151` + Octavia `1185` + Superb `1186`,
+   fuel Benzine `473` + PHEV `13838`, transmission Automaat `534`, year ≥ 2019.
+   The response already carries model/year/mileage/price (+ fuel/transmission for
+   Skoda); a post-fetch guard re-checks model (+ fuel/transmission for Skoda).
 2. **Detail** (`detail.py`) — each listing's VIP page embeds `window.__CONFIG__`
-   with rich `carAttributes` (color, power, body, seats, condition) plus the full
-   free-text description. A Playwright fallback (`browser.py`) handles rare blocks.
-3. **Extract** (`extract.py`) — Dutch/English heuristics derive **trim**, **FSD vs
-   Enhanced Autopilot**, **battery SoH**, and explicit **HW** mentions from the text.
-4. **Infer** (`infer.py`) — when HW isn't stated, derive **HW3/HW4** from model +
-   build year + Highland status, each with a **confidence** flag (shown in the UI).
-5. **Store** (`store.py`) — idempotent upsert; re-running the same day adds no
-   duplicate history; listings missing for 2 runs are marked inactive (sold).
-6. **Model** (`model.py`) — Ridge regression (interpretable, exported for the
-   client-side estimator) over model/trim/age/mileage/drivetrain/hw/fsd/color/
-   condition/power/range; reports R²/MAE and a gradient-boosted MAE benchmark.
+   with rich `carAttributes` (color, power, body, seats, condition, drivetrain)
+   plus the full free-text description. A Playwright fallback (`browser.py`) handles
+   rare blocks.
+3. **Record** (`record.py`) — builds a shared core then a brand block:
+   *Tesla* = trim/Highland/HW/FSD/SoH heuristics (`extract.py` + `infer.py`);
+   *Skoda* = fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
+4. **Store** (`store.py`) — idempotent per-brand upsert; re-running the same day adds
+   no duplicate history; listings missing for 2 runs are marked inactive (sold).
+5. **Model** (`model.py`) — Ridge regression over the brand's `FEATURE_SPECS`
+   (Tesla: model/trim/age/mileage/drivetrain/hw/fsd/color/condition/power/range;
+   Skoda: model/fuel/transmission/drivetrain/body/age/mileage/power/color/condition).
+   Exported so the Next.js estimator reproduces the exact prediction client-side;
+   reports R²/MAE and a gradient-boosted MAE benchmark.
 
 ## Run the scraper locally
 
 ```bash
 cd scraper
 python -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"            # add ",browser" for the Playwright fallback
-python -m mp_tesla.run --limit 20  # dev: cap listings; omit --limit for a full run
-pytest                             # unit tests (extract/infer/detail/store/model)
+pip install -e ".[dev]"                       # add ",browser" for the Playwright fallback
+python -m mp_tesla.run --limit 20             # dev: all brands, cap listings/brand
+python -m mp_tesla.run --brand skoda --limit 20   # one brand only
+python -m mp_tesla.rederive --brand tesla     # recompute from stored data (no network)
+pytest                                        # unit tests
 ```
 
-Outputs land in `data/*.json` and `web/public/data.json`. Re-run to confirm the
-upsert is idempotent (stable counts, no duplicate price points).
+Outputs land in `data/<brand>/*.json` and `web/public/<brand>.json`. Re-run to confirm
+the upsert is idempotent (stable counts, no duplicate price points).
 
 ## Run the dashboard locally
 
 ```bash
 cd web
 npm install
-npm run dev        # http://localhost:3000
+npm run dev        # http://localhost:3000 → redirects to /tesla; also /skoda
 ```
 
 ## Deploy
 
 - **Vercel**: import the repo, set **Root Directory = `web`**. No env vars needed —
-  it reads the committed `web/public/data.json`. Each data commit auto-redeploys.
-- **GitHub Actions**: `scrape.yml` runs daily and on manual dispatch, committing
-  refreshed data back to the repo. Needs no secrets (uses the default `GITHUB_TOKEN`).
+  it reads the committed `web/public/<brand>.json`. Each data commit auto-redeploys.
+- **GitHub Actions**: `scrape.yml` runs daily and on manual dispatch, scraping all
+  brands and committing refreshed data back to the repo. Needs no secrets (uses the
+  default `GITHUB_TOKEN`).
 
 ## Caveats
 
-- **HW3/HW4 is partly inferred** from build date/model. The UI flags confidence and
-  marks inferred values with `*`. Thresholds live in `scraper/mp_tesla/config.py`.
-- **Trim / FSD / SoH** come from free-text and may be missing or occasionally wrong;
-  Performance is guarded to require AWD + high power to avoid prose false-positives.
-- Scraping is polite (daily, single query, throttled, backoff). Respect Marktplaats'
-  Terms of Service.
+- **HW3/HW4 is partly inferred** (Tesla) from build date/model. The UI flags
+  confidence and marks inferred values with `*`. Thresholds live in `config.py`.
+- **Trim / FSD / SoH** (Tesla) come from free-text and may be missing or occasionally
+  wrong; Performance is guarded to require AWD + high power.
+- **Skoda** fuel/transmission/drivetrain come from Marktplaats' structured
+  attributes; the search is hard-filtered to petrol + PHEV + automatic + year ≥ 2019.
+- Scraping is polite (daily, throttled, backoff). Respect Marktplaats' Terms of Service.
