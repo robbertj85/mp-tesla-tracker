@@ -12,6 +12,8 @@ export interface Filters {
   hw: string;
   fsd: string;
   condition: string;
+  yearMin: number;
+  yearMax: number;
   priceMax: number;
   mileageMax: number;
 }
@@ -22,6 +24,8 @@ export const defaultFilters: Filters = {
   hw: "all",
   fsd: "all",
   condition: "all",
+  yearMin: 2017,
+  yearMax: 2026,
   priceMax: 45000,
   mileageMax: 400000,
 };
@@ -33,6 +37,7 @@ export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.fsd === "yes" && !l.fsd) return false;
   if (f.fsd === "no" && l.fsd) return false;
   if (f.condition !== "all" && l.condition !== f.condition) return false;
+  if (l.year != null && (l.year < f.yearMin || l.year > f.yearMax)) return false;
   if (l.price_eur != null && l.price_eur > f.priceMax) return false;
   if (l.mileage_km != null && l.mileage_km > f.mileageMax) return false;
   return true;
@@ -56,8 +61,8 @@ function Dropdown({ label, value, onChange, options }: {
   );
 }
 
-export function FilterBar({ data, filters, setFilters, resultCount }: {
-  data: Dataset; filters: Filters; setFilters: (f: Filters) => void; resultCount: number;
+export function FilterBar({ data, filters, setFilters, resetTo, resultCount }: {
+  data: Dataset; filters: Filters; setFilters: (f: Filters) => void; resetTo: Filters; resultCount: number;
 }) {
   const set = (patch: Partial<Filters>) => setFilters({ ...filters, ...patch });
   const opt = (vals: (string | number)[]) => [
@@ -74,6 +79,12 @@ export function FilterBar({ data, filters, setFilters, resultCount }: {
         <Dropdown label="FSD" value={filters.fsd} onChange={(v) => set({ fsd: v })}
           options={[{ value: "all", label: "Alle" }, { value: "yes", label: "Met FSD" }, { value: "no", label: "Zonder FSD" }]} />
         <Dropdown label="Staat" value={filters.condition} onChange={(v) => set({ condition: v })} options={opt(data.facets.conditions)} />
+        <Dropdown label="Bouwjaar van" value={String(filters.yearMin)}
+          onChange={(v) => set({ yearMin: Number(v) })}
+          options={data.facets.years.map((y) => ({ value: String(y), label: String(y) }))} />
+        <Dropdown label="Bouwjaar tot" value={String(filters.yearMax)}
+          onChange={(v) => set({ yearMax: Number(v) })}
+          options={data.facets.years.map((y) => ({ value: String(y), label: String(y) }))} />
 
         <div className="flex min-w-[170px] flex-col gap-1">
           <label className="text-xs text-muted-foreground">Max. prijs: {eur(filters.priceMax)}</label>
@@ -88,7 +99,7 @@ export function FilterBar({ data, filters, setFilters, resultCount }: {
 
         <div className="ml-auto flex items-center gap-3">
           <span className="text-sm text-muted-foreground">{resultCount} resultaten</span>
-          <Button variant="outline" size="sm" onClick={() => setFilters(defaultFilters)}>Reset</Button>
+          <Button variant="outline" size="sm" onClick={() => setFilters(resetTo)}>Reset</Button>
         </div>
       </div>
     </div>

@@ -14,7 +14,14 @@ import { PriceEstimator } from "@/components/price-estimator";
 import { ModelInsight } from "@/components/model-insight";
 
 export function Dashboard({ data }: { data: Dataset }) {
-  const [filters, setFilters] = React.useState<Filters>(defaultFilters);
+  // Year bounds default to the actual data range (the facet years), so the
+  // dropdowns show real, selectable years.
+  const years = data.facets.years;
+  const base: Filters = React.useMemo(
+    () => ({ ...defaultFilters, yearMin: years[0] ?? 2017, yearMax: years[years.length - 1] ?? 2026 }),
+    [years]
+  );
+  const [filters, setFilters] = React.useState<Filters>(base);
   const filtered: Listing[] = React.useMemo(
     () => data.listings.filter((l) => applyFilters(l, filters)),
     [data.listings, filters]
@@ -35,7 +42,7 @@ export function Dashboard({ data }: { data: Dataset }) {
           sub={data.metrics.linear_mae != null ? `± ${eur(data.metrics.linear_mae)} MAE · n=${data.metrics.n}` : data.metrics.note} />
       </div>
 
-      <FilterBar data={data} filters={filters} setFilters={setFilters} resultCount={filtered.length} />
+      <FilterBar data={data} filters={filters} setFilters={setFilters} resetTo={base} resultCount={filtered.length} />
 
       <Tabs defaultValue="scatter" className="mt-6">
         <TabsList>
