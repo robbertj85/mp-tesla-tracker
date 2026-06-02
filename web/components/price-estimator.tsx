@@ -17,6 +17,11 @@ type Mode = "separate" | "combined";
 export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandConfig }) {
   const f = data.facets;
   const dim = brand.dimensions;
+  // Year-slider bounds follow the brand's actual data (Tesla 2017+, Octavia
+  // 2006–2014, …) instead of a hardcoded range. facets.years is sorted ascending.
+  const minYear = f.years.length ? f.years[0] : 2017;
+  const maxYear = f.years.length ? f.years[f.years.length - 1] : CURRENT_YEAR;
+  const clampYear = (y: number) => Math.min(maxYear, Math.max(minYear, y));
   const [state, setState] = React.useState({
     mode: "separate" as Mode,
     model: f.models[0] ?? "Model 3",
@@ -27,7 +32,7 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
     fuel: f.fuels[0] ?? "unknown",
     transmission: f.transmissions[0] ?? "unknown",
     condition: f.conditions[0] ?? "unknown",
-    year: 2021,
+    year: clampYear(2021),
     mileage_km: 80000,
   });
 
@@ -124,7 +129,7 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
           <Sel label="Staat" value={state.condition} onChange={(v) => set({ condition: v })} options={f.conditions} />
           <div className="flex flex-col gap-1">
             <label className="text-xs text-muted-foreground">Bouwjaar: {state.year}</label>
-            <input type="range" min={2017} max={CURRENT_YEAR} value={state.year}
+            <input type="range" min={minYear} max={maxYear} value={state.year}
               onChange={(e) => set({ year: Number(e.target.value) })} className="accent-primary" />
           </div>
           <div className="flex flex-col gap-1">
