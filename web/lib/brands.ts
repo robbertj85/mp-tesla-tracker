@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda";
+export type BrandKey = "tesla" | "skoda" | "octavia";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -43,6 +43,17 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     label: "Skoda",
     modelsLabel: "Octavia & Superb",
     modelColors: { Octavia: "#059669", Superb: "#7c3aed" },
+    dimensions: {
+      trim: false, hw: false, fsd: false, range: false,
+      fuel: true, transmission: true, drivetrain: true,
+    },
+  },
+  // Older-Octavia resale view (build years 2006–2014, all bodies, both gearboxes).
+  octavia: {
+    key: "octavia",
+    label: "Octavia '06–'14",
+    modelsLabel: "Skoda Octavia 2006–2014 · automaat vs handgeschakeld",
+    modelColors: { Octavia: "#059669" },
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true,

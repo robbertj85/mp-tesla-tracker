@@ -11,7 +11,8 @@ own dashboard route) and are never mixed:
 | Brand | Models | Scope |
 |-------|--------|-------|
 | **Tesla** | Model 3 & Model Y | build year ≥ 2017; HW3/HW4, FSD, trim, battery SoH |
-| **Skoda** | Octavia & Superb | build year ≥ 2019; **petrol + PHEV only**, **automatic only**; brand/model/engine-driveline/odometer/price |
+| **Skoda** | Octavia & Superb | build year ≥ 2019; **petrol + PHEV only**, **automatic only**, **Combi only**; brand/model/engine-driveline/odometer/price |
+| **Octavia '06–'14** | Octavia (all bodies) | build years 2006–2014; **all fuels + both gearboxes** (automatic vs manual split in the dashboard) — a resale view for an older Octavia |
 
 Everything brand-specific lives in the `BRANDS` registry in
 `scraper/mp_tesla/config.py`; the rest of the pipeline is brand-generic and takes a
@@ -20,7 +21,7 @@ Everything brand-specific lives in the `BRANDS` registry in
 ```
 ┌─ GitHub Action (daily) ──────────────┐      ┌─ Vercel (Next.js) ───────────────┐
 │ python -m mp_tesla.run               │      │ reads web/public/<brand>.json    │
-│  for each brand:                     │ ───▶ │ /tesla · /skoda  (separate)      │
+│  for each brand:                     │ ───▶ │ /tesla · /skoda · /octavia      │
 │  scrape → extract → upsert JSON      │ git  │ scatter · filters · table        │
 │  → regression → export <brand>.json  │push  │ · fair-price estimator           │
 │  → commit data/<brand> + web/public  │      │ auto-redeploy on commit          │
@@ -38,8 +39,8 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/listings.json` | Canonical store per brand: `{id: record}` with `first_seen`/`last_seen`/`active` |
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
-| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda` (+ `/modellen`) |
+| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia` (+ `/modellen`) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
@@ -51,7 +52,9 @@ User-Agent works server-side (validated 2026-06-01).
 1. **Search** (`search.py`) — `GET /lrp/api/search` with the brand's category +
    `attributesById[]` value-ids. Tesla: `Tesla 10882` + Model 3 `11736` + Model Y
    `13853`, year ≥ 2017. Skoda: category `151` + Octavia `1185` + Superb `1186`,
-   fuel Benzine `473` + PHEV `13838`, transmission Automaat `534`, year ≥ 2019.
+   fuel Benzine `473` + PHEV `13838`, transmission Automaat `534`, body Stationwagon
+   `484`, year ≥ 2019. Octavia '06–'14: category `151` + Octavia `1185`, no
+   fuel/transmission/body filter, `constructionYear:2006:2014`.
    The response already carries model/year/mileage/price (+ fuel/transmission for
    Skoda); a post-fetch guard re-checks model (+ fuel/transmission for Skoda).
 2. **Detail** (`detail.py`) — each listing's VIP page embeds `window.__CONFIG__`

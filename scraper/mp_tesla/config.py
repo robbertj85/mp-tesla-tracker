@@ -41,6 +41,7 @@ class Brand:
     l2_category_id: int            # Marktplaats brand sub-category of Auto's (91)
     models: dict                   # canonical model name -> model attributeValueId
     year_from: int                 # constructionYear floor
+    year_to: int | None            # constructionYear ceiling (None = unbounded)
     price_cents_to: int            # PriceCents ceiling for the search
     min_price_eur: int             # reject headline prices below this (lease/teaser)
     pipeline: str                  # "tesla" | "skoda" — selects extraction/features
@@ -74,6 +75,7 @@ BRANDS: dict[str, Brand] = {
         brand_attr_id=10882,
         models={"Model 3": 11736, "Model Y": 13853},
         year_from=2017,
+        year_to=None,
         price_cents_to=4_500_000,
         min_price_eur=5000,
         pipeline="tesla",
@@ -94,10 +96,30 @@ BRANDS: dict[str, Brand] = {
         allowed_transmissions=("Automaat",),
         allowed_bodies=("Stationwagon",),
         year_from=2019,
+        year_to=None,
         price_cents_to=6_000_000,
         min_price_eur=3500,
         pipeline="skoda",
         source_query="auto-s/skoda | Octavia + Superb Combi | benzine + PHEV | automaat | constructionYear>=2019",
+    ),
+    # A second-hand-market view for selling an older Octavia: every Octavia from
+    # build years 2006–2014, ALL body styles (hatchback + Combi) and BOTH gearboxes
+    # (the dashboard's transmission filter splits automatic vs manual). No fuel
+    # filter either — diesels dominate this era. Reuses the Skoda extraction
+    # pipeline; only the search scope and (lack of) guards differ.
+    "octavia": Brand(
+        key="octavia",
+        label="Skoda Octavia",
+        l2_category_id=151,
+        models={"Octavia": 1185},
+        # No fuel / transmission / body filters: capture the whole market so the
+        # auto-vs-manual split (and diesel/petrol mix) is visible in the dashboard.
+        year_from=2006,
+        year_to=2014,
+        price_cents_to=2_500_000,   # <= €25,000 (a clean late one tops out here)
+        min_price_eur=500,          # old Octavias are cheap; only drop teaser junk
+        pipeline="skoda",
+        source_query="auto-s/skoda | Octavia (alle uitvoeringen) | constructionYear 2006–2014",
     ),
 }
 
@@ -122,6 +144,18 @@ FUEL_NORMALISE = {
     "benzine": "Petrol",
     "hybride elektrisch/benzine": "PHEV",
     "hybride elektrischbenzine": "PHEV",
+    "diesel": "Diesel",
+    "elektrisch": "Electric",
+    "lpg": "LPG",
+    "cng": "CNG",
+    "overige brandstoffen": "Other",
+}
+
+# Skoda transmission-label normalisation (Marktplaats Dutch labels -> canonical).
+TRANSMISSION_NORMALISE = {
+    "automaat": "Automatic",
+    "semi-automaat": "Automatic",
+    "handgeschakeld": "Manual",
 }
 
 # --- Politeness ------------------------------------------------------------------
