@@ -42,8 +42,9 @@ def _build_params(brand: Brand, offset: int, limit: int) -> list[tuple[str, str]
     ]
     for attr_id in brand.search_attr_ids:
         params.append(("attributesById[]", str(attr_id)))
+    year_to = brand.year_to if brand.year_to is not None else "null"
     params += [
-        ("attributeRanges[]", f"constructionYear:{brand.year_from}:null"),
+        ("attributeRanges[]", f"constructionYear:{brand.year_from}:{year_to}"),
         ("attributeRanges[]", f"PriceCents:null:{brand.price_cents_to}"),
         ("postcode", config.POSTCODE),  # makes location.distanceMeters relative to 3051
         ("limit", str(limit)),

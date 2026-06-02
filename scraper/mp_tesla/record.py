@@ -121,12 +121,18 @@ def _derive_skoda(raw: dict, detail: dict) -> dict:
     raw_fuel = (_search_attr(raw, "fuel") or detail.get("fuel") or "")
     fuel = config.FUEL_NORMALISE.get(raw_fuel.strip().lower(), raw_fuel or None)
     drivetrain = _normalise_skoda_drivetrain(detail.get("drivetrain_attr"))
+    # Read the actual gearbox so trackers that don't filter on it (e.g. the older
+    # Octavia view) can split automatic vs manual. For the Combi tracker, which is
+    # filtered to Automaat server-side, this still resolves to "Automatic".
+    raw_trans = (_search_attr(raw, "transmission") or detail.get("transmission") or "")
+    transmission = config.TRANSMISSION_NORMALISE.get(
+        raw_trans.strip().lower(), raw_trans or None
+    )
     out = {
         "color": extract.normalise_color(detail.get("color")),
         "drivetrain": drivetrain,
         "fuel": fuel,
-        # The search is filtered to Automaat only, so transmission is always automatic.
-        "transmission": "Automatic",
+        "transmission": transmission,
     }
     out.update(_TESLA_NULL_FIELDS)
     return out
