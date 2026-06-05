@@ -112,6 +112,13 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
 
   const xMeta = X_AXES[xKey];
 
+  // Clicking a dot opens its Marktplaats ad. Recharts hands the clicked entry as
+  // the first arg (the original datum, sometimes nested under `.payload`).
+  const openListing = (entry: any) => {
+    const url = entry?.listing?.url ?? entry?.payload?.listing?.url;
+    if (url) window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <Card>
       <CardHeader className="flex-row flex-wrap items-center justify-between gap-3 space-y-0">
@@ -153,13 +160,14 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
             {groups.map(([group, pts], i) => (
               <Scatter key={group} name={`${group} (${pts.length})`} data={pts}
                 fill={colorKey === "model" ? modelColor(group, PALETTE[i % PALETTE.length]) : PALETTE[i % PALETTE.length]}
-                fillOpacity={0.75} />
+                fillOpacity={0.75} className="cursor-pointer" onClick={openListing} />
             ))}
           </ScatterChart>
         </ResponsiveContainer>
         <p className="mt-2 text-xs text-muted-foreground">
-          Stippellijnen = aparte lineaire trend (kleinste kwadraten) per model. De
-          volledige multi-feature schatting staat onder &quot;Prijs schatten&quot;.
+          Klik op een punt om de advertentie te openen. Stippellijnen = aparte
+          lineaire trend (kleinste kwadraten) per model. De volledige multi-feature
+          schatting staat onder &quot;Prijs schatten&quot;.
         </p>
       </CardContent>
     </Card>
@@ -180,6 +188,7 @@ function ScatterTooltip({ active, payload, xMeta }: any) {
       {l.predictedEur != null && (
         <div className="text-muted-foreground">Schatting: {eur(l.predictedEur)} ({l.dealLabel})</div>
       )}
+      <div className="mt-1 text-[11px] text-muted-foreground">Klik om de advertentie te openen ↗</div>
     </div>
   );
 }
