@@ -45,7 +45,8 @@ def _frame(records: list[dict], run_year: int, numeric: list[str],
             continue
         if r.get("mileage_km") is None:
             continue
-        row = {"id": r["id"], "price_eur": r["price_eur"]}
+        row = {"id": r["id"], "price_eur": r["price_eur"],
+               "source": r.get("source") or "marktplaats"}
         for feat in numeric:
             row[feat] = _cell(r, feat, run_year)
         for feat in categorical:
@@ -186,42 +187,66 @@ def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str]) -> dict:
     return result
 
 
-# Key for the pooled model in the exported `models` map.
+# Keys in the exported `models` map. COMBINED_KEY pools every source; the two
+# source keys segment Marktplaats vs Tesla.com so each market is priced on its own.
 COMBINED_KEY = "__combined__"
+MARKTPLAATS_KEY = "__marktplaats__"
+TESLA_KEY = "__tesla__"
 
 
 def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
-    """Fit a pooled model plus one model per `model` group.
+    """Fit source-segmented models plus one model per `model` group.
 
     `feature_spec` is `{"numeric": [...], "categorical": [...]}` for the brand
     (see config.FEATURE_SPECS), so Tesla and Skoda train on the right columns.
 
-    Returns the pooled model at the top level (backwards-compatible) and a
-    `models` map keyed by group name (+ COMBINED_KEY) so the estimator can let
-    the user switch between "all listings" and per-model regressions::
+    Listings carry a `source` ("marktplaats" | "tesla"). We fit three pooled
+    regressions — Marktplaats-only, Tesla-only, and Combined (both, no source
+    feature) — so the estimator can switch between markets, and we score each
+    listing against ITS OWN market (falling back to Combined when a segment has
+    too little data). The `models` map also keeps the per-`model` regressions::
 
         {
-          predictions, linearModel, metrics, importances,   # pooled (combined)
+          predictions, linearModel, metrics, importances,   # Combined (all sources)
           models: {
-            "__combined__": {label, linearModel, metrics},
-            "Model 3":      {label, linearModel, metrics},
-            "Model Y":      {label, linearModel, metrics},
+            "__combined__":    {label, linearModel, metrics},   # Marktplaats + Tesla
+            "__marktplaats__": {label, linearModel, metrics},
+            "__tesla__":       {label, linearModel, metrics},
+            "Model 3":         {label, linearModel, metrics},
+            "Model Y":         {label, linearModel, metrics},
           }
         }
-
-    Per-listing predictions/deal labels stay sourced from the pooled model so
-    every listing is scored on one consistent scale.
     """
     numeric = feature_spec["numeric"]
     categorical = feature_spec["categorical"]
     df = _frame(records, run_year, numeric, categorical)
-    combined = _fit(df, numeric, categorical)
 
-    models: dict[str, dict] = {COMBINED_KEY: {
-        "label": "Alle modellen",
-        "linearModel": combined["linearModel"],
-        "metrics": combined["metrics"],
-    }}
+    combined = _fit(df, numeric, categorical)
+    mp_df = df[df["source"] == "marktplaats"]
+    tesla_df = df[df["source"] == "tesla"]
+    mp_fit = _fit(mp_df, numeric, categorical)
+    tesla_fit = _fit(tesla_df, numeric, categorical)
+
+    # Per-listing scores: start from the Combined model (covers every id and any
+    # under-sized segment), then override with each source's own-market scoring.
+    predictions = dict(combined["predictions"])
+    if mp_fit["linearModel"]:
+        predictions.update(mp_fit["predictions"])
+    if tesla_fit["linearModel"]:
+        predictions.update(tesla_fit["predictions"])
+
+    models: dict[str, dict] = {
+        COMBINED_KEY: {"label": "Marktplaats + Tesla",
+                       "linearModel": combined["linearModel"], "metrics": combined["metrics"]},
+        MARKTPLAATS_KEY: {"label": "Marktplaats",
+                          "linearModel": mp_fit["linearModel"], "metrics": mp_fit["metrics"]},
+        TESLA_KEY: {"label": "Tesla.com occasions",
+                    "linearModel": tesla_fit["linearModel"], "metrics": tesla_fit["metrics"]},
+    }
+    log.info("source fits: combined n=%s · marktplaats n=%s · tesla n=%s",
+             combined["metrics"].get("n"), mp_fit["metrics"].get("n"),
+             tesla_fit["metrics"].get("n"))
+
     for grp in sorted(df["model"].astype(str).unique()):
         sub = df[df["model"].astype(str) == grp]
         fit = _fit(sub, numeric, categorical)
@@ -234,7 +259,7 @@ def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
                  fit["metrics"].get("linear_r2"))
 
     return {
-        "predictions": combined["predictions"],
+        "predictions": predictions,
         "linearModel": combined["linearModel"],
         "metrics": combined["metrics"],
         "importances": combined["importances"],

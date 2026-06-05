@@ -34,14 +34,22 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
     [data.listings, filters]
   );
 
+  const market = brand.dimensions.source ? "Marktplaats + Tesla.com" : "Marktplaats";
+  const bySource = data.summary.bySource;
+
   return (
     <div className="container max-w-7xl py-8">
       <SiteHeader brand={brand} active="dashboard"
-        subtitle={`${brand.modelsLabel} op Marktplaats · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
+        subtitle={`${brand.modelsLabel} op ${market} · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
 
       <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatCard icon={<Car className="h-4 w-4" />} label="Actieve auto's" value={String(data.summary.count)}
-          sub={Object.entries(data.summary.byModel).map(([m, n]) => `${m}: ${n}`).join(" · ")} />
+          sub={
+            (brand.dimensions.source && bySource
+              ? `Marktplaats: ${bySource.marktplaats ?? 0} · Tesla.com: ${bySource.tesla ?? 0} · `
+              : "") +
+            Object.entries(data.summary.byModel).map(([m, n]) => `${m}: ${n}`).join(" · ")
+          } />
         <StatCard icon={<TrendingUp className="h-4 w-4" />} label="Mediaan prijs" value={eur(data.summary.medianPriceEur)} />
         <StatCard icon={<Gauge className="h-4 w-4" />} label="Gem. km-stand" value={km(data.summary.avgMileageKm)} />
         <StatCard icon={<Activity className="h-4 w-4" />} label="Model nauwkeurigheid"
@@ -81,6 +89,8 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
         {brand.dimensions.hw
           ? "HW3/HW4 is deels afgeleid uit bouwjaar en model (zie betrouwbaarheidslabel). FSD, trim en accugezondheid komen uit de advertentietekst en kunnen ontbreken."
           : "Alleen stationwagons (Combi) met automaat, benzine of plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
+        {brand.dimensions.source &&
+          " Tesla.com-occasions (badge ‘Tesla’) komen uit de officiële Tesla-voorraad; hun prijsmodel is apart te kiezen onder ‘Prijs schatten’."}
       </footer>
     </div>
   );

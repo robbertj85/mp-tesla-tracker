@@ -41,9 +41,12 @@ export function ListingsTable({ listings, history, brand }: {
   listings: Listing[]; history: Record<string, PricePoint[]>; brand: BrandConfig;
 }) {
   const teslaCols = brand.dimensions.hw; // Tesla shows HW/FSD; Skoda shows fuel/power
+  const showSource = brand.dimensions.source; // Marktplaats vs Tesla.com split
   // Multi-key sort: the array order is the priority (first = primary). Clicking a
   // header appends it (lowest priority), then cycles its direction, then drops it.
-  const [sortChain, setSortChain] = React.useState<SortEntry[]>([{ key: "residualEur", dir: "asc" }]);
+  // Zero-state by default (and after reset): the rows keep the payload order (best
+  // deal first), and the first header you click becomes the primary sort.
+  const [sortChain, setSortChain] = React.useState<SortEntry[]>([]);
   const [onlyChanged, setOnlyChanged] = React.useState(false);
   const [open, setOpen] = React.useState<string | null>(null);
 
@@ -104,8 +107,6 @@ export function ListingsTable({ listings, history, brand }: {
     );
   };
 
-  const sortIsDefault = sortChain.length === 1 && sortChain[0].key === "residualEur" && sortChain[0].dir === "asc";
-
   return (
     <Card>
       <CardContent className="p-0">
@@ -124,14 +125,12 @@ export function ListingsTable({ listings, history, brand }: {
           {sortChain.length > 0 && (
             <div className="flex items-center gap-2 text-muted-foreground">
               <span className="hidden sm:inline">
-                Sortering: {sortChain.map((e, i) => `${i + 1}. ${SORT_LABELS[e.key]} ${e.dir === "asc" ? "↑" : "↓"}`).join(" · ") || "—"}
+                Sortering: {sortChain.map((e, i) => `${i + 1}. ${SORT_LABELS[e.key]} ${e.dir === "asc" ? "↑" : "↓"}`).join(" · ")}
               </span>
-              {!sortIsDefault && (
-                <button onClick={() => setSortChain([{ key: "residualEur", dir: "asc" }])}
-                  className="inline-flex items-center gap-1 rounded-md border px-2 py-1 font-medium hover:bg-muted">
-                  <X className="h-3 w-3" /> Reset
-                </button>
-              )}
+              <button onClick={() => setSortChain([])}
+                className="inline-flex items-center gap-1 rounded-md border px-2 py-1 font-medium hover:bg-muted">
+                <X className="h-3 w-3" /> Reset
+              </button>
             </div>
           )}
         </div>
@@ -170,7 +169,13 @@ export function ListingsTable({ listings, history, brand }: {
                   <React.Fragment key={l.id}>
                     <tr className="border-b last:border-0 hover:bg-muted/40">
                       <td className="max-w-[260px] px-3 py-2">
-                        <div className="font-medium">{l.model} {l.trim ?? ""}</div>
+                        <div className="flex items-center gap-1.5 font-medium">
+                          <span>{l.model} {l.trim ?? ""}</span>
+                          {showSource && l.source === "tesla" && (
+                            <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
+                              title="Officiële Tesla-occasion">Tesla</span>
+                          )}
+                        </div>
                         <div className="truncate text-xs text-muted-foreground">{l.color ?? ""} · {l.city ?? ""}</div>
                       </td>
                       <td className="px-3 py-2">{l.year ?? "—"}</td>
@@ -216,7 +221,8 @@ export function ListingsTable({ listings, history, brand }: {
                           </button>
                         )}
                         <a href={l.url} target="_blank" rel="noreferrer"
-                          className="inline-flex text-muted-foreground hover:text-foreground" title="Open op Marktplaats">
+                          className="inline-flex text-muted-foreground hover:text-foreground"
+                          title={l.source === "tesla" ? "Open op Tesla.com" : "Open op Marktplaats"}>
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </td>

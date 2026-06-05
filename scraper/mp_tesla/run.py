@@ -18,7 +18,7 @@ import time
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import config, detail, export, model, record, search, store
+from . import config, detail, export, model, record, search, store, tesla_inventory
 from .browser import fetch_html_with_browser
 
 log = logging.getLogger(__name__)
@@ -26,6 +26,9 @@ log = logging.getLogger(__name__)
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = REPO_ROOT / "data"
 DEFAULT_WEB_PUBLIC = REPO_ROOT / "web" / "public"
+# Hand-saved Tesla inventory dumps (data/tesla_dumps/<slug>.json) — the reliable
+# source given Tesla's Akamai bot protection (see tesla_inventory module docstring).
+DEFAULT_TESLA_DUMPS = REPO_ROOT / "data" / "tesla_dumps"
 
 
 def brand_data_dir(data_dir: Path, brand_key: str) -> Path:
@@ -79,6 +82,22 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
                  rec.get("price_eur"), rec.get("mileage_km"),
                  rec.get("fuel"), rec.get("drivetrain"))
 
+    # Also pull Tesla.com's official used inventory into the same store (source=
+    # "tesla"). Best-effort: a block/error inside the generator just yields fewer
+    # (or zero) cars, leaving the Marktplaats records above untouched.
+    if brand.tesla_inventory_models and not args.no_tesla:
+        log.info("[%s] fetching Tesla.com used inventory (%s)",
+                 brand.key, ", ".join(brand.tesla_inventory_models))
+        tesla_count = 0
+        for trec in tesla_inventory.iter_inventory_listings(
+                brand, run_date, args.limit, dump_dir=args.tesla_dumps):
+            records.append(trec)
+            tesla_count += 1
+            log.info("[%s tesla %d] %s | %s %s | €%s | %skm",
+                     brand.key, tesla_count, trec["id"], trec["model"],
+                     trec.get("trim") or "", trec.get("price_eur"), trec.get("mileage_km"))
+        log.info("[%s] Tesla inventory added %d records", brand.key, tesla_count)
+
     log.info("[%s] scraped %d listings; upserting", brand.key, len(records))
     data_dir = brand_data_dir(args.data_dir, brand.key)
     listings_path = data_dir / "listings.json"
@@ -105,6 +124,11 @@ def main() -> None:
     parser.add_argument("--no-detail", action="store_true", help="skip detail-page fetch")
     parser.add_argument("--no-browser", action="store_true",
                         help="disable Playwright fallback for blocked pages")
+    parser.add_argument("--no-tesla", action="store_true",
+                        help="skip the Tesla.com official-inventory source")
+    parser.add_argument("--tesla-dumps", type=Path, default=DEFAULT_TESLA_DUMPS,
+                        help="dir of hand-saved Tesla inventory JSON (<slug>.json); "
+                             "used in preference to the (Akamai-blocked) live fetch")
     parser.add_argument("--run-date", default=date.today().isoformat(),
                         help="ISO date stamped on records (default: today)")
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)

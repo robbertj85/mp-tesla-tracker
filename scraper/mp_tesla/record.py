@@ -182,6 +182,7 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     rec = {
         "id": raw.get("itemId"),
         "brand": brand.label,
+        "source": "marktplaats",
         "url": "https://www.marktplaats.nl" + raw.get("vipUrl", ""),
         "title": title,
         "model": model,
@@ -217,3 +218,75 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     else:
         rec.update(_derive_tesla(raw, detail, model, year, title, description, power_hp))
     return rec
+
+
+def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
+    """Assemble a record from a Tesla.com inventory item (source="tesla").
+
+    `parsed` is the clean intermediate produced by tesla_inventory.parse_item — the
+    Tesla-API field plumbing lives there; here we only run the SAME Tesla heuristics
+    (trim/Highland/HW via derive_refresh_trim_hw, drivetrain/FSD via extract) so
+    Tesla-official and Marktplaats records share one schema and one extraction logic.
+
+    `spec_text` is a synthetic blob (trim name + option-code names + badges) that the
+    free-text heuristics parse exactly as they parse a Marktplaats description.
+    """
+    model = parsed.get("model") or ""
+    year = parsed.get("year")
+    power_hp = parsed.get("power_hp")
+    text = parsed.get("spec_text", "") or ""
+
+    drivetrain = extract.detect_drivetrain(text, parsed.get("drivetrain_text"))
+    is_highland, is_juniper, trim, hw = derive_refresh_trim_hw(
+        model, year, text, drivetrain, power_hp
+    )
+    color = extract.normalise_color(parsed.get("color_text"))
+
+    return {
+        "id": parsed["id"],
+        "brand": brand.label,
+        "source": "tesla",
+        "url": parsed.get("url", ""),
+        "title": parsed.get("title") or f"Tesla {model}".strip(),
+        "model": model,
+        "year": year,
+        "mileage_km": parsed.get("mileage_km"),
+        "price_eur": parsed.get("price_eur"),
+        "price_type": None,
+        "price_source": "headline",
+        "condition": "USED",
+        "body": parsed.get("body"),
+        "power_hp": power_hp,
+        "num_doors": None,
+        "num_seats": None,
+        "city": parsed.get("city"),
+        "distance_km": parsed.get("distance_km"),
+        "seller_name": "Tesla",
+        "seller_id": None,
+        "view_count": None,
+        "favorited_count": None,
+        "post_date": parsed.get("post_date"),
+        "license_plate": None,
+        "thumbnail": parsed.get("thumbnail"),
+        "description": text,
+        "first_seen": run_date,
+        "last_seen": run_date,
+        "active": True,
+        # Tesla-pipeline derived block (mirrors _derive_tesla).
+        "color": color,
+        "drivetrain": drivetrain,
+        "fuel": "Electric",
+        "transmission": "Automatic",
+        "trim": trim,
+        "is_highland": is_highland,
+        "is_juniper": is_juniper,
+        "fsd": extract.detect_fsd(text),
+        "autopilot_package": extract.detect_autopilot_package(text),
+        "soh_percent": parsed.get("soh_percent"),
+        "hw_platform": hw["value"],
+        "hw_source": hw["source"],
+        "hw_confidence": hw["confidence"],
+        "range_km": parsed.get("range_km"),
+        "interior_color": parsed.get("interior_color"),
+        "upholstery": parsed.get("upholstery"),
+    }

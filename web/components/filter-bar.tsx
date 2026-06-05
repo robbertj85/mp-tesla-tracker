@@ -9,6 +9,7 @@ import { eur } from "@/lib/utils";
 
 export interface Filters {
   model: string;
+  source: string;
   trim: string;
   hw: string;
   fsd: string;
@@ -24,6 +25,7 @@ export interface Filters {
 
 export const defaultFilters: Filters = {
   model: "all",
+  source: "all",
   trim: "all",
   hw: "all",
   fsd: "all",
@@ -39,6 +41,7 @@ export const defaultFilters: Filters = {
 
 export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.model !== "all" && l.model !== f.model) return false;
+  if (f.source !== "all" && (l.source ?? "marktplaats") !== f.source) return false;
   if (f.trim !== "all" && l.trim !== f.trim) return false;
   if (f.hw !== "all" && l.hw_platform !== f.hw) return false;
   if (f.fsd === "yes" && !l.fsd) return false;
@@ -91,6 +94,14 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
     <div className="rounded-lg border bg-card p-4">
       <div className="flex flex-wrap items-end gap-3">
         <Dropdown label="Model" value={filters.model} onChange={(v) => set({ model: v })} options={opt(data.facets.models)} />
+        {dim.source && (
+          <Dropdown label="Bron" value={filters.source} onChange={(v) => set({ source: v })}
+            options={[
+              { value: "all", label: "Alle" },
+              { value: "marktplaats", label: "Marktplaats" },
+              { value: "tesla", label: "Tesla.com" },
+            ]} />
+        )}
         {dim.trim && (
           <Dropdown label="Trim" value={filters.trim} onChange={(v) => set({ trim: v })} options={opt(data.facets.trims)} />
         )}

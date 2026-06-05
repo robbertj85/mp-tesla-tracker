@@ -82,6 +82,7 @@ def _facets(active: list[dict]) -> dict:
     years = sorted({r["year"] for r in active if r.get("year")})
     return {
         "models": top("model"),
+        "sources": top("source"),
         "trims": top("trim"),
         "colors": top("color"),
         "hwPlatforms": top("hw_platform"),
@@ -107,7 +108,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
         pred = preds.get(rid, {})
         out_listings.append({
             **{k: r.get(k) for k in (
-                "id", "brand", "url", "title", "model", "trim", "is_highland", "is_juniper", "year",
+                "id", "brand", "source", "url", "title", "model", "trim", "is_highland", "is_juniper", "year",
                 "mileage_km", "price_eur", "price_type", "condition", "color",
                 "interior_color", "body", "drivetrain", "fuel", "transmission",
                 "power_hp", "range_km",
@@ -138,6 +139,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
             "medianPriceEur": int(sorted(prices)[len(prices) // 2]) if prices else None,
             "avgMileageKm": int(sum(mileages) / len(mileages)) if mileages else None,
             "byModel": dict(Counter(r["model"] for r in active if r.get("model"))),
+            "bySource": dict(Counter(r.get("source") or "marktplaats" for r in active)),
         },
         "metrics": model_result.get("metrics", {}),
         "importances": model_result.get("importances", []),

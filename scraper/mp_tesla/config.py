@@ -25,6 +25,24 @@ PAGE_SIZE = 30           # site default; keep modest to look human
 MAX_PAGES = 40           # safety cap (~1200 listings/brand)
 SORT_BY = "SORT_INDEX"   # default relevance
 
+# --- Tesla.com official used-inventory endpoint ----------------------------------
+# Tesla's own inventory API (same JSON the inventory pages call). It sits behind
+# Akamai Bot Manager, so a plain request is denied — tesla_inventory.py fetches it
+# through a real browser session (Playwright) that first passes the bot check.
+# The canonical model -> Tesla url/query slug ("Model Y" -> "my").
+TESLA_INVENTORY_API = "https://www.tesla.com/inventory/api/v4/inventory-results"
+TESLA_INVENTORY_PAGE = "https://www.tesla.com/nl_NL/inventory/used/{slug}?arrangeby=plh&zip={zip}&range=0"
+TESLA_ORDER_URL = "https://www.tesla.com/nl_NL/{slug}/order/{vin}?titleStatus=used"
+TESLA_MARKET = "NL"
+TESLA_LANGUAGE = "nl"
+TESLA_ZIP = "3012"
+TESLA_LAT = 51.9235
+TESLA_LNG = 4.4813
+TESLA_PAGE_SIZE = 50          # inventory API count per page
+TESLA_MAX_PAGES = 20          # safety cap (~1000 cars/model)
+# Tesla query slug -> our canonical model name (and back, for the order URL).
+TESLA_MODEL_SLUGS = {"m3": "Model 3", "my": "Model Y", "ms": "Model S"}
+
 
 # =================================================================================
 # Brand registry
@@ -54,6 +72,10 @@ class Brand:
     allowed_fuels: tuple = ()      # fuel labels accepted by the post-fetch guard
     allowed_transmissions: tuple = ()  # transmission labels accepted by the guard
     allowed_bodies: tuple = ()     # body labels accepted by the post-fetch guard
+    # Tesla.com official used-inventory models to also pull into this brand's store
+    # (source="tesla"). e.g. ("m3", "my") for the tesla brand, ("ms",) for model-s.
+    # Empty = no Tesla-inventory source (Skoda/Octavia).
+    tesla_inventory_models: tuple = ()
 
     @property
     def search_attr_ids(self) -> list[int]:
@@ -80,7 +102,8 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=4_500_000,
         min_price_eur=5000,
         pipeline="tesla",
-        source_query="auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000",
+        tesla_inventory_models=("m3", "my"),
+        source_query="auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000 + Tesla.com occasions",
     ),
     "skoda": Brand(
         key="skoda",
@@ -137,7 +160,8 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=10_000_000,  # <= €100,000 (covers the odd refreshed Plaid)
         min_price_eur=5000,
         pipeline="tesla",
-        source_query="auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000",
+        tesla_inventory_models=("ms",),
+        source_query="auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000 + Tesla.com occasions",
     ),
 }
 
@@ -207,12 +231,12 @@ TRIM_PATTERNS: list[tuple[str, list[str]]] = [
     ]),
     # Drivetrain-named base trims (current Tesla naming).
     ("RWD", [
-        r"\brwd\b", r"achterwielaandrijving", r"achterwiel", r"rear\s*wheel",
+        r"\brwd\b", r"achterwielaandrijving", r"achterwiel", r"rear[\s-]*wheel",
         r"single\s*motor",
     ]),
     ("AWD / Dual Motor", [
         r"\bawd\b", r"dual\s*motor", r"vierwielaandrijving", r"4wd",
-        r"all\s*wheel", r"twin\s*motor",
+        r"all[\s-]*wheel", r"twin\s*motor",
     ]),
 ]
 
@@ -235,8 +259,8 @@ JUNIPER_MIN_YEAR = 2025
 # Drivetrain detection (independent of trim label).
 DRIVETRAIN_PATTERNS = {
     "AWD": [r"\bawd\b", r"dual\s*motor", r"vierwielaandrijving", r"4wd",
-            r"all\s*wheel", r"twin\s*motor"],
-    "RWD": [r"\brwd\b", r"achterwielaandrijving", r"rear\s*wheel", r"single\s*motor"],
+            r"all[\s-]*wheel", r"twin\s*motor"],
+    "RWD": [r"\brwd\b", r"achterwielaandrijving", r"rear[\s-]*wheel", r"single\s*motor"],
 }
 
 # Full Self-Driving vs Enhanced Autopilot vs basic. FSD is the premium signal.
@@ -274,6 +298,11 @@ COLOR_NORMALISE = {
     "blauw": "Blue", "deep blue": "Blue", "stealth grey": "Grey",
     "rood": "Red", "ultra red": "Red",
     "groen": "Green", "bruin of beige": "Beige",
+    # Bare English words so Tesla paint names ("Solid Black", "Pearl White
+    # Multi-Coat", "Red Multi-Coat", "Deep Blue Metallic", …) normalise too.
+    # normalise_color() matches these as substrings, so keep them generic.
+    "white": "White", "black": "Black", "grey": "Grey", "gray": "Grey",
+    "silver": "Silver", "blue": "Blue", "red": "Red", "green": "Green",
 }
 
 # --- Price sanity ----------------------------------------------------------------

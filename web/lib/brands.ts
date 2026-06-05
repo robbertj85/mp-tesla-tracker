@@ -15,6 +15,9 @@ export interface BrandDimensions {
   fuel: boolean;
   transmission: boolean;
   drivetrain: boolean;
+  /** Whether listings carry a Marktplaats/Tesla.com source split (Bron filter,
+   *  source badge, and the 3-way Marktplaats/Tesla/Combined price model). */
+  source: boolean;
 }
 
 export interface BrandConfig {
@@ -35,7 +38,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     modelColors: { "Model 3": "#2563eb", "Model Y": "#dc2626" },
     dimensions: {
       trim: true, hw: true, fsd: true, range: true,
-      fuel: false, transmission: false, drivetrain: true,
+      fuel: false, transmission: false, drivetrain: true, source: true,
     },
   },
   skoda: {
@@ -45,7 +48,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     modelColors: { Octavia: "#059669", Superb: "#7c3aed" },
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
-      fuel: true, transmission: true, drivetrain: true,
+      fuel: true, transmission: true, drivetrain: true, source: false,
     },
   },
   // Tesla Model S resale view (build years 2013+, mileage <= 250.000 km). Same
@@ -57,7 +60,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     modelColors: { "Model S": "#2563eb" },
     dimensions: {
       trim: true, hw: true, fsd: true, range: true,
-      fuel: false, transmission: false, drivetrain: true,
+      fuel: false, transmission: false, drivetrain: true, source: true,
     },
   },
   // Older-Octavia resale view (build years 2006–2014, all bodies, both gearboxes).
@@ -68,7 +71,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     modelColors: { Octavia: "#059669" },
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
-      fuel: true, transmission: true, drivetrain: true,
+      fuel: true, transmission: true, drivetrain: true, source: false,
     },
   },
 };

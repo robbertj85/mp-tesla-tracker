@@ -1,61 +1,65 @@
 {
  "brand": "Tesla Model S",
  "generatedAt": "2026-06-05",
- "sourceQuery": "auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000",
+ "sourceQuery": "auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000 + Tesla.com occasions",
  "summary": {
-  "count": 96,
-  "medianPriceEur": 23900,
-  "avgMileageKm": 148795,
+  "count": 98,
+  "medianPriceEur": 23950,
+  "avgMileageKm": 147127,
   "byModel": {
-   "Model S": 96
+   "Model S": 98
+  },
+  "bySource": {
+   "marktplaats": 96,
+   "tesla": 2
   }
  },
  "metrics": {
-  "n": 96,
-  "linear_mae": 3923,
-  "linear_r2": 0.853,
-  "gbr_mae": 5662
+  "n": 98,
+  "linear_mae": 4054,
+  "linear_r2": 0.858,
+  "gbr_mae": 5567
  },
  "importances": [
   {
    "feature": "age",
-   "importance": 0.318
+   "importance": 0.349
   },
   {
    "feature": "power_hp",
-   "importance": 0.242
+   "importance": 0.208
   },
   {
    "feature": "mileage_km",
-   "importance": 0.146
+   "importance": 0.15
   },
   {
    "feature": "hw_platform",
-   "importance": 0.087
+   "importance": 0.105
   },
   {
    "feature": "trim",
-   "importance": 0.057
+   "importance": 0.058
   },
   {
    "feature": "condition",
-   "importance": 0.055
+   "importance": 0.047
   },
   {
    "feature": "drivetrain",
-   "importance": 0.044
+   "importance": 0.039
   },
   {
    "feature": "color",
-   "importance": 0.029
+   "importance": 0.034
   },
   {
    "feature": "range_km",
-   "importance": 0.018
+   "importance": 0.006
   },
   {
    "feature": "fsd",
-   "importance": 0.005
+   "importance": 0.004
   },
   {
    "feature": "model",
@@ -63,31 +67,31 @@
   }
  ],
  "linearModel": {
-  "intercept": 30581.972584393814,
+  "intercept": 31595.03000717532,
   "numeric": {
    "age": {
     "median": 8.0,
-    "mean": 8.75,
-    "std": 2.2684429314693664,
-    "coef": -6312.588197009279
+    "mean": 8.63265306122449,
+    "std": 2.3878423148210213,
+    "coef": -7236.352668880525
    },
    "mileage_km": {
-    "median": 155240.5,
-    "mean": 148795.0,
-    "std": 54825.79296527168,
-    "coef": -2890.8210946134463
+    "median": 154630.0,
+    "mean": 147127.39795918367,
+    "std": 55494.89357823831,
+    "coef": -3108.38990138362
    },
    "power_hp": {
     "median": 367.0,
-    "mean": 427.8125,
-    "std": 178.10491480327917,
-    "coef": 4796.276177723626
+    "mean": 426.57142857142856,
+    "std": 176.48772865938,
+    "coef": 4324.6249853498775
    },
    "range_km": {
     "median": 477.5,
-    "mean": 476.6041666666667,
-    "std": 64.86616496786972,
-    "coef": 357.0635504426443
+    "mean": 476.6224489795918,
+    "std": 64.20097832971312,
+    "coef": 126.18574848147694
    }
   },
   "categorical": {
@@ -95,38 +99,38 @@
     "Model S": 0.0
    },
    "trim": {
-    "AWD / Dual Motor": 404.36263177683264,
-    "Long Range": 1330.8320938796396,
-    "Performance": -1757.0362083020632,
-    "unknown": 21.841482645591586
+    "AWD / Dual Motor": 1344.7877800413337,
+    "Long Range": 817.7571874913457,
+    "Performance": -1790.3238497192665,
+    "unknown": -372.22111781341164
    },
    "drivetrain": {
-    "AWD": -1237.9431527391082,
-    "RWD": 528.7191031716502,
-    "unknown": 709.2240495674522
+    "AWD": -1156.5353866996234,
+    "RWD": 519.5348612321596,
+    "unknown": 637.0005254674838
    },
    "hw_platform": {
-    "HW1": 558.696064652242,
-    "HW2": -1724.9710940745094,
-    "HW2.5": -2184.460285884484,
-    "HW3": 923.0686187947813,
-    "HW4": 2427.6666965119352
+    "HW1": 858.716592728632,
+    "HW2": -1937.8947827938982,
+    "HW2.5": -2809.2120617547407,
+    "HW3": 555.6781586170288,
+    "HW4": 3332.712093202998
    },
    "fsd": {
-    "no": -92.94127161849788,
-    "yes": 92.94127161849788
+    "no": -80.94006292555308,
+    "yes": 80.94006292555386
    },
    "color": {
-    "Black": -777.350038113538,
-    "Blue": 906.0425156081831,
-    "Bruin": -352.0585668332398,
-    "Grey": -440.3339089363434,
-    "Red": 338.97241955712593,
-    "White": 324.72757871782113
+    "Black": -906.623694305247,
+    "Blue": 603.2256775039067,
+    "Bruin": -300.886340284625,
+    "Grey": -733.7293303223477,
+    "Red": 333.07160672499975,
+    "White": 1004.9420806832989
    },
    "condition": {
-    "NEW": 1084.188846388897,
-    "USED": -1084.1888463888959
+    "NEW": 972.5047635639116,
+    "USED": -972.504763563916
    }
   },
   "numericFeatures": [
@@ -147,7 +151,99 @@
  },
  "models": {
   "__combined__": {
-   "label": "Alle modellen",
+   "label": "Marktplaats + Tesla",
+   "linearModel": {
+    "intercept": 31595.03000717532,
+    "numeric": {
+     "age": {
+      "median": 8.0,
+      "mean": 8.63265306122449,
+      "std": 2.3878423148210213,
+      "coef": -7236.352668880525
+     },
+     "mileage_km": {
+      "median": 154630.0,
+      "mean": 147127.39795918367,
+      "std": 55494.89357823831,
+      "coef": -3108.38990138362
+     },
+     "power_hp": {
+      "median": 367.0,
+      "mean": 426.57142857142856,
+      "std": 176.48772865938,
+      "coef": 4324.6249853498775
+     },
+     "range_km": {
+      "median": 477.5,
+      "mean": 476.6224489795918,
+      "std": 64.20097832971312,
+      "coef": 126.18574848147694
+     }
+    },
+    "categorical": {
+     "model": {
+      "Model S": 0.0
+     },
+     "trim": {
+      "AWD / Dual Motor": 1344.7877800413337,
+      "Long Range": 817.7571874913457,
+      "Performance": -1790.3238497192665,
+      "unknown": -372.22111781341164
+     },
+     "drivetrain": {
+      "AWD": -1156.5353866996234,
+      "RWD": 519.5348612321596,
+      "unknown": 637.0005254674838
+     },
+     "hw_platform": {
+      "HW1": 858.716592728632,
+      "HW2": -1937.8947827938982,
+      "HW2.5": -2809.2120617547407,
+      "HW3": 555.6781586170288,
+      "HW4": 3332.712093202998
+     },
+     "fsd": {
+      "no": -80.94006292555308,
+      "yes": 80.94006292555386
+     },
+     "color": {
+      "Black": -906.623694305247,
+      "Blue": 603.2256775039067,
+      "Bruin": -300.886340284625,
+      "Grey": -733.7293303223477,
+      "Red": 333.07160672499975,
+      "White": 1004.9420806832989
+     },
+     "condition": {
+      "NEW": 972.5047635639116,
+      "USED": -972.504763563916
+     }
+    },
+    "numericFeatures": [
+     "age",
+     "mileage_km",
+     "power_hp",
+     "range_km"
+    ],
+    "categoricalFeatures": [
+     "model",
+     "trim",
+     "drivetrain",
+     "hw_platform",
+     "fsd",
+     "color",
+     "condition"
+    ]
+   },
+   "metrics": {
+    "n": 98,
+    "linear_mae": 4054,
+    "linear_r2": 0.858,
+    "gbr_mae": 5567
+   }
+  },
+  "__marktplaats__": {
+   "label": "Marktplaats",
    "linearModel": {
     "intercept": 30581.972584393814,
     "numeric": {
@@ -155,25 +251,25 @@
       "median": 8.0,
       "mean": 8.75,
       "std": 2.2684429314693664,
-      "coef": -6312.588197009279
+      "coef": -6312.5881970092805
      },
      "mileage_km": {
       "median": 155240.5,
       "mean": 148795.0,
       "std": 54825.79296527168,
-      "coef": -2890.8210946134463
+      "coef": -2890.821094613444
      },
      "power_hp": {
       "median": 367.0,
       "mean": 427.8125,
       "std": 178.10491480327917,
-      "coef": 4796.276177723626
+      "coef": 4796.276177723625
      },
      "range_km": {
       "median": 477.5,
       "mean": 476.6041666666667,
       "std": 64.86616496786972,
-      "coef": 357.0635504426443
+      "coef": 357.06355044264507
      }
     },
     "categorical": {
@@ -182,37 +278,37 @@
      },
      "trim": {
       "AWD / Dual Motor": 404.36263177683264,
-      "Long Range": 1330.8320938796396,
-      "Performance": -1757.0362083020632,
-      "unknown": 21.841482645591586
+      "Long Range": 1330.8320938796385,
+      "Performance": -1757.0362083020664,
+      "unknown": 21.841482645590784
      },
      "drivetrain": {
-      "AWD": -1237.9431527391082,
-      "RWD": 528.7191031716502,
-      "unknown": 709.2240495674522
+      "AWD": -1237.943152739106,
+      "RWD": 528.7191031716517,
+      "unknown": 709.2240495674538
      },
      "hw_platform": {
-      "HW1": 558.696064652242,
-      "HW2": -1724.9710940745094,
-      "HW2.5": -2184.460285884484,
-      "HW3": 923.0686187947813,
-      "HW4": 2427.6666965119352
+      "HW1": 558.6960646522407,
+      "HW2": -1724.9710940745124,
+      "HW2.5": -2184.4602858844855,
+      "HW3": 923.0686187947819,
+      "HW4": 2427.666696511931
      },
      "fsd": {
-      "no": -92.94127161849788,
-      "yes": 92.94127161849788
+      "no": -92.94127161849785,
+      "yes": 92.94127161849785
      },
      "color": {
-      "Black": -777.350038113538,
-      "Blue": 906.0425156081831,
-      "Bruin": -352.0585668332398,
-      "Grey": -440.3339089363434,
-      "Red": 338.97241955712593,
-      "White": 324.72757871782113
+      "Black": -777.3500381135381,
+      "Blue": 906.0425156081835,
+      "Bruin": -352.0585668332396,
+      "Grey": -440.333908936344,
+      "Red": 338.9724195571253,
+      "White": 324.7275787178216
      },
      "condition": {
-      "NEW": 1084.188846388897,
-      "USED": -1084.1888463888959
+      "NEW": 1084.1888463888972,
+      "USED": -1084.1888463888977
      }
     },
     "numericFeatures": [
@@ -238,34 +334,42 @@
     "gbr_mae": 5662
    }
   },
+  "__tesla__": {
+   "label": "Tesla.com occasions",
+   "linearModel": null,
+   "metrics": {
+    "n": 2,
+    "note": "not enough data to train (need >= 15)"
+   }
+  },
   "Model S": {
    "label": "Model S",
    "linearModel": {
-    "intercept": 30581.972584393814,
+    "intercept": 31595.03000717532,
     "numeric": {
      "age": {
       "median": 8.0,
-      "mean": 8.75,
-      "std": 2.2684429314693664,
-      "coef": -6312.588197009279
+      "mean": 8.63265306122449,
+      "std": 2.3878423148210213,
+      "coef": -7236.352668880525
      },
      "mileage_km": {
-      "median": 155240.5,
-      "mean": 148795.0,
-      "std": 54825.79296527168,
-      "coef": -2890.8210946134463
+      "median": 154630.0,
+      "mean": 147127.39795918367,
+      "std": 55494.89357823831,
+      "coef": -3108.38990138362
      },
      "power_hp": {
       "median": 367.0,
-      "mean": 427.8125,
-      "std": 178.10491480327917,
-      "coef": 4796.276177723626
+      "mean": 426.57142857142856,
+      "std": 176.48772865938,
+      "coef": 4324.6249853498775
      },
      "range_km": {
       "median": 477.5,
-      "mean": 476.6041666666667,
-      "std": 64.86616496786972,
-      "coef": 357.0635504426443
+      "mean": 476.6224489795918,
+      "std": 64.20097832971312,
+      "coef": 126.18574848147694
      }
     },
     "categorical": {
@@ -273,38 +377,38 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 404.36263177683264,
-      "Long Range": 1330.8320938796396,
-      "Performance": -1757.0362083020632,
-      "unknown": 21.841482645591586
+      "AWD / Dual Motor": 1344.7877800413337,
+      "Long Range": 817.7571874913457,
+      "Performance": -1790.3238497192665,
+      "unknown": -372.22111781341164
      },
      "drivetrain": {
-      "AWD": -1237.9431527391082,
-      "RWD": 528.7191031716502,
-      "unknown": 709.2240495674522
+      "AWD": -1156.5353866996234,
+      "RWD": 519.5348612321596,
+      "unknown": 637.0005254674838
      },
      "hw_platform": {
-      "HW1": 558.696064652242,
-      "HW2": -1724.9710940745094,
-      "HW2.5": -2184.460285884484,
-      "HW3": 923.0686187947813,
-      "HW4": 2427.6666965119352
+      "HW1": 858.716592728632,
+      "HW2": -1937.8947827938982,
+      "HW2.5": -2809.2120617547407,
+      "HW3": 555.6781586170288,
+      "HW4": 3332.712093202998
      },
      "fsd": {
-      "no": -92.94127161849788,
-      "yes": 92.94127161849788
+      "no": -80.94006292555308,
+      "yes": 80.94006292555386
      },
      "color": {
-      "Black": -777.350038113538,
-      "Blue": 906.0425156081831,
-      "Bruin": -352.0585668332398,
-      "Grey": -440.3339089363434,
-      "Red": 338.97241955712593,
-      "White": 324.72757871782113
+      "Black": -906.623694305247,
+      "Blue": 603.2256775039067,
+      "Bruin": -300.886340284625,
+      "Grey": -733.7293303223477,
+      "Red": 333.07160672499975,
+      "White": 1004.9420806832989
      },
      "condition": {
-      "NEW": 1084.188846388897,
-      "USED": -1084.1888463888959
+      "NEW": 972.5047635639116,
+      "USED": -972.504763563916
      }
     },
     "numericFeatures": [
@@ -324,10 +428,10 @@
     ]
    },
    "metrics": {
-    "n": 96,
-    "linear_mae": 3923,
-    "linear_r2": 0.853,
-    "gbr_mae": 5662
+    "n": 98,
+    "linear_mae": 4054,
+    "linear_r2": 0.858,
+    "gbr_mae": 5567
    }
   }
  },
@@ -335,10 +439,14 @@
   "models": [
    "Model S"
   ],
+  "sources": [
+   "marktplaats",
+   "tesla"
+  ],
   "trims": [
    "Performance",
-   "Long Range",
-   "AWD / Dual Motor"
+   "AWD / Dual Motor",
+   "Long Range"
   ],
   "colors": [
    "Black",
@@ -386,6 +494,7 @@
   {
    "id": "m2405489955",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405489955-tesla-model-s-60-75-kwh-accu-panorama-leder-soh-86",
    "title": "Tesla Model S 60 75 kWh Accu | Panorama | Leder | SOH 86% |",
    "model": "Model S",
@@ -428,6 +537,7 @@
   {
    "id": "m2379279267",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2379279267-tesla-s-75-2017-slechts-140-000-km-zeer-nette-staat",
    "title": "Tesla S 75 (2017)  slechts 140.000 km – Zeer nette staat",
    "model": "Model S",
@@ -470,6 +580,7 @@
   {
    "id": "m2406235530",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2406235530-tesla-model-s-p85d-performance-pack-awd-3-fase-incl-btw",
    "title": "Tesla Model S P85D Performance-Pack AWD [ 3-Fase ] (INCL-BTW",
    "model": "Model S",
@@ -512,6 +623,7 @@
   {
    "id": "m2396235469",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2396235469-tesla-model-s-85d-performance-20-500-netto-700pk-autopil",
    "title": "Tesla MODEL S 85D Performance*€ 20.500 NETTO*700PK AUTOPIL",
    "model": "Model S",
@@ -554,6 +666,7 @@
   {
    "id": "m2405975699",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405975699-tesla-model-s-performance-88-soh-cold-weahter-pakket-autop",
    "title": "Tesla Model S Performance 88% SOH, Cold weahter pakket Autop",
    "model": "Model S",
@@ -596,6 +709,7 @@
   {
    "id": "m2384867854",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2384867854-tesla-model-s-performance-p100d",
    "title": "Tesla Model S performance p100d",
    "model": "Model S",
@@ -638,6 +752,7 @@
   {
    "id": "m2400451936",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2400451936-tesla-model-s-75-business-economy-accu-97-in-zeer-nette-sta",
    "title": "Tesla Model S 75 Business Economy Accu 97% In zeer nette sta",
    "model": "Model S",
@@ -680,6 +795,7 @@
   {
    "id": "m2396716049",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2396716049-tesla-model-s-alle-uitvoeringen-gezocht-verkoop-uw-tesla",
    "title": "Tesla Model S | Alle uitvoeringen gezocht | Verkoop uw Tesla",
    "model": "Model S",
@@ -722,6 +838,7 @@
   {
    "id": "m2402341199",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402341199-tesla-model-s-75-business-economy-vol-opties-bj-2017",
    "title": "Tesla Model S 75 Business Economy VOL OPTIES! (bj 2017)",
    "model": "Model S",
@@ -764,6 +881,7 @@
   {
    "id": "m2407102781",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2407102781-tesla-model-s-75d-base-panorama-dak-20-inch-autopilot",
    "title": "Tesla Model S 75D BASE | PANORAMA DAK | 20 INCH | AUTOPILOT",
    "model": "Model S",
@@ -806,6 +924,7 @@
   {
    "id": "m2404120297",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404120297-tesla-model-s-2018-rood",
    "title": "Tesla Model S 2018 Rood",
    "model": "Model S",
@@ -848,6 +967,7 @@
   {
    "id": "m2396895041",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2396895041-tesla-model-s-75d-base-enhanced-autopilot-luchtvering-panora",
    "title": "Tesla Model S 75D Base Enhanced Autopilot Luchtvering Panora",
    "model": "Model S",
@@ -890,6 +1010,7 @@
   {
    "id": "m2401686420",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401686420-tesla-model-s-75d-pano-autopilot-vol-opties-bj-2018",
    "title": "Tesla Model S 75D | Pano | Autopilot | vol opties (bj 2018)",
    "model": "Model S",
@@ -932,6 +1053,7 @@
   {
    "id": "m2406323575",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2406323575-tesla-model-s-75d-base-soh-93-7500-fsd-full-self-d",
    "title": "Tesla Model S 75D Base | SOH 93% | €7500,- FSD Full Self D",
    "model": "Model S",
@@ -974,6 +1096,7 @@
   {
    "id": "m2399907492",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399907492-tesla-model-s-75d-soh-89-1e-eigenaar-trekhaak-autopilot-luc",
    "title": "Tesla Model S 75D SOH 89% 1e Eigenaar Trekhaak Autopilot Luc",
    "model": "Model S",
@@ -1016,6 +1139,7 @@
   {
    "id": "m2403139243",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2403139243-tesla-model-s-batterij-garantie-onbeperkt-internet-schuifdak",
    "title": "Tesla Model S-Batterij garantie-Onbeperkt internet-Schuifdak",
    "model": "Model S",
@@ -1058,6 +1182,7 @@
   {
    "id": "m2404509214",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404509214-tesla-model-s-75d-base-pano-premium-audio-vol-leder",
    "title": "Tesla Model S 75D Base | Pano | Premium audio | Vol leder |",
    "model": "Model S",
@@ -1100,6 +1225,7 @@
   {
    "id": "m2398379560",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398379560-tesla-model-s-75d-base-i-camera-i-pano-dak-bj-2018",
    "title": "Tesla Model S 75D Base I Camera I Pano.dak (bj 2018)",
    "model": "Model S",
@@ -1142,6 +1268,7 @@
   {
    "id": "m2401339067",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401339067-tesla-model-s-90d-base-soh-85-6-luchtvering-elek-pan",
    "title": "Tesla Model S 90D Base | SOH 85,6 % | Luchtvering | Elek Pan",
    "model": "Model S",
@@ -1184,6 +1311,7 @@
   {
    "id": "m2401219114",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401219114-tesla-model-s-75d-nl-auto-panoramadak-12-maanden-bovag",
    "title": "Tesla Model S 75D | NL-Auto | Panoramadak | 12 MAANDEN BOVAG",
    "model": "Model S",
@@ -1226,6 +1354,7 @@
   {
    "id": "m2407063482",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2407063482-tesla-model-s-long-range-90-soh-1-ste-eig-netjes-ccs",
    "title": "Tesla Model S Long Range, 90 % SOH , 1 ste eig Netjes !,CCS",
    "model": "Model S",
@@ -1268,6 +1397,7 @@
   {
    "id": "m2398604339",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398604339-tesla-model-s-75d-base-panoramadak-autopilot-2-5-btw",
    "title": "Tesla Model S 75D Base Panoramadak Autopilot 2.5 BTW",
    "model": "Model S",
@@ -1310,6 +1440,7 @@
   {
    "id": "m2401259394",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401259394-tesla-model-s-75d-base-nl-auto-pano-luchtvering",
    "title": "Tesla Model S 75D BASE // NL-AUTO // PANO // LUCHTVERING",
    "model": "Model S",
@@ -1352,6 +1483,7 @@
   {
    "id": "m2401996216",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401996216-tesla-model-s-75d-snelladen-autopilot-camera-virtual",
    "title": "Tesla Model S 75D | Snelladen | Autopilot | Camera | Virtual",
    "model": "Model S",
@@ -1394,6 +1526,7 @@
   {
    "id": "m2404328147",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404328147-tesla-model-s-p85-free-supercharging-pano-ccs",
    "title": "Tesla Model S P85+ | Free Supercharging | Pano | CCS",
    "model": "Model S",
@@ -1436,6 +1569,7 @@
   {
    "id": "m2401292110",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401292110-tesla-model-s-90d-base",
    "title": "Tesla Model S 90D Base",
    "model": "Model S",
@@ -1478,6 +1612,7 @@
   {
    "id": "m2404755214",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404755214-tesla-model-s-85d-base-panorama-autopilot-luchtvering-ccs",
    "title": "Tesla Model S 85D Base|Panorama|Autopilot|Luchtvering|CCS|",
    "model": "Model S",
@@ -1520,6 +1655,7 @@
   {
    "id": "m2402621713",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402621713-tesla-model-s-85d-base-7-zits-soh-91-pano",
    "title": "Tesla Model S 85D Base 7 Zits | SOH 91%| Pano",
    "model": "Model S",
@@ -1562,6 +1698,7 @@
   {
    "id": "m2393472211",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2393472211-tesla-model-s-p85d-free-supercharging-gratis-superchargen",
    "title": "Tesla Model S P85D Free Supercharging / gratis superchargen",
    "model": "Model S",
@@ -1604,6 +1741,7 @@
   {
    "id": "m2400319253",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2400319253-tesla-model-s-60-base-navigatie-camera-pdc-cruise-airco-lede",
    "title": "Tesla Model S 60 Base NAVIGATIE CAMERA PDC CRUISE AIRCO LEDE",
    "model": "Model S",
@@ -1646,6 +1784,7 @@
   {
    "id": "m2399031210",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399031210-tesla-model-s-75d-schuifdak",
    "title": "Tesla Model S 75D | Schuifdak",
    "model": "Model S",
@@ -1688,6 +1827,7 @@
   {
    "id": "m2405553507",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405553507-tesla-model-s-75-base-autopilot-ccs-panodak-leer",
    "title": "Tesla Model S 75 Base Autopilot/CCS/Panodak leer",
    "model": "Model S",
@@ -1730,6 +1870,7 @@
   {
    "id": "m2402174489",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402174489-tesla-model-s-100d-performance-21-88-4-soh",
    "title": "Tesla Model S 100D Performance | 21'' | 88,4% SOH",
    "model": "Model S",
@@ -1772,6 +1913,7 @@
   {
    "id": "m2343755861",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2343755861-tesla-model-s-75d-7-pers-87-soh",
    "title": "Tesla Model S 75D 7-pers %87 SOH",
    "model": "Model S",
@@ -1814,6 +1956,7 @@
   {
    "id": "m2398578594",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398578594-tesla-model-s-75d-met-twee-sets-velgen-bj-2018-automaat",
    "title": "Tesla Model S 75D met twee sets velgen (bj 2018, automaat)",
    "model": "Model S",
@@ -1856,6 +1999,7 @@
   {
    "id": "m2405959040",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405959040-tesla-model-s-75d-base-soh-89-elek-panoramadak-climate",
    "title": "Tesla Model S 75D Base SOH 89% | Elek panoramadak | Climate",
    "model": "Model S",
@@ -1898,6 +2042,7 @@
   {
    "id": "m2401371430",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401371430-tesla-model-s-85d-base-pano-autopilot-camera-pdc-lmv-leer-st",
    "title": "Tesla Model S 85D Base Pano Autopilot Camera PDC LMV Leer St",
    "model": "Model S",
@@ -1940,6 +2085,7 @@
   {
    "id": "m2398439850",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398439850-tesla-model-s-75d-base-autopilot-ccs-panodak",
    "title": "Tesla Model S 75D Base Autopilot/CCS/Panodak",
    "model": "Model S",
@@ -1982,6 +2128,7 @@
   {
    "id": "m2406706952",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2406706952-tesla-model-s-75d-base-awd-luchtvering-nieuwe-apk-oh",
    "title": "Tesla Model S 75D Base|AWD| Luchtvering|Nieuwe APK+OH",
    "model": "Model S",
@@ -2024,6 +2171,7 @@
   {
    "id": "m2403622895",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2403622895-tesla-model-s-performance-ludicrous-soh88-612pk-pano-cam",
    "title": "Tesla Model S Performance Ludicrous SOH88% (612PK) Pano Cam",
    "model": "Model S",
@@ -2066,6 +2214,7 @@
   {
    "id": "m2405975991",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405975991-tesla-model-s-85-base-87-soh-cruise-control-camera-leder",
    "title": "Tesla Model S 85 Base 87% SOH, Cruise control, Camera, Leder",
    "model": "Model S",
@@ -2108,6 +2257,7 @@
   {
    "id": "m2400858582",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2400858582-tesla-model-s-75d-base-panorama-dak-soh-84-leder",
    "title": "Tesla Model S 75D Base | Panorama dak | SOH 84% | Leder |",
    "model": "Model S",
@@ -2150,6 +2300,7 @@
   {
    "id": "m2401259597",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401259597-tesla-model-s-100d-performance-700pk",
    "title": "Tesla Model S 100D Performance 700pk",
    "model": "Model S",
@@ -2192,6 +2343,7 @@
   {
    "id": "m2397765730",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397765730-tesla-model-s-100d-awd-2018-fsd-ccs-upg-warranty-2026",
    "title": "Tesla Model S 100D AWD 2018 | FSD | CCS Upg | Warranty 2026",
    "model": "Model S",
@@ -2234,6 +2386,7 @@
   {
    "id": "m2399979020",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399979020-free-supercharging-tesla-model-sp85-wit-mcu2",
    "title": "Free supercharging Tesla Model SP85 Wit | mcu2",
    "model": "Model S",
@@ -2276,6 +2429,7 @@
   {
    "id": "m2402148467",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402148467-tesla-model-s-75d-base-panoramadak-inclusief-btw",
    "title": "Tesla Model S 75D Base Panoramadak inclusief BTW",
    "model": "Model S",
@@ -2318,6 +2472,7 @@
   {
    "id": "m2404442670",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404442670-tesla-model-s-100d",
    "title": "Tesla Model S 100D",
    "model": "Model S",
@@ -2360,6 +2515,7 @@
   {
    "id": "m2398705221",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398705221-tesla-model-s-70d-base-7-zits-leder-nieuwe-remmen-v-a-le",
    "title": "Tesla Model S 70D Base, 7-Zits, Leder, Nieuwe Remmen V+A, Le",
    "model": "Model S",
@@ -2402,6 +2558,7 @@
   {
    "id": "m2406231817",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2406231817-tesla-model-s-235-kw-base-3-fase-incl-btw-pano-auto",
    "title": "Tesla Model S 235 Kw Base [ 3-Fase ] (INCL-BTW) *PANO | AUTO",
    "model": "Model S",
@@ -2444,6 +2601,7 @@
   {
    "id": "m2404234201",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404234201-tesla-model-s-100d-open-dak-pano-leder-autopilot",
    "title": "Tesla Model S 100D|OPEN DAK|PANO|LEDER|AUTOPILOT|",
    "model": "Model S",
@@ -2486,6 +2644,7 @@
   {
    "id": "m2405974540",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405974540-tesla-model-s-85-signature-performance-90-soh-panoramadak",
    "title": "Tesla Model S 85 Signature Performance 90% SOH, Panoramadak,",
    "model": "Model S",
@@ -2528,6 +2687,7 @@
   {
    "id": "m2406235524",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2406235524-tesla-model-s-85-base-3-fase-incl-btw-pano-keyless",
    "title": "Tesla Model S 85 Base [ 3-Fase ] (INCL-BTW) *PANO | KEYLESS",
    "model": "Model S",
@@ -2570,6 +2730,7 @@
   {
    "id": "m2401033496",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401033496-tesla-model-s-p100d-performance-700pk-inruil-mogelijk",
    "title": "Tesla MODEL S P100D PERFORMANCE|700PK| INRUIL MOGELIJK|",
    "model": "Model S",
@@ -2612,6 +2773,7 @@
   {
    "id": "m2398324911",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398324911-tesla-model-s-75d-base-net-binnen-nu-al-te-bezichtigen",
    "title": "Tesla Model S 75D Base Net binnen - Nu al te bezichtigen",
    "model": "Model S",
@@ -2654,6 +2816,7 @@
   {
    "id": "m2381723685",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2381723685-nette-tesla-model-s-2015-volledige-historie-technisch-top",
    "title": "Nette Tesla Model S 2015– Volledige historie & technisch top",
    "model": "Model S",
@@ -2696,6 +2859,7 @@
   {
    "id": "m2398358489",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398358489-tesla-model-s-performance-ludicrous-raven-adaptieve-luchtve",
    "title": "Tesla Model S Performance Ludicrous Raven, Adaptieve Luchtve",
    "model": "Model S",
@@ -2738,6 +2902,7 @@
   {
    "id": "m2402106314",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402106314-tesla-model-s-85-free-supercharging-april-2027-apk",
    "title": "Tesla Model S 85 Free Supercharging April 2027 APK",
    "model": "Model S",
@@ -2780,6 +2945,7 @@
   {
    "id": "m2402892508",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402892508-teslamodel-s-85-d-2016-supercharger-free-life-time-470-km",
    "title": "TeslaModel S 85 D 2016- Supercharger Free Life Time (470 km)",
    "model": "Model S",
@@ -2822,6 +2988,7 @@
   {
    "id": "m2398443134",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398443134-tesla-model-s-85-base-panorama-dak-21-inch-trekhaak-nieuwe",
    "title": "Tesla Model S 85 Base Panorama dak 21 inch/ trekhaak/nieuwe",
    "model": "Model S",
@@ -2864,6 +3031,7 @@
   {
    "id": "m2401136935",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401136935-tesla-model-s-70d-base-pano-autopilot-leer",
    "title": "Tesla Model S 70D Base/Pano/Autopilot/Leer",
    "model": "Model S",
@@ -2906,6 +3074,7 @@
   {
    "id": "m2397333723",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397333723-tesla-model-s-100d-performance-p100d-612-pk-21-inch-auto",
    "title": "Tesla Model S 100D PERFORMANCE P100D 612 PK + 21 INCH | AUTO",
    "model": "Model S",
@@ -2948,6 +3117,7 @@
   {
    "id": "m2399849593",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399849593-tesla-model-s-85d-423-pk-soh-90-1-leder-elec-panoramadak-21",
    "title": "Tesla Model S 85D 423 pk SOH 90,1% Leder Elec Panoramadak 21",
    "model": "Model S",
@@ -2990,6 +3160,7 @@
   {
    "id": "m2404183017",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404183017-tesla-model-s-85-base-free-supercharge-dealer-onderhoud",
    "title": "Tesla Model S 85 Base | FREE SUPERCHARGE! | DEALER ONDERHOUD",
    "model": "Model S",
@@ -3032,6 +3203,7 @@
   {
    "id": "m2398973442",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398973442-tesla-model-s-85d-performance-700pk-panoramadak-leder-21-i",
    "title": "Tesla Model S 85D Performance 700pk Panoramadak, leder, 21 i",
    "model": "Model S",
@@ -3074,6 +3246,7 @@
   {
    "id": "m2404994530",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404994530-tesla-model-s-75d-base-333pk-pano-navi-ecc-pdc-cam",
    "title": "Tesla Model S 75D Base 333pk -PANO-NAVI-ECC-PDC-CAM-",
    "model": "Model S",
@@ -3116,6 +3289,7 @@
   {
    "id": "m2397006866",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397006866-tesla-model-s-75d-premium-interieur-i-luchtvering-i-panorama",
    "title": "Tesla Model S 75D Premium Interieur I Luchtvering I Panorama",
    "model": "Model S",
@@ -3158,6 +3332,7 @@
   {
    "id": "m2404321945",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404321945-tesla-model-s-75d-panorama-luchtvering-4x4-autopilot-2-5-cam",
    "title": "Tesla Model S 75D Panorama Luchtvering 4x4 Autopilot 2.5 Cam",
    "model": "Model S",
@@ -3200,6 +3375,7 @@
   {
    "id": "m2396119201",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2396119201-tesla-model-s-p100d-performance-612-pk-black-optiek-btw",
    "title": "Tesla Model S P100D Performance 612 PK | Black optiek | BTW",
    "model": "Model S",
@@ -3242,6 +3418,7 @@
   {
    "id": "m2407317606",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2407317606-tesla-model-s-p100d-performance-612-pk-black-optiek-btw",
    "title": "Tesla Model S P100D Performance 612 PK | Black optiek | BTW",
    "model": "Model S",
@@ -3284,6 +3461,7 @@
   {
    "id": "m2396999608",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2396999608-tesla-model-s-85-performance-tech-pack-ecc-navigatie-licht-m",
    "title": "Tesla Model S 85 Performance Tech Pack ECC Navigatie Licht m",
    "model": "Model S",
@@ -3326,6 +3504,7 @@
   {
    "id": "m2388583631",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2388583631-tesla-model-s-long-range-hw4-670pk-yoke-trekhaak",
    "title": "Tesla Model S Long Range HW4, 670pk, Yoke, trekhaak",
    "model": "Model S",
@@ -3368,6 +3547,7 @@
   {
    "id": "m2401242850",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2401242850-tesla-model-s-100d-performance-enhanced-autopilot3-0-mcu2",
    "title": "Tesla Model S 100D Performance Enhanced AutoPilot3.0 (MCU2)",
    "model": "Model S",
@@ -3410,6 +3590,7 @@
   {
    "id": "m2402188391",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402188391-tesla-model-s-75d-awd-autopilot-navigatie-panoramdak-leder-x",
    "title": "Tesla Model S 75D AWD Autopilot Navigatie Panoramdak Leder X",
    "model": "Model S",
@@ -3452,6 +3633,7 @@
   {
    "id": "m2398156783",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2398156783-tesla-model-s-80-free-supercharge-overdraagbaar-sc01",
    "title": "Tesla Model S 80 Free Supercharge overdraagbaar (SC01)",
    "model": "Model S",
@@ -3494,6 +3676,7 @@
   {
    "id": "m2404797066",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404797066-tesla-model-s-100d-performance-ludicrous-full-self-drive",
    "title": "Tesla Model S 100D Performance Ludicrous+|Full self drive|",
    "model": "Model S",
@@ -3536,6 +3719,7 @@
   {
    "id": "m2403032030",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2403032030-tesla-model-s-100d-awd-leer-incl-btw-1e-eig-full-autopilot",
    "title": "Tesla Model S 100D AWD Leer|INCL BTW| 1e eig. Full Autopilot",
    "model": "Model S",
@@ -3578,6 +3762,7 @@
   {
    "id": "m2403759800",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2403759800-tesla-model-s-100d-btw-auto-1ste-eigenaar-soh-87-3",
    "title": "Tesla Model S 100D / BTW Auto / 1ste Eigenaar / SoH 87,3 % /",
    "model": "Model S",
@@ -3620,6 +3805,7 @@
   {
    "id": "m2405093855",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405093855-tesla-model-s-long-range-matt-ppf-hw4-trekhaak-eap",
    "title": "Tesla Model S Long Range + MATT PPF + HW4 + TREKHAAK + EAP",
    "model": "Model S",
@@ -3662,6 +3848,7 @@
   {
    "id": "m2404780762",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404780762-tesla-model-s-long-range-verkocht-1e-eigenaar-originee",
    "title": "Tesla Model S Long Range ! Verkocht ! 1e Eigenaar | Originee",
    "model": "Model S",
@@ -3704,6 +3891,7 @@
   {
    "id": "m2397305239",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397305239-tesla-model-s-p85-performance-signature-met-levenslang-free",
    "title": "Tesla Model S P85 Performance Signature met Levenslang Free",
    "model": "Model S",
@@ -3746,6 +3934,7 @@
   {
    "id": "m2397413529",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397413529-tesla-model-s-dual-motor-awd-90-kwh-21inch-yoke-btw-verre",
    "title": "Tesla Model S Dual Motor AWD 90 kWh, 21inch, Yoke, BTW verre",
    "model": "Model S",
@@ -3788,6 +3977,7 @@
   {
    "id": "m2407236891",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2407236891-tesla-model-s-60-base-free-supercharge-pano-camera-306pk",
    "title": "Tesla Model S 60 Base|Free Supercharge|Pano|Camera|306PK",
    "model": "Model S",
@@ -3830,6 +4020,7 @@
   {
    "id": "m2405969529",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405969529-tesla-model-s-p85-gratis-laden-sc01-nieuwe-batterij-2020",
    "title": "Tesla Model S P85|GRATIS LADEN SC01| NIEUWE BATTERIJ 2020|",
    "model": "Model S",
@@ -3872,6 +4063,7 @@
   {
    "id": "m2387448912",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2387448912-tesla-model-s-75d-2018-grijs",
    "title": "Tesla Model S  75D 2018 Grijs",
    "model": "Model S",
@@ -3914,6 +4106,7 @@
   {
    "id": "m2403593299",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2403593299-tesla-plaid-2023-grijs-enhanced-auto-pilot",
    "title": "Tesla Plaid 2023 grijs enhanced auto pilot",
    "model": "Model S",
@@ -3956,6 +4149,7 @@
   {
    "id": "m2407098449",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2407098449-tesla-model-s-2017-grijs-soh-87",
    "title": "Tesla Model S 2017 Grijs soh 87%",
    "model": "Model S",
@@ -3998,6 +4192,7 @@
   {
    "id": "m2392514090",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2392514090-tesla-model-s-75d-2018-zwart",
    "title": "Tesla Model S 75D 2018 Zwart",
    "model": "Model S",
@@ -4040,6 +4235,7 @@
   {
    "id": "m2402201638",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2402201638-tesla-model-s-100d-gratis-supercharging-ccs-upgrade-d",
    "title": "Tesla Model S 100D | Gratis supercharging* | CCS upgrade | D",
    "model": "Model S",
@@ -4082,6 +4278,7 @@
   {
    "id": "m2399758422",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399758422-tesla-model-s-p100d-performance-free-supercharging-86-8",
    "title": "Tesla Model S P100D Performance | Free Supercharging* | 86,8",
    "model": "Model S",
@@ -4124,6 +4321,7 @@
   {
    "id": "m2397595230",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397595230-tesla-model-s-100d-performance-ludicrous-612pk-duurste-uitv",
    "title": "Tesla Model S 100D PERFORMANCE LUDICROUS 612PK+ DUURSTE UITV",
    "model": "Model S",
@@ -4166,6 +4364,7 @@
   {
    "id": "m2397579355",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397579355-tesla-model-s-75d-incl-btw-334-pk-4x4-nl-auto-autopi",
    "title": "Tesla Model S 75D incl. BTW 334 PK | 4x4 | NL- AUTO | Autopi",
    "model": "Model S",
@@ -4208,6 +4407,7 @@
   {
    "id": "m2345429686",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2345429686-tesla-model-s-long-range-nap-1eig-fabrieksgarantie-21inch",
    "title": "Tesla Model S Long Range NAP/1EIG/FABRIEKSGARANTIE/21INCH",
    "model": "Model S",
@@ -4248,8 +4448,95 @@
    "dealLabel": "overpriced"
   },
   {
+   "id": "tesla-5YJSA7E51PF498143",
+   "brand": "Tesla Model S",
+   "source": "tesla",
+   "url": "https://www.tesla.com/nl_NL/ms/order/5YJSA7E51PF498143?titleStatus=used",
+   "title": "Tesla Model S Model S All-Wheel Drive",
+   "model": "Model S",
+   "trim": "AWD / Dual Motor",
+   "is_highland": false,
+   "is_juniper": false,
+   "year": 2023,
+   "mileage_km": 58018,
+   "price_eur": 64800,
+   "price_type": null,
+   "condition": "USED",
+   "color": "White",
+   "interior_color": "Zwart premium interieur met Ebony decor",
+   "body": "Sedan",
+   "drivetrain": "AWD",
+   "fuel": "Electric",
+   "transmission": "Automatic",
+   "power_hp": null,
+   "range_km": null,
+   "num_seats": null,
+   "fsd": false,
+   "autopilot_package": "basic",
+   "soh_percent": null,
+   "hw_platform": "HW4",
+   "hw_source": "inferred",
+   "hw_confidence": "low",
+   "city": "Den Haag",
+   "distance_km": null,
+   "seller_name": "Tesla",
+   "view_count": null,
+   "favorited_count": null,
+   "post_date": null,
+   "first_seen": "2026-06-05",
+   "last_seen": "2026-06-05",
+   "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/6f2b330c-b3c6-4e06-9729-6c5c16cbad1f",
+   "predictedEur": 55670,
+   "residualEur": 9130,
+   "dealLabel": "overpriced"
+  },
+  {
+   "id": "tesla-5YJSA7E51PF518441",
+   "brand": "Tesla Model S",
+   "source": "tesla",
+   "url": "https://www.tesla.com/nl_NL/ms/order/5YJSA7E51PF518441?titleStatus=used",
+   "title": "Tesla Model S Model S All-Wheel Drive",
+   "model": "Model S",
+   "trim": "AWD / Dual Motor",
+   "is_highland": false,
+   "is_juniper": false,
+   "year": 2023,
+   "mileage_km": 76147,
+   "price_eur": 63900,
+   "price_type": null,
+   "condition": "USED",
+   "color": "White",
+   "interior_color": "Zwart en wit premium interieur met Walnut decor",
+   "body": "Sedan",
+   "drivetrain": "AWD",
+   "fuel": "Electric",
+   "transmission": "Automatic",
+   "power_hp": null,
+   "range_km": null,
+   "num_seats": null,
+   "fsd": false,
+   "autopilot_package": "basic",
+   "soh_percent": null,
+   "hw_platform": "HW4",
+   "hw_source": "inferred",
+   "hw_confidence": "low",
+   "city": "Den Haag",
+   "distance_km": null,
+   "seller_name": "Tesla",
+   "view_count": null,
+   "favorited_count": null,
+   "post_date": null,
+   "first_seen": "2026-06-05",
+   "last_seen": "2026-06-05",
+   "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
+   "predictedEur": 54655,
+   "residualEur": 9245,
+   "dealLabel": "overpriced"
+  },
+  {
    "id": "m2405633109",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2405633109-tesla-model-s-plaid-1020pk-stoelverkoeling-stuurwiel",
    "title": "Tesla Model S Plaid+ | 1020PK | Stoelverkoeling | Stuurwiel",
    "model": "Model S",
@@ -4292,6 +4579,7 @@
   {
    "id": "m2399441381",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2399441381-tesla-motors-model-s-free-supercharge-85-signature-perf",
    "title": "tesla motors MODEL S FREE SUPERCHARGE 85 Signature Perf.",
    "model": "Model S",
@@ -4334,6 +4622,7 @@
   {
    "id": "m2397427586",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2397427586-tesla-model-s-75-free-supercharger-sc01",
    "title": "Tesla Model S 75 FREE SUPERCHARGER SC01",
    "model": "Model S",
@@ -4376,6 +4665,7 @@
   {
    "id": "m2404452954",
    "brand": "Tesla Model S",
+   "source": "marktplaats",
    "url": "https://www.marktplaats.nl/v/auto-s/tesla/m2404452954-model-s-plaid-2-1s-100-satin-black-iap-custom-steering-wheel",
    "title": "Model S Plaid 2.1s/100 SATIN BLACK IAP CUSTOM STEERING WHEEL",
    "model": "Model S",
@@ -4420,9 +4710,9 @@
  "priceTrends": [
   {
    "date": "2026-06-05",
-   "count": 96,
-   "avg": 27563,
-   "median": 23822,
+   "count": 98,
+   "avg": 28313,
+   "median": 23925,
    "min": 14940,
    "max": 79890,
    "mode": 29950

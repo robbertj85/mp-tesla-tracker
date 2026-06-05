@@ -3,6 +3,8 @@ export type DealLabel = "good_deal" | "fair" | "overpriced";
 export interface Listing {
   id: string;
   brand: string | null;
+  /** "marktplaats" | "tesla" — which marketplace the listing came from. */
+  source: string | null;
   url: string;
   title: string;
   model: string;
@@ -75,6 +77,8 @@ export interface ModelEntry {
 }
 
 export const COMBINED_KEY = "__combined__";
+export const MARKTPLAATS_KEY = "__marktplaats__";
+export const TESLA_KEY = "__tesla__";
 
 export interface Importance {
   feature: string;
@@ -106,6 +110,7 @@ export interface Dataset {
     medianPriceEur: number | null;
     avgMileageKm: number | null;
     byModel: Record<string, number>;
+    bySource?: Record<string, number>;
   };
   metrics: ModelMetrics;
   importances: Importance[];
@@ -114,6 +119,7 @@ export interface Dataset {
   models?: Record<string, ModelEntry>;
   facets: {
     models: string[];
+    sources?: string[];
     trims: string[];
     colors: string[];
     hwPlatforms: string[];

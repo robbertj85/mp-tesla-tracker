@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "VIN": "LRWYGCEK9MC070544",
+      "Year": 2022,
+      "TrimName": "Long Range Dual Motor AWD",
+      "TRIM": ["LRAWD"],
+      "Odometer": 42000,
+      "OdometerType": "km",
+      "InventoryPrice": 38990,
+      "Price": 38990,
+      "City": "Tilburg",
+      "OptionCodeData": [
+        { "code": "PPSW", "name": "Pearl White Multi-Coat", "group": "PAINT" },
+        { "code": "INPB0", "name": "Zwart interieur", "group": "INTERIOR" },
+        { "code": "MTY07", "name": "Long Range Dual Motor", "group": "MOTOR" },
+        { "code": "APFB", "name": "Full Self-Driving Capability", "group": "AUTOPILOT" }
+      ],
+      "Badges": [{ "name": "Long Range" }]
+    },
+    {
+      "VIN": "7SAYGDEE1PF000111",
+      "Year": 2023,
+      "TrimName": "RWD",
+      "Odometer": 10000,
+      "OdometerType": "mi",
+      "Price": 33000,
+      "City": "Amsterdam",
+      "OptionCodeData": [
+        { "code": "PBSB", "name": "Solid Black", "group": "PAINT" },
+        { "code": "MTY36", "name": "Rear-Wheel Drive", "group": "MOTOR" }
+      ]
+    }
+  ],
+  "total_matches_found": "2"
+}

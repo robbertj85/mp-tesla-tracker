@@ -50,6 +50,7 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
   const modelColor = (m: string, fallback: string) => brand.modelColors[m] ?? fallback;
   const colorOptions: ColorKey[] = React.useMemo(() => {
     const opts = ["model"];
+    if (dim.source) opts.push("source");
     if (dim.trim) opts.push("trim");
     if (dim.hw) opts.push("hw_platform");
     if (dim.fuel) opts.push("fuel");

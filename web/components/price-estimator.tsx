@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Calculator } from "lucide-react";
 import type { Dataset, ModelEntry } from "@/lib/types";
-import { COMBINED_KEY } from "@/lib/types";
+import { COMBINED_KEY, MARKTPLAATS_KEY, TESLA_KEY } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,6 +24,8 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
   const clampYear = (y: number) => Math.min(maxYear, Math.max(minYear, y));
   const [state, setState] = React.useState({
     mode: "separate" as Mode,
+    // Which price model to use for source-split brands (Marktplaats/Tesla/Combined).
+    priceKey: MARKTPLAATS_KEY as string,
     model: f.models[0] ?? "Model 3",
     trim: f.trims[0] ?? "unknown",
     drivetrain: f.drivetrains[0] ?? "unknown",
@@ -44,10 +46,20 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
   };
   const group = data.models?.[state.model];
 
-  // In "separate" mode use the selected model's own regression; if that group
-  // had too little data to train, transparently fall back to the pooled model.
-  const fellBack = state.mode === "separate" && !group?.linearModel;
-  const active: ModelEntry = state.mode === "combined" || fellBack ? combined : group!;
+  // Source-split brands (Tesla / Model S) pick a *market* model — Marktplaats,
+  // Tesla.com, or the two combined. Other brands keep the per-model vs pooled
+  // toggle. Either way, fall back to the combined model when the chosen segment
+  // had too little data to train.
+  let active: ModelEntry;
+  let fellBack: boolean;
+  if (dim.source) {
+    const market = data.models?.[state.priceKey];
+    fellBack = !market?.linearModel;
+    active = fellBack ? combined : market!;
+  } else {
+    fellBack = state.mode === "separate" && !group?.linearModel;
+    active = state.mode === "combined" || fellBack ? combined : group!;
+  }
   const lm = active.linearModel;
 
   if (!lm) {
@@ -93,19 +105,44 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
     </button>
   );
 
+  const KeyBtn = ({ value, children }: { value: string; children: React.ReactNode }) => (
+    <button
+      type="button"
+      onClick={() => set({ priceKey: value })}
+      className={
+        "rounded-md px-3 py-1 text-xs font-medium transition-colors " +
+        (state.priceKey === value
+          ? "bg-background text-foreground shadow"
+          : "text-muted-foreground hover:text-foreground")
+      }
+    >
+      {children}
+    </button>
+  );
+
   return (
     <div className="grid gap-4 md:grid-cols-[1fr_320px]">
       <Card>
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-2">
             <CardTitle>Schat een redelijke prijs</CardTitle>
-            <div className="inline-flex items-center rounded-lg bg-muted p-1">
-              <ModeBtn value="separate">Per model</ModeBtn>
-              <ModeBtn value="combined">Gecombineerd</ModeBtn>
-            </div>
+            {dim.source ? (
+              <div className="inline-flex items-center rounded-lg bg-muted p-1">
+                <KeyBtn value={MARKTPLAATS_KEY}>Marktplaats</KeyBtn>
+                <KeyBtn value={TESLA_KEY}>Tesla.com</KeyBtn>
+                <KeyBtn value={COMBINED_KEY}>Gecombineerd</KeyBtn>
+              </div>
+            ) : (
+              <div className="inline-flex items-center rounded-lg bg-muted p-1">
+                <ModeBtn value="separate">Per model</ModeBtn>
+                <ModeBtn value="combined">Gecombineerd</ModeBtn>
+              </div>
+            )}
           </div>
           <CardDescription>
-            {state.mode === "combined" ? (
+            {dim.source ? (
+              <>Prijsmodel <b>{active.label}</b> ({active.metrics.n} advertenties, R² {active.metrics.linear_r2}).</>
+            ) : state.mode === "combined" ? (
               <>Eén regressie over alle modellen samen ({active.metrics.n} advertenties, R² {active.metrics.linear_r2}).</>
             ) : (
               <>Aparte regressie voor {state.model} ({active.metrics.n} advertenties, R² {active.metrics.linear_r2}).</>
@@ -113,7 +150,9 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
             Berekend in je browser — exact dezelfde formule als het Python-model.
             {fellBack && (
               <span className="mt-1 block text-amber-600">
-                Te weinig {state.model}-data voor een aparte regressie — gecombineerd model gebruikt.
+                {dim.source
+                  ? "Te weinig data in dit prijsmodel — gecombineerd model gebruikt."
+                  : `Te weinig ${state.model}-data voor een aparte regressie — gecombineerd model gebruikt.`}
               </span>
             )}
           </CardDescription>

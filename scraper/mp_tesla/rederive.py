@@ -33,6 +33,8 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
     # schema (Tesla is electric + automatic).
     for rec in listings.values():
         rec.setdefault("brand", brand.label)
+        # Records stored before the Tesla-inventory source all came from Marktplaats.
+        rec.setdefault("source", "marktplaats")
         if brand.pipeline == "tesla":
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")
