@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda" | "octavia";
+export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -46,6 +46,18 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true,
+    },
+  },
+  // Tesla Model S resale view (build years 2013+, mileage <= 250.000 km). Same
+  // Tesla dimensions; the HW filter spans HW1/HW2/HW2.5/HW3/HW4 for this model.
+  "model-s": {
+    key: "model-s",
+    label: "Model S",
+    modelsLabel: "Tesla Model S vanaf 2013 · max 250.000 km",
+    modelColors: { "Model S": "#2563eb" },
+    dimensions: {
+      trim: true, hw: true, fsd: true, range: true,
+      fuel: false, transmission: false, drivetrain: true,
     },
   },
   // Older-Octavia resale view (build years 2006–2014, all bodies, both gearboxes).

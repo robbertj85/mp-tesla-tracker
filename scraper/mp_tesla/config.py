@@ -47,6 +47,7 @@ class Brand:
     pipeline: str                  # "tesla" | "skoda" — selects extraction/features
     source_query: str              # human-readable description shown in the UI
     brand_attr_id: int | None = None   # brand facet id (Tesla); None when l2 suffices
+    mileage_to: int | None = None  # mileage (km) ceiling for the search (None = unbounded)
     fuel_ids: tuple = ()           # fuel attributeValueIds to filter on (Skoda)
     transmission_ids: tuple = ()   # transmission attributeValueIds to filter on
     body_ids: tuple = ()           # body/carrosserie attributeValueIds to filter on
@@ -120,6 +121,23 @@ BRANDS: dict[str, Brand] = {
         min_price_eur=500,          # old Octavias are cheap; only drop teaser junk
         pipeline="skoda",
         source_query="auto-s/skoda | Octavia (alle uitvoeringen) | constructionYear 2006–2014",
+    ),
+    # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
+    # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
+    # inferred from build year per config.HW_INFERENCE["Model S"] when the ad is silent.
+    "model-s": Brand(
+        key="model-s",
+        label="Tesla Model S",
+        l2_category_id=2830,
+        brand_attr_id=10882,
+        models={"Model S": 11735},
+        mileage_to=250_000,
+        year_from=2013,
+        year_to=None,
+        price_cents_to=10_000_000,  # <= €100,000 (covers the odd refreshed Plaid)
+        min_price_eur=5000,
+        pipeline="tesla",
+        source_query="auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000",
     ),
 }
 
@@ -231,11 +249,14 @@ EAP_PATTERNS = [
     r"uitgebreide?\s*autopilot",
 ]
 
-# Hardware platform explicit mentions.
+# Hardware platform explicit mentions. Order matters: the 2.5 entry must precede
+# the bare "HW2"/"AP2" entry so "hw2.5"/"ap2.5" resolve to HW2.5, not HW2.
 HW_EXPLICIT_PATTERNS = {
     "HW4": [r"\bhw\s*4\b", r"hardware\s*4", r"\bhw4\.0\b", r"\bap4\b", r"hardware\s*4\.0"],
     "HW3": [r"\bhw\s*3\b", r"hardware\s*3", r"\bhw3\.0\b", r"\bap3\b", r"hardware\s*3\.0"],
     "HW2.5": [r"\bhw\s*2\.5\b", r"hardware\s*2\.5", r"\bap2\.5\b"],
+    "HW2": [r"\bhw\s*2\b", r"hardware\s*2\b", r"\bap2\b", r"autopilot\s*2\b"],
+    "HW1": [r"\bhw\s*1\b", r"hardware\s*1\b", r"\bap1\b", r"autopilot\s*1\b"],
 }
 
 # State-of-Health: look for a battery-health phrase, then a nearby percentage.
@@ -283,5 +304,22 @@ HW_INFERENCE = {
         "hw4_from_year": 2024,        # >= 2024 build -> HW4 (medium confidence)
         "hw3_to_year": 2022,          # <= 2022 build -> HW3 (high confidence)
         # 2023 is the ambiguous boundary year -> low confidence HW3.
+    },
+    # Model S spans every Autopilot generation. We only know the build *year*, so we
+    # map each year to the platform that dominated that year's production; boundary
+    # years (HW transitioned mid-year) get a low confidence. Explicit ad mentions win.
+    #   AP1   Oct 2014 ┐  HW2  Oct 2016 ┐  HW2.5 Aug 2017 ┐  HW3 ~Apr 2019 ┐  HW4 ~Feb 2023
+    # Ordered (year_to, value, confidence): first band whose year_to >= build year wins.
+    "Model S": {
+        "bands": [
+            (2015, "HW1", "high"),     # 2013–2015: pre-AP / AP1, never HW2+
+            (2016, "HW2", "low"),      # HW1->HW2 switch (Oct 2016)
+            (2017, "HW2", "medium"),   # HW2 most of the year; late-2017 is HW2.5
+            (2018, "HW2.5", "high"),
+            (2019, "HW3", "low"),      # HW2.5->HW3 switch (~Apr 2019)
+            (2022, "HW3", "high"),     # 2020–2022
+            (2023, "HW4", "low"),      # HW3->HW4 switch (~Feb 2023)
+            (9999, "HW4", "high"),     # 2024+
+        ],
     },
 }

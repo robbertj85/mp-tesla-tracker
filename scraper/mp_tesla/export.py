@@ -9,6 +9,72 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 
 
+def _price_trends(listings: dict, history: dict) -> list[dict]:
+    """Market-wide price stats per capture day.
+
+    history records a point at first_seen plus one on every later price change,
+    so a listing's price on day D is the last point dated <= D. A listing counts
+    on day D when first_seen <= D <= last_seen. For each capture day we reduce the
+    reconstructed prices of all listings live that day to avg/median/min/max/mode.
+    """
+    # Every run stamps last_seen on the listings it saw and first_seen on new
+    # ones, so their union (plus history dates) is the set of capture days.
+    days = set()
+    for r in listings.values():
+        if r.get("first_seen"):
+            days.add(r["first_seen"])
+        if r.get("last_seen"):
+            days.add(r["last_seen"])
+    for pts in history.values():
+        for p in pts:
+            days.add(p["date"])
+
+    def price_on(rid: str, rec: dict, day: str):
+        pts = history.get(rid)
+        if pts:
+            price = None
+            for p in pts:  # points are appended chronologically
+                if p["date"] <= day:
+                    price = p["priceEur"]
+                else:
+                    break
+            if price is not None:
+                return price
+        return rec.get("price_eur")
+
+    def median(xs: list[float]):
+        s = sorted(xs)
+        n = len(s)
+        return (s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2)
+
+    def mode(xs: list[int]):
+        # Most common price; ties broken by the lowest value for stability.
+        c = Counter(xs)
+        best = max(c.values())
+        return min(v for v, n in c.items() if n == best)
+
+    out = []
+    for day in sorted(days):
+        prices = [
+            p for rid, r in listings.items()
+            if r.get("first_seen") and r.get("last_seen")
+            and r["first_seen"] <= day <= r["last_seen"]
+            and (p := price_on(rid, r, day)) is not None
+        ]
+        if not prices:
+            continue
+        out.append({
+            "date": day,
+            "count": len(prices),
+            "avg": round(sum(prices) / len(prices)),
+            "median": round(median(prices)),
+            "min": min(prices),
+            "max": max(prices),
+            "mode": mode(prices),
+        })
+    return out
+
+
 def _facets(active: list[dict]) -> dict:
     def top(key):
         c = Counter(r.get(key) for r in active if r.get(key))
@@ -80,6 +146,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
         "facets": _facets(active),
         "listings": out_listings,
         "priceHistory": out_history,
+        "priceTrends": _price_trends(listings, history),
     }
 
 

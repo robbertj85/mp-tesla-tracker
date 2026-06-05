@@ -86,6 +86,17 @@ export interface PricePoint {
   priceEur: number;
 }
 
+/** Market-wide price stats for one capture day (see export._price_trends). */
+export interface PriceTrendPoint {
+  date: string;
+  count: number;
+  avg: number;
+  median: number;
+  min: number;
+  max: number;
+  mode: number;
+}
+
 export interface Dataset {
   brand: string;
   generatedAt: string;
@@ -114,4 +125,6 @@ export interface Dataset {
   };
   listings: Listing[];
   priceHistory: Record<string, PricePoint[]>;
+  /** Market-wide price stats per capture day. Optional for back-compat. */
+  priceTrends?: PriceTrendPoint[];
 }

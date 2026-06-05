@@ -5,14 +5,15 @@ price for any feature set using regression, with an interactive dashboard (scatt
 plots, per-model trend lines, filters, a client-side price estimator, and
 price-history charts).
 
-**Two brands are tracked completely separately** (own data files, own regression,
-own dashboard route) and are never mixed:
+**Each tracker is kept completely separate** (own data files, own regression,
+own dashboard route) and is never mixed:
 
 | Brand | Models | Scope |
 |-------|--------|-------|
 | **Tesla** | Model 3 & Model Y | build year ≥ 2017; HW3/HW4, FSD, trim, battery SoH |
 | **Skoda** | Octavia & Superb | build year ≥ 2019; **petrol + PHEV only**, **automatic only**, **Combi only**; brand/model/engine-driveline/odometer/price |
 | **Octavia '06–'14** | Octavia (all bodies) | build years 2006–2014; **all fuels + both gearboxes** (automatic vs manual split in the dashboard) — a resale view for an older Octavia |
+| **Model S** | Tesla Model S | build year ≥ 2013; **mileage ≤ 250.000 km**; Autopilot platform inferred across **HW1/HW2/HW2.5/HW3/HW4** from build year (explicit ad mentions win) |
 
 Everything brand-specific lives in the `BRANDS` registry in
 `scraper/mp_tesla/config.py`; the rest of the pipeline is brand-generic and takes a
@@ -21,7 +22,7 @@ Everything brand-specific lives in the `BRANDS` registry in
 ```
 ┌─ GitHub Action (daily) ──────────────┐      ┌─ Vercel (Next.js) ───────────────┐
 │ python -m mp_tesla.run               │      │ reads web/public/<brand>.json    │
-│  for each brand:                     │ ───▶ │ /tesla · /skoda · /octavia      │
+│  for each brand:                     │ ───▶ │ /tesla · /skoda · /octavia · /model-s │
 │  scrape → extract → upsert JSON      │ git  │ scatter · filters · table        │
 │  → regression → export <brand>.json  │push  │ · fair-price estimator           │
 │  → commit data/<brand> + web/public  │      │ auto-redeploy on commit          │
@@ -39,8 +40,8 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/listings.json` | Canonical store per brand: `{id: record}` with `first_seen`/`last_seen`/`active` |
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
-| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia` (+ `/modellen`) |
+| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s` (+ `/modellen`) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 

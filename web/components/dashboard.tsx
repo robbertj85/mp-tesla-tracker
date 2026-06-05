@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { eur, km } from "@/lib/utils";
 import { FilterBar, type Filters, defaultFilters, applyFilters } from "@/components/filter-bar";
 import { ScatterPanel } from "@/components/scatter-panel";
+import { PriceTrendsChart } from "@/components/price-trends-chart";
 import { ListingsTable } from "@/components/listings-table";
 import { PriceEstimator } from "@/components/price-estimator";
 import { ModelInsight } from "@/components/model-insight";
@@ -53,6 +54,7 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
       <Tabs defaultValue="scatter" className="mt-6">
         <TabsList>
           <TabsTrigger value="scatter">Spreidingsdiagram</TabsTrigger>
+          <TabsTrigger value="trends">Prijsontwikkeling</TabsTrigger>
           <TabsTrigger value="listings">Advertenties ({filtered.length})</TabsTrigger>
           <TabsTrigger value="estimator">Prijs schatten</TabsTrigger>
           <TabsTrigger value="insight">Model-inzicht</TabsTrigger>
@@ -60,6 +62,9 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
 
         <TabsContent value="scatter">
           <ScatterPanel listings={filtered} brand={brand} />
+        </TabsContent>
+        <TabsContent value="trends">
+          <PriceTrendsChart trends={data.priceTrends} />
         </TabsContent>
         <TabsContent value="listings">
           <ListingsTable listings={filtered} history={data.priceHistory} brand={brand} />

@@ -46,6 +46,10 @@ def _build_params(brand: Brand, offset: int, limit: int) -> list[tuple[str, str]
     params += [
         ("attributeRanges[]", f"constructionYear:{brand.year_from}:{year_to}"),
         ("attributeRanges[]", f"PriceCents:null:{brand.price_cents_to}"),
+    ]
+    if brand.mileage_to is not None:
+        params.append(("attributeRanges[]", f"mileage:null:{brand.mileage_to}"))
+    params += [
         ("postcode", config.POSTCODE),  # makes location.distanceMeters relative to 3051
         ("limit", str(limit)),
         ("offset", str(offset)),

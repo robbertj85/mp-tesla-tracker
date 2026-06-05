@@ -41,4 +41,13 @@ def infer_hw_platform(model: str, year: int | None, is_highland: bool,
         # 2023 boundary year: most are HW3 but Berlin transitioned mid-year.
         return {"value": "HW3", "source": "inferred", "confidence": "low"}
 
+    if model == "Model S":
+        if year is None:
+            return {"value": None, "source": "inferred", "confidence": "unknown"}
+        # First band whose year ceiling covers the build year wins (see config).
+        for year_to, value, confidence in rules["bands"]:
+            if year <= year_to:
+                return {"value": value, "source": "inferred", "confidence": confidence}
+        return {"value": None, "source": "inferred", "confidence": "unknown"}
+
     return {"value": None, "source": "inferred", "confidence": "unknown"}
