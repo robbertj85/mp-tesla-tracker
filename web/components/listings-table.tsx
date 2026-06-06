@@ -270,7 +270,7 @@ export function ListingsTable({ listings, history, brand }: {
         </div>
         <p className="px-3 py-2 text-xs text-muted-foreground">
           {teslaCols && "* HW-platform afgeleid (niet expliciet vermeld). "}
-          {rangeCol && "Actieradius: Marktplaats toont de WLTP-fabrieksopgave (als nieuw), Tesla.com de per-auto opgegeven actieradius. Bij Tesla schatten we de originele WLTP als de hoogste actieradius binnen dezelfde uitvoering en tonen het percentage daarvan (ruwe accuconditie-schatting). SoH% komt uit de advertentietekst. "}
+          {rangeCol && "Actieradius: Marktplaats toont de WLTP-fabrieksopgave (als nieuw), Tesla.com de per-auto opgegeven actieradius. Het percentage zet die actieradius af tegen de originele WLTP voor model/uitvoering/bouwjaar (ruwe accuconditie-schatting). SoH% komt uit de advertentietekst. "}
           Verschil = vraagprijs − modelschatting.
           Afstand is gemeten vanaf postcode 3051 (Rotterdam).
           Klik kolomkoppen om te sorteren; meerdere kolommen stapelen (cijfer = prioriteit).

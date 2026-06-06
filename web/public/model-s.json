@@ -4531,7 +4531,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/6f2b330c-b3c6-4e06-9729-6c5c16cbad1f",
    "predictedEur": 55943,
    "residualEur": 8857,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 634,
+   "rangePct": 92
   },
   {
    "id": "tesla-5YJSA7E51PF518441",
@@ -4574,7 +4576,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
    "predictedEur": 54890,
    "residualEur": 9010,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 634,
+   "rangePct": 91
   },
   {
    "id": "m2345429686",

@@ -97,3 +97,22 @@ def test_train_emits_source_segmented_models():
     assert preds["marktplaats-0"]["predictedEur"] != preds["tesla-0"]["predictedEur"]
     # Tesla cars (priced higher) predict higher than Marktplaats cars.
     assert preds["tesla-10"]["predictedEur"] > preds["marktplaats-10"]["predictedEur"]
+
+
+# --- curated WLTP table ---------------------------------------------------------
+
+def test_original_wltp_table_by_model_variant_year():
+    from mp_tesla import wltp
+    # Long Range carries forward and steps up by year of introduction.
+    assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2021) == 505
+    assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2023) == 533
+    assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2024) == 533  # carry-forward
+    assert wltp.original_wltp("Model 3", "Performance", "AWD", 2021) == 547
+    # RWD / Standard Range Plus map to the RWD curve.
+    assert wltp.original_wltp("Model 3", "Standard Range Plus", "RWD", 2020) == 430
+    assert wltp.original_wltp("Model Y", "RWD", "RWD", 2023) == 455
+    # Model S base "AWD / Dual Motor" resolves to the Long Range curve.
+    assert wltp.original_wltp("Model S", "AWD / Dual Motor", "AWD", 2023) == 634
+    # Unknown model/variant -> None (no estimate shown).
+    assert wltp.original_wltp("Skoda", "Long Range", "AWD", 2023) is None
+    assert wltp.original_wltp("Model Y", "Long Range", "AWD", None) is None

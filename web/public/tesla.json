@@ -4018,7 +4018,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/39ca8347-57ff-4256-bd7c-f0341a1fcdf3",
    "predictedEur": 29871,
    "residualEur": -1771,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 448,
+   "rangePct": 90
   },
   {
    "id": "m2402675684",
@@ -4496,8 +4498,8 @@
    "predictedEur": 35858,
    "residualEur": -1658,
    "dealLabel": "good_deal",
-   "wltpEst": 533,
-   "rangePct": 90
+   "wltpEst": 507,
+   "rangePct": 95
   },
   {
    "id": "m2404796608",
@@ -4629,8 +4631,8 @@
    "predictedEur": 34931,
    "residualEur": -1631,
    "dealLabel": "good_deal",
-   "wltpEst": 533,
-   "rangePct": 92
+   "wltpEst": 507,
+   "rangePct": 96
   },
   {
    "id": "m2404489377",
@@ -4931,7 +4933,9 @@
    "thumbnail": null,
    "predictedEur": 26775,
    "residualEur": -1575,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 430,
+   "rangePct": 91
   },
   {
    "id": "m2407400234",
@@ -5667,8 +5671,8 @@
    "predictedEur": 36748,
    "residualEur": -1448,
    "dealLabel": "good_deal",
-   "wltpEst": 533,
-   "rangePct": 91
+   "wltpEst": 507,
+   "rangePct": 96
   },
   {
    "id": "tesla-LRW3E7EK6MC346671",
@@ -5712,8 +5716,8 @@
    "predictedEur": 31825,
    "residualEur": -1425,
    "dealLabel": "good_deal",
-   "wltpEst": 580,
-   "rangePct": 87
+   "wltpEst": 614,
+   "rangePct": 82
   },
   {
    "id": "m2397342361",
@@ -8174,7 +8178,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/9ad6efb9-9726-4df3-8fc6-0192c1dc7aad",
    "predictedEur": 35079,
    "residualEur": -979,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 626,
+   "rangePct": 86
   },
   {
    "id": "m2404824346",
@@ -9129,8 +9135,8 @@
    "predictedEur": 34540,
    "residualEur": -840,
    "dealLabel": "fair",
-   "wltpEst": 494,
-   "rangePct": 93
+   "wltpEst": 505,
+   "rangePct": 91
   },
   {
    "id": "m2399767905",
@@ -10253,8 +10259,8 @@
    "predictedEur": 32658,
    "residualEur": -658,
    "dealLabel": "fair",
-   "wltpEst": 533,
-   "rangePct": 90
+   "wltpEst": 507,
+   "rangePct": 94
   },
   {
    "id": "m2401039446",
@@ -11073,7 +11079,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/f1f85187-87ac-4e86-963c-37e941876a1d",
    "predictedEur": 34842,
    "residualEur": -542,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 626,
+   "rangePct": 86
   },
   {
    "id": "m2405033811",
@@ -11848,8 +11856,8 @@
    "predictedEur": 29938,
    "residualEur": -438,
    "dealLabel": "fair",
-   "wltpEst": 494,
-   "rangePct": 93
+   "wltpEst": 505,
+   "rangePct": 91
   },
   {
    "id": "tesla-LRWYGCEKXMC158759",
@@ -11893,8 +11901,8 @@
    "predictedEur": 35135,
    "residualEur": -435,
    "dealLabel": "fair",
-   "wltpEst": 494,
-   "rangePct": 100
+   "wltpEst": 505,
+   "rangePct": 98
   },
   {
    "id": "m2404495617",
@@ -13664,8 +13672,8 @@
    "predictedEur": 33787,
    "residualEur": -187,
    "dealLabel": "fair",
-   "wltpEst": 533,
-   "rangePct": 90
+   "wltpEst": 507,
+   "rangePct": 95
   },
   {
    "id": "m2403997325",
@@ -14139,8 +14147,8 @@
    "predictedEur": 29018,
    "residualEur": -118,
    "dealLabel": "fair",
-   "wltpEst": 600,
-   "rangePct": 65
+   "wltpEst": 580,
+   "rangePct": 68
   },
   {
    "id": "m2402779386",
@@ -16295,8 +16303,8 @@
    "predictedEur": 25712,
    "residualEur": 88,
    "dealLabel": "fair",
-   "wltpEst": 600,
-   "rangePct": 58
+   "wltpEst": 580,
+   "rangePct": 60
   },
   {
    "id": "m2405859854",
@@ -16426,8 +16434,8 @@
    "predictedEur": 42994,
    "residualEur": 106,
    "dealLabel": "fair",
-   "wltpEst": 600,
-   "rangePct": 85
+   "wltpEst": 533,
+   "rangePct": 96
   },
   {
    "id": "m2406268612",
@@ -20134,8 +20142,8 @@
    "predictedEur": 33664,
    "residualEur": 636,
    "dealLabel": "fair",
-   "wltpEst": 494,
-   "rangePct": 94
+   "wltpEst": 505,
+   "rangePct": 92
   },
   {
    "id": "m2401892587",
@@ -20918,8 +20926,8 @@
    "predictedEur": 42252,
    "residualEur": 748,
    "dealLabel": "fair",
-   "wltpEst": 600,
-   "rangePct": 85
+   "wltpEst": 533,
+   "rangePct": 95
   },
   {
    "id": "m2396276886",
@@ -21307,8 +21315,8 @@
    "predictedEur": 40512,
    "residualEur": 788,
    "dealLabel": "fair",
-   "wltpEst": 600,
-   "rangePct": 84
+   "wltpEst": 533,
+   "rangePct": 94
   },
   {
    "id": "m2404439922",
@@ -24368,8 +24376,8 @@
    "predictedEur": 37254,
    "residualEur": 1246,
    "dealLabel": "overpriced",
-   "wltpEst": 514,
-   "rangePct": 87
+   "wltpEst": 480,
+   "rangePct": 94
   },
   {
    "id": "m2403085652",
@@ -24714,8 +24722,8 @@
    "predictedEur": 40713,
    "residualEur": 1287,
    "dealLabel": "overpriced",
-   "wltpEst": 600,
-   "rangePct": 83
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2402260197",
@@ -24888,8 +24896,8 @@
    "predictedEur": 35974,
    "residualEur": 1326,
    "dealLabel": "overpriced",
-   "wltpEst": 514,
-   "rangePct": 86
+   "wltpEst": 480,
+   "rangePct": 92
   },
   {
    "id": "m2399006902",
@@ -26831,8 +26839,8 @@
    "predictedEur": 42086,
    "residualEur": 1814,
    "dealLabel": "overpriced",
-   "wltpEst": 600,
-   "rangePct": 84
+   "wltpEst": 533,
+   "rangePct": 95
   },
   {
    "id": "m2400234358",
@@ -27048,8 +27056,8 @@
    "predictedEur": 32339,
    "residualEur": 1961,
    "dealLabel": "overpriced",
-   "wltpEst": 494,
-   "rangePct": 93
+   "wltpEst": 505,
+   "rangePct": 91
   },
   {
    "id": "tesla-XP7YGCEK7NB024992",
@@ -27093,8 +27101,8 @@
    "predictedEur": 33703,
    "residualEur": 1997,
    "dealLabel": "overpriced",
-   "wltpEst": 533,
-   "rangePct": 91
+   "wltpEst": 507,
+   "rangePct": 96
   },
   {
    "id": "m2398373219",
@@ -27396,8 +27404,8 @@
    "predictedEur": 35301,
    "residualEur": 2099,
    "dealLabel": "overpriced",
-   "wltpEst": 514,
-   "rangePct": 85
+   "wltpEst": 480,
+   "rangePct": 91
   },
   {
    "id": "m2403701069",
@@ -28524,8 +28532,8 @@
    "predictedEur": 36744,
    "residualEur": 3156,
    "dealLabel": "overpriced",
-   "wltpEst": 533,
-   "rangePct": 92
+   "wltpEst": 507,
+   "rangePct": 97
   },
   {
    "id": "m2401650229",
@@ -28612,8 +28620,8 @@
    "predictedEur": 37060,
    "residualEur": 3240,
    "dealLabel": "overpriced",
-   "wltpEst": 514,
-   "rangePct": 86
+   "wltpEst": 480,
+   "rangePct": 92
   },
   {
    "id": "m2401448773",
