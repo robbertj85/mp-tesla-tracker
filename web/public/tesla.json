@@ -4498,8 +4498,8 @@
    "predictedEur": 35858,
    "residualEur": -1658,
    "dealLabel": "good_deal",
-   "wltpEst": 507,
-   "rangePct": 95
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2404796608",
@@ -4586,8 +4586,8 @@
    "predictedEur": 34832,
    "residualEur": -1632,
    "dealLabel": "good_deal",
-   "wltpEst": 629,
-   "rangePct": 86
+   "wltpEst": 614,
+   "rangePct": 88
   },
   {
    "id": "tesla-LRWYGCEK3NC343298",
@@ -4631,8 +4631,8 @@
    "predictedEur": 34931,
    "residualEur": -1631,
    "dealLabel": "good_deal",
-   "wltpEst": 507,
-   "rangePct": 96
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2404489377",
@@ -4934,8 +4934,8 @@
    "predictedEur": 26775,
    "residualEur": -1575,
    "dealLabel": "good_deal",
-   "wltpEst": 430,
-   "rangePct": 91
+   "wltpEst": 448,
+   "rangePct": 87
   },
   {
    "id": "m2407400234",
@@ -5411,8 +5411,8 @@
    "predictedEur": 30394,
    "residualEur": -1494,
    "dealLabel": "good_deal",
-   "wltpEst": 547,
-   "rangePct": 79
+   "wltpEst": 567,
+   "rangePct": 76
   },
   {
    "id": "m2404022097",
@@ -5671,8 +5671,8 @@
    "predictedEur": 36748,
    "residualEur": -1448,
    "dealLabel": "good_deal",
-   "wltpEst": 507,
-   "rangePct": 96
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "tesla-LRW3E7EK6MC346671",
@@ -8179,8 +8179,8 @@
    "predictedEur": 35079,
    "residualEur": -979,
    "dealLabel": "good_deal",
-   "wltpEst": 626,
-   "rangePct": 86
+   "wltpEst": 614,
+   "rangePct": 88
   },
   {
    "id": "m2404824346",
@@ -8789,8 +8789,8 @@
    "predictedEur": 32661,
    "residualEur": -861,
    "dealLabel": "good_deal",
-   "wltpEst": 547,
-   "rangePct": 82
+   "wltpEst": 567,
+   "rangePct": 79
   },
   {
    "id": "m2404783721",
@@ -10259,8 +10259,8 @@
    "predictedEur": 32658,
    "residualEur": -658,
    "dealLabel": "fair",
-   "wltpEst": 507,
-   "rangePct": 94
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2401039446",
@@ -11080,8 +11080,8 @@
    "predictedEur": 34842,
    "residualEur": -542,
    "dealLabel": "fair",
-   "wltpEst": 626,
-   "rangePct": 86
+   "wltpEst": 614,
+   "rangePct": 88
   },
   {
    "id": "m2405033811",
@@ -13672,8 +13672,8 @@
    "predictedEur": 33787,
    "residualEur": -187,
    "dealLabel": "fair",
-   "wltpEst": 507,
-   "rangePct": 95
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2403997325",
@@ -24376,8 +24376,8 @@
    "predictedEur": 37254,
    "residualEur": 1246,
    "dealLabel": "overpriced",
-   "wltpEst": 480,
-   "rangePct": 94
+   "wltpEst": 514,
+   "rangePct": 87
   },
   {
    "id": "m2403085652",
@@ -24896,8 +24896,8 @@
    "predictedEur": 35974,
    "residualEur": 1326,
    "dealLabel": "overpriced",
-   "wltpEst": 480,
-   "rangePct": 92
+   "wltpEst": 514,
+   "rangePct": 86
   },
   {
    "id": "m2399006902",
@@ -27101,8 +27101,8 @@
    "predictedEur": 33703,
    "residualEur": 1997,
    "dealLabel": "overpriced",
-   "wltpEst": 507,
-   "rangePct": 96
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2398373219",
@@ -27404,8 +27404,8 @@
    "predictedEur": 35301,
    "residualEur": 2099,
    "dealLabel": "overpriced",
-   "wltpEst": 480,
-   "rangePct": 91
+   "wltpEst": 514,
+   "rangePct": 85
   },
   {
    "id": "m2403701069",
@@ -28532,8 +28532,8 @@
    "predictedEur": 36744,
    "residualEur": 3156,
    "dealLabel": "overpriced",
-   "wltpEst": 507,
-   "rangePct": 97
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2401650229",
@@ -28620,8 +28620,8 @@
    "predictedEur": 37060,
    "residualEur": 3240,
    "dealLabel": "overpriced",
-   "wltpEst": 480,
-   "rangePct": 92
+   "wltpEst": 514,
+   "rangePct": 86
   },
   {
    "id": "m2401448773",

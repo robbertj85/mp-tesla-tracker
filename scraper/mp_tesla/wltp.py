@@ -2,14 +2,19 @@
 
 Tesla's used-inventory `ActualRange` is the car-specific (often degraded) figure.
 To express it as a battery-condition %, we need the *original* WLTP for that exact
-config. These are the published EU/NL WLTP figures at launch of each model-year —
-they shift year to year (battery/efficiency updates) and a little with wheel size,
-so treat them as the reference spec, not a per-VIN guarantee. Easy to edit: add or
-correct a {year: km} breakpoint and the resolver carries it forward.
+config. These are the published EU/NL WLTP figures by model year, researched mainly
+from EV Database (ev-database.org), cross-checked with Wikipedia / EU press
+(June 2026). They are the headline WLTP Tesla advertised for the common wheel;
+larger wheels lower real range a few %, so treat the % as an estimate, not a
+per-VIN guarantee. Easy to edit: add/correct a {year: km} breakpoint and the
+resolver carries it forward to newer years.
 
 Variant keys are the canonical trims this scraper derives (see config.TRIM_PATTERNS):
-"Long Range", "Performance", "RWD" (covers Standard Range Plus / RWD). Highland
-(Model 3, 2024+) and Juniper (Model Y, 2025+) are encoded as later year breakpoints.
+"Long Range" (Dual Motor AWD), "Long Range RWD" (Highland/Juniper single-motor LR),
+"Performance", "RWD" (covers Standard Range Plus / RWD). The Highland (Model 3) and
+Juniper (Model Y) refreshes are encoded as later year breakpoints; a "(Highland)" /
+"(Juniper)" trim suffix also bumps the lookup year so a late-2023/early-2025 refresh
+car is rated against the new figure.
 """
 from __future__ import annotations
 
@@ -17,39 +22,51 @@ from __future__ import annotations
 # whose year <= the car's build year (values carry forward to newer years).
 ORIGINAL_WLTP_KM: dict[str, dict[str, dict[int, int]]] = {
     "Model 3": {
-        # Long Range Dual Motor (AWD). 2024+ = Highland LR AWD.
-        "Long Range":  {2019: 560, 2020: 580, 2021: 614, 2022: 626, 2023: 629, 2024: 629},
-        # Performance (AWD). 2024+ = Highland Performance.
-        "Performance": {2019: 530, 2020: 567, 2021: 547, 2022: 547, 2023: 547, 2024: 528},
-        # Standard Range Plus / RWD (incl. LFP). 2024+ = Highland RWD.
-        "RWD":         {2019: 409, 2020: 430, 2021: 448, 2022: 491, 2023: 491, 2024: 513},
+        # Long Range Dual Motor (AWD): 560→580→614 pre-Highland; 629 Highland (2024+).
+        "Long Range":     {2019: 560, 2020: 580, 2021: 614, 2024: 629},
+        # Long Range RWD — Highland single-motor LR (added EU Oct 2024), the longest range.
+        "Long Range RWD": {2024: 702},
+        # Performance (AWD): 530→567, re-rated 547 (2022); 528 Highland (2024+).
+        "Performance":    {2019: 530, 2020: 567, 2022: 547, 2024: 528},
+        # Standard Range Plus / RWD (NCA→LFP): 409→448→491; 513 Highland RWD (2024+).
+        "RWD":            {2019: 409, 2020: 448, 2022: 491, 2024: 513},
     },
     "Model Y": {
-        # Long Range Dual Motor (AWD). 2025+ = Juniper LR AWD.
-        "Long Range":  {2020: 505, 2021: 505, 2022: 507, 2023: 533, 2024: 533, 2025: 568},
-        "Performance": {2020: 480, 2021: 480, 2022: 480, 2023: 514, 2024: 514, 2025: 580},
-        "RWD":         {2022: 455, 2023: 455, 2024: 455, 2025: 466},
+        # Long Range Dual Motor (AWD): 505 (2021) → 533 (2022+); 568 Juniper (2025+).
+        "Long Range":     {2021: 505, 2022: 533, 2025: 568},
+        # Long Range RWD: added Feb 2024 (600), Juniper 622 (2025+).
+        "Long Range RWD": {2024: 600, 2025: 622},
+        # Performance (AWD): 480 (2021) → 514 (2022+); 580 Juniper (2025+).
+        "Performance":    {2021: 480, 2022: 514, 2025: 580},
+        # RWD (LFP, EU from late 2022): 455; 500 Juniper (2025+).
+        "RWD":            {2022: 455, 2025: 500},
     },
     "Model S": {
-        # Long Range / AWD Dual Motor across the generations.
-        "Long Range":  {2016: 451, 2017: 539, 2018: 539, 2019: 610, 2020: 610, 2021: 634, 2023: 634},
-        "Performance": {2016: 507, 2017: 539, 2018: 539, 2019: 593, 2021: 600, 2023: 600},
+        # Long Range / AWD Dual Motor across generations: Raven 610 (2019) → LR Plus
+        # 652 (2020-2021) → refresh Dual Motor 634 (2023-2025) → MY26 refresh 744 (2025+).
+        "Long Range":  {2019: 610, 2020: 652, 2023: 634, 2025: 744},
+        # Performance / Plaid: Raven 593→639; Plaid refresh 600 (2022+); MY26 Plaid 611.
+        "Performance": {2019: 593, 2020: 639, 2022: 600, 2025: 611},
     },
 }
 
 
-def _variant_key(model: str, trim: str | None, drivetrain: str | None) -> str | None:
+def _variant_key(model: str, trim: str | None, drivetrain: str | None,
+                 variants: dict) -> str | None:
     """Map a derived trim/drivetrain to a table variant key."""
     t = (trim or "").lower()
+    drv = (drivetrain or "").upper()
     if "performance" in t:
         return "Performance"
     if "long range" in t:
+        if drv == "RWD" and "Long Range RWD" in variants:
+            return "Long Range RWD"
         return "Long Range"
-    if "standard range" in t or t == "rwd" or (drivetrain or "").upper() == "RWD":
+    if "standard range" in t or t == "rwd" or drv == "RWD":
         return "RWD"
     if "dual motor" in t or "awd" in t:
         # Model S base is "AWD / Dual Motor"; on 3/Y treat as Long Range.
-        return "Long Range" if model in ("Model 3", "Model Y") else "Long Range"
+        return "Long Range"
     return None
 
 
@@ -59,13 +76,20 @@ def original_wltp(model: str, trim: str | None, drivetrain: str | None,
     variants = ORIGINAL_WLTP_KM.get(model)
     if not variants or year is None:
         return None
-    key = _variant_key(model, trim, drivetrain)
+    # A refresh trim bumps the lookup year so boundary-year cars get the new figure.
+    eff = year
+    t = (trim or "").lower()
+    if "highland" in t and eff < 2024:
+        eff = 2024
+    if "juniper" in t and eff < 2025:
+        eff = 2025
+    key = _variant_key(model, trim, drivetrain, variants)
     breaks = variants.get(key) if key else None
     if not breaks:
         return None
     chosen = None
     for y in sorted(breaks):
-        if y <= year:
+        if y <= eff:
             chosen = breaks[y]
     # Build year older than the first breakpoint: fall back to the earliest figure.
     return chosen if chosen is not None else breaks[min(breaks)]

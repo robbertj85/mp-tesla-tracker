@@ -107,12 +107,17 @@ def test_original_wltp_table_by_model_variant_year():
     assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2021) == 505
     assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2023) == 533
     assert wltp.original_wltp("Model Y", "Long Range", "AWD", 2024) == 533  # carry-forward
-    assert wltp.original_wltp("Model 3", "Performance", "AWD", 2021) == 547
+    assert wltp.original_wltp("Model 3", "Performance", "AWD", 2021) == 567
+    assert wltp.original_wltp("Model 3", "Performance", "AWD", 2022) == 547  # re-rated 2022
     # RWD / Standard Range Plus map to the RWD curve.
-    assert wltp.original_wltp("Model 3", "Standard Range Plus", "RWD", 2020) == 430
+    assert wltp.original_wltp("Model 3", "Standard Range Plus", "RWD", 2020) == 448
     assert wltp.original_wltp("Model Y", "RWD", "RWD", 2023) == 455
     # Model S base "AWD / Dual Motor" resolves to the Long Range curve.
     assert wltp.original_wltp("Model S", "AWD / Dual Motor", "AWD", 2023) == 634
+    # Refresh trims bump the lookup year (Highland LR AWD -> 629; LR RWD -> 702).
+    assert wltp.original_wltp("Model 3", "Long Range (Highland)", "AWD", 2023) == 629
+    assert wltp.original_wltp("Model 3", "Long Range", "RWD", 2024) == 702
+    assert wltp.original_wltp("Model Y", "Long Range", "RWD", 2024) == 600
     # Unknown model/variant -> None (no estimate shown).
     assert wltp.original_wltp("Skoda", "Long Range", "AWD", 2023) is None
     assert wltp.original_wltp("Model Y", "Long Range", "AWD", None) is None
