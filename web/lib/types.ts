@@ -41,6 +41,8 @@ export interface Listing {
   view_count: number | null;
   favorited_count: number | null;
   post_date: string | null;
+  /** Tow bar (trekhaak) fitted — from the ad text / Tesla option. */
+  tow_hitch?: boolean | null;
   first_seen: string;
   last_seen: string;
   thumbnail: string | null;

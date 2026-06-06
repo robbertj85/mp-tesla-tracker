@@ -177,6 +177,10 @@ export function ListingsTable({ listings, history, brand }: {
                             <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
                               title="Officiële Tesla-occasion">Tesla</span>
                           )}
+                          {l.tow_hitch && (
+                            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-amber-800"
+                              title="Trekhaak aanwezig">Trekhaak</span>
+                          )}
                         </div>
                         <div className="truncate text-xs text-muted-foreground">{l.color ?? ""} · {l.city ?? ""}</div>
                       </td>

@@ -283,6 +283,13 @@ HW_EXPLICIT_PATTERNS = {
     "HW1": [r"\bhw\s*1\b", r"hardware\s*1\b", r"\bap1\b", r"autopilot\s*1\b"],
 }
 
+# Tow bar (trekhaak). A positive mention means the car has one fitted; guard
+# against "geen/zonder trekhaak" and "voorbereiding/optioneel" (prep, not fitted).
+TOW_HITCH_PATTERNS = [r"trek\s*haak", r"tow\s*bar", r"\btowbar\b", r"tow\s*hitch"]
+TOW_HITCH_NEGATIVE = ("geen", "zonder", "niet")
+TOW_HITCH_EXCLUDE = ("voorbereid", "voorbereiding", "mogelijk", "optioneel",
+                     "kan worden", "te plaatsen", "af fabriek mogelijk")
+
 # State-of-Health: look for a battery-health phrase, then a nearby percentage.
 SOH_CONTEXT_PATTERNS = [
     r"state\s*of\s*health", r"\bsoh\b", r"batterij\s*(gezondheid|conditie|status)",

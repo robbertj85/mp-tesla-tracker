@@ -86,6 +86,25 @@ def detect_soh(text: str) -> float | None:
     return None
 
 
+def detect_tow_hitch(text: str) -> bool:
+    """True when the car has a tow bar fitted (trekhaak / tow bar / hitch).
+
+    Skips negated mentions ("geen/zonder/niet ... trekhaak") and prep-only wording
+    ("trekhaak voorbereiding", "optioneel"), so "Met trekhaak" / "Afneembare
+    trekhaak" / Tesla's "Trekhaak" option all count, but "geen trekhaak" does not.
+    """
+    low = text.lower()
+    for m in re.finditer("|".join(config.TOW_HITCH_PATTERNS), low):
+        before = low[max(0, m.start() - 20):m.start()]
+        around = low[max(0, m.start() - 20):m.end() + 25]
+        if any(neg in before for neg in config.TOW_HITCH_NEGATIVE):
+            continue
+        if any(w in around for w in config.TOW_HITCH_EXCLUDE):
+            continue
+        return True
+    return False
+
+
 def detect_hw_mention(text: str) -> str | None:
     """Return an explicitly-stated HW platform ('HW4'/'HW3'/'HW2.5') or None."""
     for hw, patterns in config.HW_EXPLICIT_PATTERNS.items():

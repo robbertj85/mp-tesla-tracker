@@ -205,6 +205,7 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
         "post_date": detail.get("post_date"),
         "license_plate": detail.get("license_plate"),
         "thumbnail": thumb,
+        "tow_hitch": extract.detect_tow_hitch(f"{title}\n{description}"),
         # full description kept for debugging + re-derivation without re-scraping
         "description": description,
         # bookkeeping (filled/maintained by store.py)
@@ -268,6 +269,7 @@ def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
         "post_date": parsed.get("post_date"),
         "license_plate": None,
         "thumbnail": parsed.get("thumbnail"),
+        "tow_hitch": extract.detect_tow_hitch(text),
         "description": text,
         "first_seen": run_date,
         "last_seen": run_date,

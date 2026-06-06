@@ -13,7 +13,7 @@ import logging
 from datetime import date, datetime
 from pathlib import Path
 
-from . import config, export, model, record
+from . import config, export, extract, model, record
 from .run import DEFAULT_DATA_DIR, DEFAULT_WEB_PUBLIC, brand_data_dir, brand_output
 
 log = logging.getLogger(__name__)
@@ -35,6 +35,9 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
         rec.setdefault("brand", brand.label)
         # Records stored before the Tesla-inventory source all came from Marktplaats.
         rec.setdefault("source", "marktplaats")
+        # Tow bar (trekhaak): recompute from the kept text so older records get it.
+        rec["tow_hitch"] = extract.detect_tow_hitch(
+            f"{rec.get('title', '')}\n{rec.get('description', '')}")
         if brand.pipeline == "tesla":
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")

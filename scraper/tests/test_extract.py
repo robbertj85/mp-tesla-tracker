@@ -96,3 +96,13 @@ def test_price_from_text_ambiguous_returns_none():
 
 def test_price_from_text_below_floor_ignored():
     assert extract.extract_price_from_text("slechts €299 per maand") is None
+
+
+def test_tow_hitch_positive_and_negated():
+    from mp_tesla import extract
+    assert extract.detect_tow_hitch("Nederlandse auto, afneembare trekhaak, etc")
+    assert extract.detect_tow_hitch("Model Y Long Range Trekhaak Premium interieur")  # Tesla option
+    assert extract.detect_tow_hitch("incl. tow bar")
+    assert not extract.detect_tow_hitch("geen trekhaak aanwezig")
+    assert not extract.detect_tow_hitch("trekhaak voorbereiding aanwezig")
+    assert not extract.detect_tow_hitch("mooie auto zonder verdere opties")

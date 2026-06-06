@@ -17,6 +17,7 @@ export interface Filters {
   transmission: string;
   drivetrain: string;
   condition: string;
+  tow: string;
   yearMin: number;
   yearMax: number;
   priceMax: number;
@@ -33,6 +34,7 @@ export const defaultFilters: Filters = {
   transmission: "all",
   drivetrain: "all",
   condition: "all",
+  tow: "all",
   yearMin: 2017,
   yearMax: 2026,
   priceMax: 100000,
@@ -50,6 +52,8 @@ export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.transmission !== "all" && l.transmission !== f.transmission) return false;
   if (f.drivetrain !== "all" && l.drivetrain !== f.drivetrain) return false;
   if (f.condition !== "all" && l.condition !== f.condition) return false;
+  if (f.tow === "yes" && !l.tow_hitch) return false;
+  if (f.tow === "no" && l.tow_hitch) return false;
   if (l.year != null && (l.year < f.yearMin || l.year > f.yearMax)) return false;
   if (l.price_eur != null && l.price_eur > f.priceMax) return false;
   if (l.mileage_km != null && l.mileage_km > f.mileageMax) return false;
@@ -122,6 +126,8 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
           <Dropdown label="Aandrijving" value={filters.drivetrain} onChange={(v) => set({ drivetrain: v })} options={opt(data.facets.drivetrains)} />
         )}
         <Dropdown label="Staat" value={filters.condition} onChange={(v) => set({ condition: v })} options={opt(data.facets.conditions)} />
+        <Dropdown label="Trekhaak" value={filters.tow} onChange={(v) => set({ tow: v })}
+          options={[{ value: "all", label: "Alle" }, { value: "yes", label: "Met trekhaak" }, { value: "no", label: "Zonder" }]} />
         <Dropdown label="Bouwjaar van" value={String(filters.yearMin)}
           onChange={(v) => set({ yearMin: Number(v) })}
           options={data.facets.years.map((y) => ({ value: String(y), label: String(y) }))} />

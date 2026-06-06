@@ -530,6 +530,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/cb018ff9-f358-42a5-944c-5e9f50b7eb79?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 27218,
    "residualEur": -7268,
    "dealLabel": "good_deal"
@@ -573,6 +574,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/da309c67-a1cc-437e-bc59-809a672f496a?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26004,
    "residualEur": -7204,
    "dealLabel": "good_deal"
@@ -616,6 +618,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-05",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5d1f8628-6970-47be-b61f-419b866776fc?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 31421,
    "residualEur": -6671,
    "dealLabel": "good_deal"
@@ -659,6 +662,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c81eced0-4412-4af4-afbf-94d37635f8d0?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24988,
    "residualEur": -6543,
    "dealLabel": "good_deal"
@@ -702,6 +706,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/40cf2b66-b388-427b-b64f-01439286b170?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 39247,
    "residualEur": -6262,
    "dealLabel": "good_deal"
@@ -745,6 +750,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ab2cae9c-564f-4919-9c9c-4fda3dd8d383?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 35105,
    "residualEur": -6105,
    "dealLabel": "good_deal"
@@ -788,6 +794,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/31c58727-c484-4e1d-8ce5-912d4ba28f11?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25267,
    "residualEur": -5317,
    "dealLabel": "good_deal"
@@ -831,6 +838,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/244761eb-d550-46c9-aae8-f8e47b0f723e?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26625,
    "residualEur": -5225,
    "dealLabel": "good_deal"
@@ -874,6 +882,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a3a35120-f3f1-43d5-91f5-baab3be13397?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 40011,
    "residualEur": -5011,
    "dealLabel": "good_deal"
@@ -917,6 +926,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bdb6940a-14d4-4e14-a3f1-034e1d8191ca?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 30507,
    "residualEur": -4607,
    "dealLabel": "good_deal"
@@ -960,6 +970,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ed6c1286-53d9-437c-8f12-0ba177e65913?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23158,
    "residualEur": -4158,
    "dealLabel": "good_deal"
@@ -1003,6 +1014,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a3085077-8597-491f-a1a0-6455d56be70b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26917,
    "residualEur": -4018,
    "dealLabel": "good_deal"
@@ -1046,6 +1058,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-05",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8da45499-bf8c-4a47-ae26-0c1a71a6db0b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23949,
    "residualEur": -3999,
    "dealLabel": "good_deal"
@@ -1089,6 +1102,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6aae0457-190d-478d-9705-c093723f5c95?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24498,
    "residualEur": -3998,
    "dealLabel": "good_deal"
@@ -1132,6 +1146,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3c11753c-25d7-448c-afd7-f9b9bda127f0?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 30873,
    "residualEur": -3973,
    "dealLabel": "good_deal"
@@ -1175,6 +1190,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/72d980ea-80a1-4a29-83cd-ffe7334bf3cb?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": true,
    "predictedEur": 23408,
    "residualEur": -3914,
    "dealLabel": "good_deal"
@@ -1218,6 +1234,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7d2f8053-4aed-4c86-9ccb-b53c08a17b30?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 27369,
    "residualEur": -3881,
    "dealLabel": "good_deal"
@@ -1261,6 +1278,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7f177197-20b6-40a3-beb1-cd1fd168aaca?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25792,
    "residualEur": -3793,
    "dealLabel": "good_deal"
@@ -1304,6 +1322,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/dfc4a98e-4bae-4650-b1fa-56dcbd546d30?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23542,
    "residualEur": -3697,
    "dealLabel": "good_deal"
@@ -1347,6 +1366,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e6570fb6-ce25-46ef-b859-224991cba704?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24638,
    "residualEur": -3653,
    "dealLabel": "good_deal"
@@ -1390,6 +1410,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/26ec71d7-b4c4-4a55-82f3-db981b3784a3?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23627,
    "residualEur": -3637,
    "dealLabel": "good_deal"
@@ -1433,6 +1454,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0321d483-2c9f-43a5-847d-d89e6f83370b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 40096,
    "residualEur": -3601,
    "dealLabel": "good_deal"
@@ -1476,6 +1498,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d667417b-1195-42d9-98df-7d7a542a4958?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24438,
    "residualEur": -3488,
    "dealLabel": "good_deal"
@@ -1519,6 +1542,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-05",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ea6b086b-775a-4c03-beb6-5074f7542178?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 21422,
    "residualEur": -3472,
    "dealLabel": "good_deal"
@@ -1562,6 +1586,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0071c2a5-e232-4a27-8a7d-d7e9b1fb08f2?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23316,
    "residualEur": -3416,
    "dealLabel": "good_deal"
@@ -1605,6 +1630,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6c88e3a4-cf08-444b-9161-7ccee442d43d?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 21022,
    "residualEur": -3023,
    "dealLabel": "good_deal"
@@ -1648,6 +1674,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b799b2a8-44ca-43d2-a300-b5c57abd6837?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25901,
    "residualEur": -3001,
    "dealLabel": "good_deal"
@@ -1691,6 +1718,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d89e0325-25b7-45ea-bd9c-df8a1f98d297?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19758,
    "residualEur": -2759,
    "dealLabel": "good_deal"
@@ -1734,6 +1762,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/775807bb-4885-4f5c-87bf-5c2211d38a12?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19716,
    "residualEur": -2721,
    "dealLabel": "good_deal"
@@ -1777,6 +1806,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7a2d6063-9180-4ec9-8ef0-d7c841939fd0?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 29561,
    "residualEur": -2611,
    "dealLabel": "good_deal"
@@ -1820,6 +1850,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-05",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3eae584e-6162-4634-a9b0-e40b483264e3?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 28586,
    "residualEur": -2591,
    "dealLabel": "fair"
@@ -1863,6 +1894,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5bc7019d-73b8-4f24-a943-0c01998f665f?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19393,
    "residualEur": -2398,
    "dealLabel": "fair"
@@ -1906,6 +1938,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/92d65050-ef4e-4497-960c-044fc3797bb1?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 27196,
    "residualEur": -2256,
    "dealLabel": "fair"
@@ -1949,6 +1982,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b3/b3b7da37-2280-4c33-9380-618425373484?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23197,
    "residualEur": -2197,
    "dealLabel": "fair"
@@ -1992,6 +2026,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7b64d767-1c86-4077-a6c1-b076a5098e2c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 21899,
    "residualEur": -2122,
    "dealLabel": "fair"
@@ -2035,6 +2070,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d2aa2f62-077f-4fba-880c-7150e2e548c8?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19626,
    "residualEur": -1676,
    "dealLabel": "fair"
@@ -2078,6 +2114,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/472fc8fc-ab7d-4ec6-b61a-96bf90d06207?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25616,
    "residualEur": -1631,
    "dealLabel": "fair"
@@ -2121,6 +2158,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/456509f6-9e71-46f2-99be-3e539e47f46e?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18474,
    "residualEur": -1524,
    "dealLabel": "fair"
@@ -2164,6 +2202,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f314a2f2-6efc-432c-993a-6c08906a4ce5?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26474,
    "residualEur": -1524,
    "dealLabel": "fair"
@@ -2207,6 +2246,7 @@
    "first_seen": "2026-06-06",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/1ee76a89-c0a0-42bd-9d73-422fb6bf807b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 22495,
    "residualEur": -1500,
    "dealLabel": "fair"
@@ -2250,6 +2290,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/43b5d77c-2bbd-42ea-95ca-b44ab120b0e6?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19229,
    "residualEur": -1334,
    "dealLabel": "fair"
@@ -2293,6 +2334,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0745a19d-c9df-441d-a937-218e33f10ef1?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 45188,
    "residualEur": -1324,
    "dealLabel": "fair"
@@ -2336,6 +2378,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9921392f-df5a-4974-86dd-81bee618b6e6?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25184,
    "residualEur": -934,
    "dealLabel": "fair"
@@ -2379,6 +2422,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6851fc52-7a92-41c1-b8ae-3c4675677c3c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 29910,
    "residualEur": -920,
    "dealLabel": "fair"
@@ -2422,6 +2466,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5197a914-2696-4d91-a494-0d3734afb8f0?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 33722,
    "residualEur": -722,
    "dealLabel": "fair"
@@ -2465,6 +2510,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b49d7eca-28a0-41a7-aca5-bc97664b3208?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24593,
    "residualEur": -643,
    "dealLabel": "fair"
@@ -2508,6 +2554,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/efc60bc6-a3e3-481e-831b-63cd6d8e536b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18583,
    "residualEur": -633,
    "dealLabel": "fair"
@@ -2551,6 +2598,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c0312664-db09-4e0a-838c-d235acfc7b9a?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18084,
    "residualEur": -584,
    "dealLabel": "fair"
@@ -2594,6 +2642,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b3e1ca1b-8979-4d57-a53e-a942bb170359?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 28423,
    "residualEur": -523,
    "dealLabel": "fair"
@@ -2637,6 +2686,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/dd710a86-bab6-4713-8559-7d469b67562b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18957,
    "residualEur": -512,
    "dealLabel": "fair"
@@ -2680,6 +2730,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/039b379b-b3f6-4e41-b6a5-071baaa5ecd9?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 25504,
    "residualEur": -509,
    "dealLabel": "fair"
@@ -2723,6 +2774,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/67e2869b-16e7-44bf-b1f9-81ebbd2450af?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18455,
    "residualEur": -470,
    "dealLabel": "fair"
@@ -2766,6 +2818,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/85cc1936-dd86-40de-88cd-1c184cf609c8?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 21360,
    "residualEur": -410,
    "dealLabel": "fair"
@@ -2809,6 +2862,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-05",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b4959215-2f45-4020-a954-c2d5d8afa65a?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24096,
    "residualEur": -351,
    "dealLabel": "fair"
@@ -2852,6 +2906,7 @@
    "first_seen": "2026-06-06",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e75f2b55-e916-4b8d-826d-600e42b4fea6?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24096,
    "residualEur": -351,
    "dealLabel": "fair"
@@ -2895,6 +2950,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9ddbc90e-7f37-4ffd-96f9-a6a9050efe8c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 36232,
    "residualEur": -332,
    "dealLabel": "fair"
@@ -2938,6 +2994,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3d7fb8aa-eed7-4624-bd61-0407e8b37ff6?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 16819,
    "residualEur": -319,
    "dealLabel": "fair"
@@ -2981,6 +3038,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/cbd29dc9-9df8-4d3a-abc5-a5a66efcb53c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": true,
    "predictedEur": 15051,
    "residualEur": -101,
    "dealLabel": "fair"
@@ -3024,6 +3082,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ffc10cc4-22e8-47d1-b286-16f18f386885?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 16983,
    "residualEur": -83,
    "dealLabel": "fair"
@@ -3067,6 +3126,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fab7a66d-2ee0-42b4-88ef-720ccb611311?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 40070,
    "residualEur": -71,
    "dealLabel": "fair"
@@ -3110,6 +3170,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bd17ff8f-da05-4e0f-8368-813b1f62c106?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18888,
    "residualEur": 12,
    "dealLabel": "fair"
@@ -3153,6 +3214,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c3fc6da8-283e-4e53-95c1-12a1707c9af1?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 28480,
    "residualEur": 270,
    "dealLabel": "fair"
@@ -3196,6 +3258,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/596e15db-21c0-46ec-896c-0e296667887c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19205,
    "residualEur": 290,
    "dealLabel": "fair"
@@ -3239,6 +3302,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c3432637-316f-4a33-a2de-3c622d190032?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 15615,
    "residualEur": 375,
    "dealLabel": "fair"
@@ -3282,6 +3346,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/318f144b-ff5e-4e93-be99-30dd78e77e19?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 21457,
    "residualEur": 443,
    "dealLabel": "fair"
@@ -3325,6 +3390,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fd6752f4-d69d-4e9c-97d4-66d3f982880b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19489,
    "residualEur": 499,
    "dealLabel": "fair"
@@ -3368,6 +3434,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/820d5a31-c89b-4758-a4ab-c52e537b93af?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23190,
    "residualEur": 710,
    "dealLabel": "fair"
@@ -3411,6 +3478,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a03accb0-6743-4633-85bc-d0d0415beb19?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 29157,
    "residualEur": 793,
    "dealLabel": "fair"
@@ -3454,6 +3522,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d0a3abd8-aff7-4968-b664-591f9302d0ca?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 24753,
    "residualEur": 982,
    "dealLabel": "fair"
@@ -3497,6 +3566,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f2e30878-e4d4-4b69-ad61-07b0869cbb1f?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 12932,
    "residualEur": 2008,
    "dealLabel": "fair"
@@ -3540,6 +3610,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a5a8ebed-67f2-4f4d-b05b-1aba8c176bdc?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 34796,
    "residualEur": 2154,
    "dealLabel": "fair"
@@ -3583,6 +3654,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9b886557-af20-41a8-b95a-e4fe4da8c2c2?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": true,
    "predictedEur": 62700,
    "residualEur": 2250,
    "dealLabel": "fair"
@@ -3626,6 +3698,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bab9600b-3a21-4696-b5e0-b3c939246367?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 27587,
    "residualEur": 2412,
    "dealLabel": "fair"
@@ -3669,6 +3742,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e25de959-c2e7-4fdf-ae2f-7e7ef42f7fb8?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 18284,
    "residualEur": 2466,
    "dealLabel": "fair"
@@ -3712,6 +3786,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c010bba2-9606-4287-86ee-50055978d5c3?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 31465,
    "residualEur": 2485,
    "dealLabel": "fair"
@@ -3755,6 +3830,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/138c7789-b760-45e3-b3af-e0093a24dfae?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 37423,
    "residualEur": 2527,
    "dealLabel": "fair"
@@ -3798,6 +3874,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5922e949-fc1e-481f-890a-5efbaaaeacc9?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 27045,
    "residualEur": 2905,
    "dealLabel": "overpriced"
@@ -3841,6 +3918,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f4689c77-d8e4-4bd8-889f-88c692d70ab0?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26879,
    "residualEur": 3071,
    "dealLabel": "overpriced"
@@ -3884,6 +3962,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8bbf3b8e-02d3-4cdf-9707-51dd5be4eaab?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": true,
    "predictedEur": 61796,
    "residualEur": 3094,
    "dealLabel": "overpriced"
@@ -3927,6 +4006,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/012327b7-8ab2-4267-8d2d-15f6b4165b3a?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 33594,
    "residualEur": 3356,
    "dealLabel": "overpriced"
@@ -3970,6 +4050,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c9b4df4c-a4c8-40c1-b2b1-6cad54f34fea?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 15705,
    "residualEur": 3745,
    "dealLabel": "overpriced"
@@ -4013,6 +4094,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0dbef17b-84bc-44d7-877e-ecd663aeef21?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 55349,
    "residualEur": 4151,
    "dealLabel": "overpriced"
@@ -4056,6 +4138,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/925eba89-0fdd-4fd5-a9f2-84be0d8c30a4?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 11198,
    "residualEur": 4702,
    "dealLabel": "overpriced"
@@ -4099,6 +4182,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/53411ca5-6465-44a7-8fb9-6a49fe05f74b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 19920,
    "residualEur": 5580,
    "dealLabel": "overpriced"
@@ -4142,6 +4226,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2c936eb2-44c5-4acc-9d0e-4fae552eb197?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 16713,
    "residualEur": 5787,
    "dealLabel": "overpriced"
@@ -4185,6 +4270,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/63a1b498-e010-4246-af97-bbac3c35fc01?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 12005,
    "residualEur": 5995,
    "dealLabel": "overpriced"
@@ -4228,6 +4314,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a670e058-9a0b-47fe-9955-8c9aa3a7f4c6?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 68043,
    "residualEur": 6457,
    "dealLabel": "overpriced"
@@ -4271,6 +4358,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6b414896-53ad-4b13-82a4-46214e9f902a?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 17809,
    "residualEur": 6691,
    "dealLabel": "overpriced"
@@ -4314,6 +4402,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fba38a6b-9588-41ff-a711-7ad481b3eed7?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 62313,
    "residualEur": 7637,
    "dealLabel": "overpriced"
@@ -4357,6 +4446,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/183525f6-5634-4a1d-8acb-eeb39c42862b?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 22224,
    "residualEur": 7726,
    "dealLabel": "overpriced"
@@ -4400,6 +4490,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4d67bca9-9432-498b-87e4-3bf5e8a4992d?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26826,
    "residualEur": 8124,
    "dealLabel": "overpriced"
@@ -4443,6 +4534,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6404d577-8582-4668-8598-acdafa66e23c?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 23731,
    "residualEur": 8219,
    "dealLabel": "overpriced"
@@ -4486,6 +4578,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/be7f372c-d3e7-436b-9e43-70037103a99d?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 26262,
    "residualEur": 8693,
    "dealLabel": "overpriced"
@@ -4529,6 +4622,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/6f2b330c-b3c6-4e06-9729-6c5c16cbad1f",
+   "tow_hitch": false,
    "predictedEur": 55943,
    "residualEur": 8857,
    "dealLabel": "overpriced",
@@ -4574,6 +4668,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
+   "tow_hitch": false,
    "predictedEur": 54890,
    "residualEur": 9010,
    "dealLabel": "overpriced",
@@ -4619,6 +4714,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f0/f05636c2-9358-4a7e-9dfb-40fa14055b52?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 60724,
    "residualEur": 9226,
    "dealLabel": "overpriced"
@@ -4662,6 +4758,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b8af6f28-1731-4923-ab95-322781f462b9?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 13015,
    "residualEur": 10980,
    "dealLabel": "overpriced"
@@ -4705,6 +4802,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/28dd58d5-cc6e-4331-b500-5a172b859a59?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 14725,
    "residualEur": 11225,
    "dealLabel": "overpriced"
@@ -4748,6 +4846,7 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d2a1ecd6-114a-4306-8592-e1c8b627dc32?rule=ecg_mp_eps$_82.jpg",
+   "tow_hitch": false,
    "predictedEur": 66359,
    "residualEur": 13531,
    "dealLabel": "overpriced"
