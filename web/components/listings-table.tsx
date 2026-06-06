@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
 import { PriceHistoryChart } from "@/components/price-history-chart";
 
-type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km" | "power_hp";
+type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km" | "power_hp" | "range_km";
 type Dir = "asc" | "desc";
 interface SortEntry { key: SortKey; dir: Dir }
 
@@ -42,6 +42,7 @@ export function ListingsTable({ listings, history, brand }: {
 }) {
   const teslaCols = brand.dimensions.hw; // Tesla shows HW/FSD; Skoda shows fuel/power
   const showSource = brand.dimensions.source; // Marktplaats vs Tesla.com split
+  const rangeCol = brand.dimensions.range;    // WLTP/actual range + SoH (both sources)
   // Multi-key sort: the array order is the priority (first = primary). Clicking a
   // header appends it (lowest priority), then cycles its direction, then drops it.
   // Zero-state by default (and after reset): the rows keep the payload order (best
@@ -153,6 +154,7 @@ export function ListingsTable({ listings, history, brand }: {
                     <Th k="power_hp">Vermogen</Th>
                   </>
                 )}
+                {rangeCol && <Th k="range_km">Actieradius</Th>}
                 <Th k="price_eur">Vraagprijs</Th>
                 <th className="px-3 py-2 text-left font-medium">Schatting</th>
                 <Th k="residualEur">Verschil</Th>
@@ -203,6 +205,25 @@ export function ListingsTable({ listings, history, brand }: {
                           <td className="px-3 py-2 whitespace-nowrap">{l.power_hp ? `${l.power_hp} pk` : "—"}</td>
                         </>
                       )}
+                      {rangeCol && (
+                        <td className="px-3 py-2 whitespace-nowrap">
+                          {l.range_km != null ? (
+                            <span title={(l.source ?? "marktplaats") === "tesla"
+                              ? "Actieradius zoals Tesla.com die per auto opgeeft (ActualRange)"
+                              : "WLTP-fabrieksopgave (actieradius als nieuw), niet de actuele gemeten waarde"}>
+                              {km(l.range_km)}
+                              <span className="ml-1 text-[10px] uppercase text-muted-foreground">
+                                {(l.source ?? "marktplaats") === "tesla" ? "Tesla" : "WLTP"}
+                              </span>
+                            </span>
+                          ) : "—"}
+                          {l.soh_percent != null && (
+                            <span className="ml-1 text-xs text-emerald-600" title="Accugezondheid uit de advertentietekst">
+                              {l.soh_percent}% SoH
+                            </span>
+                          )}
+                        </td>
+                      )}
                       <td className="px-3 py-2">
                         <span className="font-medium">{eur(l.price_eur)}</span>
                         {changed && <PriceChange points={hist!} current={l.price_eur} />}
@@ -229,7 +250,7 @@ export function ListingsTable({ listings, history, brand }: {
                     </tr>
                     {isOpen && hist && (
                       <tr className="border-b bg-muted/30">
-                        <td colSpan={10} className="px-4 py-3">
+                        <td colSpan={11} className="px-4 py-3">
                           <div className="mb-1 text-xs font-medium text-muted-foreground">Prijsverloop</div>
                           <PriceHistoryChart points={hist} />
                         </td>
@@ -243,6 +264,7 @@ export function ListingsTable({ listings, history, brand }: {
         </div>
         <p className="px-3 py-2 text-xs text-muted-foreground">
           {teslaCols && "* HW-platform afgeleid (niet expliciet vermeld). "}
+          {rangeCol && "Actieradius: Marktplaats toont de WLTP-fabrieksopgave (als nieuw), Tesla.com de per-auto opgegeven actieradius; SoH% (accugezondheid) komt uit de advertentietekst. "}
           Verschil = vraagprijs − modelschatting.
           Afstand is gemeten vanaf postcode 3051 (Rotterdam).
           Klik kolomkoppen om te sorteren; meerdere kolommen stapelen (cijfer = prioriteit).
@@ -255,6 +277,7 @@ export function ListingsTable({ listings, history, brand }: {
 const SORT_LABELS: Record<SortKey, string> = {
   year: "Jaar", mileage_km: "Km-stand", distance_km: "Afstand",
   power_hp: "Vermogen", price_eur: "Vraagprijs", residualEur: "Verschil",
+  range_km: "Actieradius",
 };
 
 /** Inline note of the earlier asking price(s) — only rendered when the price moved.

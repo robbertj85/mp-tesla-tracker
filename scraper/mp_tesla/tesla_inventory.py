@@ -249,7 +249,10 @@ def parse_item(item: dict, model_name: str, slug: str) -> dict | None:
         "title": f"Tesla {model_name} {trim_name}".strip(),
         "city": _first(item, "City", "MetroName", "VrlName", "StateProvince"),
         "distance_km": _int(_first(item, "DistanceFromSearch", "Distance")),
-        "range_km": _int(_first(item, "Range", "RangeWLTP")),
+        # ActualRange is the car-specific rated (WLTP-derived) range Tesla shows on
+        # the listing — lower than new = a battery-condition signal.
+        "range_km": _km(_first(item, "ActualRange", "Range", "RangeWLTP"),
+                        item.get("ActualRangeUnit")),
         "power_hp": None,
         "thumbnail": _thumbnail(item),
         "post_date": None,

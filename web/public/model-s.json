@@ -16,46 +16,46 @@
  },
  "metrics": {
   "n": 99,
-  "linear_mae": 3990,
+  "linear_mae": 3982,
   "linear_r2": 0.863,
-  "gbr_mae": 5769
+  "gbr_mae": 5715
  },
  "importances": [
   {
    "feature": "age",
-   "importance": 0.349
+   "importance": 0.339
   },
   {
    "feature": "power_hp",
-   "importance": 0.203
+   "importance": 0.2
   },
   {
    "feature": "mileage_km",
-   "importance": 0.149
+   "importance": 0.148
   },
   {
    "feature": "hw_platform",
-   "importance": 0.108
+   "importance": 0.105
   },
   {
    "feature": "trim",
-   "importance": 0.058
+   "importance": 0.056
   },
   {
    "feature": "condition",
-   "importance": 0.049
+   "importance": 0.044
   },
   {
    "feature": "drivetrain",
-   "importance": 0.039
+   "importance": 0.042
   },
   {
    "feature": "color",
-   "importance": 0.033
+   "importance": 0.034
   },
   {
    "feature": "range_km",
-   "importance": 0.008
+   "importance": 0.027
   },
   {
    "feature": "fsd",
@@ -67,31 +67,31 @@
   }
  ],
  "linearModel": {
-  "intercept": 31477.996941201196,
+  "intercept": 31365.71281787024,
   "numeric": {
    "age": {
     "median": 8.0,
     "mean": 8.636363636363637,
     "std": 2.376035852595474,
-    "coef": -7161.160120423661
+    "coef": -7032.692846553883
    },
    "mileage_km": {
     "median": 154760.0,
     "mean": 147970.80808080808,
     "std": 54934.39566744141,
-    "coef": -3061.319410658545
+    "coef": -3061.445362716251
    },
    "power_hp": {
     "median": 367.0,
     "mean": 423.1313131313131,
     "std": 174.9648534094168,
-    "coef": 4158.841165570247
+    "coef": 4149.9200303668895
    },
    "range_km": {
-    "median": 477.5,
-    "mean": 475.9040404040404,
-    "std": 64.64111010021615,
-    "coef": 155.66402854999157
+    "median": 480.0,
+    "mean": 478.8989898989899,
+    "std": 66.26995524879027,
+    "coef": 566.4093537699962
    }
   },
   "categorical": {
@@ -99,38 +99,38 @@
     "Model S": 0.0
    },
    "trim": {
-    "AWD / Dual Motor": 1347.2143169246647,
-    "Long Range": 842.7817988733722,
-    "Performance": -1710.833258314003,
-    "unknown": -479.1628574840139
+    "AWD / Dual Motor": 1319.3899100165643,
+    "Long Range": 777.9797345268955,
+    "Performance": -1712.2576210590455,
+    "unknown": -385.11202348440867
    },
    "drivetrain": {
-    "AWD": -1133.495157810671,
-    "RWD": 444.64584230790564,
-    "unknown": 688.8493155027751
+    "AWD": -1222.4323843701748,
+    "RWD": 541.161458309118,
+    "unknown": 681.2709260610675
    },
    "hw_platform": {
-    "HW1": 913.7706938216845,
-    "HW2": -2015.724687212319,
-    "HW2.5": -2792.1908227491735,
-    "HW3": 464.6198691855451,
-    "HW4": 3429.5249469542787
+    "HW1": 905.3378816352539,
+    "HW2": -1982.8966056948227,
+    "HW2.5": -2725.9956749584076,
+    "HW3": 430.71090990281715,
+    "HW4": 3372.8434891151596
    },
    "fsd": {
-    "no": -77.15300201374582,
-    "yes": 77.15300201374492
+    "no": -91.77964687629746,
+    "yes": 91.77964687629667
    },
    "color": {
-    "Black": -900.5696726243738,
-    "Blue": 633.6001033746652,
-    "Bruin": -293.8460766788061,
-    "Grey": -739.6285089881202,
-    "Red": 385.8891222491105,
-    "White": 914.5550326675221
+    "Black": -935.1449933051639,
+    "Blue": 693.8927093453984,
+    "Bruin": -313.48621871863776,
+    "Grey": -751.4142298129127,
+    "Red": 445.58962049600865,
+    "White": 860.563111995297
    },
    "condition": {
-    "NEW": 1014.5693437054088,
-    "USED": -1014.569343705409
+    "NEW": 907.2573264511063,
+    "USED": -907.2573264511078
    }
   },
   "numericFeatures": [
@@ -153,31 +153,31 @@
   "__combined__": {
    "label": "Marktplaats + Tesla",
    "linearModel": {
-    "intercept": 31477.996941201196,
+    "intercept": 31365.71281787024,
     "numeric": {
      "age": {
       "median": 8.0,
       "mean": 8.636363636363637,
       "std": 2.376035852595474,
-      "coef": -7161.160120423661
+      "coef": -7032.692846553883
      },
      "mileage_km": {
       "median": 154760.0,
       "mean": 147970.80808080808,
       "std": 54934.39566744141,
-      "coef": -3061.319410658545
+      "coef": -3061.445362716251
      },
      "power_hp": {
       "median": 367.0,
       "mean": 423.1313131313131,
       "std": 174.9648534094168,
-      "coef": 4158.841165570247
+      "coef": 4149.9200303668895
      },
      "range_km": {
-      "median": 477.5,
-      "mean": 475.9040404040404,
-      "std": 64.64111010021615,
-      "coef": 155.66402854999157
+      "median": 480.0,
+      "mean": 478.8989898989899,
+      "std": 66.26995524879027,
+      "coef": 566.4093537699962
      }
     },
     "categorical": {
@@ -185,38 +185,38 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 1347.2143169246647,
-      "Long Range": 842.7817988733722,
-      "Performance": -1710.833258314003,
-      "unknown": -479.1628574840139
+      "AWD / Dual Motor": 1319.3899100165643,
+      "Long Range": 777.9797345268955,
+      "Performance": -1712.2576210590455,
+      "unknown": -385.11202348440867
      },
      "drivetrain": {
-      "AWD": -1133.495157810671,
-      "RWD": 444.64584230790564,
-      "unknown": 688.8493155027751
+      "AWD": -1222.4323843701748,
+      "RWD": 541.161458309118,
+      "unknown": 681.2709260610675
      },
      "hw_platform": {
-      "HW1": 913.7706938216845,
-      "HW2": -2015.724687212319,
-      "HW2.5": -2792.1908227491735,
-      "HW3": 464.6198691855451,
-      "HW4": 3429.5249469542787
+      "HW1": 905.3378816352539,
+      "HW2": -1982.8966056948227,
+      "HW2.5": -2725.9956749584076,
+      "HW3": 430.71090990281715,
+      "HW4": 3372.8434891151596
      },
      "fsd": {
-      "no": -77.15300201374582,
-      "yes": 77.15300201374492
+      "no": -91.77964687629746,
+      "yes": 91.77964687629667
      },
      "color": {
-      "Black": -900.5696726243738,
-      "Blue": 633.6001033746652,
-      "Bruin": -293.8460766788061,
-      "Grey": -739.6285089881202,
-      "Red": 385.8891222491105,
-      "White": 914.5550326675221
+      "Black": -935.1449933051639,
+      "Blue": 693.8927093453984,
+      "Bruin": -313.48621871863776,
+      "Grey": -751.4142298129127,
+      "Red": 445.58962049600865,
+      "White": 860.563111995297
      },
      "condition": {
-      "NEW": 1014.5693437054088,
-      "USED": -1014.569343705409
+      "NEW": 907.2573264511063,
+      "USED": -907.2573264511078
      }
     },
     "numericFeatures": [
@@ -237,9 +237,9 @@
    },
    "metrics": {
     "n": 99,
-    "linear_mae": 3990,
+    "linear_mae": 3982,
     "linear_r2": 0.863,
-    "gbr_mae": 5769
+    "gbr_mae": 5715
    }
   },
   "__marktplaats__": {
@@ -251,25 +251,25 @@
       "median": 8.0,
       "mean": 8.75257731958763,
       "std": 2.256860915624906,
-      "coef": -6236.801145340575
+      "coef": -6236.801145340579
      },
      "mileage_km": {
       "median": 155721.0,
       "mean": 149638.60824742267,
       "std": 54227.56714689746,
-      "coef": -2851.9385869346074
+      "coef": -2851.9385869346042
      },
      "power_hp": {
       "median": 367.0,
       "mean": 424.2886597938144,
       "std": 176.57176098860265,
-      "coef": 4633.246493308879
+      "coef": 4633.246493308882
      },
      "range_km": {
       "median": 477.5,
       "mean": 475.87113402061857,
       "std": 65.30370280271192,
-      "coef": 385.1037583458202
+      "coef": 385.10375834581856
      }
     },
     "categorical": {
@@ -277,38 +277,38 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 401.8196887097113,
-      "Long Range": 1360.3236622874695,
-      "Performance": -1677.4735978088727,
-      "unknown": -84.6697531883176
+      "AWD / Dual Motor": 401.8196887097116,
+      "Long Range": 1360.3236622874676,
+      "Performance": -1677.4735978088738,
+      "unknown": -84.6697531883174
      },
      "drivetrain": {
-      "AWD": -1231.3102745337621,
-      "RWD": 474.9303496561096,
-      "unknown": 756.3799248776476
+      "AWD": -1231.310274533761,
+      "RWD": 474.9303496561138,
+      "unknown": 756.3799248776483
      },
      "hw_platform": {
-      "HW1": 599.5625637619422,
-      "HW2": -1791.0447952220113,
-      "HW2.5": -2159.0699825325682,
-      "HW3": 832.7511516549205,
-      "HW4": 2517.801062337736
+      "HW1": 599.5625637619503,
+      "HW2": -1791.0447952220084,
+      "HW2.5": -2159.0699825325655,
+      "HW3": 832.7511516549216,
+      "HW4": 2517.8010623377268
      },
      "fsd": {
-      "no": -88.43199385056214,
-      "yes": 88.43199385056215
+      "no": -88.43199385056269,
+      "yes": 88.43199385056275
      },
      "color": {
-      "Black": -764.7810601227924,
-      "Blue": 933.8702673318472,
-      "Bruin": -346.0619200685659,
-      "Grey": -439.0768740964881,
-      "Red": 390.042648999671,
-      "White": 226.0069379563318
+      "Black": -764.7810601227914,
+      "Blue": 933.8702673318465,
+      "Bruin": -346.06192006856617,
+      "Grey": -439.0768740964869,
+      "Red": 390.04264899967256,
+      "White": 226.00693795633256
      },
      "condition": {
-      "NEW": 1125.8715617260104,
-      "USED": -1125.8715617260095
+      "NEW": 1125.8715617260114,
+      "USED": -1125.8715617260114
      }
     },
     "numericFeatures": [
@@ -345,31 +345,31 @@
   "Model S": {
    "label": "Model S",
    "linearModel": {
-    "intercept": 31477.996941201196,
+    "intercept": 31365.71281787024,
     "numeric": {
      "age": {
       "median": 8.0,
       "mean": 8.636363636363637,
       "std": 2.376035852595474,
-      "coef": -7161.160120423661
+      "coef": -7032.692846553883
      },
      "mileage_km": {
       "median": 154760.0,
       "mean": 147970.80808080808,
       "std": 54934.39566744141,
-      "coef": -3061.319410658545
+      "coef": -3061.445362716251
      },
      "power_hp": {
       "median": 367.0,
       "mean": 423.1313131313131,
       "std": 174.9648534094168,
-      "coef": 4158.841165570247
+      "coef": 4149.9200303668895
      },
      "range_km": {
-      "median": 477.5,
-      "mean": 475.9040404040404,
-      "std": 64.64111010021615,
-      "coef": 155.66402854999157
+      "median": 480.0,
+      "mean": 478.8989898989899,
+      "std": 66.26995524879027,
+      "coef": 566.4093537699962
      }
     },
     "categorical": {
@@ -377,38 +377,38 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 1347.2143169246647,
-      "Long Range": 842.7817988733722,
-      "Performance": -1710.833258314003,
-      "unknown": -479.1628574840139
+      "AWD / Dual Motor": 1319.3899100165643,
+      "Long Range": 777.9797345268955,
+      "Performance": -1712.2576210590455,
+      "unknown": -385.11202348440867
      },
      "drivetrain": {
-      "AWD": -1133.495157810671,
-      "RWD": 444.64584230790564,
-      "unknown": 688.8493155027751
+      "AWD": -1222.4323843701748,
+      "RWD": 541.161458309118,
+      "unknown": 681.2709260610675
      },
      "hw_platform": {
-      "HW1": 913.7706938216845,
-      "HW2": -2015.724687212319,
-      "HW2.5": -2792.1908227491735,
-      "HW3": 464.6198691855451,
-      "HW4": 3429.5249469542787
+      "HW1": 905.3378816352539,
+      "HW2": -1982.8966056948227,
+      "HW2.5": -2725.9956749584076,
+      "HW3": 430.71090990281715,
+      "HW4": 3372.8434891151596
      },
      "fsd": {
-      "no": -77.15300201374582,
-      "yes": 77.15300201374492
+      "no": -91.77964687629746,
+      "yes": 91.77964687629667
      },
      "color": {
-      "Black": -900.5696726243738,
-      "Blue": 633.6001033746652,
-      "Bruin": -293.8460766788061,
-      "Grey": -739.6285089881202,
-      "Red": 385.8891222491105,
-      "White": 914.5550326675221
+      "Black": -935.1449933051639,
+      "Blue": 693.8927093453984,
+      "Bruin": -313.48621871863776,
+      "Grey": -751.4142298129127,
+      "Red": 445.58962049600865,
+      "White": 860.563111995297
      },
      "condition": {
-      "NEW": 1014.5693437054088,
-      "USED": -1014.569343705409
+      "NEW": 907.2573264511063,
+      "USED": -907.2573264511078
      }
     },
     "numericFeatures": [
@@ -429,9 +429,9 @@
    },
    "metrics": {
     "n": 99,
-    "linear_mae": 3990,
+    "linear_mae": 3982,
     "linear_r2": 0.863,
-    "gbr_mae": 5769
+    "gbr_mae": 5715
    }
   }
  },
@@ -4512,7 +4512,7 @@
    "fuel": "Electric",
    "transmission": "Automatic",
    "power_hp": null,
-   "range_km": null,
+   "range_km": 582,
    "num_seats": null,
    "fsd": false,
    "autopilot_package": "basic",
@@ -4529,8 +4529,51 @@
    "first_seen": "2026-06-05",
    "last_seen": "2026-06-06",
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/6f2b330c-b3c6-4e06-9729-6c5c16cbad1f",
-   "predictedEur": 55614,
-   "residualEur": 9186,
+   "predictedEur": 55943,
+   "residualEur": 8857,
+   "dealLabel": "overpriced"
+  },
+  {
+   "id": "tesla-5YJSA7E51PF518441",
+   "brand": "Tesla Model S",
+   "source": "tesla",
+   "url": "https://www.tesla.com/nl_NL/ms/order/5YJSA7E51PF518441?titleStatus=used",
+   "title": "Tesla Model S Model S All-Wheel Drive",
+   "model": "Model S",
+   "trim": "AWD / Dual Motor",
+   "is_highland": false,
+   "is_juniper": false,
+   "year": 2023,
+   "mileage_km": 76147,
+   "price_eur": 63900,
+   "price_type": null,
+   "condition": "USED",
+   "color": "White",
+   "interior_color": "Zwart en wit premium interieur met Walnut decor",
+   "body": "Sedan",
+   "drivetrain": "AWD",
+   "fuel": "Electric",
+   "transmission": "Automatic",
+   "power_hp": null,
+   "range_km": 577,
+   "num_seats": null,
+   "fsd": false,
+   "autopilot_package": "basic",
+   "soh_percent": null,
+   "hw_platform": "HW4",
+   "hw_source": "inferred",
+   "hw_confidence": "low",
+   "city": "Den Haag",
+   "distance_km": null,
+   "seller_name": "Tesla",
+   "view_count": null,
+   "favorited_count": null,
+   "post_date": null,
+   "first_seen": "2026-06-05",
+   "last_seen": "2026-06-06",
+   "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
+   "predictedEur": 54890,
+   "residualEur": 9010,
    "dealLabel": "overpriced"
   },
   {
@@ -4574,49 +4617,6 @@
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f0/f05636c2-9358-4a7e-9dfb-40fa14055b52?rule=ecg_mp_eps$_82.jpg",
    "predictedEur": 60724,
    "residualEur": 9226,
-   "dealLabel": "overpriced"
-  },
-  {
-   "id": "tesla-5YJSA7E51PF518441",
-   "brand": "Tesla Model S",
-   "source": "tesla",
-   "url": "https://www.tesla.com/nl_NL/ms/order/5YJSA7E51PF518441?titleStatus=used",
-   "title": "Tesla Model S Model S All-Wheel Drive",
-   "model": "Model S",
-   "trim": "AWD / Dual Motor",
-   "is_highland": false,
-   "is_juniper": false,
-   "year": 2023,
-   "mileage_km": 76147,
-   "price_eur": 63900,
-   "price_type": null,
-   "condition": "USED",
-   "color": "White",
-   "interior_color": "Zwart en wit premium interieur met Walnut decor",
-   "body": "Sedan",
-   "drivetrain": "AWD",
-   "fuel": "Electric",
-   "transmission": "Automatic",
-   "power_hp": null,
-   "range_km": null,
-   "num_seats": null,
-   "fsd": false,
-   "autopilot_package": "basic",
-   "soh_percent": null,
-   "hw_platform": "HW4",
-   "hw_source": "inferred",
-   "hw_confidence": "low",
-   "city": "Den Haag",
-   "distance_km": null,
-   "seller_name": "Tesla",
-   "view_count": null,
-   "favorited_count": null,
-   "post_date": null,
-   "first_seen": "2026-06-05",
-   "last_seen": "2026-06-06",
-   "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
-   "predictedEur": 54604,
-   "residualEur": 9296,
    "dealLabel": "overpriced"
   },
   {

@@ -185,6 +185,8 @@ function ScatterTooltip({ active, payload, xMeta }: any) {
       <div className="font-medium">{l.model} {l.trim ?? ""} · {l.year}</div>
       <div className="text-muted-foreground">
         {eur(l.price_eur)} · {xMeta.label}: {xMeta.fmt(p.x)} · HW {l.hw_platform ?? "?"}
+        {l.range_km != null && ` · ${l.range_km} km`}
+        {l.soh_percent != null && ` · ${l.soh_percent}% SoH`}
       </div>
       {l.predictedEur != null && (
         <div className="text-muted-foreground">Schatting: {eur(l.predictedEur)} ({l.dealLabel})</div>

@@ -7,6 +7,8 @@
       "TRIM": ["LRAWD"],
       "Odometer": 42000,
       "OdometerType": "km",
+      "ActualRange": 505,
+      "ActualRangeUnit": "km",
       "InventoryPrice": 38990,
       "Price": 38990,
       "City": "Tilburg",
@@ -24,6 +26,8 @@
       "TrimName": "RWD",
       "Odometer": 10000,
       "OdometerType": "mi",
+      "ActualRange": 300,
+      "ActualRangeUnit": "mi",
       "Price": 33000,
       "City": "Amsterdam",
       "OptionCodeData": [

@@ -35,6 +35,7 @@ def test_parse_long_range_awd_item():
     assert parsed["mileage_km"] == 42000           # already km
     assert parsed["price_eur"] == 38990
     assert parsed["color_text"] == "Pearl White Multi-Coat"
+    assert parsed["range_km"] == 505                # ActualRange (km), as Tesla shows it
     assert "Dual Motor" in parsed["spec_text"]
     assert parsed["url"].endswith("/my/order/LRWYGCEK9MC070544?titleStatus=used")
     assert parsed["body"] == "SUV or Terreinwagen"
@@ -43,6 +44,7 @@ def test_parse_long_range_awd_item():
 def test_parse_converts_miles_to_km():
     parsed = tesla_inventory.parse_item(_results()[1], "Model Y", "my")
     assert parsed["mileage_km"] == round(10000 * 1.60934)  # 16093
+    assert parsed["range_km"] == round(300 * 1.60934)      # ActualRange in miles -> km
 
 
 def test_build_tesla_record_runs_shared_heuristics():
