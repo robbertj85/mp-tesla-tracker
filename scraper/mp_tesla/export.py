@@ -94,6 +94,43 @@ def _facets(active: list[dict]) -> dict:
     }
 
 
+def _median(xs: list) -> float:
+    s = sorted(xs)
+    n = len(s)
+    return s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2
+
+
+def _attach_wltp_estimate(out_listings: list[dict]) -> None:
+    """Estimate the original (as-new) WLTP per cohort and rate each Tesla car on it.
+
+    Marktplaats `range_km` is the factory WLTP (as-new), so we build the reference
+    from MARKTPLAATS listings only — Tesla's per-car ActualRange is degraded and
+    must not define the baseline. Both sources share trim labels, so we take the
+    median factory WLTP of the matching (model, trim, year) cohort (falling back to
+    (model, trim)), then attach to each Tesla listing `wltpEst` (estimated original
+    WLTP) and `rangePct` (ActualRange ÷ wltpEst) — a rough battery-condition signal.
+    Median + min-sample gates make it robust to wheel-variant / data outliers; only
+    plausible percentages (50–108) are kept. Best-effort, explicitly an estimate.
+    """
+    by_year: dict[tuple, list[int]] = {}
+    by_trim: dict[tuple, list[int]] = {}
+    for r in out_listings:
+        if (r.get("source") or "marktplaats") == "marktplaats" and r.get("range_km"):
+            by_year.setdefault((r.get("model"), r.get("trim"), r.get("year")), []).append(r["range_km"])
+            by_trim.setdefault((r.get("model"), r.get("trim")), []).append(r["range_km"])
+    ref_year = {k: _median(v) for k, v in by_year.items() if len(v) >= 3}
+    ref_trim = {k: _median(v) for k, v in by_trim.items() if len(v) >= 5}
+    for r in out_listings:
+        if r.get("source") == "tesla" and r.get("range_km"):
+            est = (ref_year.get((r.get("model"), r.get("trim"), r.get("year")))
+                   or ref_trim.get((r.get("model"), r.get("trim"))))
+            if est:
+                pct = round(r["range_km"] / est * 100)
+                if 50 <= pct <= 108:  # outside this = cohort/variant mismatch, skip
+                    r["wltpEst"] = round(est)
+                    r["rangePct"] = pct
+
+
 def build_payload(listings: dict, history: dict, model_result: dict,
                   run_date: str, source_query: str, brand: str) -> dict:
     # Only ship listings with a trustworthy price (drops lease/teaser rows whose
@@ -122,6 +159,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
             "dealLabel": pred.get("dealLabel"),
         })
     out_listings.sort(key=lambda d: (d.get("residualEur") if d.get("residualEur") is not None else 0))
+    _attach_wltp_estimate(out_listings)
 
     # Only ship history for currently-active listings (keeps the file lean).
     active_ids = {r["id"] for r in active}

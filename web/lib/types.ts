@@ -24,6 +24,10 @@ export interface Listing {
   transmission: string | null;
   power_hp: number | null;
   range_km: number | null;
+  /** Estimated original (as-new) WLTP for this car's cohort, and its range as a
+   *  % of it — a rough battery-condition estimate. Only set on Tesla.com listings. */
+  wltpEst?: number | null;
+  rangePct?: number | null;
   num_seats: number | null;
   fsd: boolean;
   autopilot_package: string;

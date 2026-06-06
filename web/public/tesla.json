@@ -2591,7 +2591,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/103101d0-c450-40fa-a9cb-8e1b66c8b8ea",
    "predictedEur": 36773,
    "residualEur": -2173,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2396213471",
@@ -2720,7 +2722,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/c236a6ca-efa2-447a-9ee2-a61b9269954b",
    "predictedEur": 36053,
    "residualEur": -2153,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2400825041",
@@ -3236,7 +3240,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/211644cd-9ba2-4a5b-bc17-46978d9f56de",
    "predictedEur": 35541,
    "residualEur": -2041,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2401979784",
@@ -3408,7 +3414,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/a5953e3e-5a76-4559-9613-ea5dd5372697",
    "predictedEur": 37615,
    "residualEur": -2015,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2407365935",
@@ -4139,7 +4147,9 @@
    "thumbnail": null,
    "predictedEur": 32826,
    "residualEur": -1726,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 491,
+   "rangePct": 84
   },
   {
    "id": "m2396687799",
@@ -4225,7 +4235,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/9f315cd7-0da2-49ce-8b50-5d6b97093daa",
    "predictedEur": 35720,
    "residualEur": -1720,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2399743946",
@@ -4483,7 +4495,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/ba84427e-35fd-41ee-8c0d-a38a1d024c0f",
    "predictedEur": 35858,
    "residualEur": -1658,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2404796608",
@@ -4569,7 +4583,9 @@
    "thumbnail": null,
    "predictedEur": 34832,
    "residualEur": -1632,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 629,
+   "rangePct": 86
   },
   {
    "id": "tesla-LRWYGCEK3NC343298",
@@ -4612,7 +4628,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/105f2036-4373-494b-b840-35796c0c92c8",
    "predictedEur": 34931,
    "residualEur": -1631,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2404489377",
@@ -5042,7 +5060,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/8821e24c-e74f-4029-9e88-e0d761c29d31",
    "predictedEur": 37364,
    "residualEur": -1564,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2405869822",
@@ -5386,7 +5406,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/5b1b19ba-d618-40a0-8fbe-6fad7dc1e91e",
    "predictedEur": 30394,
    "residualEur": -1494,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 547,
+   "rangePct": 79
   },
   {
    "id": "m2404022097",
@@ -5644,7 +5666,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/360df66e-1bf2-4843-ae8b-dfe85df8a8da",
    "predictedEur": 36748,
    "residualEur": -1448,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "tesla-LRW3E7EK6MC346671",
@@ -5687,7 +5711,9 @@
    "thumbnail": null,
    "predictedEur": 31825,
    "residualEur": -1425,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 580,
+   "rangePct": 87
   },
   {
    "id": "m2397342361",
@@ -5988,7 +6014,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/aec50a52-a364-4221-b78c-0d71b2571b2c",
    "predictedEur": 32969,
    "residualEur": -1369,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 455,
+   "rangePct": 84
   },
   {
    "id": "m2405591414",
@@ -6805,7 +6833,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/c96dbd92-5b7e-4471-a7d5-a6cbc5f0c2f1",
    "predictedEur": 33244,
    "residualEur": -1244,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 491,
+   "rangePct": 86
   },
   {
    "id": "m2399514222",
@@ -7149,7 +7179,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/4eefd66d-2c5c-4d74-b8aa-b26f4321e723",
    "predictedEur": 36361,
    "residualEur": -1161,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2407379575",
@@ -7407,7 +7439,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/418e11da-d191-4579-944d-8566619b9b9d",
    "predictedEur": 38604,
    "residualEur": -1104,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2402253494",
@@ -7794,7 +7828,9 @@
    "thumbnail": null,
    "predictedEur": 35762,
    "residualEur": -1062,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 547,
+   "rangePct": 85
   },
   {
    "id": "m2404036454",
@@ -8310,7 +8346,9 @@
    "thumbnail": null,
    "predictedEur": 33940,
    "residualEur": -940,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 455,
+   "rangePct": 89
   },
   {
    "id": "m2401411539",
@@ -8396,7 +8434,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/ec14a0a5-66f8-4407-8c04-5ed634677f14",
    "predictedEur": 38319,
    "residualEur": -919,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 455,
+   "rangePct": 84
   },
   {
    "id": "m2403726908",
@@ -8611,7 +8651,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/be0b7ef8-38f0-4770-8f13-f4c8ab7b979e",
    "predictedEur": 36087,
    "residualEur": -887,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2397252127",
@@ -8740,7 +8782,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/99e47706-8ca7-4607-b3da-d2e46763ea30",
    "predictedEur": 32661,
    "residualEur": -861,
-   "dealLabel": "good_deal"
+   "dealLabel": "good_deal",
+   "wltpEst": 547,
+   "rangePct": 82
   },
   {
    "id": "m2404783721",
@@ -9084,7 +9128,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/9e6233d5-30fb-4567-bb65-dd3b2ad92ddb",
    "predictedEur": 34540,
    "residualEur": -840,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 494,
+   "rangePct": 93
   },
   {
    "id": "m2399767905",
@@ -9686,7 +9732,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/5219949a-1869-4bdb-a494-5540dd7b1b90",
    "predictedEur": 38451,
    "residualEur": -751,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 85
   },
   {
    "id": "m2407122547",
@@ -10159,7 +10207,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/2fb1f3b4-9aae-404b-b672-ea778198d7ea",
    "predictedEur": 38161,
    "residualEur": -661,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 92
   },
   {
    "id": "tesla-LRWYGCEK4NC233375",
@@ -10202,7 +10252,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/dfe9fceb-29e6-423a-bf5b-ac312db8d013",
    "predictedEur": 32658,
    "residualEur": -658,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2401039446",
@@ -10589,7 +10641,9 @@
    "thumbnail": null,
    "predictedEur": 33784,
    "residualEur": -584,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 83
   },
   {
    "id": "m2397088800",
@@ -11793,7 +11847,9 @@
    "thumbnail": null,
    "predictedEur": 29938,
    "residualEur": -438,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 494,
+   "rangePct": 93
   },
   {
    "id": "tesla-LRWYGCEKXMC158759",
@@ -11836,7 +11892,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/efbf1b3f-c1fc-4530-b61d-940501e04a05",
    "predictedEur": 35135,
    "residualEur": -435,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 494,
+   "rangePct": 100
   },
   {
    "id": "m2404495617",
@@ -12051,7 +12109,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/14334101-e66d-4497-99c2-7432eaa44a7e",
    "predictedEur": 39007,
    "residualEur": -407,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2403465793",
@@ -12567,7 +12627,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/715bbc97-decb-49b4-bc80-31ec27f4b864",
    "predictedEur": 38948,
    "residualEur": -348,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 94
   },
   {
    "id": "m2397699788",
@@ -12653,7 +12715,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b3f99495-107e-440f-8dc1-679e96e32c4d",
    "predictedEur": 35631,
    "residualEur": -331,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 89
   },
   {
    "id": "m2404414024",
@@ -13599,7 +13663,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/c743bd7e-1e99-4111-8386-88469179e593",
    "predictedEur": 33787,
    "residualEur": -187,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 90
   },
   {
    "id": "m2403997325",
@@ -14072,7 +14138,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/2b5f185f-ba0a-4880-ab19-94c422963270",
    "predictedEur": 29018,
    "residualEur": -118,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 600,
+   "rangePct": 65
   },
   {
    "id": "m2402779386",
@@ -14932,7 +15000,9 @@
    "thumbnail": null,
    "predictedEur": 30914,
    "residualEur": -14,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 87
   },
   {
    "id": "m2402342544",
@@ -15964,7 +16034,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/f450abbf-7e87-4870-9623-68e9d5982778",
    "predictedEur": 37363,
    "residualEur": 37,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2403048253",
@@ -16222,7 +16294,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/19644da8-6195-4d9e-94d5-31fde6a2d648",
    "predictedEur": 25712,
    "residualEur": 88,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 600,
+   "rangePct": 58
   },
   {
    "id": "m2405859854",
@@ -16351,7 +16425,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/66a1ec06-d3fa-4e88-8b64-8329ad2a5cd7",
    "predictedEur": 42994,
    "residualEur": 106,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 600,
+   "rangePct": 85
   },
   {
    "id": "m2406268612",
@@ -17211,7 +17287,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/1037bce1-1214-46e1-8757-da4c6ca8b012",
    "predictedEur": 36136,
    "residualEur": 264,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 88
   },
   {
    "id": "m2404060150",
@@ -17340,7 +17418,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/0570b780-554e-414c-914b-5c88e3017e81",
    "predictedEur": 33098,
    "residualEur": 302,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 91
   },
   {
    "id": "m2405790141",
@@ -18243,7 +18323,9 @@
    "thumbnail": null,
    "predictedEur": 36205,
    "residualEur": 395,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 84
   },
   {
    "id": "m2404452798",
@@ -19017,7 +19099,9 @@
    "thumbnail": null,
    "predictedEur": 36723,
    "residualEur": 477,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2407503402",
@@ -20049,7 +20133,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/83dae41b-8d9c-4f74-a4e0-9b7e1863d79b",
    "predictedEur": 33664,
    "residualEur": 636,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 494,
+   "rangePct": 94
   },
   {
    "id": "m2401892587",
@@ -20221,7 +20307,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/f682879d-f974-4a6a-bc4b-35dfa6e2f99c",
    "predictedEur": 37951,
    "residualEur": 649,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 455,
+   "rangePct": 84
   },
   {
    "id": "m2397304709",
@@ -20522,7 +20610,9 @@
    "thumbnail": null,
    "predictedEur": 38992,
    "residualEur": 708,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "tesla-XP7YGCEK6PB095653",
@@ -20565,7 +20655,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/4d0de7e0-185d-416a-a16c-b89c751d24d4",
    "predictedEur": 37889,
    "residualEur": 711,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2405870956",
@@ -20651,7 +20743,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/755afc5f-c23f-4e8b-95d6-1a32e71e1960",
    "predictedEur": 38474,
    "residualEur": 726,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2405017061",
@@ -20823,7 +20917,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/09560ae7-4fe9-4c36-8ad3-dc04fd4fd05e",
    "predictedEur": 42252,
    "residualEur": 748,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 600,
+   "rangePct": 85
   },
   {
    "id": "m2396276886",
@@ -21210,7 +21306,9 @@
    "thumbnail": null,
    "predictedEur": 40512,
    "residualEur": 788,
-   "dealLabel": "fair"
+   "dealLabel": "fair",
+   "wltpEst": 600,
+   "rangePct": 84
   },
   {
    "id": "m2404439922",
@@ -21855,7 +21953,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/26316927-b4c4-4d0f-b46f-52b6a8443f9a",
    "predictedEur": 37624,
    "residualEur": 876,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2398573887",
@@ -22672,7 +22772,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b279ae97-8637-4235-98e2-d84dbc901147",
    "predictedEur": 40106,
    "residualEur": 994,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 87
   },
   {
    "id": "m2407349153",
@@ -23747,7 +23849,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/bf040316-377c-4efb-9d0a-d6b433ecf69f",
    "predictedEur": 33525,
    "residualEur": 1175,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 455,
+   "rangePct": 87
   },
   {
    "id": "m2403998262",
@@ -24263,7 +24367,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/bfd0c0a5-38ba-4092-83a5-d34a305b7fc5",
    "predictedEur": 37254,
    "residualEur": 1246,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 87
   },
   {
    "id": "m2403085652",
@@ -24607,7 +24713,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/defcc339-f34b-46ea-a235-1555481bfbfb",
    "predictedEur": 40713,
    "residualEur": 1287,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 600,
+   "rangePct": 83
   },
   {
    "id": "m2402260197",
@@ -24779,7 +24887,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/ed29c344-0582-46bf-9a5d-ba0820a819d3",
    "predictedEur": 35974,
    "residualEur": 1326,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 86
   },
   {
    "id": "m2399006902",
@@ -25252,7 +25362,9 @@
    "thumbnail": null,
    "predictedEur": 38606,
    "residualEur": 1494,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2405090317",
@@ -25811,7 +25923,9 @@
    "thumbnail": null,
    "predictedEur": 38414,
    "residualEur": 1586,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2350045400",
@@ -26026,7 +26140,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/bfe005ce-c750-430a-90a2-806c9bef6d0b",
    "predictedEur": 39178,
    "residualEur": 1622,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2402195167",
@@ -26714,7 +26830,9 @@
    "thumbnail": null,
    "predictedEur": 42086,
    "residualEur": 1814,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 600,
+   "rangePct": 84
   },
   {
    "id": "m2400234358",
@@ -26929,7 +27047,9 @@
    "thumbnail": null,
    "predictedEur": 32339,
    "residualEur": 1961,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 494,
+   "rangePct": 93
   },
   {
    "id": "tesla-XP7YGCEK7NB024992",
@@ -26972,7 +27092,9 @@
    "thumbnail": null,
    "predictedEur": 33703,
    "residualEur": 1997,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 91
   },
   {
    "id": "m2398373219",
@@ -27273,7 +27395,9 @@
    "thumbnail": null,
    "predictedEur": 35301,
    "residualEur": 2099,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 85
   },
   {
    "id": "m2403701069",
@@ -27531,7 +27655,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/8770f330-500d-4089-9dc1-c74d469581bd",
    "predictedEur": 37847,
    "residualEur": 2353,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 94
   },
   {
    "id": "m2407131132",
@@ -27617,7 +27743,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/c98fa871-82c3-4926-9a58-11bf8c72e666",
    "predictedEur": 39285,
    "residualEur": 2415,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 93
   },
   {
    "id": "m2402763577",
@@ -27789,7 +27917,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/63d12305-566a-4e1f-a043-a0b0d46c9103",
    "predictedEur": 37880,
    "residualEur": 2620,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 94
   },
   {
    "id": "m2404252095",
@@ -28176,7 +28306,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/f0628262-d6b2-46fd-b54b-b5650f0c1b63",
    "predictedEur": 40732,
    "residualEur": 2968,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 88
   },
   {
    "id": "m2404435570",
@@ -28391,7 +28523,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/ed804943-bbb5-4e08-9859-7bcf6edbea38",
    "predictedEur": 36744,
    "residualEur": 3156,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 533,
+   "rangePct": 92
   },
   {
    "id": "m2401650229",
@@ -28477,7 +28611,9 @@
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/ac215503-87b8-4d0e-bb56-eef4300cbf04",
    "predictedEur": 37060,
    "residualEur": 3240,
-   "dealLabel": "overpriced"
+   "dealLabel": "overpriced",
+   "wltpEst": 514,
+   "rangePct": 86
   },
   {
    "id": "m2401448773",

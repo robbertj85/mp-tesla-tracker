@@ -217,6 +217,12 @@ export function ListingsTable({ listings, history, brand }: {
                               </span>
                             </span>
                           ) : "—"}
+                          {l.rangePct != null && l.wltpEst != null && (
+                            <span className={cn("ml-1 text-xs", l.rangePct >= 90 ? "text-emerald-600" : l.rangePct >= 80 ? "text-amber-600" : "text-red-600")}
+                              title={`Schatting: ${l.rangePct}% van de originele WLTP (±${l.wltpEst} km, beste in deze uitvoering)`}>
+                              ~{l.rangePct}% v. {l.wltpEst} WLTP
+                            </span>
+                          )}
                           {l.soh_percent != null && (
                             <span className="ml-1 text-xs text-emerald-600" title="Accugezondheid uit de advertentietekst">
                               {l.soh_percent}% SoH
@@ -264,7 +270,7 @@ export function ListingsTable({ listings, history, brand }: {
         </div>
         <p className="px-3 py-2 text-xs text-muted-foreground">
           {teslaCols && "* HW-platform afgeleid (niet expliciet vermeld). "}
-          {rangeCol && "Actieradius: Marktplaats toont de WLTP-fabrieksopgave (als nieuw), Tesla.com de per-auto opgegeven actieradius; SoH% (accugezondheid) komt uit de advertentietekst. "}
+          {rangeCol && "Actieradius: Marktplaats toont de WLTP-fabrieksopgave (als nieuw), Tesla.com de per-auto opgegeven actieradius. Bij Tesla schatten we de originele WLTP als de hoogste actieradius binnen dezelfde uitvoering en tonen het percentage daarvan (ruwe accuconditie-schatting). SoH% komt uit de advertentietekst. "}
           Verschil = vraagprijs − modelschatting.
           Afstand is gemeten vanaf postcode 3051 (Rotterdam).
           Klik kolomkoppen om te sorteren; meerdere kolommen stapelen (cijfer = prioriteit).
