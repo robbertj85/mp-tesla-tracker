@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, History, X } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, Heart, History, X } from "lucide-react";
 import type { Listing, PricePoint } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
 import { PriceHistoryChart } from "@/components/price-history-chart";
+import { useFavorites } from "@/lib/use-favorites";
 
 type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km" | "power_hp" | "range_km";
 type Dir = "asc" | "desc";
@@ -49,7 +50,9 @@ export function ListingsTable({ listings, history, brand }: {
   // deal first), and the first header you click becomes the primary sort.
   const [sortChain, setSortChain] = React.useState<SortEntry[]>([]);
   const [onlyChanged, setOnlyChanged] = React.useState(false);
+  const [onlyFav, setOnlyFav] = React.useState(false);
   const [open, setOpen] = React.useState<string | null>(null);
+  const { isFav, toggle: toggleFav, count: favCount } = useFavorites();
 
   const changedCount = React.useMemo(
     () => listings.filter((l) => (history[l.id]?.length ?? 0) > 1).length,
@@ -57,9 +60,10 @@ export function ListingsTable({ listings, history, brand }: {
   );
 
   const rows = React.useMemo(() => {
-    const base = onlyChanged
+    let base = onlyChanged
       ? listings.filter((l) => (history[l.id]?.length ?? 0) > 1)
       : listings;
+    if (onlyFav) base = base.filter((l) => isFav(l.id));
     const arr = [...base];
     arr.sort((a, b) => {
       for (const entry of sortChain) {
@@ -69,7 +73,7 @@ export function ListingsTable({ listings, history, brand }: {
       return 0;
     });
     return arr;
-  }, [listings, history, sortChain, onlyChanged]);
+  }, [listings, history, sortChain, onlyChanged, onlyFav, isFav]);
 
   const cycle = (k: SortKey) => {
     setSortChain((chain) => {
@@ -118,6 +122,12 @@ export function ListingsTable({ listings, history, brand }: {
                 onlyChanged ? "border-primary bg-primary text-primary-foreground" : "hover:bg-muted")}>
               <History className="h-3.5 w-3.5" />
               Alleen prijswijziging ({changedCount})
+            </button>
+            <button onClick={() => setOnlyFav((v) => !v)}
+              className={cn("inline-flex items-center gap-1 rounded-md border px-2 py-1 font-medium transition-colors",
+                onlyFav ? "border-rose-500 bg-rose-500 text-white" : "hover:bg-muted")}>
+              <Heart className={cn("h-3.5 w-3.5", onlyFav && "fill-current")} />
+              Mijn favorieten ({favCount})
             </button>
             <span className="text-muted-foreground">
               {rows.length} {rows.length === 1 ? "advertentie" : "advertenties"}
@@ -245,6 +255,13 @@ export function ListingsTable({ listings, history, brand }: {
                         ) : "—"}
                       </td>
                       <td className="whitespace-nowrap px-3 py-2 text-right">
+                        <button onClick={() => toggleFav(l.id)}
+                          className={cn("mr-2 inline-flex transition-colors",
+                            isFav(l.id) ? "text-rose-500" : "text-muted-foreground hover:text-rose-500")}
+                          title={isFav(l.id) ? "Verwijder uit favorieten" : "Markeer als favoriet"}
+                          aria-pressed={isFav(l.id)}>
+                          <Heart className={cn("h-4 w-4", isFav(l.id) && "fill-current")} />
+                        </button>
                         {changed && (
                           <button onClick={() => setOpen(isOpen ? null : l.id)}
                             className="mr-2 inline-flex text-muted-foreground hover:text-foreground" title="Prijsverloop">
