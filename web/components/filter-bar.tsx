@@ -95,8 +95,8 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
   }, [data.listings]);
 
   return (
-    <div className="rounded-lg border bg-card p-4">
-      <div className="flex flex-wrap items-end gap-3">
+    <div className="rounded-lg border bg-card p-3 sm:p-4">
+      <div className="flex flex-wrap items-end gap-2 sm:gap-3">
         <Dropdown label="Model" value={filters.model} onChange={(v) => set({ model: v })} options={opt(data.facets.models)} />
         {dim.source && (
           <Dropdown label="Bron" value={filters.source} onChange={(v) => set({ source: v })}

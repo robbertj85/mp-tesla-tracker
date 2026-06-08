@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, Heart, History, X } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, Heart, History, Sparkles, X } from "lucide-react";
 import type { Listing, PricePoint } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
 import { Badge } from "@/components/ui/badge";
@@ -38,12 +38,16 @@ function cmpOne(a: Listing, b: Listing, { key, dir }: SortEntry): number {
   return dir === "asc" ? av - bv : bv - av;
 }
 
-export function ListingsTable({ listings, history, brand }: {
+export function ListingsTable({ listings, history, brand, generatedAt }: {
   listings: Listing[]; history: Record<string, PricePoint[]>; brand: BrandConfig;
+  generatedAt?: string;
 }) {
   const teslaCols = brand.dimensions.hw; // Tesla shows HW/FSD; Skoda shows fuel/power
   const showSource = brand.dimensions.source; // Marktplaats vs Tesla.com split
   const rangeCol = brand.dimensions.range;    // WLTP/actual range + SoH (both sources)
+  // "New today": first seen on the latest scrape date. Auto-expires next run, when
+  // generatedAt advances but first_seen stays — no per-ad toggle to maintain.
+  const isNew = (l: Listing) => generatedAt != null && l.first_seen === generatedAt;
   // Multi-key sort: the array order is the priority (first = primary). Clicking a
   // header appends it (lowest priority), then cycles its direction, then drops it.
   // Zero-state by default (and after reset): the rows keep the payload order (best
@@ -51,6 +55,7 @@ export function ListingsTable({ listings, history, brand }: {
   const [sortChain, setSortChain] = React.useState<SortEntry[]>([]);
   const [onlyChanged, setOnlyChanged] = React.useState(false);
   const [onlyFav, setOnlyFav] = React.useState(false);
+  const [onlyNew, setOnlyNew] = React.useState(false);
   const [open, setOpen] = React.useState<string | null>(null);
   const { isFav, toggle: toggleFav, count: favCount } = useFavorites();
 
@@ -58,12 +63,14 @@ export function ListingsTable({ listings, history, brand }: {
     () => listings.filter((l) => (history[l.id]?.length ?? 0) > 1).length,
     [listings, history]
   );
+  const newCount = React.useMemo(() => listings.filter(isNew).length, [listings, generatedAt]);
 
   const rows = React.useMemo(() => {
     let base = onlyChanged
       ? listings.filter((l) => (history[l.id]?.length ?? 0) > 1)
       : listings;
     if (onlyFav) base = base.filter((l) => isFav(l.id));
+    if (onlyNew) base = base.filter(isNew);
     const arr = [...base];
     arr.sort((a, b) => {
       for (const entry of sortChain) {
@@ -73,7 +80,7 @@ export function ListingsTable({ listings, history, brand }: {
       return 0;
     });
     return arr;
-  }, [listings, history, sortChain, onlyChanged, onlyFav, isFav]);
+  }, [listings, history, sortChain, onlyChanged, onlyFav, onlyNew, isFav, generatedAt]);
 
   const cycle = (k: SortKey) => {
     setSortChain((chain) => {
@@ -129,6 +136,14 @@ export function ListingsTable({ listings, history, brand }: {
               <Heart className={cn("h-3.5 w-3.5", onlyFav && "fill-current")} />
               Mijn favorieten ({favCount})
             </button>
+            {newCount > 0 && (
+              <button onClick={() => setOnlyNew((v) => !v)}
+                className={cn("inline-flex items-center gap-1 rounded-md border px-2 py-1 font-medium transition-colors",
+                  onlyNew ? "border-emerald-600 bg-emerald-600 text-white" : "hover:bg-muted")}>
+                <Sparkles className="h-3.5 w-3.5" />
+                Nieuw vandaag ({newCount})
+              </button>
+            )}
             <span className="text-muted-foreground">
               {rows.length} {rows.length === 1 ? "advertentie" : "advertenties"}
             </span>
@@ -152,21 +167,21 @@ export function ListingsTable({ listings, history, brand }: {
                 <th className="px-3 py-2 text-left font-medium">Auto</th>
                 <Th k="year">Jaar</Th>
                 <Th k="mileage_km">Km-stand</Th>
-                <Th k="distance_km">Afstand</Th>
+                <Th k="distance_km" className="hidden md:table-cell">Afstand</Th>
                 {teslaCols ? (
                   <>
-                    <th className="px-3 py-2 text-left font-medium">HW</th>
-                    <th className="px-3 py-2 text-left font-medium">FSD</th>
+                    <th className="hidden px-3 py-2 text-left font-medium lg:table-cell">HW</th>
+                    <th className="hidden px-3 py-2 text-left font-medium lg:table-cell">FSD</th>
                   </>
                 ) : (
                   <>
-                    <th className="px-3 py-2 text-left font-medium">Brandstof</th>
-                    <Th k="power_hp">Vermogen</Th>
+                    <th className="hidden px-3 py-2 text-left font-medium md:table-cell">Brandstof</th>
+                    <Th k="power_hp" className="hidden lg:table-cell">Vermogen</Th>
                   </>
                 )}
-                {rangeCol && <Th k="range_km">Actieradius</Th>}
+                {rangeCol && <Th k="range_km" className="hidden lg:table-cell">Actieradius</Th>}
                 <Th k="price_eur">Vraagprijs</Th>
-                <th className="px-3 py-2 text-left font-medium">Schatting</th>
+                <th className="hidden px-3 py-2 text-left font-medium sm:table-cell">Schatting</th>
                 <Th k="residualEur">Verschil</Th>
                 <th className="px-3 py-2" />
               </tr>
@@ -180,9 +195,15 @@ export function ListingsTable({ listings, history, brand }: {
                 return (
                   <React.Fragment key={l.id}>
                     <tr className="border-b last:border-0 hover:bg-muted/40">
-                      <td className="max-w-[260px] px-3 py-2">
-                        <div className="flex items-center gap-1.5 font-medium">
+                      <td className="max-w-[160px] px-3 py-2 sm:max-w-[260px]">
+                        <div className="flex flex-wrap items-center gap-1.5 font-medium">
                           <span>{l.model} {l.trim ?? ""}</span>
+                          {isNew(l) && (
+                            <span className="inline-flex items-center gap-0.5 rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
+                              title={`Nieuw geplaatst op ${l.first_seen}`}>
+                              <Sparkles className="h-2.5 w-2.5" />Nieuw
+                            </span>
+                          )}
                           {showSource && l.source === "tesla" && (
                             <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
                               title="Officiële Tesla-occasion">Tesla</span>
@@ -196,31 +217,31 @@ export function ListingsTable({ listings, history, brand }: {
                       </td>
                       <td className="px-3 py-2">{l.year ?? "—"}</td>
                       <td className="px-3 py-2">{km(l.mileage_km)}</td>
-                      <td className="px-3 py-2 whitespace-nowrap">
+                      <td className="hidden whitespace-nowrap px-3 py-2 md:table-cell">
                         {l.distance_km != null ? `${l.distance_km} km` : "—"}
                       </td>
                       {teslaCols ? (
                         <>
-                          <td className="px-3 py-2">
+                          <td className="hidden px-3 py-2 lg:table-cell">
                             {l.hw_platform ? (
                               <Badge variant={l.hw_confidence ? hwBadge[l.hw_confidence] ?? "warn" : "warn"}>
                                 {l.hw_platform}{l.hw_source === "inferred" ? "*" : ""}
                               </Badge>
                             ) : "—"}
                           </td>
-                          <td className="px-3 py-2">{l.fsd ? <Badge variant="good">FSD</Badge> :
+                          <td className="hidden px-3 py-2 lg:table-cell">{l.fsd ? <Badge variant="good">FSD</Badge> :
                             l.autopilot_package === "eap" ? <Badge variant="secondary">EAP</Badge> : "—"}</td>
                         </>
                       ) : (
                         <>
-                          <td className="px-3 py-2">
+                          <td className="hidden px-3 py-2 md:table-cell">
                             {l.fuel ? <Badge variant={l.fuel === "PHEV" ? "good" : "secondary"}>{l.fuel}</Badge> : "—"}
                           </td>
-                          <td className="px-3 py-2 whitespace-nowrap">{l.power_hp ? `${l.power_hp} pk` : "—"}</td>
+                          <td className="hidden whitespace-nowrap px-3 py-2 lg:table-cell">{l.power_hp ? `${l.power_hp} pk` : "—"}</td>
                         </>
                       )}
                       {rangeCol && (
-                        <td className="px-3 py-2 whitespace-nowrap">
+                        <td className="hidden whitespace-nowrap px-3 py-2 lg:table-cell">
                           {l.range_km != null ? (
                             <span title={(l.source ?? "marktplaats") === "tesla"
                               ? "Actieradius zoals Tesla.com die per auto opgeeft (ActualRange)"
@@ -248,7 +269,7 @@ export function ListingsTable({ listings, history, brand }: {
                         <span className="font-medium">{eur(l.price_eur)}</span>
                         {changed && <PriceChange points={hist!} current={l.price_eur} />}
                       </td>
-                      <td className="px-3 py-2 text-muted-foreground">{eur(l.predictedEur)}</td>
+                      <td className="hidden px-3 py-2 text-muted-foreground sm:table-cell">{eur(l.predictedEur)}</td>
                       <td className="px-3 py-2">
                         {deal && l.residualEur != null ? (
                           <Badge variant={deal.variant}>{l.residualEur > 0 ? "+" : ""}{eur(l.residualEur)}</Badge>

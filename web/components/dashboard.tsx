@@ -38,11 +38,11 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
   const bySource = data.summary.bySource;
 
   return (
-    <div className="container max-w-7xl py-8">
+    <div className="container max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
       <SiteHeader brand={brand} active="dashboard"
         subtitle={`${brand.modelsLabel} op ${market} · bijgewerkt ${data.generatedAt} · ${data.summary.count} actieve advertenties`} />
 
-      <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
         <StatCard icon={<Car className="h-4 w-4" />} label="Actieve auto's" value={String(data.summary.count)}
           sub={
             (brand.dimensions.source && bySource
@@ -60,7 +60,7 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
       <FilterBar data={data} brand={brand} filters={filters} setFilters={setFilters} resetTo={base} resultCount={filtered.length} />
 
       <Tabs defaultValue="scatter" className="mt-6">
-        <TabsList>
+        <TabsList className="flex w-full justify-start overflow-x-auto">
           <TabsTrigger value="scatter">Spreidingsdiagram</TabsTrigger>
           <TabsTrigger value="trends">Prijsontwikkeling</TabsTrigger>
           <TabsTrigger value="listings">Advertenties ({filtered.length})</TabsTrigger>
@@ -75,7 +75,7 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
           <PriceTrendsChart trends={data.priceTrends} />
         </TabsContent>
         <TabsContent value="listings">
-          <ListingsTable listings={filtered} history={data.priceHistory} brand={brand} />
+          <ListingsTable listings={filtered} history={data.priceHistory} brand={brand} generatedAt={data.generatedAt} />
         </TabsContent>
         <TabsContent value="estimator">
           <PriceEstimator data={data} brand={brand} />
@@ -99,12 +99,12 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
 function StatCard({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
   return (
     <Card>
-      <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{label}</CardTitle>
+      <CardHeader className="flex-row items-center justify-between space-y-0 p-4 pb-2 sm:p-6 sm:pb-2">
+        <CardTitle className="text-xs font-medium text-muted-foreground sm:text-sm">{label}</CardTitle>
         <span className="text-muted-foreground">{icon}</span>
       </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+      <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+        <div className="text-xl font-bold sm:text-2xl">{value}</div>
         {sub && <p className="mt-1 text-xs text-muted-foreground">{sub}</p>}
       </CardContent>
     </Card>

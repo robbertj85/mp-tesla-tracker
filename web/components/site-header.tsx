@@ -19,15 +19,15 @@ export function SiteHeader({ brand, subtitle, active }: {
   );
   return (
     <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
-      <div>
+      <div className="min-w-0 max-w-full">
         {/* Brand switcher — Tesla and Skoda are tracked entirely separately. */}
-        <nav className="mb-1 inline-flex items-center gap-1 rounded-lg border bg-card p-1">
+        <nav className="mb-1 flex max-w-full items-center gap-1 overflow-x-auto rounded-lg border bg-card p-1">
           {BRAND_KEYS.map((key) => (
             <Link
               key={key}
               href={`/${key}`}
               className={cn(
-                "rounded-md px-3 py-1 text-sm font-semibold transition-colors",
+                "whitespace-nowrap rounded-md px-3 py-1 text-sm font-semibold transition-colors",
                 key === brand.key ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -35,7 +35,7 @@ export function SiteHeader({ brand, subtitle, active }: {
             </Link>
           ))}
         </nav>
-        <h1 className="text-2xl font-bold tracking-tight">{brand.label} Prijstracker</h1>
+        <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{brand.label} Prijstracker</h1>
         {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
       </div>
       <nav className="flex items-center gap-1 rounded-lg border bg-card p-1">
