@@ -45,6 +45,8 @@ export interface Listing {
   tow_hitch?: boolean | null;
   first_seen: string;
   last_seen: string;
+  /** False once a listing has been missing from enough runs (sold/removed). */
+  active?: boolean | null;
   thumbnail: string | null;
   predictedEur: number | null;
   residualEur: number | null;
