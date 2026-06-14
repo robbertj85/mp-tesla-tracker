@@ -6771,6 +6771,12 @@
    "priceEur": 32000
   }
  ],
+ "tesla-LRWYGCEK0MC121736": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 33400
+  }
+ ],
  "tesla-LRWYGCEK1NC241014": [
   {
    "date": "2026-06-05",
@@ -6781,6 +6787,10 @@
   {
    "date": "2026-06-05",
    "priceEur": 34300
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 32200
   }
  ],
  "tesla-LRWYGCEK3NC343298": [
@@ -6807,6 +6817,12 @@
    "priceEur": 33700
   }
  ],
+ "tesla-LRWYGCEK8NC221021": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 33400
+  }
+ ],
  "tesla-LRWYGCEK8PC710912": [
   {
    "date": "2026-06-05",
@@ -6823,6 +6839,10 @@
   {
    "date": "2026-06-05",
    "priceEur": 35300
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 33500
   }
  ],
  "tesla-LRWYGCEKXMC052652": [
@@ -6841,12 +6861,26 @@
   {
    "date": "2026-06-05",
    "priceEur": 37200
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 35000
+  }
+ ],
+ "tesla-LRWYGCEKXPC739263": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 34400
   }
  ],
  "tesla-LRWYGCFS0PC625562": [
   {
    "date": "2026-06-05",
    "priceEur": 34700
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 32800
   }
  ],
  "tesla-LRWYGCFS0PC634679": [
@@ -6859,6 +6893,16 @@
   {
    "date": "2026-06-05",
    "priceEur": 33200
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 31600
+  }
+ ],
+ "tesla-LRWYGCFS2PC884795": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 34100
   }
  ],
  "tesla-LRWYGCFS3PC674609": [
@@ -6871,6 +6915,40 @@
   {
    "date": "2026-06-05",
    "priceEur": 30900
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 28900
+  }
+ ],
+ "tesla-LRWYGCFS6PC695566": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 32700
+  }
+ ],
+ "tesla-LRWYGCFS7PC774647": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 29500
+  }
+ ],
+ "tesla-LRWYGCFS8PC029437": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 33800
+  }
+ ],
+ "tesla-LRWYGCFS9PC695545": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 29900
+  }
+ ],
+ "tesla-LRWYGCFSXPC617324": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 29100
   }
  ],
  "tesla-LRWYGCFSXPC862754": [
@@ -6895,6 +6973,10 @@
   {
    "date": "2026-06-05",
    "priceEur": 38600
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 36200
   }
  ],
  "tesla-XP7YGCEK1PB069297": [
@@ -6913,18 +6995,38 @@
   {
    "date": "2026-06-05",
    "priceEur": 40200
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 37900
   }
  ],
  "tesla-XP7YGCEK1RB364094": [
   {
    "date": "2026-06-05",
    "priceEur": 43100
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 40900
+  }
+ ],
+ "tesla-XP7YGCEK1RB391148": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 42600
   }
  ],
  "tesla-XP7YGCEK2PB066957": [
   {
    "date": "2026-06-05",
    "priceEur": 35600
+  }
+ ],
+ "tesla-XP7YGCEK2RB421547": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 44100
   }
  ],
  "tesla-XP7YGCEK3PB071214": [
@@ -6937,6 +7039,10 @@
   {
    "date": "2026-06-05",
    "priceEur": 40000
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 38000
   }
  ],
  "tesla-XP7YGCEK4NB019331": [
@@ -6949,6 +7055,10 @@
   {
    "date": "2026-06-05",
    "priceEur": 35300
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 32900
   }
  ],
  "tesla-XP7YGCEK4PB069469": [
@@ -6975,16 +7085,30 @@
    "priceEur": 38600
   }
  ],
+ "tesla-XP7YGCEK5PB153171": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 33500
+  }
+ ],
  "tesla-XP7YGCEK6PB070395": [
   {
    "date": "2026-06-05",
    "priceEur": 40100
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 37700
   }
  ],
  "tesla-XP7YGCEK6PB095653": [
   {
    "date": "2026-06-05",
    "priceEur": 38600
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 36000
   }
  ],
  "tesla-XP7YGCEK6RB362843": [
@@ -6997,18 +7121,38 @@
   {
    "date": "2026-06-05",
    "priceEur": 35700
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 33100
   }
  ],
  "tesla-XP7YGCEK7PB069966": [
   {
    "date": "2026-06-05",
    "priceEur": 37500
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 35700
   }
  ],
  "tesla-XP7YGCEK7PB075041": [
   {
    "date": "2026-06-05",
    "priceEur": 38500
+  }
+ ],
+ "tesla-XP7YGCEK7PB103307": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 34000
+  }
+ ],
+ "tesla-XP7YGCEK7PB128904": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 37200
   }
  ],
  "tesla-XP7YGCEK7PB130006": [
@@ -7021,18 +7165,30 @@
   {
    "date": "2026-06-05",
    "priceEur": 40500
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 35900
   }
  ],
  "tesla-XP7YGCEK7PB216836": [
   {
    "date": "2026-06-05",
    "priceEur": 41700
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 39200
   }
  ],
  "tesla-XP7YGCEK7RB361331": [
   {
    "date": "2026-06-05",
    "priceEur": 43000
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 41200
   }
  ],
  "tesla-XP7YGCEK8PB067644": [
@@ -7041,22 +7197,48 @@
    "priceEur": 35200
   }
  ],
+ "tesla-XP7YGCEK8PB083732": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 36500
+  }
+ ],
+ "tesla-XP7YGCEK8PB100139": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 33700
+  }
+ ],
  "tesla-XP7YGCEK9NB030843": [
   {
    "date": "2026-06-05",
    "priceEur": 39900
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 38100
   }
  ],
  "tesla-XP7YGCEK9PB074182": [
   {
    "date": "2026-06-05",
    "priceEur": 40800
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 38500
   }
  ],
  "tesla-XP7YGCEKXPB080668": [
   {
    "date": "2026-06-05",
    "priceEur": 39200
+  }
+ ],
+ "tesla-XP7YGCEKXPB098782": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 39700
   }
  ],
  "tesla-XP7YGCEKXRB299603": [
@@ -7075,6 +7257,16 @@
   {
    "date": "2026-06-05",
    "priceEur": 37400
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 33700
+  }
+ ],
+ "tesla-XP7YGCEL1RB291544": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 42400
   }
  ],
  "tesla-XP7YGCEL3NB010970": [
@@ -7105,12 +7297,20 @@
   {
    "date": "2026-06-05",
    "priceEur": 37700
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 35400
   }
  ],
  "tesla-XP7YGCES1RB303490": [
   {
    "date": "2026-06-05",
    "priceEur": 36600
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 34400
   }
  ],
  "tesla-XP7YGCES3RB338497": [
@@ -7119,10 +7319,20 @@
    "priceEur": 33000
   }
  ],
+ "tesla-XP7YGCES6RB287738": [
+  {
+   "date": "2026-06-14",
+   "priceEur": 36700
+  }
+ ],
  "tesla-XP7YGCFS7RB365877": [
   {
    "date": "2026-06-05",
    "priceEur": 37500
+  },
+  {
+   "date": "2026-06-14",
+   "priceEur": 35100
   }
  ]
 }
