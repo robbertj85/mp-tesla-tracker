@@ -16,6 +16,8 @@ export interface Filters {
   fuel: string;
   transmission: string;
   drivetrain: string;
+  equipmentLine: string;
+  body: string;
   condition: string;
   tow: string;
   yearMin: number;
@@ -33,6 +35,8 @@ export const defaultFilters: Filters = {
   fuel: "all",
   transmission: "all",
   drivetrain: "all",
+  equipmentLine: "all",
+  body: "all",
   condition: "all",
   tow: "all",
   yearMin: 2017,
@@ -51,6 +55,8 @@ export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.fuel !== "all" && l.fuel !== f.fuel) return false;
   if (f.transmission !== "all" && l.transmission !== f.transmission) return false;
   if (f.drivetrain !== "all" && l.drivetrain !== f.drivetrain) return false;
+  if (f.equipmentLine !== "all" && (l.equipment_line ?? "") !== f.equipmentLine) return false;
+  if (f.body !== "all" && l.body !== f.body) return false;
   if (f.condition !== "all" && l.condition !== f.condition) return false;
   if (f.tow === "yes" && !l.tow_hitch) return false;
   if (f.tow === "no" && l.tow_hitch) return false;
@@ -107,7 +113,7 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
             ]} />
         )}
         {dim.trim && (
-          <Dropdown label="Trim" value={filters.trim} onChange={(v) => set({ trim: v })} options={opt(data.facets.trims)} />
+          <Dropdown label={brand.trimLabel ?? "Trim"} value={filters.trim} onChange={(v) => set({ trim: v })} options={opt(data.facets.trims)} />
         )}
         {dim.hw && (
           <Dropdown label="Hardware" value={filters.hw} onChange={(v) => set({ hw: v })} options={opt(data.facets.hwPlatforms)} />
@@ -124,6 +130,12 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
         )}
         {dim.drivetrain && (
           <Dropdown label="Aandrijving" value={filters.drivetrain} onChange={(v) => set({ drivetrain: v })} options={opt(data.facets.drivetrains)} />
+        )}
+        {dim.body && (
+          <Dropdown label="Carrosserie" value={filters.body} onChange={(v) => set({ body: v })} options={opt(data.facets.bodies ?? [])} />
+        )}
+        {dim.equipmentLine && (
+          <Dropdown label="Uitrustingslijn" value={filters.equipmentLine} onChange={(v) => set({ equipmentLine: v })} options={opt(data.facets.equipmentLines ?? [])} />
         )}
         <Dropdown label="Staat" value={filters.condition} onChange={(v) => set({ condition: v })} options={opt(data.facets.conditions)} />
         <Dropdown label="Trekhaak" value={filters.tow} onChange={(v) => set({ tow: v })}

@@ -5,8 +5,10 @@ export interface EstimatorInput {
   mileage_km: number;
   power_hp: number;
   range_km: number;
+  battery_kwh: number;
   model: string;
   trim: string;
+  equipment_line: string;
   drivetrain: string;
   hw_platform: string;
   fsd: string; // "yes" | "no"

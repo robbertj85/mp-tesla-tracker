@@ -4,6 +4,7 @@ Records share a common core (brand, model, year, mileage, price, color, …) plu
 brand-specific block selected by `brand.pipeline`:
   * tesla — trim/Highland/HW/FSD/SoH/range from free-text heuristics.
   * skoda — fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
+  * enyaq — the skoda block plus variant/battery/equipment line/Coupé-vs-SUV.
 Every record carries the union of keys (brand-irrelevant ones are None) so the
 exporter and regression frame stay uniform.
 """
@@ -11,7 +12,7 @@ from __future__ import annotations
 
 import re
 
-from . import config, extract, infer
+from . import config, enyaq, extract, infer
 from .config import Brand
 
 
@@ -69,6 +70,9 @@ _TESLA_NULL_FIELDS = {
     "range_km": None, "interior_color": None, "upholstery": None,
 }
 
+# Enyaq-only fields, likewise nulled elsewhere so every record carries the same keys.
+_ENYAQ_NULL_FIELDS = {"battery_kwh": None, "equipment_line": None}
+
 
 def _normalise_skoda_drivetrain(structured: str | None) -> str | None:
     """Map Marktplaats' Dutch 'Aandrijving' value to FWD / AWD / RWD."""
@@ -114,6 +118,7 @@ def _derive_tesla(raw: dict, detail: dict, model: str, year, title: str,
         "range_km": detail.get("range_km") or _to_int(_search_attr(raw, "range")),
         "interior_color": detail.get("interior_color"),
         "upholstery": detail.get("upholstery"),
+        **_ENYAQ_NULL_FIELDS,
     }
 
 
@@ -135,6 +140,34 @@ def _derive_skoda(raw: dict, detail: dict) -> dict:
         "transmission": transmission,
     }
     out.update(_TESLA_NULL_FIELDS)
+    out.update(_ENYAQ_NULL_FIELDS)
+    return out
+
+
+def derive_enyaq_spec(title: str, description: str, year, power_hp,
+                      drivetrain: str | None) -> dict:
+    """Enyaq variant / battery / equipment line / body from the ad.
+
+    Shared by build_record and the re-derive path so the two never drift. `trim`
+    carries the variant (the 60-vs-80 split the whole tracker hangs on) so it lands
+    in the dimension the dashboard already renders; `body` overwrites Marktplaats'
+    value, which is "SUV of Terreinwagen" for the Coupé too and so says nothing.
+    """
+    variant = enyaq.detect_variant(title, power_hp, year, drivetrain)
+    return {
+        "trim": variant,
+        "battery_kwh": enyaq.battery_kwh(variant, year, power_hp),
+        "equipment_line": enyaq.detect_equipment_line(f"{title}\n{description}"),
+        "body": enyaq.detect_body(title, description),
+    }
+
+
+def _derive_enyaq(raw: dict, detail: dict, title: str, description: str, year,
+                  power_hp) -> dict:
+    """Skoda block (fuel/transmission/driveline) plus the Enyaq-specific spec."""
+    out = _derive_skoda(raw, detail)
+    out.update(derive_enyaq_spec(title, description, year, power_hp,
+                                 out.get("drivetrain")))
     return out
 
 
@@ -214,7 +247,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
         "active": True,
     }
 
-    if brand.pipeline == "skoda":
+    if brand.pipeline == "enyaq":
+        rec.update(_derive_enyaq(raw, detail, title, description, year, power_hp))
+    elif brand.pipeline == "skoda":
         rec.update(_derive_skoda(raw, detail))
     else:
         rec.update(_derive_tesla(raw, detail, model, year, title, description, power_hp))
@@ -291,4 +326,5 @@ def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
         "range_km": parsed.get("range_km"),
         "interior_color": parsed.get("interior_color"),
         "upholstery": parsed.get("upholstery"),
+        **_ENYAQ_NULL_FIELDS,
     }

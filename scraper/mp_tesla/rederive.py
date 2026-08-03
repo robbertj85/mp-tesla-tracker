@@ -42,9 +42,24 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")
 
-    # Only Tesla has free-text-derived fields (trim/Highland/HW) to recompute.
+    # Tesla (trim/Highland/HW) and Enyaq (variant/battery/line/body) both derive
+    # fields from the kept free text, so both can be recomputed without re-scraping.
     changed = 0
-    if brand.pipeline == "tesla":
+    if brand.pipeline == "enyaq":
+        for rec in listings.values():
+            spec = record.derive_enyaq_spec(
+                rec.get("title", ""), rec.get("description", "") or "",
+                rec.get("year"), rec.get("power_hp"), rec.get("drivetrain"),
+            )
+            before = tuple(rec.get(k) for k in spec)
+            rec.update(spec)
+            if before != tuple(spec.values()):
+                changed += 1
+        listings_path.write_text(
+            json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    elif brand.pipeline == "tesla":
         for rec in listings.values():
             text = f"{rec.get('title', '')}\n{rec.get('description', '')}"
             is_highland, is_juniper, trim, hw = record.derive_refresh_trim_hw(

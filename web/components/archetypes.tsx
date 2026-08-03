@@ -40,6 +40,8 @@ export function Archetypes({ data, brand }: { data: Dataset; brand: BrandConfig 
             <CardDescription>
               {isTesla
                 ? "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/range en meest voorkomende HW & FSD binnen die groep."
+                : brand.dimensions.battery
+                ? "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/vermogen binnen die groep (accu-uitvoering × carrosserie)."
                 : "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/vermogen binnen die groep (brandstof × aandrijving)."}
             </CardDescription>
           </CardHeader>

@@ -92,6 +92,8 @@ def _facets(active: list[dict]) -> dict:
         "drivetrains": top("drivetrain"),
         "fuels": top("fuel"),
         "transmissions": top("transmission"),
+        "bodies": top("body"),
+        "equipmentLines": top("equipment_line"),
         "years": years,
     }
 
@@ -136,7 +138,7 @@ def build_payload(listings: dict, history: dict, model_result: dict,
                 "id", "brand", "source", "url", "title", "model", "trim", "is_highland", "is_juniper", "year",
                 "mileage_km", "price_eur", "price_type", "condition", "color",
                 "interior_color", "body", "drivetrain", "fuel", "transmission",
-                "power_hp", "range_km",
+                "power_hp", "range_km", "battery_kwh", "equipment_line",
                 "num_seats", "fsd", "autopilot_package", "soh_percent",
                 "hw_platform", "hw_source", "hw_confidence", "city", "distance_km",
                 "seller_name", "view_count", "favorited_count", "post_date",

@@ -72,6 +72,8 @@ function summarise(ls: Listing[], lm: LinearModel | null): Omit<Archetype, "key"
   const modeTrim = mode(ls.map((l) => l.trim).filter(Boolean) as string[]);
   const modeDrivetrain = mode(ls.map((l) => l.drivetrain).filter(Boolean) as string[]);
   const modeFuel = mode(ls.map((l) => l.fuel).filter(Boolean) as string[]);
+  const modeLine = mode(ls.map((l) => l.equipment_line).filter(Boolean) as string[]);
+  const modeBattery = mode(ls.map((l) => l.battery_kwh).filter((x): x is number => x != null));
   const modeCondition = mode(ls.map((l) => l.condition).filter(Boolean) as string[]) ?? "USED";
   const modeColor = mode(ls.map((l) => l.color).filter(Boolean) as string[]) ?? "unknown";
   const modeBody = mode(ls.map((l) => l.body).filter(Boolean) as string[]) ?? "unknown";
@@ -90,6 +92,8 @@ function summarise(ls: Listing[], lm: LinearModel | null): Omit<Archetype, "key"
       hw_platform: modeHw ?? "unknown",
       fsd: fsdShare >= 0.5 ? "yes" : "no",
       fuel: modeFuel ?? "unknown",
+      equipment_line: modeLine ?? "unknown",
+      ...(modeBattery != null ? { battery_kwh: modeBattery } : {}),
       transmission: "Automatic",
       body: modeBody,
       color: modeColor,
@@ -149,10 +153,39 @@ function buildSkoda(listings: Listing[], lm: LinearModel | null): Archetype[] {
   return rows;
 }
 
+/** Enyaq: fuel is "Electric" on every car, so grouping by it says nothing. The
+ *  battery variant (the `trim` dimension) × body shape is the real split. */
+function buildEnyaq(listings: Listing[], lm: LinearModel | null): Archetype[] {
+  const groups = new Map<string, Listing[]>();
+  for (const l of listings) {
+    if (!l.trim) continue;
+    const key = `${l.model}|${l.trim}|${l.body ?? "—"}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(l);
+  }
+  const rows: Archetype[] = [];
+  for (const [key, ls] of groups) {
+    const [model, variant, body] = key.split("|");
+    rows.push({
+      key, model, label: body === "—" ? variant : `${variant} · ${body}`,
+      generation: null, fuel: ls[0].fuel ?? null,
+      drivetrain: ls[0].drivetrain ?? null, ...summarise(ls, lm),
+    });
+  }
+  // Price ladder order: smallest battery first, RS last.
+  const order = ["50", "60", "80", "80x", "85", "85x", "RS"];
+  const rank = (a: Archetype) => order.indexOf(a.label.split(" · ")[0]);
+  rows.sort((a, b) => rank(a) - rank(b) || a.label.localeCompare(b.label));
+  return rows;
+}
+
 export function buildArchetypes(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
   // Which grouping applies follows the brand's dimensions, not its key: every
-  // Tesla-pipeline brand carries hw/trim, all others (Skoda, Octavia, Enyaq) are
-  // grouped by fuel × drivetrain. buildTesla only ever matches Model 3 / Model Y,
-  // so keying off the brand name left the non-Tesla views without archetypes.
-  return brand.dimensions.hw ? buildTesla(listings, lm) : buildSkoda(listings, lm);
+  // Tesla-pipeline brand carries hw/trim, the Enyaq splits by battery variant, and
+  // the rest group by fuel × drivetrain. buildTesla only ever matches Model 3 /
+  // Model Y, so keying off the brand name left the non-Tesla views without
+  // archetypes at all.
+  if (brand.dimensions.hw) return buildTesla(listings, lm);
+  if (brand.dimensions.battery) return buildEnyaq(listings, lm);
+  return buildSkoda(listings, lm);
 }

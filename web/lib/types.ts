@@ -24,6 +24,10 @@ export interface Listing {
   transmission: string | null;
   power_hp: number | null;
   range_km: number | null;
+  /** Usable battery capacity (kWh), derived from the variant. Enyaq only. */
+  battery_kwh?: number | null;
+  /** Equipment/appearance line (Sportline, First Edition, …). Enyaq only, sparse. */
+  equipment_line?: string | null;
   /** Estimated original (as-new) WLTP for this car's cohort, and its range as a
    *  % of it — a rough battery-condition estimate. Only set on Tesla.com listings. */
   wltpEst?: number | null;
@@ -135,6 +139,8 @@ export interface Dataset {
     drivetrains: string[];
     fuels: string[];
     transmissions: string[];
+    bodies?: string[];
+    equipmentLines?: string[];
     years: number[];
   };
   listings: Listing[];

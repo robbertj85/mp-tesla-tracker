@@ -11,6 +11,7 @@ they are never mixed.
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 # --- Marktplaats search endpoint -------------------------------------------------
@@ -162,7 +163,7 @@ BRANDS: dict[str, Brand] = {
         year_to=None,
         price_cents_to=6_000_000,   # <= €60,000 (a nearly-new 85 Sportline tops ~€57k)
         min_price_eur=5000,
-        pipeline="skoda",
+        pipeline="enyaq",
         source_query="auto-s/skoda | Enyaq (iV + Coupé) | elektrisch | constructionYear>=2020 | price<=60000",
     ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
@@ -199,7 +200,86 @@ FEATURE_SPECS: dict[str, dict] = {
         "categorical": ["model", "fuel", "transmission", "drivetrain", "body",
                         "color", "condition"],
     },
+    # Enyaq: fuel and transmission are constant across the whole tracker (every car
+    # is electric with a single-speed automatic), so they carry no signal and are
+    # dropped. Battery size and variant replace them as the real price drivers, and
+    # `body` becomes meaningful here because we split Coupé from SUV ourselves.
+    "enyaq": {
+        "numeric": ["age", "mileage_km", "power_hp", "battery_kwh"],
+        "categorical": ["model", "trim", "equipment_line", "drivetrain", "body",
+                        "color", "condition"],
+    },
 }
+
+# =================================================================================
+# Skoda Enyaq variants (see enyaq.py for how these are applied)
+# =================================================================================
+# The 2024 facelift renamed and re-powered the range, so several figures only make
+# sense together with the build year.
+ENYAQ_FACELIFT_YEAR = 2024
+
+# Variant from the structured power figure: (hp values, year_from, year_to, variant).
+# First matching row wins, so the year-bounded rows must precede the open ones.
+#   pre-facelift: 50 = 148 hp · 60 = 179/180 hp · 80 = 204 hp · 80x = 265 hp · RS = 299 hp
+#   facelift:     60 = 204 hp · 85/85x = 286 hp · RS = 340 hp
+# 204 hp is therefore the 80 *or* the 60 depending on the generation — the single
+# most important reason this table is year-aware.
+ENYAQ_POWER_VARIANTS: list[tuple[tuple[int, ...], int | None, int | None, str]] = [
+    ((340,), None, None, "RS"),
+    ((299, 300), None, None, "RS"),   # sellers round the pre-facelift RS's 299 hp
+    ((286,), None, None, "85"),
+    ((265,), None, None, "80x"),
+    ((204,), ENYAQ_FACELIFT_YEAR, None, "60"),    # facelift 60
+    ((204,), None, ENYAQ_FACELIFT_YEAR - 1, "80"),  # pre-facelift 80
+    ((179, 180), None, None, "60"),
+    ((148, 150), None, None, "50"),
+]
+
+# Variant from the title. The token must follow "Enyaq" / "Coupé" / "iV" so that
+# "80.000 km", "SOH 90%", '21"' and prices can't be mistaken for a variant. Longer
+# tokens first ('85x' before '85') since the alternation is ordered.
+ENYAQ_VARIANT_PATTERN = re.compile(
+    r"(?:enyaq|coup[eé]|\biv\b)[\s|/,-]*(?:iv[\s|/,-]*)?(85\s*x|85|80\s*x|80|60|50)\b",
+    re.I,
+)
+ENYAQ_RS_PATTERN = re.compile(r"\brs\b", re.I)
+
+# An AWD badge promotes a base variant to its all-wheel-drive twin — but ONLY for
+# the pair that shares a power figure. The 85 and 85x are both 286 hp, so the
+# driveline is the only thing telling them apart. The 80 (204 hp) and 80x (265 hp)
+# are already separated by power, and promoting there on the seller-entered AWD
+# attribute just mislabels 204 hp cars whose ad has the driveline wrong.
+ENYAQ_AWD_TWIN = {"85": "85x"}
+
+# Usable (not gross) battery capacity per variant, kWh. Gross figures are
+# 55 / 62 / 82 kWh; usable is what the car actually delivers.
+ENYAQ_BATTERY_KWH = {
+    "50": 52.0,
+    "60": 58.0,
+    "80": 77.0, "80x": 77.0,
+    "85": 77.0, "85x": 77.0,
+    "RS": 77.0,
+}
+# The facelift 60 carries a slightly bigger pack (63 kWh gross) than the original,
+# and is identified by its 204 hp motor (the original 60 makes 179/180 hp).
+ENYAQ_BATTERY_KWH_FACELIFT_60 = 59.0
+ENYAQ_FACELIFT_60_HP = (204,)
+
+# Equipment / appearance lines, most distinctive first (first match wins). Only
+# ~40% of ads name one. RS is deliberately absent: it is a variant, not a line.
+ENYAQ_EQUIPMENT_LINES: list[tuple[str, list[str]]] = [
+    ("Laurin & Klement", [r"laurin\s*(&|en|\+)?\s*klement", r"\bl&k\b"]),
+    ("Sportline", [r"sport\s*line"]),
+    ("Founders Edition", [r"founders?\s*edition"]),
+    ("First Edition", [r"first\s*edition"]),
+    ("Business Edition", [r"business\s*edition"]),
+    ("Tour Edition", [r"tour\s*edition"]),
+    ("Selection", [r"\bselection\b"]),
+    ("Max", [r"\bmax\b"]),
+]
+
+# Coupé vs the regular SUV — Marktplaats labels both "SUV of Terreinwagen".
+ENYAQ_COUPE_PATTERN = re.compile(r"coup[eé]", re.I)
 
 # Skoda fuel-label normalisation (Marktplaats Dutch labels -> our canonical names).
 FUEL_NORMALISE = {

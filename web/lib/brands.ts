@@ -15,6 +15,13 @@ export interface BrandDimensions {
   fuel: boolean;
   transmission: boolean;
   drivetrain: boolean;
+  /** Usable battery (kWh) column + estimator input, derived from the variant. */
+  battery: boolean;
+  /** Equipment/appearance line (Sportline, First Edition, …) as its own filter. */
+  equipmentLine: boolean;
+  /** Body shape as a real dimension (Enyaq: Coupé vs SUV, which Marktplaats
+   *  reports identically, so we derive it ourselves). */
+  body: boolean;
   /** Whether listings carry a Marktplaats/Tesla.com source split (Bron filter,
    *  source badge, and the 3-way Marktplaats/Tesla/Combined price model). */
   source: boolean;
@@ -27,6 +34,9 @@ export interface BrandConfig {
   modelsLabel: string;
   /** Fixed dot/line colours per model so scatter dots and trend lines match. */
   modelColors: Record<string, string>;
+  /** What the `trim` dimension is actually called for this brand — Tesla has
+   *  trims, the Enyaq has battery variants ("Uitvoering"). Defaults to "Trim". */
+  trimLabel?: string;
   dimensions: BrandDimensions;
 }
 
@@ -39,6 +49,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: true, hw: true, fsd: true, range: true,
       fuel: false, transmission: false, drivetrain: true, source: true,
+      battery: false, equipmentLine: false, body: false,
     },
   },
   skoda: {
@@ -49,6 +60,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true, source: false,
+      battery: false, equipmentLine: false, body: false,
     },
   },
   // Tesla Model S resale view (build years 2013+, mileage <= 250.000 km). Same
@@ -61,6 +73,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: true, hw: true, fsd: true, range: true,
       fuel: false, transmission: false, drivetrain: true, source: true,
+      battery: false, equipmentLine: false, body: false,
     },
   },
   // Older-Octavia resale view (build years 2006–2014, all bodies, both gearboxes).
@@ -72,19 +85,24 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true, source: false,
+      battery: false, equipmentLine: false, body: false,
     },
   },
-  // Skoda Enyaq (full-electric SUV + Coupé, build years 2021+). Every car is
+  // Skoda Enyaq (full-electric SUV + Coupé, build years 2020+). Every car is
   // electric with a single-speed automatic, so those two filters would only ever
-  // offer one value — drivetrain (RWD vs AWD) is the meaningful driveline split.
+  // offer one value. What matters instead is the battery variant (50/60/80/85/RS),
+  // the Coupé-vs-SUV shape and the equipment line — none of which Marktplaats
+  // exposes as structured data, so the scraper derives all three.
   enyaq: {
     key: "enyaq",
     label: "Enyaq",
     modelsLabel: "Skoda Enyaq iV & Coupé · volledig elektrisch",
     modelColors: { Enyaq: "#0891b2" },
+    trimLabel: "Uitvoering",
     dimensions: {
-      trim: false, hw: false, fsd: false, range: false,
+      trim: true, hw: false, fsd: false, range: false,
       fuel: false, transmission: false, drivetrain: true, source: false,
+      battery: true, equipmentLine: true, body: true,
     },
   },
 };

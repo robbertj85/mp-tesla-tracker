@@ -54,8 +54,7 @@ def test_enyaq_guard_accepts_electric_and_rejects_others():
     assert search._canonical_model(_listing("m3", model="Kodiaq"), ENYAQ) is None
 
 
-def test_enyaq_is_registered_for_the_skoda_pipeline():
-    assert ENYAQ.pipeline == "skoda"
+def test_enyaq_is_registered_with_a_feature_spec():
     assert ENYAQ.pipeline in config.FEATURE_SPECS
 
 

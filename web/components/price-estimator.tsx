@@ -8,6 +8,7 @@ import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { predictPrice } from "@/lib/predict";
+import { enyaqBatteryKwh } from "@/lib/enyaq";
 import { eur } from "@/lib/utils";
 
 const CURRENT_YEAR = 2026;
@@ -33,6 +34,8 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
     fsd: "no",
     fuel: f.fuels[0] ?? "unknown",
     transmission: f.transmissions[0] ?? "unknown",
+    body: f.bodies?.[0] ?? "unknown",
+    equipment_line: f.equipmentLines?.[0] ?? "unknown",
     condition: f.conditions[0] ?? "unknown",
     year: clampYear(2021),
     mileage_km: 80000,
@@ -73,6 +76,9 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
   const estimate = predictPrice(lm, {
     ...state,
     age: Math.max(0, CURRENT_YEAR - state.year),
+    // Battery follows from the variant, so it is derived rather than asked for —
+    // picking an "80 with a 58 kWh pack" is not a car that exists.
+    ...(dim.battery ? { battery_kwh: enyaqBatteryKwh(state.trim, state.year) } : {}),
   });
 
   const set = (patch: Partial<typeof state>) => setState({ ...state, ...patch });
@@ -159,10 +165,12 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-3">
           <Sel label="Model" value={state.model} onChange={(v) => set({ model: v })} options={f.models} />
-          {dim.trim && <Sel label="Trim" value={state.trim} onChange={(v) => set({ trim: v })} options={f.trims} />}
+          {dim.trim && <Sel label={brand.trimLabel ?? "Trim"} value={state.trim} onChange={(v) => set({ trim: v })} options={f.trims} />}
           {dim.fuel && <Sel label="Brandstof" value={state.fuel} onChange={(v) => set({ fuel: v })} options={f.fuels} />}
           {dim.transmission && <Sel label="Transmissie" value={state.transmission} onChange={(v) => set({ transmission: v })} options={f.transmissions} />}
           {dim.drivetrain && <Sel label="Aandrijving" value={state.drivetrain} onChange={(v) => set({ drivetrain: v })} options={f.drivetrains} />}
+          {dim.body && <Sel label="Carrosserie" value={state.body} onChange={(v) => set({ body: v })} options={f.bodies ?? []} />}
+          {dim.equipmentLine && <Sel label="Uitrustingslijn" value={state.equipment_line} onChange={(v) => set({ equipment_line: v })} options={f.equipmentLines ?? []} />}
           {dim.hw && <Sel label="Hardware" value={state.hw_platform} onChange={(v) => set({ hw_platform: v })} options={f.hwPlatforms} />}
           {dim.fsd && <Sel label="FSD" value={state.fsd} onChange={(v) => set({ fsd: v })} options={["no", "yes"]} />}
           <Sel label="Staat" value={state.condition} onChange={(v) => set({ condition: v })} options={f.conditions} />

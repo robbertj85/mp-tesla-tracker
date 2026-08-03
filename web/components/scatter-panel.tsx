@@ -22,6 +22,13 @@ type XKey = keyof typeof X_AXES;
 
 type ColorKey = string;
 
+// Readable names for the colour-by dropdown; unmapped keys fall back to the key.
+const COLOR_LABELS: Record<string, string> = {
+  model: "Model", source: "Bron", trim: "Uitvoering", hw_platform: "Hardware",
+  fuel: "Brandstof", drivetrain: "Aandrijving", body: "Carrosserie",
+  equipment_line: "Uitrustingslijn", dealLabel: "Deal",
+};
+
 const PALETTE = ["#2563eb", "#dc2626", "#059669", "#d97706", "#7c3aed", "#0891b2",
   "#db2777", "#65a30d", "#475569", "#ca8a04"];
 
@@ -55,6 +62,8 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
     if (dim.hw) opts.push("hw_platform");
     if (dim.fuel) opts.push("fuel");
     if (dim.drivetrain) opts.push("drivetrain");
+    if (dim.body) opts.push("body");
+    if (dim.equipmentLine) opts.push("equipment_line");
     opts.push("dealLabel");
     return opts;
   }, [dim]);
@@ -137,7 +146,7 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
             <SelectTrigger className="w-[170px]"><SelectValue /></SelectTrigger>
             <SelectContent>
               {colorOptions.map((k) => (
-                <SelectItem key={k} value={k}>Kleur: {k}</SelectItem>
+                <SelectItem key={k} value={k}>Kleur: {COLOR_LABELS[k] ?? k}</SelectItem>
               ))}
             </SelectContent>
           </Select>

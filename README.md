@@ -14,7 +14,7 @@ own dashboard route) and is never mixed:
 | **Skoda** | Octavia & Superb | build year ≥ 2019; **petrol + PHEV only**, **automatic only**, **Combi only**; brand/model/engine-driveline/odometer/price |
 | **Octavia '06–'14** | Octavia (all bodies) | build years 2006–2014; **all fuels + both gearboxes** (automatic vs manual split in the dashboard) — a resale view for an older Octavia |
 | **Model S** | Tesla Model S | build year ≥ 2013; **mileage ≤ 250.000 km**; Autopilot platform inferred across **HW1/HW2/HW2.5/HW3/HW4** from build year (explicit ad mentions win) |
-| **Enyaq** | Skoda Enyaq (iV + Coupé) | build year ≥ 2020; **fully electric only**; drivetrain (RWD/AWD), body, odometer, power, price |
+| **Enyaq** | Skoda Enyaq (iV + Coupé) | build year ≥ 2020; **fully electric only**; **battery variant (50/60/80/80x/85/85x/RS) + usable kWh**, **Coupé vs SUV**, equipment line, drivetrain, odometer, power, price |
 
 Everything brand-specific lives in the `BRANDS` registry in
 `scraper/mp_tesla/config.py`; the rest of the pipeline is brand-generic and takes a
@@ -69,12 +69,22 @@ User-Agent works server-side (validated 2026-06-01).
    rare blocks.
 3. **Record** (`record.py`) — builds a shared core then a brand block:
    *Tesla* = trim/Highland/HW/FSD/SoH heuristics (`extract.py` + `infer.py`);
-   *Skoda* = fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
+   *Skoda* = fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD);
+   *Enyaq* = the Skoda block plus battery variant, usable kWh, equipment line and
+   Coupé-vs-SUV (`enyaq.py`). The variant comes from the structured power figure
+   first and the title text second — the two agree on 98.6% of ads. The power map
+   is **year-aware**: 204 hp is the pre-facelift *80* but the post-facelift *60*,
+   so a flat map would mislabel every facelift 60 and overstate its battery by
+   18 kWh. Marktplaats reports "SUV of Terreinwagen" for the Coupé too, so the
+   body split is derived from the ad text.
 4. **Store** (`store.py`) — idempotent per-brand upsert; re-running the same day adds
    no duplicate history; listings missing for 2 runs are marked inactive (sold).
 5. **Model** (`model.py`) — Ridge regression over the brand's `FEATURE_SPECS`
    (Tesla: model/trim/age/mileage/drivetrain/hw/fsd/color/condition/power/range;
-   Skoda: model/fuel/transmission/drivetrain/body/age/mileage/power/color/condition).
+   Skoda: model/fuel/transmission/drivetrain/body/age/mileage/power/color/condition;
+   Enyaq: variant/battery_kwh/equipment_line/body/drivetrain/age/mileage/power/
+   color/condition — fuel and transmission are dropped because every car is an
+   electric automatic, so they carry no signal).
    Exported so the Next.js estimator reproduces the exact prediction client-side;
    reports R²/MAE and a gradient-boosted MAE benchmark.
 
