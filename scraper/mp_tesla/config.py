@@ -145,6 +145,26 @@ BRANDS: dict[str, Brand] = {
         pipeline="skoda",
         source_query="auto-s/skoda | Octavia (alle uitvoeringen) | constructionYear 2006–2014",
     ),
+    # Skoda Enyaq (iV / Coupé) — Skoda's full-electric SUV. Production started late
+    # 2020, so year_from=2020 catches the handful of first-registration-2020 cars.
+    # Reuses the Skoda extraction pipeline; the only hard filter is fuel = Elektrisch
+    # (a stray listing is tagged "Overige brandstoffen"). No body filter: Marktplaats
+    # tags both the SUV and the Coupé as "SUV of Terreinwagen", and no transmission
+    # filter is needed since every EV is a single-speed automatic.
+    "enyaq": Brand(
+        key="enyaq",
+        label="Skoda Enyaq",
+        l2_category_id=151,
+        models={"Enyaq": 13808},
+        fuel_ids=(11756,),
+        allowed_fuels=("Elektrisch",),
+        year_from=2020,
+        year_to=None,
+        price_cents_to=6_000_000,   # <= €60,000 (a nearly-new 85 Sportline tops ~€57k)
+        min_price_eur=5000,
+        pipeline="skoda",
+        source_query="auto-s/skoda | Enyaq (iV + Coupé) | elektrisch | constructionYear>=2020 | price<=60000",
+    ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
     # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
     # inferred from build year per config.HW_INFERENCE["Model S"] when the ad is silent.
@@ -210,6 +230,16 @@ REQUEST_TIMEOUT = 30.0
 DETAIL_DELAY_RANGE = (0.8, 2.0)
 SEARCH_DELAY_RANGE = (1.0, 2.5)
 MAX_RETRIES = 4
+# Marktplaats answers a perfectly valid search with an empty 200 (`listings: []`,
+# `totalResultCount: 0`) when it decides we've asked for too much too quickly —
+# it does NOT send a 429, so this is indistinguishable from "no more results".
+# Since search.py stops paginating on an empty page, one such response would
+# silently truncate a brand's scrape. Re-ask on this escalating backoff (seconds);
+# the pause has to be tens of seconds — retrying a few seconds later just gets
+# another empty page (measured 2026-08-03: 25s spacing recovered every offset).
+# Only paid when the anomaly actually happens: normal pagination ends on
+# `offset >= totalResultCount`, never on an empty page.
+EMPTY_PAGE_BACKOFF = (15.0, 45.0, 90.0)
 
 # =================================================================================
 # Extraction heuristics (Dutch + English). Order matters: more specific first.

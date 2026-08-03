@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s";
+export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -72,6 +72,19 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true, source: false,
+    },
+  },
+  // Skoda Enyaq (full-electric SUV + Coupé, build years 2021+). Every car is
+  // electric with a single-speed automatic, so those two filters would only ever
+  // offer one value — drivetrain (RWD vs AWD) is the meaningful driveline split.
+  enyaq: {
+    key: "enyaq",
+    label: "Enyaq",
+    modelsLabel: "Skoda Enyaq iV & Coupé · volledig elektrisch",
+    modelColors: { Enyaq: "#0891b2" },
+    dimensions: {
+      trim: false, hw: false, fsd: false, range: false,
+      fuel: false, transmission: false, drivetrain: true, source: false,
     },
   },
 };

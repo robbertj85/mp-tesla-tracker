@@ -150,5 +150,9 @@ function buildSkoda(listings: Listing[], lm: LinearModel | null): Archetype[] {
 }
 
 export function buildArchetypes(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
-  return brand.key === "skoda" ? buildSkoda(listings, lm) : buildTesla(listings, lm);
+  // Which grouping applies follows the brand's dimensions, not its key: every
+  // Tesla-pipeline brand carries hw/trim, all others (Skoda, Octavia, Enyaq) are
+  // grouped by fuel × drivetrain. buildTesla only ever matches Model 3 / Model Y,
+  // so keying off the brand name left the non-Tesla views without archetypes.
+  return brand.dimensions.hw ? buildTesla(listings, lm) : buildSkoda(listings, lm);
 }

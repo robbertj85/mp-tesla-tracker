@@ -71,6 +71,32 @@ def _fetch_page(client: httpx.Client, brand: Brand, offset: int, limit: int) -> 
     return resp.json()
 
 
+def _fetch_page_checked(client: httpx.Client, brand: Brand, offset: int, limit: int) -> dict:
+    """`_fetch_page`, but re-asking when the API hands back an empty 200.
+
+    Marktplaats throttles by returning `listings: []` / `totalResultCount: 0`
+    instead of a 429, which the caller can't tell apart from "no more results" —
+    so one throttled page mid-pagination would truncate the brand's scrape. Wait
+    out the throttle on config.EMPTY_PAGE_BACKOFF; a page still empty after the
+    last (longest) pause really is the end of the results.
+    """
+    data: dict = {}
+    for attempt, pause in enumerate((*config.EMPTY_PAGE_BACKOFF, None)):
+        data = _fetch_page(client, brand, offset, limit)
+        if data.get("listings"):
+            if attempt:
+                log.info("[%s] offset %d recovered after %d retr%s",
+                         brand.key, offset, attempt, "y" if attempt == 1 else "ies")
+            return data
+        if pause is not None:
+            log.warning("[%s] empty search page at offset %d (total=%s) — likely "
+                        "throttled; retrying %d/%d in %.0fs", brand.key, offset,
+                        data.get("totalResultCount"), attempt + 1,
+                        len(config.EMPTY_PAGE_BACKOFF), pause)
+            time.sleep(pause)
+    return data
+
+
 def _attr(listing: dict, key: str) -> str:
     for attr in listing.get("attributes", []):
         if attr.get("key") == key:
@@ -112,11 +138,13 @@ def iter_search_listings(brand: Brand, max_pages: int | None = None) -> Iterator
             offset = page * config.PAGE_SIZE
             if seen_total is not None and offset >= seen_total:
                 break
-            data = _fetch_page(client, brand, offset, config.PAGE_SIZE)
-            seen_total = data.get("totalResultCount", 0)
+            data = _fetch_page_checked(client, brand, offset, config.PAGE_SIZE)
             listings = data.get("listings", [])
             if not listings:
                 break
+            # Only trust the total from a page that actually carried listings — an
+            # empty response reports totalResultCount 0 and would end the loop early.
+            seen_total = data.get("totalResultCount", 0)
             log.info("[%s] search page %d: %d listings (total=%s)",
                      brand.key, page, len(listings), seen_total)
             for raw in listings:
