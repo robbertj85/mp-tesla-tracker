@@ -320,6 +320,13 @@ MAX_RETRIES = 4
 # Only paid when the anomaly actually happens: normal pagination ends on
 # `offset >= totalResultCount`, never on an empty page.
 EMPTY_PAGE_BACKOFF = (15.0, 45.0, 90.0)
+# Once throttling escalates, the search API answers 403 Forbidden (seen 2026-09-13..16,
+# mid-run after a few hundred requests). The tenacity retries in search._fetch_page
+# are spaced seconds apart — far too short to wait out the block — so a 403/429 that
+# survives them is re-asked on this longer escalating backoff (seconds) before the
+# brand is given up on.
+BLOCKED_BACKOFF = (60.0, 180.0, 300.0)
+BLOCKED_STATUSES = frozenset({403, 429})
 
 # =================================================================================
 # Extraction heuristics (Dutch + English). Order matters: more specific first.

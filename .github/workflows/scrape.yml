@@ -48,6 +48,10 @@ jobs:
             ${{ github.event.inputs.limit && format('--limit {0}', github.event.inputs.limit) || '' }}
 
       - name: Commit updated data
+        # Also after a failed scrape: run.py keeps going past a failing brand, so the
+        # brands that succeeded still have fresh data worth committing. The job stays
+        # red because the scraper step failed.
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

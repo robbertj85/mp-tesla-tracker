@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import logging
 import random
+import sys
 import time
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -145,10 +146,22 @@ def main() -> None:
     run_year = datetime.fromisoformat(run_date).year
     brand_keys = list(config.BRANDS) if args.brand == "all" else [args.brand]
 
+    # One brand failing (e.g. Marktplaats blocking the search API) must not throw
+    # away the brands that did scrape: carry on, then fail the run at the end so CI
+    # still flags it. A brand that raises never reaches upsert/export, so its store
+    # is left untouched rather than mass-deactivated.
+    failed: list[str] = []
     for key in brand_keys:
         brand = config.BRANDS[key]
         log.info("=== scraping brand: %s ===", brand.label)
-        _scrape_brand(brand, args, run_date, run_year)
+        try:
+            _scrape_brand(brand, args, run_date, run_year)
+        except Exception:
+            log.exception("[%s] brand scrape failed; continuing with the next brand", key)
+            failed.append(key)
+    if failed:
+        log.error("done with failures: %s", ", ".join(failed))
+        sys.exit(1)
     log.info("done.")
 
 

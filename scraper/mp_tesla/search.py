@@ -71,6 +71,30 @@ def _fetch_page(client: httpx.Client, brand: Brand, offset: int, limit: int) -> 
     return resp.json()
 
 
+def _fetch_page_unblocked(client: httpx.Client, brand: Brand, offset: int, limit: int) -> dict:
+    """`_fetch_page`, but waiting out a 403/429 block on config.BLOCKED_BACKOFF.
+
+    Re-raises the last error if the block outlasts every pause.
+    """
+    for attempt, pause in enumerate((*config.BLOCKED_BACKOFF, None)):
+        try:
+            data = _fetch_page(client, brand, offset, limit)
+        except httpx.HTTPStatusError as exc:
+            status = exc.response.status_code
+            if pause is None or status not in config.BLOCKED_STATUSES:
+                raise
+            log.warning("[%s] search blocked (HTTP %d) at offset %d; retrying %d/%d in %.0fs",
+                        brand.key, status, offset, attempt + 1,
+                        len(config.BLOCKED_BACKOFF), pause)
+            time.sleep(pause)
+            continue
+        if attempt:
+            log.info("[%s] offset %d unblocked after %d retr%s",
+                     brand.key, offset, attempt, "y" if attempt == 1 else "ies")
+        return data
+    raise AssertionError("unreachable")
+
+
 def _fetch_page_checked(client: httpx.Client, brand: Brand, offset: int, limit: int) -> dict:
     """`_fetch_page`, but re-asking when the API hands back an empty 200.
 
@@ -82,7 +106,7 @@ def _fetch_page_checked(client: httpx.Client, brand: Brand, offset: int, limit: 
     """
     data: dict = {}
     for attempt, pause in enumerate((*config.EMPTY_PAGE_BACKOFF, None)):
-        data = _fetch_page(client, brand, offset, limit)
+        data = _fetch_page_unblocked(client, brand, offset, limit)
         if data.get("listings"):
             if attempt:
                 log.info("[%s] offset %d recovered after %d retr%s",

@@ -4,6 +4,7 @@ No network: `_fetch_page` is monkeypatched with canned pages, so these lock in t
 query the registry builds and the way pagination reacts to the empty-200 responses
 Marktplaats intermittently returns.
 """
+import httpx
 import pytest
 
 from mp_tesla import config, search
@@ -102,3 +103,54 @@ def test_empty_page_does_not_zero_the_expected_total(monkeypatch):
                         lambda client, brand, offset, limit: pages.pop(0))
     got = [r["itemId"] for r in search.iter_search_listings(ENYAQ, max_pages=2)]
     assert got == ["m1", "m2"]
+
+
+# --- 403 / 429 blocks -------------------------------------------------------------
+
+def _status_error(status: int):
+    req = httpx.Request("GET", config.SEARCH_URL)
+    return httpx.HTTPStatusError("blocked", request=req, response=httpx.Response(status, request=req))
+
+
+def test_blocked_page_is_waited_out(monkeypatch):
+    """A 403 that survives the short tenacity retries gets the long backoff, then recovers."""
+    slept: list[float] = []
+    monkeypatch.setattr(search.time, "sleep", slept.append)
+    responses = [_status_error(403), _status_error(403), _page(_listing("m1"))]
+
+    def fake_fetch(*a):
+        r = responses.pop(0)
+        if isinstance(r, Exception):
+            raise r
+        return r
+
+    monkeypatch.setattr(search, "_fetch_page", fake_fetch)
+    data = search._fetch_page_checked(client=None, brand=ENYAQ, offset=0, limit=30)
+    assert data["listings"][0]["itemId"] == "m1"
+    assert slept == list(config.BLOCKED_BACKOFF[:2])
+
+
+def test_persistent_block_reraises_after_backoff(monkeypatch):
+    slept: list[float] = []
+    monkeypatch.setattr(search.time, "sleep", slept.append)
+
+    def always_blocked(*a):
+        raise _status_error(403)
+
+    monkeypatch.setattr(search, "_fetch_page", always_blocked)
+    with pytest.raises(httpx.HTTPStatusError):
+        search._fetch_page_checked(client=None, brand=ENYAQ, offset=0, limit=30)
+    assert slept == list(config.BLOCKED_BACKOFF)
+
+
+def test_other_http_errors_are_not_backed_off(monkeypatch):
+    slept: list[float] = []
+    monkeypatch.setattr(search.time, "sleep", slept.append)
+
+    def not_found(*a):
+        raise _status_error(404)
+
+    monkeypatch.setattr(search, "_fetch_page", not_found)
+    with pytest.raises(httpx.HTTPStatusError):
+        search._fetch_page_checked(client=None, brand=ENYAQ, offset=0, limit=30)
+    assert slept == []
