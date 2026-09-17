@@ -38,7 +38,9 @@ def _build_params(brand: Brand, offset: int, limit: int) -> list[tuple[str, str]
     """Query params mirroring the site's own XHR (order-independent, repeated keys)."""
     params: list[tuple[str, str]] = [
         ("l1CategoryId", str(config.L1_CATEGORY_ID)),
-        ("l2CategoryId", str(brand.l2_category_id)),
+        # Plural since 2026-09-12: the old singular `l2CategoryId` is silently ignored
+        # (and the brand's attributesById with it), returning all ~270k cars.
+        ("l2CategoryIds", str(brand.l2_category_id)),
     ]
     for attr_id in brand.search_attr_ids:
         params.append(("attributesById[]", str(attr_id)))
@@ -153,8 +155,16 @@ def _canonical_model(listing: dict, brand: Brand) -> str | None:
     return matched
 
 
+class TruncatedSearchError(RuntimeError):
+    """The search matched more results than `max_pages` can cover."""
+
+
 def iter_search_listings(brand: Brand, max_pages: int | None = None) -> Iterator[dict]:
-    """Yield raw listing dicts for `brand` (model-guarded), paginating until exhausted."""
+    """Yield raw listing dicts for `brand` (model-guarded), paginating until exhausted.
+
+    Raises TruncatedSearchError after the last page if the page cap cut the results
+    short: the store would otherwise age out every listing beyond the cap as sold.
+    """
     max_pages = max_pages or config.MAX_PAGES
     seen_total: int | None = None
     with _client(brand) as client:
@@ -178,3 +188,8 @@ def iter_search_listings(brand: Brand, max_pages: int | None = None) -> Iterator
                     raw["_canonical_model"] = model
                     yield raw
             time.sleep(random.uniform(*config.SEARCH_DELAY_RANGE))
+        else:
+            if seen_total is not None and max_pages * config.PAGE_SIZE < seen_total:
+                raise TruncatedSearchError(
+                    f"[{brand.key}] search hit the {max_pages}-page cap with "
+                    f"total={seen_total}; filters likely ignored, not updating the store")

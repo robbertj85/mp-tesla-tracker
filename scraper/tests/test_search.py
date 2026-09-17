@@ -37,7 +37,7 @@ def _no_sleep(monkeypatch):
 def test_enyaq_search_params():
     params = dict(search._build_params(ENYAQ, offset=0, limit=30))
     assert params["l1CategoryId"] == "91"
-    assert params["l2CategoryId"] == "151"          # Skoda sub-category of Auto's
+    assert params["l2CategoryIds"] == "151"          # Skoda sub-category of Auto's
     # Enyaq 13808 AND fuel Elektrisch 11756 (no body/transmission filter).
     assert ENYAQ.search_attr_ids == [13808, 11756]
     ranges = [v for k, v in search._build_params(ENYAQ, 0, 30) if k == "attributeRanges[]"]
@@ -154,3 +154,21 @@ def test_other_http_errors_are_not_backed_off(monkeypatch):
     with pytest.raises(httpx.HTTPStatusError):
         search._fetch_page_checked(client=None, brand=ENYAQ, offset=0, limit=30)
     assert slept == []
+
+
+def test_page_cap_below_total_raises_after_yielding(monkeypatch):
+    # The 2026-09-12 break: filters ignored, total=124k, so 40 pages barely scratch it.
+    monkeypatch.setattr(search, "_fetch_page",
+                        lambda c, b, offset, limit: _page(_listing(f"m{offset}"), total=100_000))
+    got = []
+    with pytest.raises(search.TruncatedSearchError):
+        for raw in search.iter_search_listings(ENYAQ, max_pages=3):
+            got.append(raw["itemId"])
+    assert len(got) == 3
+
+
+def test_page_cap_covering_total_does_not_raise(monkeypatch):
+    monkeypatch.setattr(search, "_fetch_page",
+                        lambda c, b, offset, limit: _page(_listing(f"m{offset}"),
+                                                          total=3 * config.PAGE_SIZE))
+    assert len(list(search.iter_search_listings(ENYAQ, max_pages=3))) == 3
