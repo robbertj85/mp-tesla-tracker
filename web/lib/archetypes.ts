@@ -153,13 +153,17 @@ function buildSkoda(listings: Listing[], lm: LinearModel | null): Archetype[] {
   return rows;
 }
 
-/** Enyaq: fuel is "Electric" on every car, so grouping by it says nothing. The
- *  battery variant (the `trim` dimension) × body shape is the real split. */
-function buildEnyaq(listings: Listing[], lm: LinearModel | null): Archetype[] {
+/** Enyaq / Mach-E: fuel is "Electric" on every car, so grouping by it says
+ *  nothing. The battery variant (the `trim` dimension) is the real split, crossed
+ *  with body shape where the brand derives one (Enyaq Coupé vs SUV) and with the
+ *  driveline otherwise (Mach-E RWD vs AWD). `order` is the brand's price ladder. */
+function buildByTrim(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
+  const order = brand.trimOrder ?? [];
+  const second = (l: Listing) => (brand.dimensions.body ? l.body : l.drivetrain) ?? "—";
   const groups = new Map<string, Listing[]>();
   for (const l of listings) {
     if (!l.trim) continue;
-    const key = `${l.model}|${l.trim}|${l.body ?? "—"}`;
+    const key = `${l.model}|${l.trim}|${second(l)}`;
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(l);
   }
@@ -172,8 +176,7 @@ function buildEnyaq(listings: Listing[], lm: LinearModel | null): Archetype[] {
       drivetrain: ls[0].drivetrain ?? null, ...summarise(ls, lm),
     });
   }
-  // Price ladder order: smallest battery first, RS last.
-  const order = ["50", "60", "80", "80x", "85", "85x", "RS"];
+  // Price ladder order: smallest battery first, sportiest last.
   const rank = (a: Archetype) => order.indexOf(a.label.split(" · ")[0]);
   rows.sort((a, b) => rank(a) - rank(b) || a.label.localeCompare(b.label));
   return rows;
@@ -181,11 +184,11 @@ function buildEnyaq(listings: Listing[], lm: LinearModel | null): Archetype[] {
 
 export function buildArchetypes(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
   // Which grouping applies follows the brand's dimensions, not its key: every
-  // Tesla-pipeline brand carries hw/trim, the Enyaq splits by battery variant, and
+  // Tesla-pipeline brand carries hw/trim, the Enyaq / Mach-E split by battery variant, and
   // the rest group by fuel × drivetrain. buildTesla only ever matches Model 3 /
   // Model Y, so keying off the brand name left the non-Tesla views without
   // archetypes at all.
   if (brand.dimensions.hw) return buildTesla(listings, lm);
-  if (brand.dimensions.battery) return buildEnyaq(listings, lm);
+  if (brand.trimOrder) return buildByTrim(listings, lm, brand);
   return buildSkoda(listings, lm);
 }

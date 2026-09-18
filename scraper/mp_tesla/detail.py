@@ -98,7 +98,8 @@ def flatten_car_attributes(listing: dict) -> dict:
         for attr in group.get("attributes", []):
             key = attr.get("key")
             if key and key not in out:
-                out[key] = attr.get("value")
+                # Multi-valued attributes (the "Opties" list) use `values`.
+                out[key] = attr.get("value", attr.get("values"))
     return out
 
 
@@ -127,6 +128,8 @@ def parse_detail(html: str) -> dict:
         # `powerWheelDriver` holds Achterwiel/Vierwiel; extract.detect_drivetrain maps it.
         "drivetrain_attr": flat.get("powerWheelDriver") or flat.get("driveTrain"),
         "range_km": _to_int(flat.get("actionRadius") or flat.get("range")),
+        # Seller-ticked equipment checkboxes ("Panoramadak", "Trekhaak", ...).
+        "options": list(flat.get("options") or []),
         "view_count": stats.get("viewCount"),
         "favorited_count": stats.get("favoritedCount"),
         "post_date": stats.get("since"),

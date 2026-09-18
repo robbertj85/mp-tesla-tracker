@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
 import { PriceHistoryChart } from "@/components/price-history-chart";
 import { useFavorites } from "@/lib/use-favorites";
+import { EQUIPMENT } from "@/components/filter-bar";
 
 type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km" | "power_hp" | "range_km" | "battery_kwh";
 type Dir = "asc" | "desc";
@@ -48,6 +49,8 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
   // Enyaq: every car is electric, so the fuel column would read "Electric" 342
   // times. The battery variant is the useful thing to show in its place.
   const batteryCol = brand.dimensions.battery;
+  // Mach-E: same idea, but only the pack name (no per-car kWh to sort on).
+  const trimCol = batteryCol || !!brand.trimOrder;
   // "New today": first seen on the latest scrape date. Auto-expires next run, when
   // generatedAt advances but first_seen stays — no per-ad toggle to maintain.
   const isNew = (l: Listing) => generatedAt != null && l.first_seen === generatedAt;
@@ -180,7 +183,7 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                   <>
                     {batteryCol
                       ? <Th k="battery_kwh" className="hidden md:table-cell">Accu</Th>
-                      : <th className="hidden px-3 py-2 text-left font-medium md:table-cell">Brandstof</th>}
+                      : <th className="hidden px-3 py-2 text-left font-medium md:table-cell">{trimCol ? brand.trimLabel ?? "Trim" : "Brandstof"}</th>}
                     <Th k="power_hp" className="hidden lg:table-cell">Vermogen</Th>
                   </>
                 )}
@@ -213,10 +216,12 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                             <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
                               title="Officiële Tesla-occasion">Tesla</span>
                           )}
-                          {l.tow_hitch && (
-                            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-amber-800"
-                              title="Trekhaak aanwezig">Trekhaak</span>
-                          )}
+                          {EQUIPMENT.filter(({ key }) => l[key]).map(({ key, label, short }) => (
+                            <span key={key}
+                              className={cn("rounded px-1.5 py-0.5 text-[10px] font-semibold leading-tight",
+                                key === "tow_hitch" ? "bg-amber-100 text-amber-800" : "bg-muted text-muted-foreground")}
+                              title={`${label} aanwezig`}>{short}</span>
+                          ))}
                         </div>
                         <div className="truncate text-xs text-muted-foreground">{l.color ?? ""} · {l.city ?? ""}</div>
                       </td>
@@ -240,7 +245,7 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                       ) : (
                         <>
                           <td className="hidden whitespace-nowrap px-3 py-2 md:table-cell">
-                            {batteryCol ? (
+                            {trimCol ? (
                               l.trim ? (
                                 <span className="flex items-center gap-1.5">
                                   <Badge variant="secondary">{l.trim}</Badge>

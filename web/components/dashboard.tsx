@@ -91,6 +91,9 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
           : "Alleen stationwagons (Combi) met automaat, benzine of plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
         {brand.dimensions.source &&
           " Tesla.com-occasions (badge ‘Tesla’) komen uit de officiële Tesla-voorraad; hun prijsmodel is apart te kiezen onder ‘Prijs schatten’."}
+        {" Uitrusting (ACC, premium audio, panoramadak, stoelgeheugen, adaptief onderstel, trekhaak) komt uit de Marktplaats-opties en de advertentietekst"}
+        {brand.dimensions.hw && " (premium audio bij Tesla ook uit de uitvoering)"}
+        {"; niet vermeld betekent niet per se afwezig."}
       </footer>
     </div>
   );

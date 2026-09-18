@@ -106,3 +106,51 @@ def test_tow_hitch_positive_and_negated():
     assert not extract.detect_tow_hitch("geen trekhaak aanwezig")
     assert not extract.detect_tow_hitch("trekhaak voorbereiding aanwezig")
     assert not extract.detect_tow_hitch("mooie auto zonder verdere opties")
+
+
+def test_options_from_structured_list():
+    opts = ["Adaptive Cruise Control", "Panoramadak", "Sound system", "Trekhaak"]
+    got = extract.detect_options("", opts)
+    assert got["acc"] and got["pano"] and got["premium_audio"] and got["tow_hitch"]
+    assert not got["seat_memory"] and not got["adaptive_suspension"]
+
+
+def test_options_from_text():
+    got = extract.detect_options(
+        "Superb Combi L&K | ACC | Canton | panodak | DCC | "
+        "elektrisch verstelbare bestuurdersstoel met geheugen")
+    assert all(got[k] for k in ("acc", "premium_audio", "pano", "adaptive_suspension",
+                                "seat_memory"))
+    assert not got["tow_hitch"]
+
+
+def test_option_false_positives():
+    # "LFP-acc" is the LFP accu, not adaptive cruise control.
+    assert not extract.detect_option("acc", "Model 3 RWD 91% SOH [ LFP-acc")
+    # Memory on the mirrors / steering column is not seat memory.
+    assert not extract.detect_option("seat_memory", "buitenspiegels elektr. met geheugen")
+    assert not extract.detect_option("seat_memory", "stuurkolom elektrisch verstelbaar met geheugen")
+    assert not extract.detect_option("pano", "geen panoramadak")
+    assert not extract.detect_option("adaptive_suspension", "sportonderstel, verlaagd onderstel")
+
+
+def test_tesla_premium_audio_by_trim():
+
+    assert infer.tesla_premium_audio("Model 3", "Long Range", 2021)
+    assert infer.tesla_premium_audio("Model 3", "AWD / Dual Motor", 2020)
+    assert not infer.tesla_premium_audio("Model 3", "Standard Range Plus", 2020)
+    assert not infer.tesla_premium_audio("Model 3", "RWD (Highland)", 2024)
+    assert infer.tesla_premium_audio("Model Y", "RWD", 2023)
+    assert not infer.tesla_premium_audio("Model Y", "RWD (Juniper)", 2025)
+    assert infer.tesla_premium_audio("Model S", None, 2018)
+    assert not infer.tesla_premium_audio("Model S", None, 2014)
+
+
+def test_mache_variant():
+    from mp_tesla import mache
+    assert mache.detect_variant("Ford Mustang Mach-E RWD 75 kWh", "", 269) == "Standard Range"
+    assert mache.detect_variant("Ford Mustang Mach-E Extended RWD 98 kWh", "", 294) == "Extended Range"
+    assert mache.detect_variant("Mach-E Extended Premium RWD 88 kWh 276pk", "", 276) == "Extended Range"
+    assert mache.detect_variant("Ford Mustang Mach-E GT Extended AWD 91 kWh", "", 487) == "GT"
+    assert mache.detect_variant("Ford Mustang Mach-E", "", 351) == "Extended Range"
+    assert mache.detect_variant("Ford Mustang Mach-E", "", 269) is None

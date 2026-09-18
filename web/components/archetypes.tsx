@@ -42,6 +42,8 @@ export function Archetypes({ data, brand }: { data: Dataset; brand: BrandConfig 
                 ? "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/range en meest voorkomende HW & FSD binnen die groep."
                 : brand.dimensions.battery
                 ? "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/vermogen binnen die groep (accu-uitvoering × carrosserie)."
+                : brand.trimOrder
+                ? "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/vermogen binnen die groep (accupakket × aandrijving)."
                 : "Geschatte redelijke prijs per uitvoering, op basis van de mediaan bouwjaar/km/vermogen binnen die groep (brandstof × aandrijving)."}
             </CardDescription>
           </CardHeader>

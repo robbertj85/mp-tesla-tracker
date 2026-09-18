@@ -73,25 +73,25 @@
     "median": 8.0,
     "mean": 8.252525252525253,
     "std": 2.3109027242351554,
-    "coef": -7464.797496244556
+    "coef": -7464.797496244555
    },
    "mileage_km": {
     "median": 147421.0,
     "mean": 144321.77777777778,
     "std": 53156.425917230845,
-    "coef": -2353.7453800981193
+    "coef": -2353.745380098121
    },
    "power_hp": {
     "median": 334.0,
     "mean": 419.25252525252523,
     "std": 215.72660135928334,
-    "coef": 3775.3739757570656
+    "coef": 3775.373975757064
    },
    "range_km": {
     "median": 485.0,
     "mean": 498.54545454545456,
     "std": 73.28183766707885,
-    "coef": 658.1519182876374
+    "coef": 658.1519182876368
    }
   },
   "categorical": {
@@ -99,39 +99,39 @@
     "Model S": 0.0
    },
    "trim": {
-    "AWD / Dual Motor": 1028.8142288251963,
-    "Long Range": 769.6546564552331,
-    "Performance": -1482.312475880556,
-    "Standard Range": 207.41493243557554,
-    "unknown": -523.5713418354508
+    "AWD / Dual Motor": 1028.8142288251931,
+    "Long Range": 769.6546564552281,
+    "Performance": -1482.3124758805573,
+    "Standard Range": 207.41493243557477,
+    "unknown": -523.5713418354543
    },
    "drivetrain": {
-    "AWD": -398.7766531247568,
-    "RWD": 1123.2994278688282,
-    "unknown": -724.5227747440758
+    "AWD": -398.77665312475716,
+    "RWD": 1123.299427868826,
+    "unknown": -724.5227747440756
    },
    "hw_platform": {
-    "HW1": 603.9385646770606,
-    "HW2": -1689.0521606147656,
-    "HW2.5": -3390.5618100810734,
-    "HW3": 28.668254391316044,
+    "HW1": 603.9385646770625,
+    "HW2": -1689.052160614765,
+    "HW2.5": -3390.5618100810752,
+    "HW3": 28.66825439131415,
     "HW4": 4447.007151627443
    },
    "fsd": {
-    "no": -466.9877389819723,
-    "yes": 466.9877389819747
+    "no": -466.9877389819731,
+    "yes": 466.9877389819758
    },
    "color": {
-    "Black": -792.687862060999,
-    "Blue": 161.57199992312943,
-    "Green": -21.860690489529425,
-    "Grey": -1146.6027600558273,
+    "Black": -792.6878620609979,
+    "Blue": 161.5719999231318,
+    "Green": -21.860690489530025,
+    "Grey": -1146.6027600558243,
     "Red": 1160.7401828228446,
-    "White": 638.8391298603827
+    "White": 638.8391298603837
    },
    "condition": {
-    "NEW": 1092.2514285530515,
-    "USED": -1092.2514285530574
+    "NEW": 1092.2514285530526,
+    "USED": -1092.251428553057
    }
   },
   "numericFeatures": [
@@ -160,25 +160,25 @@
       "median": 8.0,
       "mean": 8.252525252525253,
       "std": 2.3109027242351554,
-      "coef": -7464.797496244556
+      "coef": -7464.797496244555
      },
      "mileage_km": {
       "median": 147421.0,
       "mean": 144321.77777777778,
       "std": 53156.425917230845,
-      "coef": -2353.7453800981193
+      "coef": -2353.745380098121
      },
      "power_hp": {
       "median": 334.0,
       "mean": 419.25252525252523,
       "std": 215.72660135928334,
-      "coef": 3775.3739757570656
+      "coef": 3775.373975757064
      },
      "range_km": {
       "median": 485.0,
       "mean": 498.54545454545456,
       "std": 73.28183766707885,
-      "coef": 658.1519182876374
+      "coef": 658.1519182876368
      }
     },
     "categorical": {
@@ -186,39 +186,39 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 1028.8142288251963,
-      "Long Range": 769.6546564552331,
-      "Performance": -1482.312475880556,
-      "Standard Range": 207.41493243557554,
-      "unknown": -523.5713418354508
+      "AWD / Dual Motor": 1028.8142288251931,
+      "Long Range": 769.6546564552281,
+      "Performance": -1482.3124758805573,
+      "Standard Range": 207.41493243557477,
+      "unknown": -523.5713418354543
      },
      "drivetrain": {
-      "AWD": -398.7766531247568,
-      "RWD": 1123.2994278688282,
-      "unknown": -724.5227747440758
+      "AWD": -398.77665312475716,
+      "RWD": 1123.299427868826,
+      "unknown": -724.5227747440756
      },
      "hw_platform": {
-      "HW1": 603.9385646770606,
-      "HW2": -1689.0521606147656,
-      "HW2.5": -3390.5618100810734,
-      "HW3": 28.668254391316044,
+      "HW1": 603.9385646770625,
+      "HW2": -1689.052160614765,
+      "HW2.5": -3390.5618100810752,
+      "HW3": 28.66825439131415,
       "HW4": 4447.007151627443
      },
      "fsd": {
-      "no": -466.9877389819723,
-      "yes": 466.9877389819747
+      "no": -466.9877389819731,
+      "yes": 466.9877389819758
      },
      "color": {
-      "Black": -792.687862060999,
-      "Blue": 161.57199992312943,
-      "Green": -21.860690489529425,
-      "Grey": -1146.6027600558273,
+      "Black": -792.6878620609979,
+      "Blue": 161.5719999231318,
+      "Green": -21.860690489530025,
+      "Grey": -1146.6027600558243,
       "Red": 1160.7401828228446,
-      "White": 638.8391298603827
+      "White": 638.8391298603837
      },
      "condition": {
-      "NEW": 1092.2514285530515,
-      "USED": -1092.2514285530574
+      "NEW": 1092.2514285530526,
+      "USED": -1092.251428553057
      }
     },
     "numericFeatures": [
@@ -247,31 +247,31 @@
   "__marktplaats__": {
    "label": "Marktplaats",
    "linearModel": {
-    "intercept": 31753.9072838046,
+    "intercept": 31753.907283804605,
     "numeric": {
      "age": {
       "median": 8.0,
       "mean": 8.360824742268042,
       "std": 2.2067635816659656,
-      "coef": -6745.300562507124
+      "coef": -6745.300562507121
      },
      "mileage_km": {
       "median": 147500.0,
       "mean": 145914.34020618556,
       "std": 52503.58818231646,
-      "coef": -2242.402115232901
+      "coef": -2242.402115232902
      },
      "power_hp": {
       "median": 334.0,
       "mean": 421.0103092783505,
       "std": 217.5880670074259,
-      "coef": 4231.60538496725
+      "coef": 4231.605384967252
      },
      "range_km": {
       "median": 477.5,
       "mean": 493.5515463917526,
       "std": 73.72764328395836,
-      "coef": 419.7359849973828
+      "coef": 419.7359849973839
      }
     },
     "categorical": {
@@ -279,39 +279,39 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 476.17693738325994,
-      "Long Range": 1280.8650473327245,
-      "Performance": -1708.0780376493813,
-      "Standard Range": 221.03476882005413,
-      "unknown": -269.9987158866571
+      "AWD / Dual Motor": 476.17693738325835,
+      "Long Range": 1280.8650473327168,
+      "Performance": -1708.078037649386,
+      "Standard Range": 221.0347688200537,
+      "unknown": -269.9987158866624
      },
      "drivetrain": {
-      "AWD": -328.55643134124784,
-      "RWD": 1078.6530997961597,
-      "unknown": -750.0966684549276
+      "AWD": -328.55643134124847,
+      "RWD": 1078.6530997961609,
+      "unknown": -750.0966684549269
      },
      "hw_platform": {
-      "HW1": 407.7399347276312,
-      "HW2": -1467.9974226007228,
-      "HW2.5": -2940.731089199788,
-      "HW3": 369.82819156038556,
-      "HW4": 3631.1603855124745
+      "HW1": 407.739934727631,
+      "HW2": -1467.9974226007196,
+      "HW2.5": -2940.731089199785,
+      "HW3": 369.82819156038704,
+      "HW4": 3631.160385512472
      },
      "fsd": {
-      "no": -736.4057395311073,
-      "yes": 736.4057395311077
+      "no": -736.4057395311063,
+      "yes": 736.4057395311066
      },
      "color": {
-      "Black": -544.9587425514756,
-      "Blue": 395.42997993023204,
-      "Green": 100.62795104076561,
-      "Grey": -817.1521274610243,
-      "Red": 1105.9180253349741,
-      "White": -239.86508629346457
+      "Black": -544.9587425514785,
+      "Blue": 395.429979930231,
+      "Green": 100.62795104076466,
+      "Grey": -817.1521274610258,
+      "Red": 1105.9180253349734,
+      "White": -239.86508629346656
      },
      "condition": {
-      "NEW": 1254.5709668111474,
-      "USED": -1254.5709668111492
+      "NEW": 1254.5709668111472,
+      "USED": -1254.5709668111479
      }
     },
     "numericFeatures": [
@@ -354,25 +354,25 @@
       "median": 8.0,
       "mean": 8.252525252525253,
       "std": 2.3109027242351554,
-      "coef": -7464.797496244556
+      "coef": -7464.797496244555
      },
      "mileage_km": {
       "median": 147421.0,
       "mean": 144321.77777777778,
       "std": 53156.425917230845,
-      "coef": -2353.7453800981193
+      "coef": -2353.745380098121
      },
      "power_hp": {
       "median": 334.0,
       "mean": 419.25252525252523,
       "std": 215.72660135928334,
-      "coef": 3775.3739757570656
+      "coef": 3775.373975757064
      },
      "range_km": {
       "median": 485.0,
       "mean": 498.54545454545456,
       "std": 73.28183766707885,
-      "coef": 658.1519182876374
+      "coef": 658.1519182876368
      }
     },
     "categorical": {
@@ -380,39 +380,39 @@
       "Model S": 0.0
      },
      "trim": {
-      "AWD / Dual Motor": 1028.8142288251963,
-      "Long Range": 769.6546564552331,
-      "Performance": -1482.312475880556,
-      "Standard Range": 207.41493243557554,
-      "unknown": -523.5713418354508
+      "AWD / Dual Motor": 1028.8142288251931,
+      "Long Range": 769.6546564552281,
+      "Performance": -1482.3124758805573,
+      "Standard Range": 207.41493243557477,
+      "unknown": -523.5713418354543
      },
      "drivetrain": {
-      "AWD": -398.7766531247568,
-      "RWD": 1123.2994278688282,
-      "unknown": -724.5227747440758
+      "AWD": -398.77665312475716,
+      "RWD": 1123.299427868826,
+      "unknown": -724.5227747440756
      },
      "hw_platform": {
-      "HW1": 603.9385646770606,
-      "HW2": -1689.0521606147656,
-      "HW2.5": -3390.5618100810734,
-      "HW3": 28.668254391316044,
+      "HW1": 603.9385646770625,
+      "HW2": -1689.052160614765,
+      "HW2.5": -3390.5618100810752,
+      "HW3": 28.66825439131415,
       "HW4": 4447.007151627443
      },
      "fsd": {
-      "no": -466.9877389819723,
-      "yes": 466.9877389819747
+      "no": -466.9877389819731,
+      "yes": 466.9877389819758
      },
      "color": {
-      "Black": -792.687862060999,
-      "Blue": 161.57199992312943,
-      "Green": -21.860690489529425,
-      "Grey": -1146.6027600558273,
+      "Black": -792.6878620609979,
+      "Blue": 161.5719999231318,
+      "Green": -21.860690489530025,
+      "Grey": -1146.6027600558243,
       "Red": 1160.7401828228446,
-      "White": 638.8391298603827
+      "White": 638.8391298603837
      },
      "condition": {
-      "NEW": 1092.2514285530515,
-      "USED": -1092.2514285530574
+      "NEW": 1092.2514285530526,
+      "USED": -1092.251428553057
      }
     },
     "numericFeatures": [
@@ -544,6 +544,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4c110e4b-7da0-47ba-ab31-2d67617b937c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 30775,
    "residualEur": -20825,
    "dealLabel": "good_deal"
@@ -590,6 +595,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/affbb32f-68c2-4418-ad99-13e4849ccd62?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 47946,
    "residualEur": -8046,
    "dealLabel": "good_deal"
@@ -636,6 +646,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/14e0c2d9-54fd-467b-9be8-eba3d5316cff?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24953,
    "residualEur": -6958,
    "dealLabel": "good_deal"
@@ -682,6 +697,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/13ae7c52-8c5f-4d62-b24f-2b6323bfafbf?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27089,
    "residualEur": -6639,
    "dealLabel": "good_deal"
@@ -728,6 +748,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d2c4c9c5-f167-4ca3-ba4a-ab93bcc1fccc?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 39578,
    "residualEur": -6083,
    "dealLabel": "good_deal"
@@ -774,6 +799,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/58ac2180-4862-4cb2-96f8-b350b4f9247d?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 28376,
    "residualEur": -5476,
    "dealLabel": "good_deal"
@@ -820,6 +850,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a9fbb1cf-46f0-40ea-a8f6-ed2963a80337?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 23256,
    "residualEur": -5311,
    "dealLabel": "good_deal"
@@ -866,6 +901,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/df6e7ee2-422a-431f-8648-2ee5604e2aba?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 39010,
    "residualEur": -5015,
    "dealLabel": "good_deal"
@@ -912,6 +952,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0f03618f-d182-4a27-9520-201246714dce?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 30820,
    "residualEur": -4920,
    "dealLabel": "good_deal"
@@ -958,6 +1003,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/da7168ae-59d2-44a4-a204-a808aa1648cb?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27890,
    "residualEur": -4891,
    "dealLabel": "good_deal"
@@ -1004,6 +1054,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e26d822e-6f8f-4c1b-8850-0808d5de49d2?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24706,
    "residualEur": -4721,
    "dealLabel": "good_deal"
@@ -1050,6 +1105,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/197f4679-d33e-4980-a968-e295a8d99a5f?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 26628,
    "residualEur": -4678,
    "dealLabel": "good_deal"
@@ -1096,6 +1156,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2aed0598-8e60-4155-87a6-34090f80eb75?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 22955,
    "residualEur": -4005,
    "dealLabel": "good_deal"
@@ -1142,6 +1207,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ee4f3875-70f0-495b-a298-884414181c8c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 33426,
    "residualEur": -3926,
    "dealLabel": "good_deal"
@@ -1188,6 +1258,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b208e157-c4f1-4e5a-8f1d-9c5726944d7c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 23314,
    "residualEur": -3814,
    "dealLabel": "good_deal"
@@ -1234,6 +1309,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7e745b68-9e42-4f7b-b836-36c70164a78e?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 33737,
    "residualEur": -3747,
    "dealLabel": "good_deal"
@@ -1280,6 +1360,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4404f07b-4932-4db0-bd45-2c968592046d?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 19596,
    "residualEur": -3646,
    "dealLabel": "good_deal"
@@ -1326,6 +1411,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/393266d2-128d-4530-9d6c-fec4cfdb512c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27406,
    "residualEur": -3561,
    "dealLabel": "good_deal"
@@ -1372,6 +1462,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/120e7a6f-1520-435e-bd44-fb92589011e4?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 23307,
    "residualEur": -3557,
    "dealLabel": "good_deal"
@@ -1418,6 +1513,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a3f1bde9-c2da-46fd-97e0-a8d78c8fe1c0?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 20877,
    "residualEur": -3532,
    "dealLabel": "good_deal"
@@ -1464,6 +1564,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a8e4f163-ce29-47ba-a723-0033603bdf7e?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 34351,
    "residualEur": -3401,
    "dealLabel": "good_deal"
@@ -1510,6 +1615,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/43984046-e6fd-492c-8795-186f18b122c7?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 29219,
    "residualEur": -3319,
    "dealLabel": "good_deal"
@@ -1556,6 +1666,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5794058a-6e25-468e-8448-51f9de233612?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24310,
    "residualEur": -3311,
    "dealLabel": "good_deal"
@@ -1602,6 +1717,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0768d9b0-3b5b-471e-bc06-896dd0ca66e9?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 28202,
    "residualEur": -3252,
    "dealLabel": "good_deal"
@@ -1648,6 +1768,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/688f625b-5f44-4988-912c-62e2d87a8326?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 25198,
    "residualEur": -3248,
    "dealLabel": "good_deal"
@@ -1694,6 +1819,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d11377c4-dfdc-41cf-b916-7d3484cdb5b9?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24972,
    "residualEur": -3222,
    "dealLabel": "good_deal"
@@ -1740,6 +1870,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9e86f89a-dd30-4384-a567-4898c8365e7b?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": true,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 22117,
    "residualEur": -3167,
    "dealLabel": "good_deal"
@@ -1786,6 +1921,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/af82e39d-6835-4768-9a0e-6c423586c57c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 29137,
    "residualEur": -3137,
    "dealLabel": "good_deal"
@@ -1832,6 +1972,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c190b988-8c2d-4679-8b34-1d4954d11200?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 21888,
    "residualEur": -2938,
    "dealLabel": "fair"
@@ -1878,6 +2023,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e637d77a-3a81-4aef-ba49-c6fbb7953955?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 19698,
    "residualEur": -2748,
    "dealLabel": "fair"
@@ -1924,6 +2074,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/12d7f7e9-7d78-45c7-a082-9aebd5b69ec6?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 22190,
    "residualEur": -2690,
    "dealLabel": "fair"
@@ -1970,6 +2125,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5100d9f1-3117-4ea6-a4dc-bd9509b89528?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 25583,
    "residualEur": -2633,
    "dealLabel": "fair"
@@ -2016,6 +2176,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ccec0a72-8cd7-4476-97d6-9b32f65436f9?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 26351,
    "residualEur": -2406,
    "dealLabel": "fair"
@@ -2062,6 +2227,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c393312f-bff1-410d-b132-f64384a52861?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27863,
    "residualEur": -2113,
    "dealLabel": "fair"
@@ -2108,6 +2278,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4c1528e8-0b4c-4c26-8e94-a49cc7bb77f5?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 26033,
    "residualEur": -2093,
    "dealLabel": "fair"
@@ -2154,6 +2329,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b3/b3b7da37-2280-4c33-9380-618425373484?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 23083,
    "residualEur": -2083,
    "dealLabel": "fair"
@@ -2200,6 +2380,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4f089d4d-f0c2-4972-b0be-82de010937fc?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": true,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24863,
    "residualEur": -2019,
    "dealLabel": "fair"
@@ -2246,6 +2431,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9e98cff7-559c-41cd-9e28-94523ef56dbe?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 43882,
    "residualEur": -1887,
    "dealLabel": "fair"
@@ -2292,6 +2482,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6e78f635-5bce-45a5-bdf6-979bcd67bbce?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 28829,
    "residualEur": -1879,
    "dealLabel": "fair"
@@ -2338,6 +2533,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ff6abde3-dab0-4a8a-9be7-c4fe7e1ad08e?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27850,
    "residualEur": -1855,
    "dealLabel": "fair"
@@ -2384,6 +2584,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/1feb309f-4568-4b2b-92d4-5ce7f394d315?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 17735,
    "residualEur": -1750,
    "dealLabel": "fair"
@@ -2430,6 +2635,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ad4e3cdc-42c7-4760-b58a-6155024b0a9c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 36698,
    "residualEur": -1698,
    "dealLabel": "fair"
@@ -2476,6 +2686,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/db536473-aa6c-4e30-a6de-835e6bec6272?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 22153,
    "residualEur": -1653,
    "dealLabel": "fair"
@@ -2522,6 +2737,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/dae8bc7c-7aec-49f5-9921-faf7356cfc9a?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 26582,
    "residualEur": -1632,
    "dealLabel": "fair"
@@ -2568,6 +2788,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/708c035d-1aac-4e60-beae-c7fb94937683?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 24071,
    "residualEur": -1571,
    "dealLabel": "fair"
@@ -2614,6 +2839,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f9e89eff-cb85-409b-a09b-c9acdc9ba604?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": true,
+   "adaptive_suspension": false,
    "predictedEur": 25365,
    "residualEur": -1415,
    "dealLabel": "fair"
@@ -2660,6 +2890,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c937c727-77a7-472a-ba17-8d1df6a83fe1?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 25396,
    "residualEur": -1411,
    "dealLabel": "fair"
@@ -2706,6 +2941,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c0a49726-1121-4b65-a1c1-5e5d9086c0af?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24116,
    "residualEur": -1166,
    "dealLabel": "fair"
@@ -2752,6 +2992,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ea93a56e-a686-44bb-a239-e12112ae08dd?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 21968,
    "residualEur": -968,
    "dealLabel": "fair"
@@ -2798,6 +3043,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c8c9bfb4-4e9a-4675-9bf9-84560ca3aa71?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24109,
    "residualEur": -864,
    "dealLabel": "fair"
@@ -2844,6 +3094,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8d99144a-9fb1-4c5a-8567-a2b48823a048?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 38337,
    "residualEur": -837,
    "dealLabel": "fair"
@@ -2890,6 +3145,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c14cc6c5-63fb-4d89-8064-feaa62970f50?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 27822,
    "residualEur": -824,
    "dealLabel": "fair"
@@ -2936,6 +3196,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bb86a142-d764-4306-9437-d0f80079b85e?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 19168,
    "residualEur": -818,
    "dealLabel": "fair"
@@ -2982,6 +3247,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d5ee39c5-663f-424a-8c93-d81dd88c048b?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 24277,
    "residualEur": -777,
    "dealLabel": "fair"
@@ -3028,6 +3298,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b0b6317f-67f2-41a4-b39b-e9cd7fe654a6?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24711,
    "residualEur": -761,
    "dealLabel": "fair"
@@ -3074,6 +3349,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/71a69fa0-e9b2-45f2-abfa-601bcae34a8a?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 24166,
    "residualEur": -216,
    "dealLabel": "fair"
@@ -3120,6 +3400,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/abac0e07-59e4-4d16-85c1-3dd1b2dce118?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 18624,
    "residualEur": -125,
    "dealLabel": "fair"
@@ -3166,6 +3451,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a704da32-5ee2-4e48-93ee-6fcb1490b467?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 15594,
    "residualEur": -94,
    "dealLabel": "fair"
@@ -3212,6 +3502,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3c84d033-2148-4521-9497-952e4e46bfe4?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 25801,
    "residualEur": 99,
    "dealLabel": "fair"
@@ -3258,6 +3553,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bcd0231f-034e-4544-9a39-b455d20c6d69?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 29728,
    "residualEur": 212,
    "dealLabel": "fair"
@@ -3304,6 +3604,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bbaa9624-09c6-4525-8167-03bcce390a06?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 23588,
    "residualEur": 312,
    "dealLabel": "fair"
@@ -3350,6 +3655,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0aa4e781-f671-4a56-9575-426228f37b2d?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 21545,
    "residualEur": 450,
    "dealLabel": "fair"
@@ -3396,6 +3706,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3634f4ab-b3d8-4006-a67b-d48451cfc113?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": true,
    "predictedEur": 17461,
    "residualEur": 524,
    "dealLabel": "fair"
@@ -3442,6 +3757,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/88890f1a-7bcf-46ac-bc47-8dd3f2ddf615?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 21942,
    "residualEur": 958,
    "dealLabel": "fair"
@@ -3488,6 +3808,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/80f8b453-3db1-4999-b6df-135747a16d5b?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 19021,
    "residualEur": 979,
    "dealLabel": "fair"
@@ -3534,6 +3859,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/16c711e9-bde9-4809-aa4f-1d630656037c?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 21596,
    "residualEur": 1354,
    "dealLabel": "fair"
@@ -3580,6 +3910,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3440fb85-e1f8-41ee-9711-a683b748c645?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 30136,
    "residualEur": 2114,
    "dealLabel": "fair"
@@ -3626,6 +3961,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3e9b233d-5b0f-431b-97fe-36c80273b043?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 12756,
    "residualEur": 2184,
    "dealLabel": "fair"
@@ -3672,6 +4012,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d2ba8562-fece-47d3-ac18-0d5c0749a6e7?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 32740,
    "residualEur": 2210,
    "dealLabel": "fair"
@@ -3718,6 +4063,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6b414896-53ad-4b13-82a4-46214e9f902a?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 19640,
    "residualEur": 2860,
    "dealLabel": "fair"
@@ -3764,6 +4114,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a6924dc9-ec45-4206-a3b7-26ee0077ca4d?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 17767,
    "residualEur": 2983,
    "dealLabel": "overpriced"
@@ -3810,6 +4165,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/743e2944-0c5a-4967-9b76-537ae2a52d84?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 42782,
    "residualEur": 3218,
    "dealLabel": "overpriced"
@@ -3856,6 +4216,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/76185fb2-b70d-487b-a7ed-63081f018379?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 26441,
    "residualEur": 3459,
    "dealLabel": "overpriced"
@@ -3902,6 +4267,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/85000b32-0776-4e5c-b7c5-0a1df192c0ea?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": true,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 61134,
    "residualEur": 3816,
    "dealLabel": "overpriced"
@@ -3948,6 +4318,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5a2515af-9703-4860-9692-4b282d924044?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 31135,
    "residualEur": 3860,
    "dealLabel": "overpriced"
@@ -3994,6 +4369,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/69475b7b-facd-4688-8a23-5807990deb70?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 30034,
    "residualEur": 3965,
    "dealLabel": "overpriced"
@@ -4040,6 +4420,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b106fa63-929e-4d35-9d5c-e7e78a5f5e36?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 15506,
    "residualEur": 4144,
    "dealLabel": "overpriced"
@@ -4086,6 +4471,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/030060e3-8dbb-4778-9883-d9fe3177d41e?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 18766,
    "residualEur": 4234,
    "dealLabel": "overpriced"
@@ -4132,6 +4522,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4678f08c-64da-4a33-b9e8-ed2447951a7a?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 25680,
    "residualEur": 4275,
    "dealLabel": "overpriced"
@@ -4178,6 +4573,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/96423f61-c640-4fb3-a88d-e76f4b070a6f?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 20486,
    "residualEur": 4464,
    "dealLabel": "overpriced"
@@ -4224,6 +4624,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/437f8d91-6374-40b9-aed1-f7a968b8a8fd?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 20247,
    "residualEur": 5253,
    "dealLabel": "overpriced"
@@ -4270,6 +4675,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d29fb39f-48c9-4cce-893a-9fd217d3b319?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 17206,
    "residualEur": 5294,
    "dealLabel": "overpriced"
@@ -4316,6 +4726,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/92236c84-852c-4205-abdc-cc4f34ffa877?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 59507,
    "residualEur": 5393,
    "dealLabel": "overpriced"
@@ -4362,6 +4777,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/70c44961-49dc-414d-bf63-17ca26f98ad1?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 64423,
    "residualEur": 5527,
    "dealLabel": "overpriced"
@@ -4408,6 +4828,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4e25f47c-4379-4ca6-b9ac-455b077d5c97?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 67240,
    "residualEur": 5710,
    "dealLabel": "overpriced"
@@ -4454,6 +4879,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d0e89f26-8606-453f-b3f3-be0c1c100a9b?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 28224,
    "residualEur": 5776,
    "dealLabel": "overpriced"
@@ -4500,6 +4930,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7bea3130-f1c4-437d-b416-f8f2da2e35d4?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 66816,
    "residualEur": 6134,
    "dealLabel": "overpriced"
@@ -4546,6 +4981,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3f270c8c-4372-4749-b496-a9482bf00734?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 25236,
    "residualEur": 6714,
    "dealLabel": "overpriced"
@@ -4592,6 +5032,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/71435402-6cfe-4651-abbd-0fb81922c726?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 10724,
    "residualEur": 7026,
    "dealLabel": "overpriced"
@@ -4638,6 +5083,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/10a0728a-6022-44f6-af51-c72cdec0e207?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": true,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 36573,
    "residualEur": 7376,
    "dealLabel": "overpriced"
@@ -4684,6 +5134,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/75c1e3f9-a9ff-49c4-a455-0f6540243e99?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 14035,
    "residualEur": 7865,
    "dealLabel": "overpriced"
@@ -4730,6 +5185,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/b75d5d7e-388a-4b69-a856-64ceb6985437",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 55890,
    "residualEur": 8010,
    "dealLabel": "overpriced",
@@ -4778,6 +5238,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://mytcore-inventory-assests.tesla.com/inventory/used/inspection/image/6f2b330c-b3c6-4e06-9729-6c5c16cbad1f",
    "tow_hitch": false,
+   "acc": true,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 56737,
    "residualEur": 8063,
    "dealLabel": "overpriced",
@@ -4826,6 +5291,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3e768bd5-c597-49dd-8805-75f96059f4e2?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 60218,
    "residualEur": 9732,
    "dealLabel": "overpriced"
@@ -4872,6 +5342,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9d7dd94d-431a-4857-a70d-61f349b0c49d?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 12009,
    "residualEur": 9941,
    "dealLabel": "overpriced"
@@ -4918,6 +5393,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2e694f61-51d2-4b07-bc47-dd686a2ac96f?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 14523,
    "residualEur": 9977,
    "dealLabel": "overpriced"
@@ -4964,6 +5444,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7a5082d3-5aa7-4608-8726-6be1dcdeadf1?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": false,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 11885,
    "residualEur": 10110,
    "dealLabel": "overpriced"
@@ -5010,6 +5495,11 @@
    "last_seen": "2026-09-17",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/85cee13f-d4b2-4ea8-a0ea-469b0160de30?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 57715,
    "residualEur": 12235,
    "dealLabel": "overpriced"
@@ -5056,6 +5546,11 @@
    "last_seen": "2026-09-18",
    "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e5c7da7c-a6a2-45a4-9139-3d9229832a9b?rule=ecg_mp_eps$_82.jpg",
    "tow_hitch": false,
+   "acc": false,
+   "premium_audio": true,
+   "pano": false,
+   "seat_memory": false,
+   "adaptive_suspension": false,
    "predictedEur": 62294,
    "residualEur": 12596,
    "dealLabel": "overpriced"

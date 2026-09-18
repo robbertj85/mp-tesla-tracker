@@ -6,7 +6,7 @@ import logging
 from collections import Counter
 from pathlib import Path
 
-from . import wltp
+from . import config, wltp
 
 log = logging.getLogger(__name__)
 
@@ -142,7 +142,8 @@ def build_payload(listings: dict, history: dict, model_result: dict,
                 "num_seats", "fsd", "autopilot_package", "soh_percent",
                 "hw_platform", "hw_source", "hw_confidence", "city", "distance_km",
                 "seller_name", "view_count", "favorited_count", "post_date",
-                "first_seen", "last_seen", "thumbnail", "tow_hitch",
+                "first_seen", "last_seen", "thumbnail",
+                *config.EQUIPMENT_OPTIONS,
             )},
             "predictedEur": pred.get("predictedEur"),
             "residualEur": pred.get("residualEur"),

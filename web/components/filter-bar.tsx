@@ -5,7 +5,21 @@ import type { Dataset, Listing } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { eur } from "@/lib/utils";
+import { cn, eur } from "@/lib/utils";
+
+/** Equipment options offered as filters, in display order. `short` labels the
+ *  listings-table chip. */
+export const EQUIPMENT = [
+  { key: "acc", label: "ACC", short: "ACC" },
+  { key: "premium_audio", label: "Premium audio", short: "Audio" },
+  { key: "pano", label: "Panoramadak", short: "Pano" },
+  { key: "seat_memory", label: "Stoelgeheugen", short: "Memory" },
+  { key: "adaptive_suspension", label: "Adaptief onderstel", short: "Adapt. onderstel" },
+  { key: "tow_hitch", label: "Trekhaak", short: "Trekhaak" },
+] as const;
+export type EquipmentKey = (typeof EQUIPMENT)[number]["key"];
+/** Per option: "all" (ignore), "yes" (must have), "no" (must not have). */
+export type EquipmentFilter = Record<EquipmentKey, "all" | "yes" | "no">;
 
 export interface Filters {
   model: string;
@@ -19,7 +33,7 @@ export interface Filters {
   equipmentLine: string;
   body: string;
   condition: string;
-  tow: string;
+  equipment: EquipmentFilter;
   yearMin: number;
   yearMax: number;
   priceMax: number;
@@ -38,7 +52,7 @@ export const defaultFilters: Filters = {
   equipmentLine: "all",
   body: "all",
   condition: "all",
-  tow: "all",
+  equipment: Object.fromEntries(EQUIPMENT.map((o) => [o.key, "all"])) as EquipmentFilter,
   yearMin: 2017,
   yearMax: 2026,
   priceMax: 100000,
@@ -58,8 +72,11 @@ export function applyFilters(l: Listing, f: Filters): boolean {
   if (f.equipmentLine !== "all" && (l.equipment_line ?? "") !== f.equipmentLine) return false;
   if (f.body !== "all" && l.body !== f.body) return false;
   if (f.condition !== "all" && l.condition !== f.condition) return false;
-  if (f.tow === "yes" && !l.tow_hitch) return false;
-  if (f.tow === "no" && l.tow_hitch) return false;
+  for (const { key } of EQUIPMENT) {
+    const want = f.equipment[key];
+    if (want === "yes" && !l[key]) return false;
+    if (want === "no" && l[key]) return false;
+  }
   if (l.year != null && (l.year < f.yearMin || l.year > f.yearMax)) return false;
   if (l.price_eur != null && l.price_eur > f.priceMax) return false;
   if (l.mileage_km != null && l.mileage_km > f.mileageMax) return false;
@@ -138,8 +155,6 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
           <Dropdown label="Uitrustingslijn" value={filters.equipmentLine} onChange={(v) => set({ equipmentLine: v })} options={opt(data.facets.equipmentLines ?? [])} />
         )}
         <Dropdown label="Staat" value={filters.condition} onChange={(v) => set({ condition: v })} options={opt(data.facets.conditions)} />
-        <Dropdown label="Trekhaak" value={filters.tow} onChange={(v) => set({ tow: v })}
-          options={[{ value: "all", label: "Alle" }, { value: "yes", label: "Met trekhaak" }, { value: "no", label: "Zonder" }]} />
         <Dropdown label="Bouwjaar van" value={String(filters.yearMin)}
           onChange={(v) => set({ yearMin: Number(v) })}
           options={data.facets.years.map((y) => ({ value: String(y), label: String(y) }))} />
@@ -158,10 +173,50 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
             onChange={(e) => set({ mileageMax: Number(e.target.value) })} className="accent-primary" />
         </div>
 
+        <EquipmentChips data={data} value={filters.equipment}
+          onChange={(equipment) => set({ equipment })} />
+
         <div className="ml-auto flex items-center gap-3">
           <span className="text-sm text-muted-foreground">{resultCount} resultaten</span>
           <Button variant="outline" size="sm" onClick={() => setFilters(resetTo)}>Reset</Button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+const NEXT_STATE = { all: "yes", yes: "no", no: "all" } as const;
+
+/** One chip per option; a click cycles Alle → Met → Zonder. The count is how many
+ *  listings in the whole dataset have the option (text detection misses some). */
+function EquipmentChips({ data, value, onChange }: {
+  data: Dataset; value: EquipmentFilter; onChange: (v: EquipmentFilter) => void;
+}) {
+  const counts = React.useMemo(() => Object.fromEntries(EQUIPMENT.map(({ key }) =>
+    [key, data.listings.filter((l) => l[key]).length])) as Record<EquipmentKey, number>,
+  [data.listings]);
+  return (
+    <div className="flex basis-full flex-col gap-1">
+      <label className="text-xs text-muted-foreground">Uitrusting (klik: met → zonder → alle)</label>
+      <div className="flex flex-wrap gap-1.5">
+        {EQUIPMENT.map(({ key, label }) => {
+          const state = value[key];
+          return (
+            <button key={key} type="button"
+              onClick={() => onChange({ ...value, [key]: NEXT_STATE[state] })}
+              aria-pressed={state !== "all"}
+              title={state === "yes" ? `Alleen met ${label.toLowerCase()}` : state === "no" ? `Alleen zonder ${label.toLowerCase()}` : `${label}: alle`}
+              className={cn(
+                "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                state === "yes" && "border-emerald-600 bg-emerald-600 text-white",
+                state === "no" && "border-red-600 bg-red-50 text-red-700 line-through dark:bg-red-950 dark:text-red-300",
+                state === "all" && "text-muted-foreground hover:text-foreground",
+              )}>
+              {state === "yes" ? "✓ " : state === "no" ? "✕ " : ""}{label}
+              <span className="ml-1 opacity-70">{counts[key]}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

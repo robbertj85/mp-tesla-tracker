@@ -5,6 +5,7 @@ brand-specific block selected by `brand.pipeline`:
   * tesla — trim/Highland/HW/FSD/SoH/range from free-text heuristics.
   * skoda — fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
   * enyaq — the skoda block plus variant/battery/equipment line/Coupé-vs-SUV.
+  * mache — the skoda block plus the Mach-E battery variant (as `trim`).
 Every record carries the union of keys (brand-irrelevant ones are None) so the
 exporter and regression frame stay uniform.
 """
@@ -12,7 +13,7 @@ from __future__ import annotations
 
 import re
 
-from . import config, enyaq, extract, infer
+from . import config, enyaq, extract, infer, mache
 from .config import Brand
 
 
@@ -52,6 +53,21 @@ def derive_refresh_trim_hw(model, year, text, drivetrain, power_hp):
     trim = (f"{base}{suffix}" if base else suffix.strip(" ()")) or None
     hw = infer.infer_hw_platform(model, year, is_highland, extract.detect_hw_mention(text))
     return is_highland, is_juniper, trim, hw
+
+
+def apply_tesla_premium_audio(rec: dict) -> dict:
+    """OR the trim-implied factory audio into the text/option-detected flag."""
+    rec["premium_audio"] = bool(rec.get("premium_audio")) or infer.tesla_premium_audio(
+        rec.get("model"), rec.get("trim"), rec.get("year"))
+    return rec
+
+
+def apply_mache_spec(rec: dict) -> dict:
+    """Mach-E battery pack (as `trim`); the GT ships MagneRide adaptive dampers."""
+    rec["trim"] = mache.detect_variant(rec.get("title", ""), rec.get("description", "") or "",
+                                       rec.get("power_hp"))
+    rec["adaptive_suspension"] = bool(rec.get("adaptive_suspension")) or rec["trim"] == "GT"
+    return rec
 
 
 def _distance_km(meters):
@@ -238,7 +254,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
         "post_date": detail.get("post_date"),
         "license_plate": detail.get("license_plate"),
         "thumbnail": thumb,
-        "tow_hitch": extract.detect_tow_hitch(f"{title}\n{description}"),
+        # Marktplaats' structured option checkboxes, kept so re-derive can use them.
+        "mp_options": detail.get("options") or [],
+        **extract.detect_options(f"{title}\n{description}", detail.get("options")),
         # full description kept for debugging + re-derivation without re-scraping
         "description": description,
         # bookkeeping (filled/maintained by store.py)
@@ -249,10 +267,14 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
 
     if brand.pipeline == "enyaq":
         rec.update(_derive_enyaq(raw, detail, title, description, year, power_hp))
+    elif brand.pipeline == "mache":
+        rec.update(_derive_skoda(raw, detail))
+        apply_mache_spec(rec)
     elif brand.pipeline == "skoda":
         rec.update(_derive_skoda(raw, detail))
     else:
         rec.update(_derive_tesla(raw, detail, model, year, title, description, power_hp))
+        apply_tesla_premium_audio(rec)
     return rec
 
 
@@ -278,7 +300,7 @@ def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
     )
     color = extract.normalise_color(parsed.get("color_text"))
 
-    return {
+    return apply_tesla_premium_audio({
         "id": parsed["id"],
         "brand": brand.label,
         "source": "tesla",
@@ -304,7 +326,8 @@ def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
         "post_date": parsed.get("post_date"),
         "license_plate": None,
         "thumbnail": parsed.get("thumbnail"),
-        "tow_hitch": extract.detect_tow_hitch(text),
+        "mp_options": [],
+        **extract.detect_options(text),
         "description": text,
         "first_seen": run_date,
         "last_seen": run_date,
@@ -327,4 +350,4 @@ def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
         "interior_color": parsed.get("interior_color"),
         "upholstery": parsed.get("upholstery"),
         **_ENYAQ_NULL_FIELDS,
-    }
+    })

@@ -166,6 +166,25 @@ BRANDS: dict[str, Brand] = {
         pipeline="enyaq",
         source_query="auto-s/skoda | Enyaq (iV + Coupé) | elektrisch | constructionYear>=2020 | price<=60000",
     ),
+    # Ford Mustang Mach-E (full-electric crossover, EU deliveries from 2021).
+    # Marktplaats has no separate Mach-E model: it sits under "Mustang" (11739), so
+    # the fuel filter Elektrisch (11756) is what separates it from the petrol coupé.
+    # Reuses the Skoda block for fuel/transmission/driveline; mache.py adds the
+    # battery variant (Standard / Extended Range, GT, Rally) as `trim`.
+    "mach-e": Brand(
+        key="mach-e",
+        label="Ford Mustang Mach-E",
+        l2_category_id=112,
+        models={"Mustang": 11739},
+        fuel_ids=(11756,),
+        allowed_fuels=("Elektrisch",),
+        year_from=2020,
+        year_to=None,
+        price_cents_to=8_000_000,   # <= €80,000 (a new GT sits around €75k)
+        min_price_eur=5000,
+        pipeline="mache",
+        source_query="auto-s/ford | Mustang Mach-E | elektrisch | constructionYear>=2020 | price<=80000",
+    ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
     # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
     # inferred from build year per config.HW_INFERENCE["Model S"] when the ad is silent.
@@ -209,7 +228,34 @@ FEATURE_SPECS: dict[str, dict] = {
         "categorical": ["model", "trim", "equipment_line", "drivetrain", "body",
                         "color", "condition"],
     },
+    # Mach-E: like the Enyaq, fuel/transmission are constant; the battery variant
+    # (in `trim`) and the driveline carry the price.
+    "mache": {
+        "numeric": ["age", "mileage_km", "power_hp"],
+        "categorical": ["model", "trim", "drivetrain", "color", "condition"],
+    },
 }
+
+# =================================================================================
+# Ford Mustang Mach-E variants (see mache.py)
+# =================================================================================
+# Sellers quote the battery in the title almost always, mostly as the gross figure
+# (75.7 / 98.7 kWh -> "75 kWh" / "98 kWh"), sometimes the usable one (68/70 vs 88/91)
+# or the 2024+ figures (73/76 vs 91/99). GT and Rally are always the Extended pack.
+MACHE_TEXT_VARIANTS: list[tuple[str, re.Pattern]] = [
+    ("Rally", re.compile(r"\brally\b", re.I)),
+    ("GT", re.compile(r"\bgt\b", re.I)),
+    ("Extended Range", re.compile(r"extended|\ber\b|\b(?:88|91|98|99)(?:[.,]\d)?\s*kwh", re.I)),
+    ("Standard Range", re.compile(r"standard|\bsr\b|\b(?:68|70|72|73|75|76)(?:[.,]\d)?\s*kwh", re.I)),
+]
+# Power fallback (pk) when the title names no variant. Only the unambiguous bands:
+# the GT/Rally (~480 pk) and the Extended AWD (~351 pk). The Standard (~269 pk) and
+# Extended RWD (~294 pk, later 276 pk) overlap across model years, so they're left
+# to the text rather than guessed.
+MACHE_POWER_VARIANTS: list[tuple[int, int, str]] = [
+    (440, 520, "GT"),
+    (330, 370, "Extended Range"),
+]
 
 # =================================================================================
 # Skoda Enyaq variants (see enyaq.py for how these are applied)
@@ -400,12 +446,64 @@ HW_EXPLICIT_PATTERNS = {
     "HW1": [r"\bhw\s*1\b", r"hardware\s*1\b", r"\bap1\b", r"autopilot\s*1\b"],
 }
 
-# Tow bar (trekhaak). A positive mention means the car has one fitted; guard
-# against "geen/zonder trekhaak" and "voorbereiding/optioneel" (prep, not fitted).
-TOW_HITCH_PATTERNS = [r"trek\s*haak", r"tow\s*bar", r"\btowbar\b", r"tow\s*hitch"]
-TOW_HITCH_NEGATIVE = ("geen", "zonder", "niet")
-TOW_HITCH_EXCLUDE = ("voorbereid", "voorbereiding", "mogelijk", "optioneel",
-                     "kan worden", "te plaatsen", "af fabriek mogelijk")
+# Equipment options, each a boolean record field (tow_hitch, acc, ...). An option
+# counts as present when the seller ticked one of its `mp_options` in Marktplaats'
+# structured "Opties" list, OR the ad text mentions it positively. Text mentions
+# are skipped when a negation precedes them ("geen/zonder trekhaak") or when an
+# `exclude` word sits nearby ("trekhaak voorbereiding" = prep, not fitted).
+# Seat memory and adaptive suspension have no Marktplaats option, so text only.
+OPTION_NEGATIVE = ("geen", "zonder", "niet", "without")
+OPTION_EXCLUDE_COMMON = ("mogelijk", "optioneel", "kan worden", "te plaatsen",
+                         "bij te bestellen", "tegen meerprijs")
+EQUIPMENT_OPTIONS: dict[str, dict] = {
+    "tow_hitch": {
+        "patterns": [r"trek\s*haak", r"tow\s*bar", r"\btowbar\b", r"tow\s*hitch"],
+        "mp_options": ["Trekhaak"],
+        "exclude": ("voorbereid", "voorbereiding", "af fabriek mogelijk"),
+    },
+    "acc": {
+        # Tesla's TACC is part of (Enhanced) Autopilot, so an Autopilot mention counts.
+        # "LFP-acc" is shorthand for the LFP accu (battery), not cruise control.
+        "patterns": [r"adaptie(?:ve|f)\s*cruise", r"adaptive\s*cruise", r"(?<!lfp[\s-])\bt?acc\b",
+                     r"traffic[\s-]*aware", r"\bauto\s*pilot\b", r"\bautopiloot\b"],
+        "mp_options": ["Adaptive Cruise Control", "AdaptiveCruiseControl"],
+        "exclude": (),
+    },
+    "premium_audio": {
+        # Brand systems + the generic "Audio installatie premium" dealer spec line
+        # (Tesla's premium audio is sold as "High Performance Audio").
+        "patterns": [r"premium\s*(?:audio|sound|geluid|hifi|hi-fi)", r"audio\s*installatie\s*premium",
+                     r"high[\s-]*(?:end|performance)\s*audio", r"\bcanton\b",
+                     r"harman\s*[/&-]?\s*kardon", r"bang\s*(?:&|and|en)\s*olufsen", r"\bb\s*&\s*o\b",
+                     r"\bbose\b", r"\bmeridian\b", r"\bburmester\b", r"\bbowers\b",
+                     r"\bjbl\b", r"\bdynaudio\b", r"\bmark\s*levinson\b", r"\bsubwoofer\b"],
+        "mp_options": ["Sound system"],
+        "exclude": (),
+    },
+    "pano": {
+        # `\bpano` covers pano / panodak / panorama(dak) / panoramisch.
+        "patterns": [r"\bpano", r"glazen\s*dak", r"glas\s*dak", r"glass\s*roof"],
+        "mp_options": ["Panoramadak"],
+        "exclude": (),
+    },
+    "seat_memory": {
+        # Anchored on "stoel" so "buitenspiegels / stuurkolom met geheugen" don't count.
+        "patterns": [r"stoel\w*(?:\(en\))?(?:\s+(?!stuur|spiegel|buiten)[\w.]+){0,3}?\s+(?:met\s+)?(?:geheugen|memory)",
+                     r"stoelgeheugen", r"geheugen\w*\s*(?:voor\s*)?(?:de\s*)?(?:bestuurders)?stoel",
+                     r"memory\s*(?:seats?|stoel|zetel|functie)", r"\bmemory\b(?!\s*(?:spiegel|stuur))"],
+        "mp_options": [],
+        "exclude": (),
+    },
+    "adaptive_suspension": {
+        "patterns": [r"\bdcc\b", r"dynamic\s*chassis\s*control", r"adaptie(?:ve|f)\s*(?:onderstel|vering|demping|chassis|dempers)",
+                     r"adaptive\s*(?:suspension|damp)", r"actie(?:ve|f)\s*(?:onderstel|vering|chassis)",
+                     r"active\s*suspension", r"lucht\s*vering", r"air\s*suspension",
+                     r"smart\s*air", r"elektronisch\s*(?:verstelbaar\s*)?onderstel",
+                     r"variabele\s*demping", r"magne\s*ride"],
+        "mp_options": [],
+        "exclude": (),
+    },
+}
 
 # State-of-Health: look for a battery-health phrase, then a nearby percentage.
 SOH_CONTEXT_PATTERNS = [

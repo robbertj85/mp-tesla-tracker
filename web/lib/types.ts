@@ -45,8 +45,15 @@ export interface Listing {
   view_count: number | null;
   favorited_count: number | null;
   post_date: string | null;
-  /** Tow bar (trekhaak) fitted — from the ad text / Tesla option. */
+  /** Equipment flags — Marktplaats' "Opties" checkboxes or the ad text (see
+   *  EQUIPMENT_OPTIONS in scraper/mp_tesla/config.py). Tesla premium audio is also
+   *  implied by the trim. */
   tow_hitch?: boolean | null;
+  acc?: boolean | null;
+  premium_audio?: boolean | null;
+  pano?: boolean | null;
+  seat_memory?: boolean | null;
+  adaptive_suspension?: boolean | null;
   first_seen: string;
   last_seen: string;
   /** False once a listing has been missing from enough runs (sold/removed). */

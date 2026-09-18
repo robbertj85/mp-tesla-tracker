@@ -35,9 +35,11 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
         rec.setdefault("brand", brand.label)
         # Records stored before the Tesla-inventory source all came from Marktplaats.
         rec.setdefault("source", "marktplaats")
-        # Tow bar (trekhaak): recompute from the kept text so older records get it.
-        rec["tow_hitch"] = extract.detect_tow_hitch(
-            f"{rec.get('title', '')}\n{rec.get('description', '')}")
+        # Equipment flags (trekhaak, ACC, pano, ...): recompute from the kept text
+        # + structured options so older records get them too.
+        rec.update(extract.detect_options(
+            f"{rec.get('title', '')}\n{rec.get('description', '')}",
+            rec.get("mp_options")))
         if brand.pipeline == "tesla":
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")
@@ -59,6 +61,15 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
             json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+    elif brand.pipeline == "mache":
+        for rec in listings.values():
+            before = rec.get("trim")
+            record.apply_mache_spec(rec)
+            changed += before != rec["trim"]
+        listings_path.write_text(
+            json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
     elif brand.pipeline == "tesla":
         for rec in listings.values():
             text = f"{rec.get('title', '')}\n{rec.get('description', '')}"
@@ -72,6 +83,7 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
                 "hw_platform": hw["value"], "hw_source": hw["source"],
                 "hw_confidence": hw["confidence"],
             })
+            record.apply_tesla_premium_audio(rec)
             if before != (rec["trim"], rec["is_highland"], rec["hw_platform"]):
                 changed += 1
         listings_path.write_text(

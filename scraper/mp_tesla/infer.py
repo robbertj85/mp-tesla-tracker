@@ -51,3 +51,28 @@ def infer_hw_platform(model: str, year: int | None, is_highland: bool,
         return {"value": None, "source": "inferred", "confidence": "unknown"}
 
     return {"value": None, "source": "inferred", "confidence": "unknown"}
+
+
+def tesla_premium_audio(model: str | None, trim: str | None, year: int | None) -> bool:
+    """Whether a Tesla ships premium audio from the factory, from model/trim/year.
+
+    Tesla doesn't sell audio as an option — it comes with the trim, so ads rarely
+    mention it. Premium = subwoofer + amplified multi-speaker system:
+      * Model 3 (pre-Highland and Highland): Long Range / Performance / Dual Motor.
+        The SR / SR+ / RWD get the standard (no subwoofer) system.
+      * Model Y pre-Juniper: every trim (13 speakers + subwoofer).
+      * Model Y Juniper: Long Range / Performance / Dual Motor; the Juniper RWD and
+        Standard are left to the ad text.
+      * Model S: standard from the 2016 facelift; before that the "Ultra High
+        Fidelity Sound" was an option, so earlier cars rely on the ad text.
+    Returns False when unsure — callers OR this with the text/option detection.
+    """
+    t = trim or ""
+    upper = any(k in t for k in ("Long Range", "Performance", "Dual Motor"))
+    if model == "Model 3":
+        return upper
+    if model == "Model Y":
+        return upper or ("Juniper" not in t and bool(t))
+    if model == "Model S":
+        return year is not None and year >= 2016
+    return False

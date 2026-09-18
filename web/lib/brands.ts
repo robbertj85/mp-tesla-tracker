@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq";
+export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq" | "mach-e";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -37,6 +37,9 @@ export interface BrandConfig {
   /** What the `trim` dimension is actually called for this brand — Tesla has
    *  trims, the Enyaq has battery variants ("Uitvoering"). Defaults to "Trim". */
   trimLabel?: string;
+  /** Price-ladder order of the `trim` values, for brands whose archetypes group
+   *  by trim (Enyaq variants, Mach-E battery packs). */
+  trimOrder?: string[];
   dimensions: BrandDimensions;
 }
 
@@ -99,10 +102,27 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     modelsLabel: "Skoda Enyaq iV & Coupé · volledig elektrisch",
     modelColors: { Enyaq: "#0891b2" },
     trimLabel: "Uitvoering",
+    trimOrder: ["50", "60", "80", "80x", "85", "85x", "RS"],
     dimensions: {
       trim: true, hw: false, fsd: false, range: false,
       fuel: false, transmission: false, drivetrain: true, source: false,
       battery: true, equipmentLine: true, body: true,
+    },
+  },
+  // Ford Mustang Mach-E (full-electric, build years 2020+). Like the Enyaq every
+  // car is an electric automatic; the battery pack (Standard vs Extended Range,
+  // GT/Rally on top) is the split that matters, derived from the ad title.
+  "mach-e": {
+    key: "mach-e",
+    label: "Mach-E",
+    modelsLabel: "Ford Mustang Mach-E · volledig elektrisch",
+    modelColors: { Mustang: "#1d4ed8" },
+    trimLabel: "Accupakket",
+    trimOrder: ["Standard Range", "Extended Range", "GT", "Rally"],
+    dimensions: {
+      trim: true, hw: false, fsd: false, range: false,
+      fuel: false, transmission: false, drivetrain: true, source: false,
+      battery: false, equipmentLine: false, body: false,
     },
   },
 };

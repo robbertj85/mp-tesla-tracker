@@ -86,6 +86,36 @@ def detect_soh(text: str) -> float | None:
     return None
 
 
+def _mentions_option(low: str, patterns: list[str], exclude: tuple) -> bool:
+    """True on the first positive (non-negated, non-excluded) pattern match."""
+    for m in re.finditer("|".join(patterns), low):
+        before = low[max(0, m.start() - 20):m.start()]
+        around = low[max(0, m.start() - 20):m.end() + 25]
+        if any(neg in before for neg in config.OPTION_NEGATIVE):
+            continue
+        if any(w in around for w in (*config.OPTION_EXCLUDE_COMMON, *exclude)):
+            continue
+        return True
+    return False
+
+
+def detect_option(key: str, text: str, mp_options: list[str] | None = None) -> bool:
+    """Whether equipment option `key` (see config.EQUIPMENT_OPTIONS) is present.
+
+    Marktplaats' structured "Opties" checkbox list wins when it names the option;
+    otherwise we fall back to a positive, non-negated mention in the ad text.
+    """
+    spec = config.EQUIPMENT_OPTIONS[key]
+    if mp_options and any(o in mp_options for o in spec["mp_options"]):
+        return True
+    return _mentions_option(text.lower(), spec["patterns"], spec["exclude"])
+
+
+def detect_options(text: str, mp_options: list[str] | None = None) -> dict[str, bool]:
+    """Every equipment flag at once: {"tow_hitch": bool, "acc": bool, ...}."""
+    return {key: detect_option(key, text, mp_options) for key in config.EQUIPMENT_OPTIONS}
+
+
 def detect_tow_hitch(text: str) -> bool:
     """True when the car has a tow bar fitted (trekhaak / tow bar / hitch).
 
@@ -93,16 +123,7 @@ def detect_tow_hitch(text: str) -> bool:
     ("trekhaak voorbereiding", "optioneel"), so "Met trekhaak" / "Afneembare
     trekhaak" / Tesla's "Trekhaak" option all count, but "geen trekhaak" does not.
     """
-    low = text.lower()
-    for m in re.finditer("|".join(config.TOW_HITCH_PATTERNS), low):
-        before = low[max(0, m.start() - 20):m.start()]
-        around = low[max(0, m.start() - 20):m.end() + 25]
-        if any(neg in before for neg in config.TOW_HITCH_NEGATIVE):
-            continue
-        if any(w in around for w in config.TOW_HITCH_EXCLUDE):
-            continue
-        return True
-    return False
+    return detect_option("tow_hitch", text)
 
 
 def detect_hw_mention(text: str) -> str | None:
