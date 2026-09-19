@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TRIM_GUIDE, type ModelTrims, type TrimSpec } from "@/lib/ranges";
+import { TRIM_GUIDE, type ModelTrims, type TrimMatch, type TrimSpec } from "@/lib/ranges";
 import type { Dataset } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
-import { km } from "@/lib/utils";
+import { eur, km } from "@/lib/utils";
 
 function median(xs: number[]): number | null {
   const v = xs.filter((x) => Number.isFinite(x)).sort((a, b) => a - b);
@@ -26,6 +26,22 @@ function measuredHealth(data: Dataset, model: string) {
   return { value: median(pool), n: pool.length, basis: pct.length >= soh.length ? "rated range" : "opgegeven SoH" };
 }
 
+/** Active tracker listings a guide row covers: count + median asking price. */
+function supply(data: Dataset, model: string, m: TrimMatch) {
+  const rows = data.listings.filter(
+    (l) =>
+      (l.active ?? true) &&
+      l.model === model &&
+      l.trim === m.trim &&
+      (m.drivetrain == null || l.drivetrain === m.drivetrain) &&
+      (m.body == null || l.body === m.body) &&
+      (m.yearFrom == null || (l.year != null && l.year >= m.yearFrom)) &&
+      (m.yearTo == null || (l.year != null && l.year <= m.yearTo))
+  );
+  const prices = rows.map((l) => l.price_eur).filter((x): x is number => x != null && x > 0);
+  return { n: rows.length, median: median(prices) };
+}
+
 function RangeBar({ t, max }: { t: TrimSpec; max: number }) {
   const pct = (x: number) => `${Math.min(100, (x / max) * 100).toFixed(1)}%`;
   return (
@@ -37,8 +53,26 @@ function RangeBar({ t, max }: { t: TrimSpec; max: number }) {
   );
 }
 
+function SupplyCell({ data, model, t }: { data: Dataset; model: string; t: TrimSpec }) {
+  const s = t.match ? supply(data, model, t.match) : null;
+  return (
+    <td className="whitespace-nowrap px-3 py-2.5 text-right tabular-nums">
+      {s && s.n > 0 ? (
+        <>
+          <div>{s.n}×</div>
+          {s.median != null && <div className="text-xs text-muted-foreground">~{eur(s.median)}</div>}
+        </>
+      ) : (
+        <span className="text-muted-foreground">—</span>
+      )}
+    </td>
+  );
+}
+
 function ModelCard({ m, max, data }: { m: ModelTrims; max: number; data: Dataset }) {
-  const health = measuredHealth(data, m.model);
+  const dataModel = m.dataModel ?? m.model;
+  const health = measuredHealth(data, dataModel);
+  const showSupply = m.trims.some((t) => t.match);
   return (
     <Card>
       <CardHeader>
@@ -67,6 +101,7 @@ function ModelCard({ m, max, data }: { m: ModelTrims; max: number; data: Dataset
                 <th className="px-3 py-2 text-right font-medium">Praktijk</th>
                 <th className="px-3 py-2 text-right font-medium">Winter</th>
                 <th className="px-3 py-2 text-right font-medium">Snelweg 110</th>
+                {showSupply && <th className="px-3 py-2 text-right font-medium">Aanbod</th>}
                 <th className="px-4 py-2 text-left font-medium">Bereik (WLTP / praktijk / winter)</th>
               </tr>
             </thead>
@@ -93,6 +128,7 @@ function ModelCard({ m, max, data }: { m: ModelTrims; max: number; data: Dataset
                   <td className="px-3 py-2.5 text-right tabular-nums text-muted-foreground">
                     {t.range.highwayCold ? `${km(t.range.highwayCold)}–${km(t.range.highwaySummer!)}` : "—"}
                   </td>
+                  {showSupply && <SupplyCell data={data} model={dataModel} t={t} />}
                   <td className="px-4 py-2.5">
                     <RangeBar t={t} max={max} />
                   </td>
@@ -135,7 +171,8 @@ export function TrimGuide({ data, brand }: { data: Dataset; brand: BrandConfig }
             </span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Praktijkcijfers: EV Database Real Range; <span className="font-medium">*</span> = schatting (~0,80× WLTP).
+            Praktijkcijfers: EV Database Real Range; winter = gecombineerd bij −10 °C met verwarming
+            {hasEst && <>; <span className="font-medium">*</span> = schatting (~0,80× WLTP)</>}.
             Bereik daalt ±20% in praktijk en tot ~⅓ in de winter / op de snelweg.
           </p>
         </CardContent>
@@ -145,29 +182,82 @@ export function TrimGuide({ data, brand }: { data: Dataset; brand: BrandConfig }
         <ModelCard key={m.model} m={m} max={max} data={data} />
       ))}
 
+      {brand.key === "enyaq" && <EnyaqNotes />}
+      {brand.key === "mach-e" && <MachENotes />}
+
       {/* RWD vs Long Range AWD — the SoH break-even, embedded from the analysis. */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">RWD vs. Long Range AWD — wanneer is RWD-bereik vergelijkbaar?</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm text-muted-foreground">
-          <p>
-            Bruikbaar bereik ≈ <span className="font-medium text-foreground">WLTP-nieuw × batterijgezondheid</span>.
-            Een Long Range AWD start met 12–25% méér WLTP dan de RWD, dus zelfs een RWD op 100% gezondheid evenaart
-            pas een Long Range die zélf is gezakt naar ongeveer{" "}
-            <span className="font-medium text-foreground">~77–80% (Model 3)</span> of{" "}
-            <span className="font-medium text-foreground">~85% (Model Y)</span>.
-          </p>
-          <p>
-            In de huidige occasionvoorraad zit vrijwel geen Long Range AWD zó laag (mediaan ~91–92%, minimum ~81–86%).
-            Een RWD kies je dus op prijs (~€3–4,5k goedkoper), niet op bereik: bij gelijke gezondheid rijdt de Long
-            Range AWD ~15–25% verder.
-          </p>
-          {hasEst && (
-            <p className="text-xs">* WLTP uit de scraper-tabel (bron: EV Database); praktijkschattingen waar geen meetcijfer beschikbaar is.</p>
-          )}
-        </CardContent>
-      </Card>
+      {brand.key === "tesla" && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">RWD vs. Long Range AWD — wanneer is RWD-bereik vergelijkbaar?</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <p>
+              Bruikbaar bereik ≈ <span className="font-medium text-foreground">WLTP-nieuw × batterijgezondheid</span>.
+              Een Long Range AWD start met 12–25% méér WLTP dan de RWD, dus zelfs een RWD op 100% gezondheid evenaart
+              pas een Long Range die zélf is gezakt naar ongeveer{" "}
+              <span className="font-medium text-foreground">~77–80% (Model 3)</span> of{" "}
+              <span className="font-medium text-foreground">~85% (Model Y)</span>.
+            </p>
+            <p>
+              In de huidige occasionvoorraad zit vrijwel geen Long Range AWD zó laag (mediaan ~91–92%, minimum ~81–86%).
+              Een RWD kies je dus op prijs (~€3–4,5k goedkoper), niet op bereik: bij gelijke gezondheid rijdt de Long
+              Range AWD ~15–25% verder.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {hasEst && (
+        <p className="text-xs text-muted-foreground">
+          * WLTP uit de scraper-tabel (bron: EV Database); praktijkschattingen waar geen meetcijfer beschikbaar is.
+        </p>
+      )}
     </div>
+  );
+}
+
+function NotesCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2 text-sm text-muted-foreground">{children}</CardContent>
+    </Card>
+  );
+}
+
+function EnyaqNotes() {
+  return (
+    <NotesCard title="60 of 80/85 — wat scheelt het in de winter?">
+      <p>
+        Een iV 60 haalt in de winter gecombineerd zo&apos;n{" "}
+        <span className="font-medium text-foreground">285 km</span>, op de snelweg bij vorst nog maar{" "}
+        <span className="font-medium text-foreground">~240 km</span>. De 77 kWh-accu (80/85) doet daar ~30% bovenop:
+        370–385 km winter, ~315–330 km snelweg.
+      </p>
+      <p>
+        De 85 (facelift) is bij dezelfde accu ~20 km zuiniger dan de iV 80 dankzij de nieuwe motor. De x- en
+        RS-versies (AWD) kosten ~10–25 km ten opzichte van de RWD; de Coupé wint er ~10–15 km bij.
+      </p>
+    </NotesCard>
+  );
+}
+
+function MachENotes() {
+  return (
+    <NotesCard title="Standard of Extended Range — wat scheelt het in de winter?">
+      <p>
+        Standard Range RWD haalt in de winter gecombineerd{" "}
+        <span className="font-medium text-foreground">~310 km</span>, op de snelweg bij vorst{" "}
+        <span className="font-medium text-foreground">~260 km</span>. Extended Range RWD doet ~85 km méér in de winter
+        (~395 km) en is de enige Mach-E die 's winters op de snelweg de 330 km haalt.
+      </p>
+      <p>
+        AWD kost bij Extended Range ~30 km winterbereik; de GT en Rally leveren nog eens ~15 km in voor hun extra
+        vermogen. Let bij 2021-exemplaren op de kleinere accu (68 / 88 kWh) — Ford vergrootte beide pakketten later.
+      </p>
+    </NotesCard>
   );
 }

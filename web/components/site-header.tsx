@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { BRANDS, BRAND_KEYS, type BrandConfig } from "@/lib/brands";
+import { hasTrimGuide } from "@/lib/ranges";
 
 export function SiteHeader({ brand, subtitle, active }: {
   brand: BrandConfig; subtitle?: React.ReactNode; active: "dashboard" | "modellen" | "uitvoeringen";
@@ -41,7 +42,7 @@ export function SiteHeader({ brand, subtitle, active }: {
       <nav className="flex items-center gap-1 rounded-lg border bg-card p-1">
         {navLink(`/${brand.key}`, "Dashboard", "dashboard")}
         {navLink(`/${brand.key}/modellen`, "Modellen", "modellen")}
-        {brand.dimensions.range && navLink(`/${brand.key}/uitvoeringen`, "Uitvoeringen", "uitvoeringen")}
+        {hasTrimGuide(brand.key) && navLink(`/${brand.key}/uitvoeringen`, "Uitvoeringen", "uitvoeringen")}
       </nav>
     </header>
   );
