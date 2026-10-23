@@ -24,12 +24,12 @@ jobs:
     # All tracked brands (Tesla, Skoda, Octavia, Model S, Enyaq, Mach-E), each with throttled detail fetches.
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Full history so the post-scrape rebase-onto-latest-main push works.
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: "pip"
