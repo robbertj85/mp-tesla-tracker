@@ -18,8 +18,9 @@ function loadData(brand: string): Dataset {
   return JSON.parse(fs.readFileSync(file, "utf-8")) as Dataset;
 }
 
-export default function Page({ params }: { params: { brand: string } }) {
-  if (!isBrandKey(params.brand)) notFound();
-  const data = loadData(params.brand);
-  return <Dashboard data={data} brand={BRANDS[params.brand]} />;
+export default async function Page({ params }: { params: Promise<{ brand: string }> }) {
+  const { brand: brandKey } = await params;
+  if (!isBrandKey(brandKey)) notFound();
+  const data = loadData(brandKey);
+  return <Dashboard data={data} brand={BRANDS[brandKey]} />;
 }

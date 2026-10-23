@@ -17,10 +17,11 @@ function loadData(brand: string): Dataset {
   return JSON.parse(fs.readFileSync(file, "utf-8")) as Dataset;
 }
 
-export default function UitvoeringenPage({ params }: { params: { brand: string } }) {
-  if (!isBrandKey(params.brand)) notFound();
-  const brand = BRANDS[params.brand];
-  const data = loadData(params.brand);
+export default async function UitvoeringenPage({ params }: { params: Promise<{ brand: string }> }) {
+  const { brand: brandKey } = await params;
+  if (!isBrandKey(brandKey)) notFound();
+  const brand = BRANDS[brandKey];
+  const data = loadData(brandKey);
   return (
     <div className="container max-w-7xl py-8">
       <SiteHeader
