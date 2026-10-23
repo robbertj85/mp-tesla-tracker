@@ -14,7 +14,7 @@ import logging
 import re
 
 import httpx
-from selectolax.parser import HTMLParser
+from selectolax.lexbor import LexborHTMLParser as HTMLParser
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from . import config
