@@ -184,6 +184,7 @@ export function TrimGuide({ data, brand }: { data: Dataset; brand: BrandConfig }
 
       {brand.key === "enyaq" && <EnyaqNotes />}
       {brand.key === "mach-e" && <MachENotes />}
+      {brand.key === "id4" && <Id4Notes />}
 
       {/* RWD vs Long Range AWD — the SoH break-even, embedded from the analysis. */}
       {brand.key === "tesla" && (
@@ -210,7 +211,7 @@ export function TrimGuide({ data, brand }: { data: Dataset; brand: BrandConfig }
 
       {hasEst && (
         <p className="text-xs text-muted-foreground">
-          * WLTP uit de scraper-tabel (bron: EV Database); praktijkschattingen waar geen meetcijfer beschikbaar is.
+          * WLTP {brand.key === "id4" ? "volgens Volkswagen" : "uit de scraper-tabel (bron: EV Database)"}; praktijkschattingen waar geen meetcijfer beschikbaar is.
         </p>
       )}
     </div>
@@ -257,6 +258,23 @@ function MachENotes() {
       <p>
         AWD kost bij Extended Range ~30 km winterbereik; de GT en Rally leveren nog eens ~15 km in voor hun extra
         vermogen. Let bij 2021-exemplaren op de kleinere accu (68 / 88 kWh) — Ford vergrootte beide pakketten later.
+      </p>
+    </NotesCard>
+  );
+}
+
+function Id4Notes() {
+  return (
+    <NotesCard title="Pure of Pro — en wat past erin?">
+      <p>
+        Een Pure (52 kWh) haalt in de winter gecombineerd naar schatting{" "}
+        <span className="font-medium text-foreground">~240 km</span>; een Pro (77 kWh) ~350 km, de 2024+ Pro met
+        de nieuwe 286 pk-motor ~370 km. 4MOTION en GTX kosten ~20–30 km ten opzichte van de RWD.
+      </p>
+      <p>
+        Bagageruimte: <span className="font-medium text-foreground">543 l</span>, met de achterbank plat{" "}
+        <span className="font-medium text-foreground">1.575 l</span>. Een frunk heeft de ID.4 niet — onder de
+        motorkap zitten de airco en elektronica (en bij 4MOTION/GTX de voorste motor).
       </p>
     </NotesCard>
   );

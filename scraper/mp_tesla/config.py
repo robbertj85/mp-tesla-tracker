@@ -185,6 +185,26 @@ BRANDS: dict[str, Brand] = {
         pipeline="mache",
         source_query="auto-s/ford | Mustang Mach-E | elektrisch | constructionYear>=2020 | price<=80000",
     ),
+    # Volkswagen ID.4 (full-electric SUV, deliveries from late 2020). The Enyaq's
+    # MEB sibling, so the same battery split matters: Pure (52 kWh) vs Pro (77 kWh),
+    # with the Pro 4MOTION and GTX (AWD) on top. Reuses the Skoda block for
+    # fuel/transmission/driveline; id4.py adds the variant (as `trim`), the usable
+    # battery and the equipment line. The ID.5 (the coupé) is a separate model on
+    # Marktplaats (13776) and is not tracked here.
+    "id4": Brand(
+        key="id4",
+        label="Volkswagen ID.4",
+        l2_category_id=157,
+        models={"ID.4": 13144},
+        fuel_ids=(11756,),
+        allowed_fuels=("Elektrisch",),
+        year_from=2020,
+        year_to=None,
+        price_cents_to=6_000_000,   # <= €60,000 (a new GTX sits around €55k)
+        min_price_eur=5000,
+        pipeline="id4",
+        source_query="auto-s/volkswagen | ID.4 | elektrisch | constructionYear>=2020 | price<=60000",
+    ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
     # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
     # inferred from build year per config.HW_INFERENCE["Model S"] when the ad is silent.
@@ -234,7 +254,58 @@ FEATURE_SPECS: dict[str, dict] = {
         "numeric": ["age", "mileage_km", "power_hp"],
         "categorical": ["model", "trim", "drivetrain", "color", "condition"],
     },
+    # ID.4: like the Mach-E the variant (in `trim`) carries the battery, so
+    # battery_kwh would only duplicate it; the equipment line (1st Max, Style, …)
+    # adds the trim-level spread the Enyaq tracker also models.
+    "id4": {
+        "numeric": ["age", "mileage_km", "power_hp"],
+        "categorical": ["model", "trim", "equipment_line", "drivetrain", "color", "condition"],
+    },
 }
+
+# =================================================================================
+# Volkswagen ID.4 variants (see id4.py)
+# =================================================================================
+# The 2024 update (APP550 motor) re-powered the 77 kWh cars: the Pro went from
+# 174/204 hp to 286 hp, the Pro 4MOTION from 265 to 286 hp, the GTX from 299 to
+# 340 hp. The Pure (52 kWh) kept 148/170 hp.
+ID4_UPDATE_YEAR = 2024
+
+# Variant from the structured power figure: (hp values, variant). 286 hp is the
+# 2024+ Pro AND Pro 4MOTION, so it maps to "Pro" and the driveline promotes it.
+ID4_POWER_VARIANTS: list[tuple[tuple[int, ...], str]] = [
+    ((148, 150, 170), "Pure"),
+    ((174, 204, 286), "Pro"),
+    ((265,), "Pro 4MOTION"),
+    ((299, 300, 340), "GTX"),
+]
+
+# Variant from the title. Sellers nearly always quote the pack ("Pro 77 kWh",
+# "Pure 52 kWh"); 79/82 kWh are the 2024+ net / the gross figure of the big pack.
+ID4_GTX_PATTERN = re.compile(r"\bgtx\b", re.I)
+ID4_4MOTION_PATTERN = re.compile(r"4\s*motion", re.I)
+ID4_PURE_PATTERN = re.compile(r"\bpure\b|\bcity\b|\b(?:52|55)(?:[.,]\d)?\s*kwh", re.I)
+ID4_PRO_PATTERN = re.compile(r"\bpro\b|\b(?:1st|first)\b|\b(?:77|79|82)(?:[.,]\d)?\s*kwh", re.I)
+
+# Usable battery capacity per variant (kWh). Gross is 55 / 82 kWh.
+ID4_BATTERY_KWH = {"Pure": 52.0, "Pro": 77.0, "Pro 4MOTION": 77.0, "GTX": 77.0}
+
+# Equipment lines, most specific first (first match wins). Matched on the TITLE
+# only: descriptions use "max" ("max. 11 kW laden") and "first" too loosely.
+ID4_EQUIPMENT_LINES: list[tuple[str, list[str]]] = [
+    ("1st Max", [r"\b(?:1st|first)\s*max\b"]),
+    ("1st Edition", [r"\b(?:1st|first)\b"]),
+    ("Max", [r"\bmax\b"]),
+    ("Limited Edition", [r"limited\s*edition"]),
+    ("Style", [r"\bstyle\b"]),
+    ("Tech", [r"\btech\b"]),
+    ("Family", [r"\bfamily\b"]),
+    ("Business", [r"\bbusiness\b"]),
+    ("Life", [r"\blife\b"]),
+    ("City", [r"\bcity\b"]),
+    ("Goal", [r"\bgoal\b"]),
+    ("Advantage", [r"\badvantage\b"]),
+]
 
 # =================================================================================
 # Ford Mustang Mach-E variants (see mache.py)

@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq" | "mach-e";
+export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq" | "mach-e" | "id4";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -38,7 +38,7 @@ export interface BrandConfig {
    *  trims, the Enyaq has battery variants ("Uitvoering"). Defaults to "Trim". */
   trimLabel?: string;
   /** Price-ladder order of the `trim` values, for brands whose archetypes group
-   *  by trim (Enyaq variants, Mach-E battery packs). */
+   *  by trim (Enyaq / ID.4 variants, Mach-E battery packs). */
   trimOrder?: string[];
   dimensions: BrandDimensions;
 }
@@ -123,6 +123,23 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
       trim: true, hw: false, fsd: false, range: false,
       fuel: false, transmission: false, drivetrain: true, source: false,
       battery: false, equipmentLine: false, body: false,
+    },
+  },
+  // Volkswagen ID.4 (full-electric SUV, build years 2020+). The Enyaq's MEB
+  // sibling: the variant (Pure 52 kWh vs Pro 77 kWh, Pro 4MOTION / GTX with AWD)
+  // is the split that matters, plus the equipment line (1st Max, Style, …). Both
+  // are derived from the ad title; the battery follows from the variant.
+  id4: {
+    key: "id4",
+    label: "ID.4",
+    modelsLabel: "Volkswagen ID.4 · volledig elektrisch",
+    modelColors: { "ID.4": "#4f46e5" },
+    trimLabel: "Uitvoering",
+    trimOrder: ["Pure", "Pro", "Pro 4MOTION", "GTX"],
+    dimensions: {
+      trim: true, hw: false, fsd: false, range: false,
+      fuel: false, transmission: false, drivetrain: true, source: false,
+      battery: false, equipmentLine: true, body: false,
     },
   },
 };

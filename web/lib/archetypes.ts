@@ -153,10 +153,10 @@ function buildSkoda(listings: Listing[], lm: LinearModel | null): Archetype[] {
   return rows;
 }
 
-/** Enyaq / Mach-E: fuel is "Electric" on every car, so grouping by it says
+/** Enyaq / Mach-E / ID.4: fuel is "Electric" on every car, so grouping by it says
  *  nothing. The battery variant (the `trim` dimension) is the real split, crossed
  *  with body shape where the brand derives one (Enyaq Coupé vs SUV) and with the
- *  driveline otherwise (Mach-E RWD vs AWD). `order` is the brand's price ladder. */
+ *  driveline otherwise (Mach-E / ID.4 RWD vs AWD). `order` is the brand's price ladder. */
 function buildByTrim(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
   const order = brand.trimOrder ?? [];
   const second = (l: Listing) => (brand.dimensions.body ? l.body : l.drivetrain) ?? "—";
@@ -184,7 +184,7 @@ function buildByTrim(listings: Listing[], lm: LinearModel | null, brand: BrandCo
 
 export function buildArchetypes(listings: Listing[], lm: LinearModel | null, brand: BrandConfig): Archetype[] {
   // Which grouping applies follows the brand's dimensions, not its key: every
-  // Tesla-pipeline brand carries hw/trim, the Enyaq / Mach-E split by battery variant, and
+  // Tesla-pipeline brand carries hw/trim, the Enyaq / Mach-E / ID.4 split by battery variant, and
   // the rest group by fuel × drivetrain. buildTesla only ever matches Model 3 /
   // Model Y, so keying off the brand name left the non-Tesla views without
   // archetypes at all.

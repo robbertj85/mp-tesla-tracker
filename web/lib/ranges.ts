@@ -5,7 +5,8 @@
 // estimates (~0.80 × WLTP year-round, ~0.67 × WLTP in cold winter) and marked
 // `bron: "schatting"`. NL real-world sits roughly between the winter and summer
 // numbers; motorway (110 km/h) is the worst common case. Enyaq and Mach-E rows
-// are EV Database throughout (winter = combined at -10 °C with heating).
+// are EV Database throughout (winter = combined at -10 °C with heating). ID.4
+// rows are Volkswagen's WLTP with estimated real-world figures.
 import type { BrandKey } from "@/lib/brands";
 
 export interface RangeFigures {
@@ -387,6 +388,81 @@ export const TRIM_GUIDE: Partial<Record<BrandKey, ModelTrims[]>> = {
           note: "487 pk, verhoogd onderstel en offroad-banden.",
           range: evdb(510, 410, 350, 460, 295, 370),
           match: { trim: "Rally" },
+        },
+      ],
+    },
+  ],
+  // ID.4: Volkswagen's WLTP figures (best wheel); real-world numbers are the
+  // ~0.80× / ~0.67× estimates. The 2024 update (APP550 motor) re-powered every
+  // 77 kWh variant and added ~30 km WLTP, so those rows are split by year.
+  id4: [
+    {
+      model: "ID.4",
+      blurb:
+        "Pure (52 kWh, altijd RWD) of Pro (77 kWh). De Pro is er als RWD en als Pro 4MOTION (AWD); de GTX is de sportieve AWD-topversie. Sinds 2024 hebben alle 77 kWh-versies een krachtiger, zuiniger motor.",
+      trims: [
+        {
+          trim: "Pure",
+          drivetrain: "RWD",
+          years: "2021+",
+          batteryKwh: 52,
+          note: "148 of 170 pk (City / Pure / Pure Performance).",
+          range: { wltp: 360, ...est(360) },
+          match: { trim: "Pure" },
+        },
+        {
+          trim: "Pro",
+          drivetrain: "RWD",
+          years: "2020–2023",
+          batteryKwh: 77,
+          note: "174 of 204 pk (Pro / Pro Performance, 1st (Max)).",
+          range: { wltp: 520, ...est(520) },
+          match: { trim: "Pro", yearTo: 2023 },
+        },
+        {
+          trim: "Pro (2024+)",
+          drivetrain: "RWD",
+          years: "2024+",
+          batteryKwh: 77,
+          note: "286 pk. De ID.4 met het grootste bereik.",
+          range: { wltp: 550, ...est(550) },
+          match: { trim: "Pro", yearFrom: 2024 },
+        },
+        {
+          trim: "Pro 4MOTION",
+          drivetrain: "AWD",
+          years: "2021–2023",
+          batteryKwh: 77,
+          note: "265 pk.",
+          range: { wltp: 490, ...est(490) },
+          match: { trim: "Pro 4MOTION", yearTo: 2023 },
+        },
+        {
+          trim: "Pro 4MOTION (2024+)",
+          drivetrain: "AWD",
+          years: "2024+",
+          batteryKwh: 77,
+          note: "286 pk.",
+          range: { wltp: 525, ...est(525) },
+          match: { trim: "Pro 4MOTION", yearFrom: 2024 },
+        },
+        {
+          trim: "GTX",
+          drivetrain: "AWD",
+          years: "2021–2023",
+          batteryKwh: 77,
+          note: "299 pk.",
+          range: { wltp: 480, ...est(480) },
+          match: { trim: "GTX", yearTo: 2023 },
+        },
+        {
+          trim: "GTX (2024+)",
+          drivetrain: "AWD",
+          years: "2024+",
+          batteryKwh: 77,
+          note: "340 pk.",
+          range: { wltp: 510, ...est(510) },
+          match: { trim: "GTX", yearFrom: 2024 },
         },
       ],
     },

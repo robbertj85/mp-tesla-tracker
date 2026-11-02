@@ -70,6 +70,15 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
             json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+    elif brand.pipeline == "id4":
+        for rec in listings.values():
+            before = (rec.get("trim"), rec.get("equipment_line"))
+            record.apply_id4_spec(rec)
+            changed += before != (rec["trim"], rec["equipment_line"])
+        listings_path.write_text(
+            json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
     elif brand.pipeline == "tesla":
         for rec in listings.values():
             text = f"{rec.get('title', '')}\n{rec.get('description', '')}"

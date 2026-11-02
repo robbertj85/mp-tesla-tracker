@@ -6,6 +6,7 @@ brand-specific block selected by `brand.pipeline`:
   * skoda — fuel (Petrol/PHEV) + transmission (Automatic) + drivetrain (FWD/AWD).
   * enyaq — the skoda block plus variant/battery/equipment line/Coupé-vs-SUV.
   * mache — the skoda block plus the Mach-E battery variant (as `trim`).
+  * id4 — the skoda block plus the ID.4 variant (as `trim`), battery, equipment line.
 Every record carries the union of keys (brand-irrelevant ones are None) so the
 exporter and regression frame stay uniform.
 """
@@ -13,7 +14,7 @@ from __future__ import annotations
 
 import re
 
-from . import config, enyaq, extract, infer, mache
+from . import config, enyaq, extract, id4, infer, mache
 from .config import Brand
 
 
@@ -67,6 +68,16 @@ def apply_mache_spec(rec: dict) -> dict:
     rec["trim"] = mache.detect_variant(rec.get("title", ""), rec.get("description", "") or "",
                                        rec.get("power_hp"))
     rec["adaptive_suspension"] = bool(rec.get("adaptive_suspension")) or rec["trim"] == "GT"
+    return rec
+
+
+def apply_id4_spec(rec: dict) -> dict:
+    """ID.4 variant (as `trim`), usable battery and equipment line, from the title
+    + structured power/driveline. Shared by build_record and the re-derive path."""
+    title = rec.get("title", "") or ""
+    rec["trim"] = id4.detect_variant(title, rec.get("power_hp"), rec.get("drivetrain"))
+    rec["battery_kwh"] = id4.battery_kwh(rec["trim"])
+    rec["equipment_line"] = id4.detect_equipment_line(title)
     return rec
 
 
@@ -270,6 +281,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     elif brand.pipeline == "mache":
         rec.update(_derive_skoda(raw, detail))
         apply_mache_spec(rec)
+    elif brand.pipeline == "id4":
+        rec.update(_derive_skoda(raw, detail))
+        apply_id4_spec(rec)
     elif brand.pipeline == "skoda":
         rec.update(_derive_skoda(raw, detail))
     else:

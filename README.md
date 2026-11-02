@@ -1,4 +1,4 @@
-# Marktplaats Prijstracker — Tesla, Skoda & Ford
+# Marktplaats Prijstracker — Tesla, Skoda, Ford & Volkswagen
 
 Tracks second-hand car listings on Marktplaats.nl over time and estimates a fair
 price for any feature set using regression, with an interactive dashboard (scatter
@@ -16,6 +16,7 @@ own dashboard route) and is never mixed:
 | **Model S** | Tesla Model S | build year ≥ 2013; **mileage ≤ 250.000 km**; Autopilot platform inferred across **HW1/HW2/HW2.5/HW3/HW4** from build year (explicit ad mentions win) |
 | **Enyaq** | Skoda Enyaq (iV + Coupé) | build year ≥ 2020; **fully electric only**; **battery variant (50/60/80/80x/85/85x/RS) + usable kWh**, **Coupé vs SUV**, equipment line, drivetrain, odometer, power, price |
 | **Mach-E** | Ford Mustang Mach-E | build year ≥ 2020; **fully electric only** (Marktplaats files it under "Mustang", so the fuel filter separates it from the petrol coupé); **battery pack (Standard / Extended Range, GT, Rally)**, drivetrain, odometer, power, price |
+| **ID.4** | Volkswagen ID.4 | build year ≥ 2020; **fully electric only**; **variant (Pure 52 kWh / Pro 77 kWh / Pro 4MOTION / GTX)**, equipment line (1st Max, Style, …), drivetrain, odometer, power, price |
 
 Every tracker also carries **equipment flags** — ACC, premium audio, panoramic
 roof, seat memory, adaptive suspension and tow bar (trekhaak) — filterable in the
@@ -28,7 +29,7 @@ Everything brand-specific lives in the `BRANDS` registry in
 ```
 ┌─ GitHub Action (daily) ──────────────┐      ┌─ Vercel (Next.js) ───────────────┐
 │ python -m mp_tesla.run               │      │ reads web/public/<brand>.json    │
-│  for each brand:                     │ ───▶ │ /tesla · /skoda · /octavia · /model-s · /enyaq · /mach-e │
+│  for each brand:                     │ ───▶ │ /tesla · /skoda · /octavia · /model-s · /enyaq · /mach-e · /id4 │
 │  scrape → extract → upsert JSON      │ git  │ scatter · filters · table        │
 │  → regression → export <brand>.json  │push  │ · fair-price estimator           │
 │  → commit data/<brand> + web/public  │      │ auto-redeploy on commit          │
@@ -46,8 +47,8 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/listings.json` | Canonical store per brand: `{id: record}` with `first_seen`/`last_seen`/`active` |
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
-| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`, `enyaq.json`, `mach-e.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e` (+ `/modellen`) |
+| `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`, `enyaq.json`, `mach-e.json`, `id4.json`) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4` (+ `/modellen`) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
@@ -63,7 +64,8 @@ User-Agent works server-side (validated 2026-06-01).
    `484`, year ≥ 2019. Octavia '06–'14: category `151` + Octavia `1185`, no
    fuel/transmission/body filter, `constructionYear:2006:2014`. Enyaq: category
    `151` + Enyaq `13808` + fuel Elektrisch `11756`, year ≥ 2020. Mach-E: category
-   `112` (Ford) + Mustang `11739` + fuel Elektrisch `11756`, year ≥ 2020.
+   `112` (Ford) + Mustang `11739` + fuel Elektrisch `11756`, year ≥ 2020. ID.4:
+   category `157` (Volkswagen) + ID.4 `13144` + fuel Elektrisch `11756`, year ≥ 2020.
    A search page that comes back empty is re-asked (`EMPTY_PAGE_RETRIES`) before
    pagination stops — Marktplaats intermittently answers a valid query with an
    empty 200, which would otherwise silently truncate a brand's scrape.
@@ -85,6 +87,10 @@ User-Agent works server-side (validated 2026-06-01).
    so a flat map would mislabel every facelift 60 and overstate its battery by
    18 kWh. Marktplaats reports "SUV of Terreinwagen" for the Coupé too, so the
    body split is derived from the ad text.
+   *ID.4* = the Skoda block plus the variant (`id4.py`): power first (148/170 pk =
+   Pure, 174/204/286 pk = Pro, 265 pk = Pro 4MOTION, 299/340 pk = GTX; 286 pk is the
+   2024+ Pro *and* Pro 4MOTION, so the driveline splits it), the title's "52 / 77 kWh"
+   / Pure / Pro / GTX as fallback; plus the equipment line from the title.
 4. **Store** (`store.py`) — idempotent per-brand upsert; re-running the same day adds
    no duplicate history; listings missing for 2 runs are marked inactive (sold).
 5. **Model** (`model.py`) — Ridge regression over the brand's `FEATURE_SPECS`
@@ -116,6 +122,7 @@ per car:
 | Octavia '06–'14 | Canton (rare in this era) | checkbox + text |
 | Enyaq | Canton (option) | checkbox + text |
 | Mach-E | Bang & Olufsen | checkbox + text |
+| ID.4 | Harman Kardon (option) | checkbox + text |
 
 Text detection misses cars whose ad doesn't mention an option, so "without" in the
 filter means "not mentioned", not "certainly absent".
