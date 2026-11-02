@@ -44,6 +44,31 @@ TESLA_MAX_PAGES = 20          # safety cap (~1000 cars/model)
 # Tesla query slug -> our canonical model name (and back, for the order URL).
 TESLA_MODEL_SLUGS = {"m3": "Model 3", "my": "Model Y", "ms": "Model S"}
 
+# --- Gaspedaal.nl (source="gaspedaal") --------------------------------------------
+# Aggregator of Dutch dealer stock (AutoScout24, AutoTrack, dealer sites, ...).
+# Each search page embeds its first 100 occasions as structured JSON (Next.js
+# flight data). robots.txt disallows every URL with a query string, so `?page=N`
+# is off-limits; we only fetch the path URLs it allows — the model page plus its
+# single-filter slices (`/<make>/<model>/<year>`, `/<make>/<model>/<colour>`, …),
+# each capped at 100 cars — and union them by advertentieId (see gaspedaal.py).
+GASPEDAAL_BASE_URL = "https://www.gaspedaal.nl"
+GASPEDAAL_PAGE_CAP = 100      # occasions embedded per page
+# Portal preference for the record URL (Gaspedaal's click-out redirects there).
+GASPEDAAL_PORTAL_ORDER = ("Dealersite", "AutoScout24", "AutoTrack", "viaBOVAG.nl", "ANWB")
+# Gaspedaal enum -> the Marktplaats label the rest of the pipeline (guards,
+# FUEL_NORMALISE, TRANSMISSION_NORMALISE) already understands.
+GASPEDAAL_FUEL = {
+    "ELEKTRICITEIT": "Elektrisch", "BENZINE": "Benzine", "DIESEL": "Diesel",
+    "LPG": "LPG", "CNG": "CNG",
+    # "HYBRIDE" covers both plug-in (iV/PHEV) and mild hybrids (e-TEC/e-TSI);
+    # gaspedaal.py splits it on the title.
+}
+GASPEDAAL_TRANSMISSION = {"AUTOMATISCH": "Automaat", "HANDMATIG": "Handgeschakeld"}
+GASPEDAAL_BODY = {
+    "STATIONWAGEN": "Stationwagon", "SUV": "SUV of Terreinwagen", "HATCHBACK": "Hatchback",
+    "SEDAN": "Sedan", "MPV": "MPV", "COUPE": "Coupé", "CABRIO": "Cabriolet",
+}
+
 
 # =================================================================================
 # Brand registry
@@ -77,6 +102,10 @@ class Brand:
     # (source="tesla"). e.g. ("m3", "my") for the tesla brand, ("ms",) for model-s.
     # Empty = no Tesla-inventory source (Skoda/Octavia).
     tesla_inventory_models: tuple = ()
+    # Gaspedaal.nl model pages to also pull into this brand's store (source=
+    # "gaspedaal"), as (canonical model, "<make>/<model>" path) pairs. The brand's
+    # year/price/mileage/fuel/transmission/body scope is applied after fetching.
+    gaspedaal_models: tuple = ()
 
     @property
     def search_attr_ids(self) -> list[int]:
@@ -104,7 +133,8 @@ BRANDS: dict[str, Brand] = {
         min_price_eur=5000,
         pipeline="tesla",
         tesla_inventory_models=("m3", "my"),
-        source_query="auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000 + Tesla.com occasions",
+        gaspedaal_models=(("Model 3", "tesla/model-3"), ("Model Y", "tesla/model-y")),
+        source_query="auto-s/tesla | Model 3 + Model Y | constructionYear>=2017 | price<=45000 + Tesla.com occasions + Gaspedaal",
     ),
     "skoda": Brand(
         key="skoda",
@@ -125,7 +155,8 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=6_000_000,
         min_price_eur=3500,
         pipeline="skoda",
-        source_query="auto-s/skoda | Octavia + Superb Combi | benzine + PHEV | automaat | constructionYear>=2019",
+        gaspedaal_models=(("Octavia", "skoda/octavia"), ("Superb", "skoda/superb")),
+        source_query="auto-s/skoda | Octavia + Superb Combi | benzine + PHEV | automaat | constructionYear>=2019 + Gaspedaal",
     ),
     # A second-hand-market view for selling an older Octavia: every Octavia from
     # build years 2006–2014, ALL body styles (hatchback + Combi) and BOTH gearboxes
@@ -143,6 +174,8 @@ BRANDS: dict[str, Brand] = {
         year_to=2014,
         price_cents_to=2_500_000,   # <= €25,000 (a clean late one tops out here)
         min_price_eur=500,          # old Octavias are cheap; only drop teaser junk
+        # No Gaspedaal source: it lists dealer stock only (these cars mostly sell
+        # privately) and has no year slices before 2010, so coverage would be thin.
         pipeline="skoda",
         source_query="auto-s/skoda | Octavia (alle uitvoeringen) | constructionYear 2006–2014",
     ),
@@ -164,7 +197,9 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=6_000_000,   # <= €60,000 (a nearly-new 85 Sportline tops ~€57k)
         min_price_eur=5000,
         pipeline="enyaq",
-        source_query="auto-s/skoda | Enyaq (iV + Coupé) | elektrisch | constructionYear>=2020 | price<=60000",
+        # Gaspedaal files the Coupé under the same "Enyaq iV" model.
+        gaspedaal_models=(("Enyaq", "skoda/enyaq-iv"),),
+        source_query="auto-s/skoda | Enyaq (iV + Coupé) | elektrisch | constructionYear>=2020 | price<=60000 + Gaspedaal",
     ),
     # Ford Mustang Mach-E (full-electric crossover, EU deliveries from 2021).
     # Marktplaats has no separate Mach-E model: it sits under "Mustang" (11739), so
@@ -183,7 +218,8 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=8_000_000,   # <= €80,000 (a new GT sits around €75k)
         min_price_eur=5000,
         pipeline="mache",
-        source_query="auto-s/ford | Mustang Mach-E | elektrisch | constructionYear>=2020 | price<=80000",
+        gaspedaal_models=(("Mustang", "ford/mustang-mach-e"),),
+        source_query="auto-s/ford | Mustang Mach-E | elektrisch | constructionYear>=2020 | price<=80000 + Gaspedaal",
     ),
     # Volkswagen ID.4 (full-electric SUV, deliveries from late 2020). The Enyaq's
     # MEB sibling, so the same battery split matters: Pure (52 kWh) vs Pro (77 kWh),
@@ -203,7 +239,8 @@ BRANDS: dict[str, Brand] = {
         price_cents_to=6_000_000,   # <= €60,000 (a new GTX sits around €55k)
         min_price_eur=5000,
         pipeline="id4",
-        source_query="auto-s/volkswagen | ID.4 | elektrisch | constructionYear>=2020 | price<=60000",
+        gaspedaal_models=(("ID.4", "volkswagen/id4"),),
+        source_query="auto-s/volkswagen | ID.4 | elektrisch | constructionYear>=2020 | price<=60000 + Gaspedaal",
     ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
     # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
@@ -221,7 +258,8 @@ BRANDS: dict[str, Brand] = {
         min_price_eur=5000,
         pipeline="tesla",
         tesla_inventory_models=("ms",),
-        source_query="auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000 + Tesla.com occasions",
+        gaspedaal_models=(("Model S", "tesla/model-s"),),
+        source_query="auto-s/tesla | Model S | constructionYear>=2013 | km<=250000 | price<=100000 + Tesla.com occasions + Gaspedaal",
     ),
 }
 

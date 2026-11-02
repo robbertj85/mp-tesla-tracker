@@ -292,6 +292,58 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     return rec
 
 
+def build_gaspedaal_record(parsed: dict, run_date: str, brand: Brand) -> dict:
+    """Assemble a record from a Gaspedaal.nl occasion (source="gaspedaal").
+
+    `parsed` comes from gaspedaal.parse_occasion with its fields already in
+    Marktplaats' labels, so we dress it up as a search listing + detail page and
+    run it through build_record — the exact same brand pipeline (Tesla trim/HW,
+    Skoda fuel/driveline, Enyaq/ID.4/Mach-E variants, equipment flags) — then
+    overwrite the source-specific bits. There is no description: every text
+    heuristic sees the title only.
+    """
+    price = parsed.get("price_eur")
+    attrs = [{"key": k, "value": parsed[k]} for k in ("fuel", "transmission", "body")
+             if parsed.get(k)]
+    raw = {
+        "itemId": parsed["id"],
+        "title": parsed.get("title", ""),
+        "vipUrl": "",
+        "attributes": attrs,
+        "priceInfo": {"priceCents": price * 100 if price else None},
+        "location": {"cityName": parsed.get("city")},
+        "sellerInformation": {"sellerName": parsed.get("seller_name")},
+        "imageUrls": [parsed["thumbnail"]] if parsed.get("thumbnail") else [],
+        "_canonical_model": parsed.get("model"),
+    }
+    detail = {
+        "year": parsed.get("year"),
+        "mileage_km": parsed.get("mileage_km"),
+        "price_cents": price * 100 if price else None,
+        "description": "",
+        "power_hp": parsed.get("power_hp"),
+        "color": parsed.get("color"),
+        "body": parsed.get("body"),
+        "fuel": parsed.get("fuel"),
+        "transmission": parsed.get("transmission"),
+        "drivetrain_attr": parsed.get("drivetrain_attr"),
+        "condition": parsed.get("condition"),
+        "num_doors": parsed.get("num_doors"),
+        "post_date": parsed.get("post_date"),
+        "options": [],
+    }
+    rec = build_record(raw, detail, run_date, brand)
+    rec.update({
+        "source": "gaspedaal",
+        "url": parsed.get("url") or f"{config.GASPEDAAL_BASE_URL}/",
+        "price_type": None,
+        "distance_km": None,
+        "seller_id": None,
+        "gp_portals": parsed.get("portals") or [],
+    })
+    return rec
+
+
 def build_tesla_record(parsed: dict, run_date: str, brand: Brand) -> dict:
     """Assemble a record from a Tesla.com inventory item (source="tesla").
 

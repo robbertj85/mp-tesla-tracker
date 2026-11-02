@@ -18,7 +18,13 @@ def _price_trends(listings: dict, history: dict) -> list[dict]:
     so a listing's price on day D is the last point dated <= D. A listing counts
     on day D when first_seen <= D <= last_seen. For each capture day we reduce the
     reconstructed prices of all listings live that day to avg/median/min/max/mode.
+
+    Gaspedaal listings are left out: that source joined on 2026-11-02, and mixing
+    it in would put a step in a series that has been Marktplaats (+ Tesla.com)
+    since June. The trend is about how the market moves, not its size.
     """
+    listings = {rid: r for rid, r in listings.items() if r.get("source") != "gaspedaal"}
+    history = {rid: pts for rid, pts in history.items() if rid in listings}
     # Every run stamps last_seen on the listings it saw and first_seen on new
     # ones, so their union (plus history dates) is the set of capture days.
     days = set()

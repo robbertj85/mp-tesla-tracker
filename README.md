@@ -48,7 +48,7 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
 | `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`, `enyaq.json`, `mach-e.json`, `id4.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4` (+ `/modellen`) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4` (+ `/modellen`, `/uitvoeringen`, and `/koopgids` — a buying guide, Mach-E only, content in `web/lib/buying-guide.ts`) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
@@ -102,6 +102,34 @@ User-Agent works server-side (validated 2026-06-01).
    Exported so the Next.js estimator reproduces the exact prediction client-side;
    reports R²/MAE and a gradient-boosted MAE benchmark.
 
+## Gaspedaal.nl (second source)
+
+Every tracker except the Octavia '06–'14 resale view also pulls dealer stock from
+**Gaspedaal.nl** (`gaspedaal.py`, `source="gaspedaal"`), which aggregates
+AutoScout24, AutoTrack, dealer sites and lease portals — roughly twice the
+Marktplaats supply for the EVs.
+
+- **robots.txt**: Gaspedaal disallows every URL with a query string, so its
+  `?page=N` pagination is not used. We fetch only path URLs: the model page
+  (`/ford/mustang-mach-e`), its year slices (`/ford/mustang-mach-e/2021`) and, when
+  a year holds more than one page (100 cars), the other single-filter slices the
+  model page links to (colour, trim, driveline, …), and union them by ad id.
+  Coverage is logged per model (Mach-E: ~97% of the model's cars).
+- **Data**: each page embeds its occasions as JSON in the Next.js flight data —
+  build year, km, kW, price, fuel, gearbox, body, colour, the title and the
+  portals carrying the car. There is **no description**, so variants and
+  equipment flags come from the title only. The record URL is Gaspedaal's
+  click-out to the dealer site / AutoScout24 / AutoTrack.
+- **Dedup**: most Marktplaats dealer ads are the same cars. A Gaspedaal car whose
+  (build year, km) — plus the dealer's town for ~0 km new stock — matches a car
+  already scraped from Marktplaats/Tesla.com that run is skipped.
+- **Pricing**: Gaspedaal and Marktplaats are priced together as the open market
+  (`__marktplaats__` model, labelled "Marktplaats + Gaspedaal"); Tesla.com stays
+  its own segment.
+- **Best-effort**: a failed crawl never fails the brand, and when it returns no
+  cars at all the stored Gaspedaal listings are kept rather than aged out.
+  Skip it with `--no-gaspedaal`.
+
 ## Equipment options
 
 Each record carries six booleans — `acc`, `premium_audio`, `pano`, `seat_memory`,
@@ -135,6 +163,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"                       # add ",browser" for the Playwright fallback
 python -m mp_tesla.run --limit 20             # dev: all brands, cap listings/brand
 python -m mp_tesla.run --brand skoda --limit 20   # one brand only
+python -m mp_tesla.run --no-gaspedaal          # Marktplaats (+ Tesla.com) only
 python -m mp_tesla.rederive --brand tesla     # recompute from stored data (no network)
 pytest                                        # unit tests
 ```

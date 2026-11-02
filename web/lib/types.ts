@@ -3,7 +3,7 @@ export type DealLabel = "good_deal" | "fair" | "overpriced";
 export interface Listing {
   id: string;
   brand: string | null;
-  /** "marktplaats" | "tesla" — which marketplace the listing came from. */
+  /** "marktplaats" | "gaspedaal" | "tesla" — which marketplace the listing came from. */
   source: string | null;
   url: string;
   title: string;

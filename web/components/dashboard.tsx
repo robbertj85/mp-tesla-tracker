@@ -14,6 +14,7 @@ import { PriceTrendsChart } from "@/components/price-trends-chart";
 import { ListingsTable } from "@/components/listings-table";
 import { PriceEstimator } from "@/components/price-estimator";
 import { ModelInsight } from "@/components/model-insight";
+import { sourceLabel, sourcesPhrase } from "@/lib/sources";
 
 export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }) {
   // Year bounds default to the actual data range (the facet years), so the
@@ -34,8 +35,9 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
     [data.listings, filters]
   );
 
-  const market = brand.dimensions.source ? "Marktplaats + Tesla.com" : "Marktplaats";
+  const market = sourcesPhrase(data.facets.sources);
   const bySource = data.summary.bySource;
+  const multiSource = Object.keys(bySource ?? {}).length > 1;
 
   return (
     <div className="container max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
@@ -45,8 +47,8 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
       <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
         <StatCard icon={<Car className="h-4 w-4" />} label="Actieve auto's" value={String(data.summary.count)}
           sub={
-            (brand.dimensions.source && bySource
-              ? `Marktplaats: ${bySource.marktplaats ?? 0} · Tesla.com: ${bySource.tesla ?? 0} · `
+            (multiSource && bySource
+              ? Object.entries(bySource).map(([s, n]) => `${sourceLabel(s)}: ${n}`).join(" · ") + " · "
               : "") +
             Object.entries(data.summary.byModel).map(([m, n]) => `${m}: ${n}`).join(" · ")
           } />
@@ -91,6 +93,8 @@ export function Dashboard({ data, brand }: { data: Dataset; brand: BrandConfig }
           : "Alleen stationwagons (Combi) met automaat, benzine of plug-in hybride (PHEV) vanaf bouwjaar 2019. Brandstof, transmissie en aandrijving komen uit de Marktplaats-kenmerken."}
         {brand.dimensions.source &&
           " Tesla.com-occasions (badge ‘Tesla’) komen uit de officiële Tesla-voorraad; hun prijsmodel is apart te kiezen onder ‘Prijs schatten’."}
+        {bySource?.gaspedaal != null &&
+          " Advertenties met badge ‘GP’ komen uit de dealervoorraad op Gaspedaal.nl (AutoScout24, AutoTrack, dealersites) en staan niet op Marktplaats; daar is alleen de titel bekend, geen beschrijving."}
         {" Uitrusting (ACC, premium audio, panoramadak, stoelgeheugen, adaptief onderstel, trekhaak) komt uit de Marktplaats-opties en de advertentietekst"}
         {brand.dimensions.hw && " (premium audio bij Tesla ook uit de uitvoering)"}
         {"; niet vermeld betekent niet per se afwezig."}

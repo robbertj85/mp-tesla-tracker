@@ -19,7 +19,7 @@ import time
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import config, detail, export, model, record, search, store, tesla_inventory
+from . import config, detail, export, gaspedaal, model, record, search, store, tesla_inventory
 from .browser import fetch_html_with_browser
 
 log = logging.getLogger(__name__)
@@ -99,11 +99,36 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
                      trec.get("trim") or "", trec.get("price_eur"), trec.get("mileage_km"))
         log.info("[%s] Tesla inventory added %d records", brand.key, tesla_count)
 
+    # Gaspedaal.nl dealer stock (source="gaspedaal"). Most Marktplaats dealer ads are
+    # the same cars, so anything already scraped above is skipped (see
+    # gaspedaal.dedup_key). Best-effort like the Tesla source: when the crawl yields
+    # nothing at all (blocked / site change) its stored cars are kept as they are
+    # rather than aged out as sold.
+    keep_sources: set[str] = set()
+    if args.no_gaspedaal:
+        keep_sources.add("gaspedaal")  # skipped on purpose, not sold
+    elif brand.gaspedaal_models:
+        log.info("[%s] fetching Gaspedaal.nl (%s)", brand.key,
+                 ", ".join(path for _, path in brand.gaspedaal_models))
+        stats: dict = {}
+        gp_count = 0
+        try:
+            for grec in gaspedaal.iter_listings(brand, run_date, args.limit,
+                                                gaspedaal.SeenCars(records), stats):
+                records.append(grec)
+                gp_count += 1
+        except Exception:  # pragma: no cover - best-effort source
+            log.exception("[%s] Gaspedaal crawl failed", brand.key)
+        if not stats.get("found"):
+            log.warning("[%s] Gaspedaal returned no cars; keeping its stored listings", brand.key)
+            keep_sources.add("gaspedaal")
+        log.info("[%s] Gaspedaal added %d records", brand.key, gp_count)
+
     log.info("[%s] scraped %d listings; upserting", brand.key, len(records))
     data_dir = brand_data_dir(args.data_dir, brand.key)
     listings_path = data_dir / "listings.json"
     history_path = data_dir / "price_history.json"
-    store.upsert(records, run_date, listings_path, history_path)
+    store.upsert(records, run_date, listings_path, history_path, keep_sources=keep_sources)
 
     # Reload the full store (including still-active listings from prior runs).
     import json
@@ -127,6 +152,8 @@ def main() -> None:
                         help="disable Playwright fallback for blocked pages")
     parser.add_argument("--no-tesla", action="store_true",
                         help="skip the Tesla.com official-inventory source")
+    parser.add_argument("--no-gaspedaal", action="store_true",
+                        help="skip the Gaspedaal.nl dealer-stock source")
     parser.add_argument("--tesla-dumps", type=Path, default=DEFAULT_TESLA_DUMPS,
                         help="dir of hand-saved Tesla inventory JSON (<slug>.json); "
                              "used in preference to the (Akamai-blocked) live fetch")

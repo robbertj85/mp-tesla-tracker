@@ -38,8 +38,13 @@ def upsert(
     run_date: str,
     listings_path: Path,
     history_path: Path,
+    keep_sources: set[str] | frozenset = frozenset(),
 ) -> dict:
-    """Merge `records` into the store. Returns a small summary dict."""
+    """Merge `records` into the store. Returns a small summary dict.
+
+    Stored listings whose `source` is in `keep_sources` are not aged this run —
+    for a source that failed to fetch, so its cars aren't marked sold.
+    """
     listings = _load(listings_path)
     history = _load(history_path)
 
@@ -82,7 +87,7 @@ def upsert(
     # Age out listings not seen this run.
     deactivated = 0
     for rid, rec in listings.items():
-        if rid in seen_ids:
+        if rid in seen_ids or rec.get("source") in keep_sources:
             continue
         rec["runs_missing"] = rec.get("runs_missing", 0) + 1
         if rec["runs_missing"] >= INACTIVE_AFTER_MISSING_RUNS and rec.get("active", True):

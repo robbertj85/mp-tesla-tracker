@@ -46,7 +46,8 @@ def _frame(records: list[dict], run_year: int, numeric: list[str],
         if r.get("mileage_km") is None:
             continue
         row = {"id": r["id"], "price_eur": r["price_eur"],
-               "source": r.get("source") or "marktplaats"}
+               "source": r.get("source") or "marktplaats",
+               "mileage_km": r["mileage_km"]}  # also the new-stock split
         for feat in numeric:
             row[feat] = _cell(r, feat, run_year)
         for feat in categorical:
@@ -84,6 +85,21 @@ def _encode(df: pd.DataFrame, numeric: list[str], categorical: list[str]):
     return X, spec
 
 
+def _encode_with(df: pd.DataFrame, spec: dict, numeric: list[str],
+                 categorical: list[str]) -> np.ndarray:
+    """Encode `df` with an already-fitted spec (same columns, same scaling); a
+    category the spec never saw gets no column, i.e. the baseline."""
+    cols = []
+    for feat in numeric:
+        st = spec["numeric"][feat]
+        vals = pd.to_numeric(df[feat], errors="coerce").fillna(st["median"])
+        cols.append(((vals - st["mean"]) / st["std"]).to_numpy())
+    for feat in categorical:
+        for val in spec["categorical"][feat]:
+            cols.append((df[feat].astype(str) == val).astype(float).to_numpy())
+    return np.column_stack(cols) if cols else np.empty((len(df), 0))
+
+
 def _linear_export(spec: dict, ridge: Ridge, numeric: list[str],
                    categorical: list[str]) -> dict:
     """Repackage fitted Ridge coefficients into a JS-evaluable structure."""
@@ -107,12 +123,16 @@ def _linear_export(spec: dict, ridge: Ridge, numeric: list[str],
     }
 
 
-def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str]) -> dict:
+def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str],
+         score_df: pd.DataFrame | None = None) -> dict:
     """Fit one Ridge model on an already-built frame.
 
     Returns {predictions, linearModel, metrics, importances}. Shared by the
     pooled (combined) model and each per-`model` group model.
     predictions: {id: {predictedEur, residualEur, dealLabel}}
+
+    `score_df` (a superset of `df`) also gets predictions without being trained
+    on — used for new stock, whose catalogue prices would bend the age curve.
     """
     n = len(df)
     result = {"predictions": {}, "linearModel": None, "metrics": {"n": n},
@@ -140,7 +160,14 @@ def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str]) -> dict:
     # In-sample fitted prediction for the shown fair price (stable per listing).
     fitted = ridge.predict(X)
     resid_std = float(np.std(y - fitted)) or 1.0
-    for rid, pred, actual in zip(df["id"], fitted, y):
+    ids, preds, actuals = list(df["id"]), list(fitted), list(y)
+    if score_df is not None:
+        extra = score_df[~score_df["id"].isin(set(ids))]
+        if len(extra):
+            ids += list(extra["id"])
+            preds += list(ridge.predict(_encode_with(extra, spec, numeric, categorical)))
+            actuals += list(extra[TARGET].to_numpy(dtype=float))
+    for rid, pred, actual in zip(ids, preds, actuals):
         residual = float(actual - pred)
         z = residual / resid_std
         label = "fair"
@@ -188,10 +215,17 @@ def _fit(df: pd.DataFrame, numeric: list[str], categorical: list[str]) -> dict:
 
 
 # Keys in the exported `models` map. COMBINED_KEY pools every source; the two
-# source keys segment Marktplaats vs Tesla.com so each market is priced on its own.
+# source keys segment the open used-car market (Marktplaats + Gaspedaal dealer
+# stock, largely the same dealers) vs Tesla.com, so each market is priced on its own.
 COMBINED_KEY = "__combined__"
 MARKTPLAATS_KEY = "__marktplaats__"
 TESLA_KEY = "__tesla__"
+# Sources priced together under MARKTPLAATS_KEY.
+OPEN_MARKET_SOURCES = ("marktplaats", "gaspedaal")
+# New stock (≤ this many km) is scored but not trained on: dealers list it at the
+# catalogue price, and those prices bend the age curve the used cars are priced on
+# (measured 2026-11-02: Mach-E used-car error €2.0k with, €1.5k without).
+NEW_STOCK_MAX_KM = 1000
 
 
 def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
@@ -200,9 +234,10 @@ def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
     `feature_spec` is `{"numeric": [...], "categorical": [...]}` for the brand
     (see config.FEATURE_SPECS), so Tesla and Skoda train on the right columns.
 
-    Listings carry a `source` ("marktplaats" | "tesla"). We fit three pooled
-    regressions — Marktplaats-only, Tesla-only, and Combined (both, no source
-    feature) — so the estimator can switch between markets, and we score each
+    Listings carry a `source` ("marktplaats" | "gaspedaal" | "tesla"). We fit
+    three pooled regressions — the open market (Marktplaats + Gaspedaal), Tesla-only,
+    and Combined (all, no source feature) — so the estimator can switch between
+    markets, and we score each
     listing against ITS OWN market (falling back to Combined when a segment has
     too little data). The `models` map also keeps the per-`model` regressions::
 
@@ -220,12 +255,15 @@ def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
     numeric = feature_spec["numeric"]
     categorical = feature_spec["categorical"]
     df = _frame(records, run_year, numeric, categorical)
+    is_train = pd.to_numeric(df["mileage_km"], errors="coerce") > NEW_STOCK_MAX_KM
 
-    combined = _fit(df, numeric, categorical)
-    mp_df = df[df["source"] == "marktplaats"]
-    tesla_df = df[df["source"] == "tesla"]
-    mp_fit = _fit(mp_df, numeric, categorical)
-    tesla_fit = _fit(tesla_df, numeric, categorical)
+    def fit(mask) -> dict:
+        return _fit(df[mask & is_train], numeric, categorical, score_df=df[mask])
+
+    everything = pd.Series(True, index=df.index)
+    combined = fit(everything)
+    mp_fit = fit(df["source"].isin(OPEN_MARKET_SOURCES))
+    tesla_fit = fit(df["source"] == "tesla")
 
     # Per-listing scores: start from the Combined model (covers every id and any
     # under-sized segment), then override with each source's own-market scoring.
@@ -236,27 +274,26 @@ def train(records: list[dict], run_year: int, feature_spec: dict) -> dict:
         predictions.update(tesla_fit["predictions"])
 
     models: dict[str, dict] = {
-        COMBINED_KEY: {"label": "Marktplaats + Tesla",
+        COMBINED_KEY: {"label": "Alle bronnen",
                        "linearModel": combined["linearModel"], "metrics": combined["metrics"]},
-        MARKTPLAATS_KEY: {"label": "Marktplaats",
+        MARKTPLAATS_KEY: {"label": "Marktplaats + Gaspedaal",
                           "linearModel": mp_fit["linearModel"], "metrics": mp_fit["metrics"]},
         TESLA_KEY: {"label": "Tesla.com occasions",
                     "linearModel": tesla_fit["linearModel"], "metrics": tesla_fit["metrics"]},
     }
-    log.info("source fits: combined n=%s · marktplaats n=%s · tesla n=%s",
+    log.info("source fits: combined n=%s · marktplaats+gaspedaal n=%s · tesla n=%s",
              combined["metrics"].get("n"), mp_fit["metrics"].get("n"),
              tesla_fit["metrics"].get("n"))
 
     for grp in sorted(df["model"].astype(str).unique()):
-        sub = df[df["model"].astype(str) == grp]
-        fit = _fit(sub, numeric, categorical)
+        grp_fit = fit(df["model"].astype(str) == grp)
         models[grp] = {
             "label": grp,
-            "linearModel": fit["linearModel"],
-            "metrics": fit["metrics"],
+            "linearModel": grp_fit["linearModel"],
+            "metrics": grp_fit["metrics"],
         }
-        log.info("per-model fit: %s n=%d r2=%s", grp, fit["metrics"].get("n"),
-                 fit["metrics"].get("linear_r2"))
+        log.info("per-model fit: %s n=%d r2=%s", grp, grp_fit["metrics"].get("n"),
+                 grp_fit["metrics"].get("linear_r2"))
 
     return {
         "predictions": predictions,

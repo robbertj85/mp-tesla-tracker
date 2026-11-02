@@ -22,8 +22,9 @@ export interface BrandDimensions {
   /** Body shape as a real dimension (Enyaq: Coupé vs SUV, which Marktplaats
    *  reports identically, so we derive it ourselves). */
   body: boolean;
-  /** Whether listings carry a Marktplaats/Tesla.com source split (Bron filter,
-   *  source badge, and the 3-way Marktplaats/Tesla/Combined price model). */
+  /** Whether listings carry a Tesla.com source split (Tesla badge and the 3-way
+   *  open-market/Tesla/Combined price model). The Bron filter itself shows for any
+   *  dataset with more than one source (e.g. Marktplaats + Gaspedaal). */
   source: boolean;
 }
 

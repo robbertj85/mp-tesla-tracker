@@ -10,6 +10,10 @@ import { cn, eur, km } from "@/lib/utils";
 import { PriceHistoryChart } from "@/components/price-history-chart";
 import { useFavorites } from "@/lib/use-favorites";
 import { EQUIPMENT } from "@/components/filter-bar";
+import { openOnLabel } from "@/lib/sources";
+
+const daysBetween = (from: string, to: string) =>
+  (Date.parse(to.slice(0, 10)) - Date.parse(from.slice(0, 10))) / 86_400_000;
 
 type SortKey = "price_eur" | "mileage_km" | "year" | "residualEur" | "distance_km" | "power_hp" | "range_km" | "battery_kwh";
 type Dir = "asc" | "desc";
@@ -53,7 +57,11 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
   const trimCol = batteryCol || !!brand.trimOrder;
   // "New today": first seen on the latest scrape date. Auto-expires next run, when
   // generatedAt advances but first_seen stays — no per-ad toggle to maintain.
-  const isNew = (l: Listing) => generatedAt != null && l.first_seen === generatedAt;
+  // Gaspedaal cars were all "first seen" the day that source was added, so for them
+  // the ad's own placement date must be recent too.
+  const isNew = (l: Listing) =>
+    generatedAt != null && l.first_seen === generatedAt &&
+    (l.source !== "gaspedaal" || (l.post_date != null && daysBetween(l.post_date, generatedAt) <= 2));
   // Multi-key sort: the array order is the priority (first = primary). Clicking a
   // header appends it (lowest priority), then cycles its direction, then drops it.
   // Zero-state by default (and after reset): the rows keep the payload order (best
@@ -216,6 +224,10 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                             <span className="rounded bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
                               title="Officiële Tesla-occasion">Tesla</span>
                           )}
+                          {l.source === "gaspedaal" && (
+                            <span className="rounded bg-sky-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
+                              title="Dealervoorraad via Gaspedaal.nl (niet op Marktplaats)">GP</span>
+                          )}
                           {EQUIPMENT.filter(({ key }) => l[key]).map(({ key, label, short }) => (
                             <span key={key}
                               className={cn("rounded px-1.5 py-0.5 text-[10px] font-semibold leading-tight",
@@ -312,7 +324,7 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                         )}
                         <a href={l.url} target="_blank" rel="noreferrer"
                           className="inline-flex text-muted-foreground hover:text-foreground"
-                          title={l.source === "tesla" ? "Open op Tesla.com" : "Open op Marktplaats"}>
+                          title={openOnLabel(l.source)}>
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </td>

@@ -134,7 +134,9 @@ export function PriceEstimator({ data, brand }: { data: Dataset; brand: BrandCon
             <CardTitle>Schat een redelijke prijs</CardTitle>
             {dim.source ? (
               <div className="inline-flex items-center rounded-lg bg-muted p-1">
-                <KeyBtn value={MARKTPLAATS_KEY}>Marktplaats</KeyBtn>
+                <KeyBtn value={MARKTPLAATS_KEY}>
+                  {data.facets.sources?.includes("gaspedaal") ? "Marktplaats + Gaspedaal" : "Marktplaats"}
+                </KeyBtn>
                 <KeyBtn value={TESLA_KEY}>Tesla.com</KeyBtn>
                 <KeyBtn value={COMBINED_KEY}>Gecombineerd</KeyBtn>
               </div>

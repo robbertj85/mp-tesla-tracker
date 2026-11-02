@@ -6,6 +6,7 @@ import type { BrandConfig } from "@/lib/brands";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { cn, eur } from "@/lib/utils";
+import { sourceLabel } from "@/lib/sources";
 
 /** Equipment options offered as filters, in display order. `short` labels the
  *  listings-table chip. */
@@ -121,12 +122,11 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
     <div className="rounded-lg border bg-card p-3 sm:p-4">
       <div className="flex flex-wrap items-end gap-2 sm:gap-3">
         <Dropdown label="Model" value={filters.model} onChange={(v) => set({ model: v })} options={opt(data.facets.models)} />
-        {dim.source && (
+        {(data.facets.sources?.length ?? 0) > 1 && (
           <Dropdown label="Bron" value={filters.source} onChange={(v) => set({ source: v })}
             options={[
               { value: "all", label: "Alle" },
-              { value: "marktplaats", label: "Marktplaats" },
-              { value: "tesla", label: "Tesla.com" },
+              ...data.facets.sources!.map((s) => ({ value: s, label: sourceLabel(s) })),
             ]} />
         )}
         {dim.trim && (
