@@ -56,7 +56,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2440192344-volkswagen-id-4-77kwh-204pk-12-2020-wit",
-  "view_count": 1600,
+  "view_count": 1612,
   "year": 2020
  },
  "m2448933602": {
@@ -180,7 +180,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2448933602-volkswagen-id-4-77kwh-pano-head-up-massage-iq",
-  "view_count": 1145,
+  "view_count": 1154,
   "year": 2020
  },
  "m2449089047": {
@@ -261,7 +261,7 @@
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 51993416,
   "seller_name": "Bourguignon Dokkum",
@@ -348,7 +348,7 @@
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 2255558,
   "seller_name": "Autobedrijf van Schie",
@@ -438,7 +438,7 @@
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 2255558,
   "seller_name": "Autobedrijf van Schie",
@@ -536,7 +536,7 @@
   "price_source": "headline",
   "price_type": "MIN_BID",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 10866554,
   "seller_name": "Seldenrijk B.V.",
@@ -640,14 +640,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/59945e81-27e5-4e8b-b4ed-d7fbb45deec4?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/210425e3-9b35-467a-ad7e-e683fdced8e1?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pure 52 kWh | 170 PK | SoH...% | Appel Carpl",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449232604-volkswagen-id-4-pure-52-kwh-170-pk-soh-appel-carpl",
-  "view_count": 412,
+  "view_count": 418,
   "year": 2021
  },
  "m2449262603": {
@@ -747,7 +747,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449262603-volkswagen-id-4-pure-52-kwh-170pk-soh-92-panoramadak",
-  "view_count": 326,
+  "view_count": 329,
   "year": 2022
  },
  "m2449463139": {
@@ -849,7 +849,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449463139-volkswagen-id-4-family-77-kwh-204pk-panorama-dak-trekh",
-  "view_count": 461,
+  "view_count": 467,
   "year": 2021
  },
  "m2449478602": {
@@ -939,7 +939,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449478602-volkswagen-id-4-pure-52-kwh-adaptive-cruise-19-licht-me",
-  "view_count": 378,
+  "view_count": 385,
   "year": 2022
  },
  "m2449576367": {
@@ -1038,7 +1038,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449576367-volkswagen-id-4-first-77-kwh-nl-auto-trekhaak-camera-so",
-  "view_count": 899,
+  "view_count": 905,
   "year": 2020
  },
  "m2449596861": {
@@ -1133,7 +1133,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449596861-volkswagen-id-4-pro-77-kwh-trekhaak-clima-stoelverwarm",
-  "view_count": 453,
+  "view_count": 457,
   "year": 2023
  },
  "m2449611015": {
@@ -1234,7 +1234,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449611015-volkswagen-id-4-business-77-kwh-camera-trekhaak-iq-li",
-  "view_count": 711,
+  "view_count": 719,
   "year": 2021
  },
  "m2449618871": {
@@ -1330,14 +1330,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/26b30ae3-c103-4a47-8e3b-62f6f62dc56c?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/cc7d571a-e71c-4d37-8c45-0f5c5b21f1b6?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 GTX 4Motion 77 kWh SoH 90,26% | Apple Carpla",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449618871-volkswagen-id-4-gtx-4motion-77-kwh-soh-90-26-apple-carpla",
-  "view_count": 471,
+  "view_count": 475,
   "year": 2022
  },
  "m2449773540": {
@@ -1428,14 +1428,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9d2e6a5e-6657-442e-b78e-4784883581f2?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4b1b7ba6-e5c0-43e8-8559-e628121fa9af?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| SoH 94,7% | Navigatie | A",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449773540-volkswagen-id-4-pro-77-kwh-204-pk-soh-94-7-navigatie-a",
-  "view_count": 285,
+  "view_count": 288,
   "year": 2022
  },
  "m2449799983": {
@@ -1542,7 +1542,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449799983-volkswagen-id-4-first-max-77-kwh-head-up-display-stoelma",
-  "view_count": 1174,
+  "view_count": 1179,
   "year": 2020
  },
  "m2449952895": {
@@ -1637,7 +1637,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449952895-volkswagen-id-4-city-52-kwh-90-soh-apple-carplay-adapti",
-  "view_count": 369,
+  "view_count": 374,
   "year": 2021
  },
  "m2449953958": {
@@ -1739,7 +1739,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449953958-volkswagen-id-4-286pk-pro-limited-edition-77-kwh-sport-pak",
-  "view_count": 276,
+  "view_count": 279,
   "year": 2026
  },
  "m2449956091": {
@@ -1841,7 +1841,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2449956091-volkswagen-id-4-family-77-kwh-panoramadak-camera-sfeer",
-  "view_count": 275,
+  "view_count": 278,
   "year": 2021
  },
  "m2450036923": {
@@ -1934,14 +1934,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/892da4de-e11b-47cf-830a-616d60525989?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/db108a17-f9d9-4830-9002-8b69f96a0c9b?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Limited Edition 77 kWh 286 PK | Apple Ca",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450036923-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-apple-ca",
-  "view_count": 402,
+  "view_count": 405,
   "year": 2026
  },
  "m2450237601": {
@@ -2031,14 +2031,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/677eee48-617d-4699-ae7c-5c72570fa429?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7761682d-61ba-4642-9e7e-5187c871d02f?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh | 204 PK | SoH 97,8% | Dealeronde",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450237601-volkswagen-id-4-pro-77-kwh-204-pk-soh-97-8-dealeronde",
-  "view_count": 330,
+  "view_count": 333,
   "year": 2023
  },
  "m2450272093": {
@@ -2134,7 +2134,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450272093-volkswagen-id-4-pro-77-kwh-trekhaak-warmtepomp",
-  "view_count": 461,
+  "view_count": 463,
   "year": 2021
  },
  "m2450314015": {
@@ -2214,7 +2214,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450314015-volkswagen-id-4-life-pro-77-kwh-soh-90-stoelverw-nav",
-  "view_count": 451,
+  "view_count": 456,
   "year": 2021
  },
  "m2450372919": {
@@ -2320,7 +2320,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450372919-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-led-matr",
-  "view_count": 371,
+  "view_count": 375,
   "year": 2026
  },
  "m2450393907": {
@@ -2406,14 +2406,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/08d2100c-9a3a-4990-822d-8d6d78fcd89c?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b68732cb-a0e7-47ff-b0bc-8c318fa4b0bf?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 174 PK| SoH 96,88% | Dealeronderh",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450393907-volkswagen-id-4-pro-77-kwh-174-pk-soh-96-88-dealeronderh",
-  "view_count": 346,
+  "view_count": 348,
   "year": 2023
  },
  "m2450394102": {
@@ -2511,7 +2511,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450394102-volkswagen-id-4-business-77-kwh-dab-adaptive-cruise-92",
-  "view_count": 297,
+  "view_count": 300,
   "year": 2021
  },
  "m2450494038": {
@@ -2605,7 +2605,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450494038-volkswagen-id-4-city-52-kwh-soh-86-style-pakket-led-navi-ca",
-  "view_count": 1465,
+  "view_count": 1477,
   "year": 2021
  },
  "m2450591712": {
@@ -2698,14 +2698,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d9435ea5-adeb-477d-ba2b-232aac34fefe?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a722183c-8c61-4675-aacd-e1251e30da32?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pure 52 kWh 170 PK| | SoH 92.4% | Origineel",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450591712-volkswagen-id-4-pure-52-kwh-170-pk-soh-92-4-origineel",
-  "view_count": 264,
+  "view_count": 266,
   "year": 2022
  },
  "m2450620839": {
@@ -2807,7 +2807,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450620839-volkswagen-id-4-pro-business-77-kwh-286-pk-stoel-stuurverw",
-  "view_count": 331,
+  "view_count": 335,
   "year": 2024
  },
  "m2450642048": {
@@ -2902,7 +2902,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450642048-volkswagen-id-4-pro-77-kwh-204-pk-soh-warmtepomp-a",
-  "view_count": 257,
+  "view_count": 259,
   "year": 2021
  },
  "m2450926719": {
@@ -3009,7 +3009,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450926719-volkswagen-id-4-pro-limited-edition-plus-77-kwh-286pk-tr",
-  "view_count": 267,
+  "view_count": 270,
   "year": 2026
  },
  "m2450933380": {
@@ -3101,7 +3101,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450933380-volkswagen-id-4-pro-77-kwh-soh-94-48-trekhaak-pdc-v",
-  "view_count": 351,
+  "view_count": 353,
   "year": 2023
  },
  "m2450955490": {
@@ -3195,14 +3195,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b214c5d0-9763-480f-bad4-367e67bd7324?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9e32ebb9-b1b7-4cbf-a98a-c4c0c3e680c4?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Limited Edition 77 kWh 286 PK| Origineel",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450955490-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-origineel",
-  "view_count": 300,
+  "view_count": 302,
   "year": 2026
  },
  "m2450959037": {
@@ -3302,7 +3302,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450959037-volkswagen-id-4-first-77-kwh-204-pk-soh-92-trekhaak-w",
-  "view_count": 209,
+  "view_count": 211,
   "year": 2021
  },
  "m2450972511": {
@@ -3320,7 +3320,7 @@
   "distance_km": 35,
   "drivetrain": "RWD",
   "equipment_line": "Life",
-  "favorited_count": 32,
+  "favorited_count": 33,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -3396,7 +3396,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450972511-volkswagen-id-4-77kwh-204pk-life-92-08-soh-trekhaak-stoel",
-  "view_count": 827,
+  "view_count": 831,
   "year": 2021
  },
  "m2450992414": {
@@ -3496,7 +3496,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450992414-volkswagen-id-4-pro-77-kwh-98-soh-360-camera-pano-w",
-  "view_count": 320,
+  "view_count": 323,
   "year": 2023
  },
  "m2450996071": {
@@ -3591,7 +3591,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2450996071-volkswagen-id-4-pro-business-77-kwh-soh-97-stoel-stuurverw",
-  "view_count": 375,
+  "view_count": 378,
   "year": 2023
  },
  "m2451032740": {
@@ -3691,7 +3691,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451032740-volkswagen-id-4-77kwh-204pk-1st-max-pano-21inch-carplay-st",
-  "view_count": 363,
+  "view_count": 366,
   "year": 2021
  },
  "m2451074856": {
@@ -3785,7 +3785,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451074856-volkswagen-id-4-life-77-kwh-soh-93-trekh-camera-car",
-  "view_count": 1025,
+  "view_count": 1030,
   "year": 2021
  },
  "m2451084762": {
@@ -3887,7 +3887,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451084762-volkswagen-id-4-77kwh-204pk-pro-tech-87-soh-trekhaak-pano",
-  "view_count": 418,
+  "view_count": 421,
   "year": 2022
  },
  "m2451084888": {
@@ -3991,7 +3991,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451084888-volkswagen-id-4-gtx-4motion-77-kwh-300-pk-panorama-360-c",
-  "view_count": 277,
+  "view_count": 279,
   "year": 2022
  },
  "m2451096819": {
@@ -4079,14 +4079,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f89ffd4b-162d-4157-9300-121fa068f52d?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f681fe83-669f-4281-b0bc-6c59e7cdaa34?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh Automaat | 204 pk | Comfort pakke",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451096819-volkswagen-id-4-pro-77-kwh-automaat-204-pk-comfort-pakke",
-  "view_count": 200,
+  "view_count": 202,
   "year": 2023
  },
  "m2451323785": {
@@ -4187,7 +4187,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451323785-volkswagen-id-4-pro-77-kwh-trekhaak-warmtepomp-keyless",
-  "view_count": 232,
+  "view_count": 234,
   "year": 2025
  },
  "m2451367893": {
@@ -4282,7 +4282,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451367893-volkswagen-id-4-city-52-kwh-soh-89-23-bj-2021",
-  "view_count": 707,
+  "view_count": 715,
   "year": 2021
  },
  "m2451373286": {
@@ -4371,7 +4371,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451373286-volkswagen-id-4-pro-77-kwh-soh-92-21-stoelverw",
-  "view_count": 1831,
+  "view_count": 1854,
   "year": 2022
  },
  "m2451379774": {
@@ -4453,7 +4453,7 @@
   "post_date": "2026-10-08T11:58:19Z",
   "power_hp": 265,
   "premium_audio": false,
-  "price_eur": 33400,
+  "price_eur": 32800,
   "price_source": "headline",
   "price_type": "MIN_BID",
   "range_km": null,
@@ -4470,7 +4470,7 @@
   "trim": "Pro 4MOTION",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451379774-volkswagen-id-4-pure-business-52kwh-soh97-stoelverwarming",
-  "view_count": 270,
+  "view_count": 273,
   "year": 2024
  },
  "m2451468316": {
@@ -4563,7 +4563,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451468316-volkswagen-id-4-pro-77-kwh-acc-trekhaak-warmtepomp-c",
-  "view_count": 297,
+  "view_count": 299,
   "year": 2023
  },
  "m2451533967": {
@@ -4667,7 +4667,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451533967-volkswagen-id-4-77-kwh-soh-90-moba-warmtepomp-360-cam",
-  "view_count": 296,
+  "view_count": 299,
   "year": 2020
  },
  "m2451778012": {
@@ -4773,7 +4773,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451778012-volkswagen-id-4-pro-limited-edition-plus-286pk-79-kwh-trek",
-  "view_count": 246,
+  "view_count": 248,
   "year": 2026
  },
  "m2451825020": {
@@ -4868,7 +4868,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451825020-volkswagen-id-4-life-77-kwh-cruise-parkeersensor-soh-92",
-  "view_count": 1293,
+  "view_count": 1302,
   "year": 2021
  },
  "m2451834587": {
@@ -4968,7 +4968,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451834587-volkswagen-id-4-pro-advantage-77-kwh-trekhaak-led-matrix",
-  "view_count": 243,
+  "view_count": 245,
   "year": 2022
  },
  "m2451841679": {
@@ -5069,7 +5069,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451841679-volkswagen-id-4-family-77-kwh-soh-92-204pk-nap-warmte",
-  "view_count": 421,
+  "view_count": 426,
   "year": 2021
  },
  "m2451998095": {
@@ -5175,7 +5175,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2451998095-volkswagen-id-4-first-max-77kwh-soh-91-pano-hud-360",
-  "view_count": 2038,
+  "view_count": 2072,
   "year": 2020
  },
  "m2452095516": {
@@ -5273,7 +5273,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452095516-volkswagen-id-4-gtx-4motion-300pk-awd-77-kwh-soh-92-99-tr",
-  "view_count": 368,
+  "view_count": 370,
   "year": 2021
  },
  "m2452127070": {
@@ -5367,14 +5367,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9a77f9f3-e812-496c-9bd7-23afc067c8d3?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0666ad61-94a1-4189-bce7-1cd313c77e67?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Limited Edition 77 kWh | SoH ... | Black",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452127070-volkswagen-id-4-pro-limited-edition-77-kwh-soh-black",
-  "view_count": 325,
+  "view_count": 327,
   "year": 2025
  },
  "m2452211241": {
@@ -5475,7 +5475,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452211241-volkswagen-id-4-first-77-kwh-soh-94-long-range",
-  "view_count": 475,
+  "view_count": 480,
   "year": 2021
  },
  "m2452219786": {
@@ -5573,7 +5573,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452219786-volkswagen-id-4-pure-52-kwh-soh-91-panoramadak-stuurv",
-  "view_count": 261,
+  "view_count": 270,
   "year": 2022
  },
  "m2452415773": {
@@ -5660,7 +5660,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452415773-volkswagen-id-4-pure-52-kwh-zondag-open",
-  "view_count": 637,
+  "view_count": 650,
   "year": 2022
  },
  "m2452816630": {
@@ -5757,7 +5757,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452816630-volkswagen-id-4-volkswagen-id-4-52kwh-pure-170pk-soh-99",
-  "view_count": 348,
+  "view_count": 358,
   "year": 2024
  },
  "m2452865719": {
@@ -5856,7 +5856,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452865719-volkswagen-id-4-pro-performance-77-kwh-led-matrix-204pk",
-  "view_count": 269,
+  "view_count": 272,
   "year": 2022
  },
  "m2452886421": {
@@ -5950,7 +5950,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452886421-volkswagen-id-4-77-kwh-trekhaak-warmtepomp-comfortpakk",
-  "view_count": 214,
+  "view_count": 217,
   "year": 2023
  },
  "m2452959777": {
@@ -6044,7 +6044,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452959777-volkswagen-id-4-pro-77-kwh-96-soh-i-stoelverwarming-i-p-c",
-  "view_count": 207,
+  "view_count": 211,
   "year": 2023
  },
  "m2452966215": {
@@ -6141,7 +6141,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452966215-volkswagen-id-4-first-77-kwh-soh-91-43-apple-carplay-led",
-  "view_count": 1925,
+  "view_count": 1950,
   "year": 2020
  },
  "m2452990971": {
@@ -6244,7 +6244,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2452990971-vw-id-4-77kwh-1st-edition-geel-1e-eig-trekhaak-apk-okt-2028",
-  "view_count": 1396,
+  "view_count": 1412,
   "year": 2020
  },
  "m2453014910": {
@@ -6343,7 +6343,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453014910-volkswagen-id-4-limited-edition-52-kwh-sfeerverlichting",
-  "view_count": 337,
+  "view_count": 345,
   "year": 2025
  },
  "m2453202139": {
@@ -6440,7 +6440,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453202139-volkswagen-id-4-pro-performance-77-kwh-word-verwacht-204pk",
-  "view_count": 496,
+  "view_count": 500,
   "year": 2023
  },
  "m2453204394": {
@@ -6540,7 +6540,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453204394-volkswagen-id-4-limited-edition-52-kwh-soh-100-originee",
-  "view_count": 397,
+  "view_count": 399,
   "year": 2025
  },
  "m2453211664": {
@@ -6642,7 +6642,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453211664-volkswagen-id-4-tech-77-kwh-204-pk-soh-87-adaptive-cr",
-  "view_count": 212,
+  "view_count": 214,
   "year": 2021
  },
  "m2453230223": {
@@ -6739,7 +6739,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453230223-volkswagen-id-4-first-77-kwh-soh-90-5-mooie-auto-camera-s",
-  "view_count": 679,
+  "view_count": 691,
   "year": 2020
  },
  "m2453245484": {
@@ -6829,14 +6829,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f5a45af3-9c42-4aa1-a0dc-1c555b4e83dd?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/058e7d70-3153-4d46-8efe-4d5aecadc1ea?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Life 77 kWh 204 PK | SoH 93% | Automaat | Wa",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453245484-volkswagen-id-4-life-77-kwh-204-pk-soh-93-automaat-wa",
-  "view_count": 247,
+  "view_count": 251,
   "year": 2021
  },
  "m2453294726": {
@@ -6935,7 +6935,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453294726-volkswagen-id-4-style-52-kwh-soh-89-1ste-eig-camera-carpla",
-  "view_count": 322,
+  "view_count": 326,
   "year": 2021
  },
  "m2453403049": {
@@ -7033,7 +7033,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453403049-volkswagen-id-4-pro-77-kwh-soh-94-87-nederlandse-auto-wl",
-  "view_count": 330,
+  "view_count": 332,
   "year": 2021
  },
  "m2453558044": {
@@ -7128,7 +7128,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453558044-volkswagen-id-4-pro-77-kwh-95-soh-i-groot-accupakket-i-st",
-  "view_count": 218,
+  "view_count": 221,
   "year": 2022
  },
  "m2453570705": {
@@ -7225,7 +7225,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453570705-volkswagen-id-4-gtx-4motion-77-kwh",
-  "view_count": 298,
+  "view_count": 304,
   "year": 2022
  },
  "m2453579012": {
@@ -7326,7 +7326,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453579012-volkswagen-id-4-pro-business-77-kwh-286-pk-navigatie-sto",
-  "view_count": 257,
+  "view_count": 263,
   "year": 2026
  },
  "m2453614879": {
@@ -7417,7 +7417,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453614879-volkswagen-id-4-pure-52-kwh-148-pk-soh-89-adaptive-cr",
-  "view_count": 233,
+  "view_count": 235,
   "year": 2023
  },
  "m2453614884": {
@@ -7509,7 +7509,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453614884-volkswagen-id-4-pro-77-kwh-204-pk-soh-95-adaptive-cru",
-  "view_count": 263,
+  "view_count": 267,
   "year": 2022
  },
  "m2453616765": {
@@ -7608,7 +7608,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453616765-volkswagen-id-4-pro-77-kwh-204-pk-soh-93-adaptive-cru",
-  "view_count": 171,
+  "view_count": 173,
   "year": 2023
  },
  "m2453616769": {
@@ -7701,7 +7701,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453616769-volkswagen-id-4-pro-77-kwh-204-pk-soh-92-trekhaak-weg",
-  "view_count": 221,
+  "view_count": 224,
   "year": 2022
  },
  "m2453631821": {
@@ -7792,7 +7792,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453631821-volkswagen-id-4-pro-77-kwh-soh-94-2-adaptive-cruise-s",
-  "view_count": 815,
+  "view_count": 827,
   "year": 2023
  },
  "m2453651731": {
@@ -7898,7 +7898,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453651731-volkswagen-id-4-max-77-kwh-panoramadak-head-up-mass",
-  "view_count": 300,
+  "view_count": 304,
   "year": 2021
  },
  "m2453688951": {
@@ -8004,7 +8004,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453688951-volkswagen-id-4-two-tone-first-max-77-kwh-soh-84-panorama",
-  "view_count": 361,
+  "view_count": 365,
   "year": 2020
  },
  "m2453735720": {
@@ -8100,7 +8100,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453735720-volkswagen-id-4-pro-77-kwh-style-plus-memory-camera-stuurver",
-  "view_count": 293,
+  "view_count": 297,
   "year": 2022
  },
  "m2453789551": {
@@ -8203,7 +8203,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453789551-volkswagen-id-4-gtx-4motion-77-kwh-299pk-soh-94-panoramad",
-  "view_count": 622,
+  "view_count": 633,
   "year": 2022
  },
  "m2453792068": {
@@ -8295,7 +8295,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453792068-volkswagen-id-4-77kwh-pro",
-  "view_count": 1119,
+  "view_count": 1132,
   "year": 2020
  },
  "m2453903042": {
@@ -8395,7 +8395,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2453903042-volkswagen-id-4-286pk-pro-limited-edition-79-kwh-trekhaak",
-  "view_count": 269,
+  "view_count": 271,
   "year": 2026
  },
  "m2454001629": {
@@ -8494,7 +8494,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454001629-volkswagen-id-4-first-77-kwh-trekhaak-wegklapbaar-soh-90",
-  "view_count": 703,
+  "view_count": 707,
   "year": 2021
  },
  "m2454008234": {
@@ -8601,7 +8601,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454008234-volkswagen-id-4-max-77-kwh-soh-95-204pk-panoramadak-hea",
-  "view_count": 272,
+  "view_count": 276,
   "year": 2020
  },
  "m2454008766": {
@@ -8697,7 +8697,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454008766-volkswagen-id-4-pro-77-kwh-soh-94-174pk-trekhaak-crui",
-  "view_count": 297,
+  "view_count": 301,
   "year": 2022
  },
  "m2454020307": {
@@ -8809,7 +8809,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454020307-volkswagen-id-4-gtx-4motion-77-kwh-299pk-pano-headup",
-  "view_count": 494,
+  "view_count": 507,
   "year": 2023
  },
  "m2454027117": {
@@ -8906,7 +8906,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454027117-volkswagen-id-4-first-77-kwh",
-  "view_count": 229,
+  "view_count": 234,
   "year": 2021
  },
  "m2454041476": {
@@ -9006,7 +9006,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454041476-volkswagen-id-4-first-77-kwh-soh-90-4-trekhaak-95-846",
-  "view_count": 395,
+  "view_count": 401,
   "year": 2021
  },
  "m2454056944": {
@@ -9103,7 +9103,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454056944-volkswagen-id-4-first-77-kwh-led-adapt-cruise-apple-androi",
-  "view_count": 273,
+  "view_count": 278,
   "year": 2021
  },
  "m2454199588": {
@@ -9198,7 +9198,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454199588-volkswagen-id-4-pro-77-kwh-soh93-two-tone-stoelverwarming-c",
-  "view_count": 191,
+  "view_count": 193,
   "year": 2021
  },
  "m2454218560": {
@@ -9291,7 +9291,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454218560-volkswagen-id-4-pro-business-advantage-77-kwh-94-soh-trek",
-  "view_count": 713,
+  "view_count": 717,
   "year": 2023
  },
  "m2454252224": {
@@ -9309,7 +9309,7 @@
   "distance_km": 54,
   "drivetrain": "RWD",
   "equipment_line": null,
-  "favorited_count": 12,
+  "favorited_count": 13,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -9384,7 +9384,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454252224-volkswagen-id-4-carplay-stoelverwarming-adapt-cruise-soh-88",
-  "view_count": 752,
+  "view_count": 766,
   "year": 2021
  },
  "m2454275492": {
@@ -9487,7 +9487,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454275492-volkswagen-id-4-82kwh-204pk-soh-98-navi-camera-adap-cruise",
-  "view_count": 204,
+  "view_count": 207,
   "year": 2022
  },
  "m2454281198": {
@@ -9573,14 +9573,14 @@
   "seller_name": "Van Mossel Weert",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b357198b-6d8d-46d0-b063-21ea1093c5d5?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e47509e0-0e9c-4b22-b687-cdfca99d9382?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| Dealeronderhouden | Navig",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454281198-volkswagen-id-4-pro-77-kwh-204-pk-dealeronderhouden-navig",
-  "view_count": 195,
+  "view_count": 197,
   "year": 2021
  },
  "m2454294230": {
@@ -9681,7 +9681,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454294230-volkswagen-id-4-first-77-kwh-nlauto-soh-93-5-alcantara-20-i",
-  "view_count": 178,
+  "view_count": 182,
   "year": 2021
  },
  "m2454317137": {
@@ -9778,7 +9778,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454317137-volkswagen-id-4-pure-52-kwh-50dkm-nap-soh-92-2-verw-stoele",
-  "view_count": 386,
+  "view_count": 392,
   "year": 2021
  },
  "m2454337304": {
@@ -9866,14 +9866,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/fc01597e-40dd-4c7d-98bf-349f28c0cd89?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bd5bc7ca-9378-49ad-bd8e-a8b3581bb48c?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK Apple Carplay | Stoelverwa",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454337304-volkswagen-id-4-pro-77-kwh-204-pk-apple-carplay-stoelverwa",
-  "view_count": 180,
+  "view_count": 182,
   "year": 2023
  },
  "m2454341901": {
@@ -9964,14 +9964,14 @@
   "seller_name": "Autobedrijf Ard Butter B.V.",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a1110fc1-8c01-4532-aaea-a51c615be143?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/00f9bcaf-c265-4e20-9759-ebfb96eba4e0?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 93% SOH / LED / Elek.Trekhaak / C",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454341901-volkswagen-id-4-pro-77-kwh-93-soh-led-elek-trekhaak-c",
-  "view_count": 542,
+  "view_count": 555,
   "year": 2021
  },
  "m2454352380": {
@@ -10066,7 +10066,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454352380-volkswagen-id-4-life-77-kwh-pro-soh-94-3-cruise-control-a",
-  "view_count": 254,
+  "view_count": 257,
   "year": 2021
  },
  "m2454384641": {
@@ -10164,7 +10164,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454384641-volkswagen-id-4-pro-business-77-kwh-trekhaak-iq-light-ca",
-  "view_count": 180,
+  "view_count": 182,
   "year": 2023
  },
  "m2454384888": {
@@ -10256,14 +10256,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e4da272f-865b-4977-92fe-447695108b27?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/57f6ad32-aaaf-4abb-a53b-d9196373538a?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 First 77 kWh | 204 PK | SoH 95,45% | Appel C",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454384888-volkswagen-id-4-first-77-kwh-204-pk-soh-95-45-appel-c",
-  "view_count": 284,
+  "view_count": 291,
   "year": 2020
  },
  "m2454556302": {
@@ -10281,7 +10281,7 @@
   "distance_km": 30,
   "drivetrain": "RWD",
   "equipment_line": null,
-  "favorited_count": 9,
+  "favorited_count": 7,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -10356,7 +10356,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454556302-volkswagen-id-4-pro-77-kwh-soh-92-174pk-achteruitrij-ca",
-  "view_count": 349,
+  "view_count": 354,
   "year": 2023
  },
  "m2454684418": {
@@ -10449,15 +10449,116 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6f6d2908-0dc8-4681-aceb-51f32c7ce7ec?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0f6f2525-96c8-4627-9e63-43648e6e1988?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Business 77 kWh 204 PK | SoH ... | IQ Light",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454684418-volkswagen-id-4-business-77-kwh-204-pk-soh-iq-light",
-  "view_count": 239,
+  "view_count": 242,
   "year": 2021
+ },
+ "m2454689344": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Tilburg",
+  "color": "White",
+  "condition": "USED",
+  "description": "Volkswagen ID.4 Pro 77 kWh 204 PK | SoH 99% | Automaat | Navigatie | Warmtepomp | Achteruitrijcamera | Stoelverwarming | Stuurverwarming | Keyless",
+  "distance_km": 59,
+  "drivetrain": "RWD",
+  "equipment_line": null,
+  "favorited_count": 1,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2454689344",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "R-278-DB",
+  "mileage_km": 42188,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Achteruitrijcamera",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Grootlichtassistent",
+   "Hill-Hold Control",
+   "Inductieladen voor smartphones",
+   "Keyless entry",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Metallic lak",
+   "Multifunctioneel stuurwiel",
+   "Parkeerassistent",
+   "Parkeercamera",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Verblindingsvrij grootlicht",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels",
+   "Warmtepomp"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-10-17T12:17:06Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 32400,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 24342871,
+  "seller_name": "Van Mossel Volkswagen Tilburg",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/bbd94899-f5bd-434a-883b-906cd4b2a6eb?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 Pro 77 kWh 204 PK | SoH 99% | Automaat | Nav",
+  "tow_hitch": false,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454689344-volkswagen-id-4-pro-77-kwh-204-pk-soh-99-automaat-nav",
+  "view_count": 205,
+  "year": 2022
  },
  "m2454689527": {
   "acc": true,
@@ -10546,14 +10647,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/cf1e42c0-44f0-45d3-9d6f-cc8972822582?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/246018dd-45d4-46e7-bfd5-df9a5e767dd3?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK | SoH 96% | Automaat | Nav",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454689527-volkswagen-id-4-pro-77-kwh-204-pk-soh-96-automaat-nav",
-  "view_count": 226,
+  "view_count": 228,
   "year": 2022
  },
  "m2454691853": {
@@ -10634,7 +10735,7 @@
   "post_date": "2026-10-17T12:21:44Z",
   "power_hp": 265,
   "premium_audio": false,
-  "price_eur": 25400,
+  "price_eur": 24900,
   "price_source": "headline",
   "price_type": "MIN_BID",
   "range_km": null,
@@ -10651,7 +10752,7 @@
   "trim": "Pro 4MOTION",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454691853-volkswagen-id-4-pure-125-kw-52-kwh-panoramadak-360camera",
-  "view_count": 203,
+  "view_count": 206,
   "year": 2022
  },
  "m2454732579": {
@@ -10749,7 +10850,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454732579-volkswagen-id-4-gtx-4motion-77-kwh-trekhaak-warmtepomp",
-  "view_count": 273,
+  "view_count": 275,
   "year": 2023
  },
  "m2454766306": {
@@ -10841,7 +10942,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454766306-volkswagen-id-4-pro-77-kwh-wordt-verwacht-trekhaak-sto",
-  "view_count": 191,
+  "view_count": 193,
   "year": 2023
  },
  "m2454768906": {
@@ -10939,7 +11040,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454768906-volkswagen-id-4-pro-77-kwh-trekhaak-warmtepomp-comfort",
-  "view_count": 215,
+  "view_count": 217,
   "year": 2023
  },
  "m2454807032": {
@@ -11036,7 +11137,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454807032-volkswagen-id-4-pure-52-kwh-83-335-km-soh-89-3",
-  "view_count": 390,
+  "view_count": 395,
   "year": 2021
  },
  "m2454857926": {
@@ -11128,7 +11229,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454857926-volkswagen-id-4-pro-77-kwh-204-pk-moonstone-grey-camera",
-  "view_count": 260,
+  "view_count": 263,
   "year": 2023
  },
  "m2454965679": {
@@ -11227,14 +11328,14 @@
   "seller_name": "Van Mossel Nissan Vlaardingen",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/c96c7d9f-5c59-4966-8f0d-e09513202bb2?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/1c8b3ce4-e494-489c-8e0e-836f44ec9f49?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 First Max 77 kWh BTW |WLTP 492km| Automaat|",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2454965679-volkswagen-id-4-first-max-77-kwh-btw-wltp-492km-automaat",
-  "view_count": 228,
+  "view_count": 232,
   "year": 2021
  },
  "m2455134539": {
@@ -11330,7 +11431,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455134539-volkswagen-id-4-first-77-kwh-204pk-soh-89-4-camera-acarplay",
-  "view_count": 207,
+  "view_count": 209,
   "year": 2020
  },
  "m2455163996": {
@@ -11423,7 +11524,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455163996-volkswagen-id-4-pro-77-kwh-warmtepomp-93-soh-stuurver",
-  "view_count": 217,
+  "view_count": 219,
   "year": 2023
  },
  "m2455364275": {
@@ -11514,7 +11615,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455364275-volkswagen-id-4-pure-52-kwh-150pk-camera-adep-cruise-93-soh",
-  "view_count": 219,
+  "view_count": 225,
   "year": 2023
  },
  "m2455365091": {
@@ -11616,7 +11717,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455365091-volkswagen-id-4-pro-business-77-kwh-trekhaak-360-cam-key",
-  "view_count": 265,
+  "view_count": 270,
   "year": 2022
  },
  "m2455367960": {
@@ -11706,7 +11807,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455367960-volkswagen-id-4-pure-performance-navi-climate-warmtepomp-pdc",
-  "view_count": 343,
+  "view_count": 348,
   "year": 2021
  },
  "m2455370750": {
@@ -11785,7 +11886,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455370750-volkswagen-id-4-77kwh-1st-3-fase-carplay-panorama-da",
-  "view_count": 211,
+  "view_count": 217,
   "year": 2022
  },
  "m2455491910": {
@@ -11892,7 +11993,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455491910-volkswagen-id-4-max-77kwh-soh-98-warmtepomp-l-pano-l-hud-l",
-  "view_count": 239,
+  "view_count": 242,
   "year": 2020
  },
  "m2455520372": {
@@ -11982,14 +12083,14 @@
   "seller_name": "Autogroep Twente Almelo",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f8c83fa6-7224-45db-b484-3e187bfb6eb6?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/22c3a869-aea4-4609-8c0f-bc5c91730cb7?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Life 77 kWh | 20\" | Trekhaak | Warmtepomp",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455520372-volkswagen-id-4-life-77-kwh-20-trekhaak-warmtepomp",
-  "view_count": 368,
+  "view_count": 372,
   "year": 2021
  },
  "m2455520432": {
@@ -12066,7 +12167,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455520432-volkswagen-id-4-pro-performance-77kwh-204pk-l-90-19-soh-l-p",
-  "view_count": 206,
+  "view_count": 209,
   "year": 2021
  },
  "m2455529470": {
@@ -12158,7 +12259,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455529470-volkswagen-id-4-pro-77-kwh-204-pk-stoel-stuurverwarming",
-  "view_count": 192,
+  "view_count": 196,
   "year": 2023
  },
  "m2455534451": {
@@ -12256,14 +12357,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2b25bc2f-f46e-4cfd-a5a0-46460f4a9ea8?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/482b577f-0d1d-46fb-94bc-3fc7c0d82736?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 First Max 77 kWh 204 PK| SoH 93.44% | Origin",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455534451-volkswagen-id-4-first-max-77-kwh-204-pk-soh-93-44-origin",
-  "view_count": 166,
+  "view_count": 170,
   "year": 2020
  },
  "m2455848806": {
@@ -12359,7 +12460,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455848806-volkswagen-id-4-86-soh-trekhaak",
-  "view_count": 191,
+  "view_count": 194,
   "year": 2020
  },
  "m2455864387": {
@@ -12463,7 +12564,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455864387-volkswagen-id-4-pro-77-kwh-trekhaak-wegklapbaar-warmtepo",
-  "view_count": 195,
+  "view_count": 198,
   "year": 2025
  },
  "m2455924650": {
@@ -12565,7 +12666,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455924650-volkswagen-id-4-first-77-kwh-stoelverwarming-stuurverwar",
-  "view_count": 440,
+  "view_count": 448,
   "year": 2020
  },
  "m2455931982": {
@@ -12667,7 +12768,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455931982-volkswagen-id-4-pro-77-kwh-88-9-soh-pano-comfortstoelen",
-  "view_count": 279,
+  "view_count": 285,
   "year": 2021
  },
  "m2455944923": {
@@ -12765,7 +12866,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455944923-volkswagen-id-4-first-77-kwh-soh-90-stuur-stoelverw-adap-cr",
-  "view_count": 216,
+  "view_count": 220,
   "year": 2020
  },
  "m2455974260": {
@@ -12873,7 +12974,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455974260-volkswagen-id-4-gtx-4motion-77-kwh-trekhaak-pano-hud",
-  "view_count": 329,
+  "view_count": 335,
   "year": 2023
  },
  "m2455993714": {
@@ -12962,14 +13063,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/6b84b082-81b7-4768-aa37-44a4eaf11e50?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a1e539d2-1228-436c-8a0a-8cc863663a90?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Advantage 77 kWh 204 PK| Dealeronderhoud",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2455993714-volkswagen-id-4-pro-advantage-77-kwh-204-pk-dealeronderhoud",
-  "view_count": 228,
+  "view_count": 230,
   "year": 2023
  },
  "m2456006952": {
@@ -13067,14 +13168,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/1519bba9-d480-41e0-9c72-1876a2d24b3b?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ebe0e79d-2fe2-4f8c-a1fa-5de95ea60549?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| Dealeronderhouden | Trekh",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456006952-volkswagen-id-4-pro-77-kwh-204-pk-dealeronderhouden-trekh",
-  "view_count": 236,
+  "view_count": 238,
   "year": 2023
  },
  "m2456013062": {
@@ -13174,14 +13275,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/708ddd06-112c-43c6-a68a-01b3b8a44d64?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/2f4c7e7e-b31f-4f0e-8b7f-c60bc19479be?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 GTX 4Motion 77 kWh 299 PK| Dealeronderhouden",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456013062-volkswagen-id-4-gtx-4motion-77-kwh-299-pk-dealeronderhouden",
-  "view_count": 267,
+  "view_count": 269,
   "year": 2021
  },
  "m2456168263": {
@@ -13270,14 +13371,14 @@
   "seller_name": "Dealer Auto Nederland B.V.",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/595ab4f2-b002-47bd-81a3-c240607e51a9?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d2baa165-b866-4544-b209-7a65f4a2871d?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 First 77 kWh",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456168263-volkswagen-id-4-first-77-kwh",
-  "view_count": 637,
+  "view_count": 651,
   "year": 2020
  },
  "m2456216185": {
@@ -13379,7 +13480,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456216185-volkswagen-id-4-170pk-style-52-kwh-soh-89-trekhaak-ca",
-  "view_count": 148,
+  "view_count": 150,
   "year": 2021
  },
  "m2456242548": {
@@ -13473,7 +13574,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456242548-volkswagen-id-4-life-77-kwh",
-  "view_count": 284,
+  "view_count": 290,
   "year": 2021
  },
  "m2456298794": {
@@ -13567,7 +13668,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456298794-volkswagen-id-4-pro-77-kwh-95-soh-apple-carplay-adaptiv",
-  "view_count": 175,
+  "view_count": 178,
   "year": 2023
  },
  "m2456308844": {
@@ -13585,7 +13686,7 @@
   "distance_km": 110,
   "drivetrain": "RWD",
   "equipment_line": "City",
-  "favorited_count": 19,
+  "favorited_count": 20,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -13651,7 +13752,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456308844-volkswagen-id-4-city-52kwh-soh-89-navi-carplay",
-  "view_count": 498,
+  "view_count": 507,
   "year": 2021
  },
  "m2456352069": {
@@ -13739,7 +13840,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456352069-volkswagen-id-4-pro-77-kwh-soh-95-84-navigatie-parkeersenso",
-  "view_count": 212,
+  "view_count": 216,
   "year": 2023
  },
  "m2456405348": {
@@ -13844,7 +13945,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456405348-volkswagen-id-4-204pk-77-kwh-pano-memory-iq-led-keyless-21",
-  "view_count": 190,
+  "view_count": 193,
   "year": 2022
  },
  "m2456412490": {
@@ -13940,7 +14041,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456412490-volkswagen-id-4-pro-77-kwh-bj-2021-automaat",
-  "view_count": 140,
+  "view_count": 142,
   "year": 2021
  },
  "m2456455683": {
@@ -14021,7 +14122,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456455683-volkswagen-id-4-city-52-kwh-l-carplay-l-navi-l-soh-91-l-rij",
-  "view_count": 175,
+  "view_count": 178,
   "year": 2021
  },
  "m2456457515": {
@@ -14122,7 +14223,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456457515-volkswagen-id-4-first-77-kwh-soh-89-trekhaak-warmtepo",
-  "view_count": 210,
+  "view_count": 214,
   "year": 2021
  },
  "m2456459279": {
@@ -14229,7 +14330,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456459279-volkswagen-id-4-two-tone-first-max-77-kwh-apple-carplay",
-  "view_count": 272,
+  "view_count": 279,
   "year": 2021
  },
  "m2456486753": {
@@ -14339,7 +14440,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456486753-volkswagen-id-4-gtx-4motion-77-kwh-220kw-warmtepomp-360",
-  "view_count": 296,
+  "view_count": 299,
   "year": 2023
  },
  "m2456523837": {
@@ -14432,7 +14533,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456523837-volkswagen-id-4-city-52-kwh-soh-88-2-acc-stoelen-st",
-  "view_count": 328,
+  "view_count": 335,
   "year": 2021
  },
  "m2456562127": {
@@ -14526,7 +14627,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456562127-volkswagen-id-4-pro-77-kwh-204-pk-soh-95-adaptive-cru",
-  "view_count": 138,
+  "view_count": 142,
   "year": 2023
  },
  "m2456562918": {
@@ -14630,7 +14731,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456562918-volkswagen-id-4-pro-limited-edition-plus-77-kwh-286-pk-a",
-  "view_count": 152,
+  "view_count": 156,
   "year": 2026
  },
  "m2456572701": {
@@ -14723,7 +14824,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456572701-volkswagen-id-4-city-52-kwh-btw-navigatie-climate-control-le",
-  "view_count": 347,
+  "view_count": 352,
   "year": 2021
  },
  "m2456600526": {
@@ -14821,7 +14922,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456600526-volkswagen-id-4-gtx-4motion-77-kwh-soh-94-iq-light-20",
-  "view_count": 228,
+  "view_count": 230,
   "year": 2022
  },
  "m2456635355": {
@@ -14922,7 +15023,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456635355-volkswagen-id-4-gtx-4motion-77-kwh-adapt-cruise-standkachel",
-  "view_count": 153,
+  "view_count": 155,
   "year": 2023
  },
  "m2456646271": {
@@ -15014,14 +15115,14 @@
   "seller_name": "Van Mossel Weert",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/8a246a45-ab60-4227-a074-cea47ad6992c?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4f18d15e-df54-48a8-af23-01bd466657e7?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| | Dealeronderhouden | Nav",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456646271-volkswagen-id-4-pro-77-kwh-204-pk-dealeronderhouden-nav",
-  "view_count": 167,
+  "view_count": 171,
   "year": 2022
  },
  "m2456658932": {
@@ -15128,7 +15229,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456658932-volkswagen-id-4-pro-77-kwh-286-pk-soh-99-achteruitrijca",
-  "view_count": 162,
+  "view_count": 164,
   "year": 2025
  },
  "m2456690117": {
@@ -15228,7 +15329,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456690117-volkswagen-id-4-family-77-kwh-pano-dak-20-lmv-camera-alacant",
-  "view_count": 146,
+  "view_count": 149,
   "year": 2021
  },
  "m2456821087": {
@@ -15324,7 +15425,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456821087-volkswagen-id-4-life-77-kwh-soh-90-warmtepomp-trekhaak-stuu",
-  "view_count": 359,
+  "view_count": 361,
   "year": 2021
  },
  "m2456841111": {
@@ -15426,7 +15527,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456841111-volkswagen-id-4-pro-77-kwh-204pk-ergoactive-warmtepomp-360",
-  "view_count": 179,
+  "view_count": 181,
   "year": 2021
  },
  "m2456842679": {
@@ -15529,7 +15630,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456842679-volkswagen-id-4-first-77-kwh-stoelverwarming-stuurverwar",
-  "view_count": 659,
+  "view_count": 669,
   "year": 2020
  },
  "m2456915658": {
@@ -15627,7 +15728,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456915658-volkswagen-id-4-pro-77-kwh-soh-92-acc-elek-trekhaak-ri",
-  "view_count": 180,
+  "view_count": 184,
   "year": 2023
  },
  "m2456954456": {
@@ -15725,7 +15826,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456954456-volkswagen-id-4-pro-77-kwh-soh-93-matrix-led-apple-carpla",
-  "view_count": 271,
+  "view_count": 275,
   "year": 2022
  },
  "m2456957698": {
@@ -15831,7 +15932,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456957698-volkswagen-id-4-pro-limited-edition-plus-286pk-79-kwh-trek",
-  "view_count": 162,
+  "view_count": 164,
   "year": 2026
  },
  "m2456959773": {
@@ -15937,7 +16038,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456959773-volkswagen-id-4-pro-limited-edition-plus-286pk-79-kwh-trek",
-  "view_count": 163,
+  "view_count": 165,
   "year": 2026
  },
  "m2456963526": {
@@ -16024,7 +16125,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456963526-volkswagen-id-4-volkswagen-id-4-pro-advantage-77-kwh",
-  "view_count": 194,
+  "view_count": 196,
   "year": 2023
  },
  "m2456990896": {
@@ -16121,7 +16222,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2456990896-volkswagen-id-4-city-52-kwh-148pk-soh-91-trekhaak-nav",
-  "view_count": 178,
+  "view_count": 181,
   "year": 2021
  },
  "m2457002721": {
@@ -16219,7 +16320,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457002721-volkswagen-id-4-pro-77-kwh-leer-pano-trekhaak-97-soh-fase-3",
-  "view_count": 643,
+  "view_count": 648,
   "year": 2021
  },
  "m2457025079": {
@@ -16312,7 +16413,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457025079-volkswagen-id-4-pro-77-kwh-carplay-acc-stoel-stuurverwarming",
-  "view_count": 358,
+  "view_count": 363,
   "year": 2021
  },
  "m2457038104": {
@@ -16411,7 +16512,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457038104-volkswagen-id-4-pro-77-kwh-174pk-warmtepomp-soh-97-na",
-  "view_count": 186,
+  "view_count": 188,
   "year": 2023
  },
  "m2457077911": {
@@ -16508,14 +16609,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9ab7f12c-4748-4ddc-bc9a-6a018b100700?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/21cf2306-ba69-4a54-9ae9-b082824b7526?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Advantage 77 kWh 204 PK| Dealeronderhoud",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457077911-volkswagen-id-4-pro-advantage-77-kwh-204-pk-dealeronderhoud",
-  "view_count": 122,
+  "view_count": 124,
   "year": 2023
  },
  "m2457168520": {
@@ -16607,7 +16708,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457168520-volkswagen-id-4-pro-77-kwh-soh-95-km-92-124-dealer-onderhou",
-  "view_count": 608,
+  "view_count": 622,
   "year": 2022
  },
  "m2457173581": {
@@ -16695,14 +16796,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0e996a3f-39d0-428b-8acf-438e4cc3eb28?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e6c0d92c-210c-4cf0-b1aa-5a4de8f5c2e2?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 174 PK| Origineel Nederlands | 1e",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457173581-volkswagen-id-4-pro-77-kwh-174-pk-origineel-nederlands-1e",
-  "view_count": 151,
+  "view_count": 153,
   "year": 2023
  },
  "m2457186916": {
@@ -16802,7 +16903,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457186916-volkswagen-id-4-286pk-pro-limited-edition-77-kwh-app-conne",
-  "view_count": 166,
+  "view_count": 169,
   "year": 2026
  },
  "m2457220469": {
@@ -16898,7 +16999,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457220469-volkswagen-id-4-pro-performance-77-kwh-204-pk-stoel-stuurv",
-  "view_count": 165,
+  "view_count": 169,
   "year": 2021
  },
  "m2457235192": {
@@ -16991,7 +17092,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457235192-volkswagen-id-4-77-kwh-accu-groot-carplay-cruise-soh-90",
-  "view_count": 453,
+  "view_count": 482,
   "year": 2021
  },
  "m2457296159": {
@@ -17093,7 +17194,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457296159-volkswagen-id-4-pro-business-77-kwh-trekhaak-360-cam-key",
-  "view_count": 201,
+  "view_count": 203,
   "year": 2022
  },
  "m2457317157": {
@@ -17171,7 +17272,7 @@
   "post_date": "2026-10-24T12:00:19Z",
   "power_hp": 204,
   "premium_audio": false,
-  "price_eur": 23400,
+  "price_eur": 22900,
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
@@ -17181,14 +17282,14 @@
   "seller_name": "Van Mossel Hapert",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/3ac5e5d6-83d4-4d77-88b9-80337762cc87?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/13afef01-8a2c-4446-8bea-ea3fd4ac8fd2?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Life 77 kWh | 90% SOH | APK tot 2-07-2028 |",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457317157-volkswagen-id-4-life-77-kwh-90-soh-apk-tot-2-07-2028",
-  "view_count": 178,
+  "view_count": 181,
   "year": 2021
  },
  "m2457321406": {
@@ -17277,14 +17378,14 @@
   "seller_name": "Van Mossel Weert",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f1dfa0c4-15f2-433b-8928-7fc5086663ac?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9e7450ae-989f-4dda-8f33-5500fbc64a4c?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pure 52 kWh 170 PK| Dealeronderhouden |Panor",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457321406-volkswagen-id-4-pure-52-kwh-170-pk-dealeronderhouden-panor",
-  "view_count": 248,
+  "view_count": 254,
   "year": 2022
  },
  "m2457333448": {
@@ -17387,7 +17488,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457333448-volkswagen-id-4-286pk-limited-edition-plus-77-kwh-panorama",
-  "view_count": 171,
+  "view_count": 174,
   "year": 2026
  },
  "m2457820916": {
@@ -17476,14 +17577,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/eafdf1c3-250b-4064-a982-6796fee571b5?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/b8fda86a-8d9e-43a4-9986-9e6ee981935a?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| SoH 98,96% | Dealeronderh",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2457820916-volkswagen-id-4-pro-77-kwh-204-pk-soh-98-96-dealeronderh",
-  "view_count": 143,
+  "view_count": 145,
   "year": 2021
  },
  "m2458195027": {
@@ -17575,7 +17676,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458195027-volkswagen-id-4-pro-77-kwh-geen-import-adap-cruise-par",
-  "view_count": 138,
+  "view_count": 143,
   "year": 2022
  },
  "m2458225812": {
@@ -17675,7 +17776,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458225812-volkswagen-id-4-pro-limited-edition-77-kwh-210kw-286pk-t",
-  "view_count": 139,
+  "view_count": 142,
   "year": 2026
  },
  "m2458315564": {
@@ -17774,7 +17875,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458315564-volkswagen-id-4-77-kwh-204pk-first-soh-93-warmtepomp",
-  "view_count": 138,
+  "view_count": 143,
   "year": 2021
  },
  "m2458324687": {
@@ -17870,7 +17971,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458324687-volkswagen-id-4-pure-52-kwh-90-soh-warmtepomp-winterp",
-  "view_count": 270,
+  "view_count": 276,
   "year": 2021
  },
  "m2458324733": {
@@ -17957,7 +18058,7 @@
   "post_date": "2026-10-26T13:18:30Z",
   "power_hp": 299,
   "premium_audio": false,
-  "price_eur": 30900,
+  "price_eur": 29900,
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
@@ -17974,7 +18075,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458324733-volkswagen-id-4-gtx-advantage-4motion-77-kwh-299-pk-soh-91",
-  "view_count": 140,
+  "view_count": 144,
   "year": 2022
  },
  "m2458334019": {
@@ -18083,7 +18184,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458334019-volkswagen-id-4-max-77-kwh-204-pk-panoramadak-360-camera",
-  "view_count": 121,
+  "view_count": 124,
   "year": 2021
  },
  "m2458362669": {
@@ -18166,14 +18267,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5f155aa7-6a51-4788-86a5-3776ee34b279?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/34209acb-45a9-40da-9e57-828e28449085?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK | SoH 96% | Parkeersensore",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458362669-volkswagen-id-4-pro-77-kwh-204-pk-soh-96-parkeersensore",
-  "view_count": 121,
+  "view_count": 125,
   "year": 2023
  },
  "m2458379611": {
@@ -18277,7 +18378,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458379611-volkswagen-id-4-gtx-4motion-77-kwh-nap-1e-eigenaar-91-4-so",
-  "view_count": 126,
+  "view_count": 129,
   "year": 2023
  },
  "m2458397212": {
@@ -18378,7 +18479,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458397212-volkswagen-id-4-204-pk-first-77-kwh-soh-93-3-warmtepomp",
-  "view_count": 133,
+  "view_count": 138,
   "year": 2021
  },
  "m2458411146": {
@@ -18482,7 +18583,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458411146-volkswagen-id-4-pro-77-kwh-massage-pano-bj-2026",
-  "view_count": 189,
+  "view_count": 193,
   "year": 2026
  },
  "m2458414547": {
@@ -18576,7 +18677,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458414547-volkswagen-id-4-pure-52-kwh-170pk-navi-pdc-carplay-soh-91-5",
-  "view_count": 168,
+  "view_count": 172,
   "year": 2021
  },
  "m2458427628": {
@@ -18669,7 +18770,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458427628-volkswagen-id-4-life-77-kwh-soh-92-6-stoelverwarming-naviga",
-  "view_count": 159,
+  "view_count": 165,
   "year": 2021
  },
  "m2458481284": {
@@ -18764,7 +18865,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458481284-volkswagen-id-4-pro-77-kwh-93-2-soh-btw-trekhaak-stoe",
-  "view_count": 285,
+  "view_count": 296,
   "year": 2021
  },
  "m2458486500": {
@@ -18876,7 +18977,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458486500-volkswagen-id-4-gtx-4motion-77-kwh-hud",
-  "view_count": 181,
+  "view_count": 189,
   "year": 2021
  },
  "m2458562315": {
@@ -18976,14 +19077,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/824533cc-f234-4f82-b1de-eb0f89b387e6?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/86145c54-0d2e-4012-a0bb-c929c9d52070?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 First Max 77 kWh | 204 PK | Panorama Dak | I",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458562315-volkswagen-id-4-first-max-77-kwh-204-pk-panorama-dak-i",
-  "view_count": 126,
+  "view_count": 128,
   "year": 2021
  },
  "m2458569302": {
@@ -19083,7 +19184,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458569302-volkswagen-id-4-204pk-business-77-kwh-soh-93-matrix-led",
-  "view_count": 119,
+  "view_count": 122,
   "year": 2021
  },
  "m2458590563": {
@@ -19178,7 +19279,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458590563-volkswagen-id-4-pro-77-kwh-soh-91-7-trekhaak-apple-c",
-  "view_count": 169,
+  "view_count": 199,
   "year": 2022
  },
  "m2458590593": {
@@ -19196,7 +19297,7 @@
   "distance_km": 89,
   "drivetrain": "RWD",
   "equipment_line": null,
-  "favorited_count": 5,
+  "favorited_count": 6,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -19269,7 +19370,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458590593-volkswagen-id-4-pro-77-kwh-soh-94-2-adaptive-cruise-s",
-  "view_count": 132,
+  "view_count": 137,
   "year": 2023
  },
  "m2458607369": {
@@ -19367,7 +19468,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458607369-volkswagen-id-4-life-77-kwh-204-pk-soh-90-trekhaak-we",
-  "view_count": 114,
+  "view_count": 117,
   "year": 2021
  },
  "m2458635134": {
@@ -19474,7 +19575,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458635134-volkswagen-id-4-max-77-kwh-205pk-panoramadak-camera-ha",
-  "view_count": 132,
+  "view_count": 135,
   "year": 2020
  },
  "m2458635472": {
@@ -19562,7 +19663,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458635472-volkswagen-id-4-pro-77-kwh-soh-95-84-bj-2023-automaat",
-  "view_count": 174,
+  "view_count": 180,
   "year": 2023
  },
  "m2458650090": {
@@ -19660,7 +19761,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458650090-volkswagen-id-4-pro-77-kwh-long-range-pano-matrix-le",
-  "view_count": 351,
+  "view_count": 356,
   "year": 2023
  },
  "m2458725624": {
@@ -19765,7 +19866,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458725624-volkswagen-id-4-first-max-77-kwh-stoel-stuurverwarming-p",
-  "view_count": 123,
+  "view_count": 126,
   "year": 2020
  },
  "m2458744821": {
@@ -19855,7 +19956,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458744821-volkswagen-id-4-pro-77-kwh-soh-95-adaptive-cruise-control",
-  "view_count": 150,
+  "view_count": 152,
   "year": 2023
  },
  "m2458755339": {
@@ -19953,7 +20054,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458755339-volkswagen-id-4-pro-77-kwh-elek-trekh-iq-light-pano-warmtepo",
-  "view_count": 163,
+  "view_count": 170,
   "year": 2022
  },
  "m2458774961": {
@@ -20061,7 +20162,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458774961-volkswagen-id-4-pro-77-kwh-warmtepomp-soh95-pano-trek",
-  "view_count": 202,
+  "view_count": 207,
   "year": 2023
  },
  "m2458778010": {
@@ -20156,7 +20257,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458778010-volkswagen-id-4-first-77-kwh-1ste-eig-warmtepomp-soh-93",
-  "view_count": 316,
+  "view_count": 319,
   "year": 2021
  },
  "m2458793376": {
@@ -20257,7 +20358,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458793376-volkswagen-id-4-business-77-kwh-iq-matrix-adaptive-cruise-ca",
-  "view_count": 138,
+  "view_count": 146,
   "year": 2021
  },
  "m2458877884": {
@@ -20353,7 +20454,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458877884-volkswagen-id-4-pro-77-kwh-adaptive-cruise-stuurverw-91",
-  "view_count": 115,
+  "view_count": 121,
   "year": 2022
  },
  "m2458881576": {
@@ -20455,7 +20556,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458881576-volkswagen-id-4-pro-77-kwh-204pk-dealer-o-h-soh-97-2-tr",
-  "view_count": 197,
+  "view_count": 202,
   "year": 2023
  },
  "m2458959394": {
@@ -20549,14 +20650,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/19e25e8c-6dfe-4675-b382-7f88d22898b5?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/719e78e5-2da3-4217-a5eb-5073d69d2638?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 GTX 4Motion 77 kWh 299 PK| SOH 94,16% | Deal",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2458959394-volkswagen-id-4-gtx-4motion-77-kwh-299-pk-soh-94-16-deal",
-  "view_count": 116,
+  "view_count": 118,
   "year": 2023
  },
  "m2459065814": {
@@ -20646,14 +20747,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/97cffde8-df3c-4a40-84a0-049c2235438b?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a9b3ea9c-b6dc-4fc0-9859-0254af07253b?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK | Nieuw | Comfortpakket |",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459065814-volkswagen-id-4-pro-77-kwh-204-pk-nieuw-comfortpakket",
-  "view_count": 99,
+  "view_count": 101,
   "year": 2023
  },
  "m2459090272": {
@@ -20751,7 +20852,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459090272-volkswagen-id-4-gtx-300pk-4motion-77-kwh-soh-91-panoram",
-  "view_count": 105,
+  "view_count": 109,
   "year": 2023
  },
  "m2459098780": {
@@ -20831,14 +20932,14 @@
   "seller_name": "Mega Occasion Centrum Budgetcars Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d5b894d2-c073-4a83-bb4e-8dab116c92c8?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/34613f3d-d849-4b13-bdcf-9bf05b5c2c1c?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 77kWh 150kW Pro Performance | Apple Carplay",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459098780-volkswagen-id-4-77kwh-150kw-pro-performance-apple-carplay",
-  "view_count": 109,
+  "view_count": 111,
   "year": 2024
  },
  "m2459123568": {
@@ -20937,7 +21038,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459123568-volkswagen-id-4-gtx-300pk-4motion-77-kwh-soh-93-panoram",
-  "view_count": 122,
+  "view_count": 124,
   "year": 2023
  },
  "m2459140338": {
@@ -21026,14 +21127,14 @@
   "seller_name": "Autobedrijf Hansen B.V.",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0e778e80-53c7-4d25-9cd1-2dc04de82186?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5d4519dc-6636-4b3c-a38a-822ced4bc908?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Performance 77 kWh I 94% SOH I Elek. Tre",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459140338-volkswagen-id-4-pro-performance-77-kwh-i-94-soh-i-elek-tre",
-  "view_count": 147,
+  "view_count": 150,
   "year": 2023
  },
  "m2459144332": {
@@ -21139,7 +21240,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459144332-volkswagen-id-4-first-77-kwh-soh-90-warmtepomp-cam-acc-trek",
-  "view_count": 269,
+  "view_count": 278,
   "year": 2021
  },
  "m2459324308": {
@@ -21235,7 +21336,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459324308-volkswagen-id-4-first-77-kwh-soh-92-4-acarplay-camera-navi",
-  "view_count": 117,
+  "view_count": 121,
   "year": 2020
  },
  "m2459348726": {
@@ -21326,14 +21427,14 @@
   "seller_name": "Van Mossel Volkswagen Waalwijk",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/4b7cf84d-b389-40d3-be91-611419c8b973?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/229af8ec-bd42-47ef-8ba4-b0f8cdde0e3f?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| Origineel Nederlands | 1e",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459348726-volkswagen-id-4-pro-77-kwh-204-pk-origineel-nederlands-1e",
-  "view_count": 122,
+  "view_count": 124,
   "year": 2023
  },
  "m2459384393": {
@@ -21429,7 +21530,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459384393-volkswagen-id-4-204pk-life-77-kwh-soh-93-navigatie-ap",
-  "view_count": 96,
+  "view_count": 101,
   "year": 2021
  },
  "m2459386625": {
@@ -21512,7 +21613,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459386625-volkswagen-id-4-city-pure-52kwh-soh-84-navi-carplay",
-  "view_count": 250,
+  "view_count": 261,
   "year": 2021
  },
  "m2459391376": {
@@ -21612,7 +21713,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459391376-volkswagen-id-4-pro-limited-edition-79-kwh-286-pk-trekhaak",
-  "view_count": 136,
+  "view_count": 140,
   "year": 2026
  },
  "m2459424586": {
@@ -21710,7 +21811,7 @@
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 58753523,
   "seller_name": "Sanden Automotive B.V.",
@@ -21830,7 +21931,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459449486-volkswagen-id-4-pro-77-kwh-vol-pano-hud-memory-trekh",
-  "view_count": 127,
+  "view_count": 134,
   "year": 2022
  },
  "m2459452396": {
@@ -21926,7 +22027,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459452396-volkswagen-id-4-business-77-kwh-soh-93-51-stoelverwarming-c",
-  "view_count": 110,
+  "view_count": 117,
   "year": 2021
  },
  "m2459507553": {
@@ -22022,7 +22123,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459507553-volkswagen-id-4-business-77-kwh-204-pk-stoel-stuurverwarmi",
-  "view_count": 91,
+  "view_count": 94,
   "year": 2021
  },
  "m2459507813": {
@@ -22128,7 +22229,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459507813-volkswagen-id-4-gtx-business-4motion-warmtepomp-panorama",
-  "view_count": 140,
+  "view_count": 145,
   "year": 2026
  },
  "m2459526988": {
@@ -22215,7 +22316,7 @@
   "price_source": "headline",
   "price_type": "MIN_BID",
   "range_km": null,
-  "runs_missing": 0,
+  "runs_missing": 1,
   "seat_memory": false,
   "seller_id": 14685800,
   "seller_name": "De Bedrijfswagen Garage B.V.",
@@ -22325,7 +22426,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459529809-volkswagen-id-4-gtx-4motion-77-kwh-btw-l-1e-eigenaar-l-tre",
-  "view_count": 164,
+  "view_count": 168,
   "year": 2023
  },
  "m2459595010": {
@@ -22418,7 +22519,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459595010-volkswagen-id-4-pro-77kwh-soh-92-8-trekhaak-acarplay-navi-l",
-  "view_count": 129,
+  "view_count": 134,
   "year": 2021
  },
  "m2459687269": {
@@ -22514,7 +22615,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459687269-volkswagen-id-4-pure-business-52-kwh-stoelverwarming-360",
-  "view_count": 91,
+  "view_count": 95,
   "year": 2024
  },
  "m2459707749": {
@@ -22620,7 +22721,7 @@
   "trim": "GTX",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459707749-volkswagen-id-4-gtx-4motion-77-kwh-soh-94-3-panoramadak",
-  "view_count": 170,
+  "view_count": 176,
   "year": 2022
  },
  "m2459708658": {
@@ -22722,7 +22823,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459708658-volkswagen-id-4-286pk-pro-limited-edition-77-kwh-trekhaak",
-  "view_count": 87,
+  "view_count": 90,
   "year": 2026
  },
  "m2459713363": {
@@ -22815,14 +22916,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0a3b95dd-f4b1-4dcf-a5d4-ded43db8b2f4?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/892c7053-b669-4311-af43-66090d4764e6?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Limited Edition 77 kWh 286 PK | EM | Aut",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459713363-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-em-aut",
-  "view_count": 75,
+  "view_count": 77,
   "year": 2026
  },
  "m2459714670": {
@@ -22915,14 +23016,14 @@
   "seller_name": "Van Mossel Volkswagen Tilburg",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/34588abf-9e4a-4a64-86d8-0553835c7642?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/950d6b70-f126-4bb3-b869-021e2fde262e?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro Limited Edition 77 kWh 286 PK | EM | Aut",
   "tow_hitch": false,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459714670-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-em-aut",
-  "view_count": 92,
+  "view_count": 96,
   "year": 2026
  },
  "m2459748338": {
@@ -23014,7 +23115,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459748338-volkswagen-id-4-204pk-pro-77-kwh-soh-97-panoramadak-v",
-  "view_count": 89,
+  "view_count": 94,
   "year": 2023
  },
  "m2459748918": {
@@ -23100,7 +23201,7 @@
   "post_date": "2026-10-30T10:25:01Z",
   "power_hp": 286,
   "premium_audio": false,
-  "price_eur": 46650,
+  "price_eur": 46293,
   "price_source": "headline",
   "price_type": "FIXED",
   "range_km": null,
@@ -23117,7 +23218,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459748918-volkswagen-id-4-pro-limited-edition-77-kwh-286-pk-navigati",
-  "view_count": 108,
+  "view_count": 112,
   "year": 2026
  },
  "m2459758806": {
@@ -23209,7 +23310,7 @@
   "trim": "Pure",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459758806-volkswagen-id-4-pure-52-kwh-navi-pdc-climate-control",
-  "view_count": 182,
+  "view_count": 193,
   "year": 2021
  },
  "m2459837068": {
@@ -23306,7 +23407,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459837068-volkswagen-id-4-pro-77-kwh-business-camera-carplay-sto",
-  "view_count": 165,
+  "view_count": 174,
   "year": 2021
  },
  "m2459895478": {
@@ -23397,7 +23498,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459895478-volkswagen-id-4-pro-77-kwh-95-soh-adapt-cruise-carplay-s",
-  "view_count": 94,
+  "view_count": 99,
   "year": 2022
  },
  "m2459902084": {
@@ -23500,7 +23601,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459902084-volkswagen-id-4-pro-77-kwh-286pk-led-matrix-iq-soh-98",
-  "view_count": 70,
+  "view_count": 74,
   "year": 2025
  },
  "m2459910126": {
@@ -23605,7 +23706,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2459910126-volkswagen-id-4-pro-business-77-kwh-286-pk-warmtepomp-zw",
-  "view_count": 184,
+  "view_count": 190,
   "year": 2026
  },
  "m2460068886": {
@@ -23707,7 +23808,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460068886-volkswagen-id-4-first-77-kwh-204pk-dealer-o-h-soh-91-9",
-  "view_count": 78,
+  "view_count": 81,
   "year": 2021
  },
  "m2460081451": {
@@ -23804,7 +23905,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460081451-volkswagen-id-4-pro-77-kwh-trekhaak-soh-95-32",
-  "view_count": 97,
+  "view_count": 105,
   "year": 2022
  },
  "m2460092850": {
@@ -23899,14 +24000,14 @@
   "seller_name": "Van Mossel Valkenswaard",
   "soh_percent": null,
   "source": "marktplaats",
-  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/89839ab7-12ac-4d59-a037-b58df4cff2d3?rule=ecg_mp_eps$_82.jpg",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/0b5c77ad-9f5f-4deb-b72a-927cec52de5b?rule=ecg_mp_eps$_82.jpg",
   "title": "Volkswagen ID.4 Pro 77 kWh 174 PK | Soh 95% | Navigatie | Ad",
   "tow_hitch": true,
   "transmission": "Automatic",
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460092850-volkswagen-id-4-pro-77-kwh-174-pk-soh-95-navigatie-ad",
-  "view_count": 113,
+  "view_count": 118,
   "year": 2023
  },
  "m2460096290": {
@@ -24004,7 +24105,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460096290-volkswagen-id-4-pro-77-kwh-panoramadak-memory-soh-98",
-  "view_count": 88,
+  "view_count": 93,
   "year": 2023
  },
  "m2460151993": {
@@ -24080,7 +24181,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460151993-volkswagen-id-4-pro-210-kw-goal-soh-99-warmtepomp-tre",
-  "view_count": 71,
+  "view_count": 74,
   "year": 2024
  },
  "m2460154286": {
@@ -24154,7 +24255,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460154286-volkswagen-id-4-pro-performance-77-kwh-soh-95-panoramad",
-  "view_count": 76,
+  "view_count": 80,
   "year": 2023
  },
  "m2460234027": {
@@ -24259,7 +24360,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460234027-volkswagen-id-4-82kwh-204pk-trekhaak-pano-dak-leer-alcantara",
-  "view_count": 108,
+  "view_count": 114,
   "year": 2021
  },
  "m2460268827": {
@@ -24364,7 +24465,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460268827-volkswagen-id-4-286pk-pro-limited-edition-77-kwh-trekhaak",
-  "view_count": 75,
+  "view_count": 78,
   "year": 2026
  },
  "m2460336302": {
@@ -24460,7 +24561,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460336302-volkswagen-id-4-pro-77-kwh-soh-90-19-warmtepomp-apple-c",
-  "view_count": 122,
+  "view_count": 130,
   "year": 2021
  },
  "m2460378825": {
@@ -24559,7 +24660,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460378825-volkswagen-id-4-first-77-kwh-warmtepomp-20inch-elektrische",
-  "view_count": 105,
+  "view_count": 113,
   "year": 2021
  },
  "m2460813428": {
@@ -24623,7 +24724,7 @@
   "trim": "Pro 4MOTION",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460813428-volkswagen-id-4-77kwh-286pk-4motion-2024-zwart",
-  "view_count": 86,
+  "view_count": 95,
   "year": 2024
  },
  "m2460832763": {
@@ -24641,7 +24742,7 @@
   "distance_km": 109,
   "drivetrain": "RWD",
   "equipment_line": "1st Edition",
-  "favorited_count": 1,
+  "favorited_count": 3,
   "first_seen": "2026-11-02",
   "fsd": false,
   "fuel": "Electric",
@@ -24723,7 +24824,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460832763-volkswagen-id-4-first-77-kwh-soh-90-6-warmtepomp-f",
-  "view_count": 58,
+  "view_count": 71,
   "year": 2020
  },
  "m2460883986": {
@@ -24816,7 +24917,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460883986-volkswagen-id-4-pro-77-kwh-soh-94-35",
-  "view_count": 23,
+  "view_count": 42,
   "year": 2022
  },
  "m2460901734": {
@@ -24916,7 +25017,7 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460901734-volkswagen-id-4-286pk-pro-limited-edition-77-kwh-trekhaak",
-  "view_count": 12,
+  "view_count": 31,
   "year": 2026
  },
  "m2460909656": {
@@ -25011,7 +25112,773 @@
   "trim": "Pro",
   "upholstery": null,
   "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460909656-volkswagen-id-4-pro-business-77-kwh-warmtepomp-soh-97-5",
-  "view_count": 0,
+  "view_count": 41,
   "year": 2023
+ },
+ "m2460933092": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Waalwijk",
+  "color": "Grey",
+  "condition": "USED",
+  "description": "Volkswagen ID.4 Pro 77 kWh 204 PK| Origineel Nederlands | SoH 95,91% | Navigatie | Stoelverwarming | Stuurwielverwarming | Keyless Access | 19 Inch",
+  "distance_km": 49,
+  "drivetrain": "RWD",
+  "equipment_line": null,
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2460933092",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "N-752-KX",
+  "mileage_km": 94925,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Hill-Hold Control",
+   "Inductieladen voor smartphones",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Multifunctioneel stuurwiel",
+   "Navigatiesysteem",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Startonderbreker",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T09:38:28Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 28900,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 24342871,
+  "seller_name": "Van Mossel Volkswagen Waalwijk",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/53a8d9c9-abea-4577-be2f-c7a5e3dac222?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 Pro 77 kWh 204 PK| Origineel Nederlands | So",
+  "tow_hitch": false,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460933092-volkswagen-id-4-pro-77-kwh-204-pk-origineel-nederlands-so",
+  "view_count": 36,
+  "year": 2021
+ },
+ "m2460943460": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Dokkum",
+  "color": "Grey",
+  "condition": "NEW",
+  "description": "Volkswagen ID.4 Pro 77 kWh | Trekhaak | Warmtepomp | Clima | Stoelverwarming |Algemene informatieAantal deuren: 5Modeljaar: 2020Kleur: Scale Silver",
+  "distance_km": 184,
+  "drivetrain": "RWD",
+  "equipment_line": null,
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2460943460",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "NBN-36-D",
+  "mileage_km": 98899,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Multifunctioneel stuurwiel",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Startonderbreker",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Trekhaak",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels",
+   "Verwarming stoelen achter",
+   "Warmtepomp"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T10:01:40Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 29450,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 51993416,
+  "seller_name": "Bourguignon Dokkum",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f8f89789-882e-4d8a-9b85-2942ecedc8f0?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 Pro 77 kWh | Trekhaak | Warmtepomp | Clima |",
+  "tow_hitch": true,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460943460-volkswagen-id-4-pro-77-kwh-trekhaak-warmtepomp-clima",
+  "view_count": 36,
+  "year": 2023
+ },
+ "m2460961597": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Harmelen",
+  "color": "Grey",
+  "condition": "USED",
+  "description": "Warmtepomp - Trekhaak - Adaptive Cruise - NL-Auto - Hogere kwaliteit! - RijklaarprijsAlgemene informatieAantal deuren: 5Kleur: Mangan Grey (grijs",
+  "distance_km": 37,
+  "drivetrain": "RWD",
+  "equipment_line": "1st Edition",
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2460961597",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "L-813-PG",
+  "mileage_km": 78243,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Achteruitrijcamera",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Grootlichtassistent",
+   "Hill-Hold Control",
+   "Isofix",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lichtmetalen velgen",
+   "Metallic lak",
+   "Multifunctioneel stuurwiel",
+   "Navigatiesysteem",
+   "Parkeercamera",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Start-stop-systeem",
+   "Startonderbreker",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Trekhaak",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels",
+   "Warmtepomp"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T10:42:30Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 27880,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 22105520,
+  "seller_name": "Hardy Automotive",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5691c5ac-2738-469f-b489-86ee69b5813f?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 First 77 kWh 93% SOH Warmtepomp Trekh Rijkla",
+  "tow_hitch": true,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460961597-volkswagen-id-4-first-77-kwh-93-soh-warmtepomp-trekh-rijkla",
+  "view_count": 33,
+  "year": 2021
+ },
+ "m2460990428": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Maarn",
+  "color": "Grey",
+  "condition": "USED",
+  "description": "Volkswagen ID.4 Pro Style 77 kWh | 94% SOH | TREKHAAK | HALF-LEDER | CAMERA |Algemene informatieAantal deuren: 5Modeljaar: 2020Kleur: Mangan",
+  "distance_km": 62,
+  "drivetrain": "RWD",
+  "equipment_line": "Style",
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2460990428",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "P-256-BR",
+  "mileage_km": 110851,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Achteruitrijcamera",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Hill-Hold Control",
+   "Inductieladen voor smartphones",
+   "Keyless entry",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Metallic lak",
+   "Multifunctioneel stuurwiel",
+   "Navigatiesysteem",
+   "Parkeerassistent",
+   "Parkeercamera",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Stuurwielverwarming",
+   "Trekhaak",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T11:51:13Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 27400,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 12134837,
+  "seller_name": "Vakgarage BSC Maarn",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e8d43fdc-ac77-406f-93fb-4a3ca094998e?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 Pro Style 77 kWh | 94% SOH | TREKHAAK | HALF",
+  "tow_hitch": true,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2460990428-volkswagen-id-4-pro-style-77-kwh-94-soh-trekhaak-half",
+  "view_count": 28,
+  "year": 2022
+ },
+ "m2461032118": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Veenendaal",
+  "color": "Blue",
+  "condition": "USED",
+  "description": "Multimedia-pakket, Android auto, Apple carplay, Cruise control adaptief, Draadloze telefoonlader, Electronic Climate Control, LED koplampen,",
+  "distance_km": 76,
+  "drivetrain": "RWD",
+  "equipment_line": null,
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2461032118",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "R-125-HG",
+  "mileage_km": 117835,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Boordcomputer",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Geheel digitaal combi-instrument",
+   "Hill-Hold Control",
+   "Inductieladen voor smartphones",
+   "Isofix",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lichtmetalen velgen",
+   "Lichtsensor",
+   "Metallic lak",
+   "Multifunctioneel stuurwiel",
+   "Navigatiesysteem",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Startonderbreker",
+   "Trekhaak",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T13:28:04Z",
+  "power_hp": 175,
+  "premium_audio": false,
+  "price_eur": 26450,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 1974314,
+  "seller_name": "Autobedrijf De Groot Veenendaal",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/eac22167-4bb0-4eff-9566-d7e8d85c1f50?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 Pro 77 kWh SOH 94,7%, Trekhaak, Apple Carpla",
+  "tow_hitch": true,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2461032118-volkswagen-id-4-pro-77-kwh-soh-94-7-trekhaak-apple-carpla",
+  "view_count": 20,
+  "year": 2022
+ },
+ "m2461032566": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Balkbrug",
+  "color": "Grey",
+  "condition": "USED",
+  "description": "Op zoek naar een ruime, comfortabele én volledig elektrische SUV? Deze Volkswagen ID.4 PRO Performance Life uit 2021 combineert modern rijcomfort met",
+  "distance_km": 149,
+  "drivetrain": "RWD",
+  "equipment_line": "Life",
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2461032566",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "N-722-FP",
+  "mileage_km": 90069,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Bluetooth",
+   "Boordcomputer",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Isofix",
+   "LED verlichting",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Navigatiesysteem",
+   "Parkeerassistent",
+   "Parkeercamera",
+   "Parkeersensor",
+   "Radio",
+   "Start-stop-systeem",
+   "Startonderbreker",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Traction-control",
+   "USB",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T13:29:07Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 27800,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 26269564,
+  "seller_name": "Autobedrijf van der Linde",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/9eb7d185-a440-4086-a725-bdf14bab405e?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 PRO Performance Life 77 kWh, Cruise control,",
+  "tow_hitch": false,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2461032566-volkswagen-id-4-pro-performance-life-77-kwh-cruise-control",
+  "view_count": 17,
+  "year": 2021
+ },
+ "m2461035658": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Kootwijkerbroek",
+  "color": "Geel",
+  "condition": "USED",
+  "description": "Volkswagen ID.4 First 77 kWh | Warmtepomp | Leder | CameraAlgemene informatieAantal deuren: 5Modeljaar: 2020Kleur: Honey yellow zwart dakTechnische",
+  "distance_km": 86,
+  "drivetrain": "RWD",
+  "equipment_line": "1st Edition",
+  "favorited_count": 1,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2461035658",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "S-476-HF",
+  "mileage_km": 33313,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Achteruitrijcamera",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Grootlichtassistent",
+   "Hill-Hold Control",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Multifunctioneel stuurwiel",
+   "Navigatiesysteem",
+   "Parkeercamera",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Start-stop-systeem",
+   "Startonderbreker",
+   "Stoelverwarming",
+   "Stuurwielverwarming",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T13:35:28Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 28450,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 1028450,
+  "seller_name": "Garage Top",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/935b677b-13d7-4359-ab87-b63587d4c9c6?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 First 77 kWh | Warmtepomp | Leder | Camera",
+  "tow_hitch": false,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2461035658-volkswagen-id-4-first-77-kwh-warmtepomp-leder-camera",
+  "view_count": 20,
+  "year": 2020
+ },
+ "m2461039446": {
+  "acc": true,
+  "active": true,
+  "adaptive_suspension": false,
+  "autopilot_package": null,
+  "battery_kwh": 77.0,
+  "body": "SUV of Terreinwagen",
+  "brand": "Volkswagen ID.4",
+  "city": "Hardenberg",
+  "color": "White",
+  "condition": "USED",
+  "description": "Volkswagen ID.4 204pk Pro 77 kWh | SoH 94% | Parkeersensoren | Adaptive Cruise | App ConnectAlgemene informatieAantal deuren: 5Modeljaar: 2020Kleur:",
+  "distance_km": 162,
+  "drivetrain": "RWD",
+  "equipment_line": null,
+  "favorited_count": 0,
+  "first_seen": "2026-11-02",
+  "fsd": false,
+  "fuel": "Electric",
+  "hw_confidence": null,
+  "hw_platform": null,
+  "hw_source": null,
+  "id": "m2461039446",
+  "interior_color": null,
+  "is_highland": false,
+  "is_juniper": false,
+  "last_seen": "2026-11-02",
+  "license_plate": "R-593-FZ",
+  "mileage_km": 83041,
+  "model": "ID.4",
+  "mp_options": [
+   "ABS",
+   "Adaptive Cruise Control",
+   "Airbags",
+   "Airconditioning",
+   "Alarm",
+   "Android Auto",
+   "Apple Carplay",
+   "Automatische klimaatregeling",
+   "Bluetooth",
+   "Centrale vergrendeling",
+   "Climate control",
+   "Cruise Control",
+   "Dakrails",
+   "Digitale radio-ontvangst",
+   "Electronic Stability Program (ESP)",
+   "Elektrische buitenspiegels",
+   "Elektrische ramen",
+   "Hill-Hold Control",
+   "Inductieladen voor smartphones",
+   "LED dagrijverlichting",
+   "LED verlichting",
+   "Lane Departure Warning",
+   "Lane Keeping Assist",
+   "Lichtmetalen velgen",
+   "Metallic lak",
+   "Multifunctioneel stuurwiel",
+   "Parkeersensor",
+   "Radio",
+   "Regensensor",
+   "Spraakbediening",
+   "Standkachel",
+   "Startonderbreker",
+   "Verkeersbordherkenning",
+   "Vermoeidheidsdetectie",
+   "Verwarmde buitenspiegels"
+  ],
+  "num_doors": 5,
+  "num_seats": 5,
+  "pano": false,
+  "post_date": "2026-11-02T13:44:00Z",
+  "power_hp": 204,
+  "premium_audio": false,
+  "price_eur": 29950,
+  "price_source": "headline",
+  "price_type": "FIXED",
+  "range_km": null,
+  "runs_missing": 0,
+  "seat_memory": false,
+  "seller_id": 23812539,
+  "seller_name": "Pouw Hardenberg",
+  "soh_percent": null,
+  "source": "marktplaats",
+  "thumbnail": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d0aae6b5-d31b-4830-9248-b9b1eae014d4?rule=ecg_mp_eps$_82.jpg",
+  "title": "Volkswagen ID.4 204pk Pro 77 kWh | SoH 94% | Parkeersensoren",
+  "tow_hitch": false,
+  "transmission": "Automatic",
+  "trim": "Pro",
+  "upholstery": null,
+  "url": "https://www.marktplaats.nl/v/auto-s/volkswagen/m2461039446-volkswagen-id-4-204pk-pro-77-kwh-soh-94-parkeersensoren",
+  "view_count": 13,
+  "year": 2022
  }
 }
