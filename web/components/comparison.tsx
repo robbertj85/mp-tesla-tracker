@@ -41,7 +41,7 @@ function liveStats(v: CompareVehicle, data: Dataset): Live {
   const withSoh = rows.map((l) => ({ l, s: soh(l) })).filter((x): x is { l: Listing; s: number } => x.s != null);
   const rel = (l: Listing) => (l.residualEur ?? 0) / (l.predictedEur || 1);
   const pick = rows
-    // A car that may not tow (Model S) can't meet the tow-hitch wish; pick on audio alone.
+    // A car that may not tow (towKg 0) can't meet the tow-hitch wish; pick on audio alone.
     .filter((l) => l.premium_audio && (l.tow_hitch || v.towKg === 0) && l.predictedEur != null)
     .filter((l) => !TRAP_RE.test(l.title ?? "") && !KNOWN_TRAP_IDS.has(l.id) && (l.mileage_km ?? 0) <= 150_000)
     .filter((l) => { const s = soh(l); return s == null || s >= 92; })
@@ -138,7 +138,7 @@ const GROUPS: Group[] = [
       { label: "Met audio + trekhaak", best: "max", cell: (_, l) => n0(l.audioTow) },
       {
         label: "Beste match nu",
-        hint: "audio + trekhaak (Model S: alleen audio), ≤ 150k km, SoH ≥ 92% of onbekend, laagst t.o.v. prijsmodel",
+        hint: "audio + trekhaak, ≤ 150k km, SoH ≥ 92% of onbekend, laagst t.o.v. prijsmodel",
         cell: (_, l) => {
           const p = l.pick;
           if (!p) return { node: <span className="text-xs text-muted-foreground">geen match</span> };

@@ -115,7 +115,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
       }
       if (/bemiddel/i.test(p.seller ?? "")) warnings.push("Verkoper is een bemiddelaar (verkoopt namens een ander): vraag naar garantie, onderhoudshistorie en wie de eigenaar is.");
       if (p.soh == null && v.kind === "ev") warnings.push("Geen SoH in de advertentie: vraag een accurapport.");
-      if (v.compareId === "superb-iv" && p.premiumAudio == null) warnings.push("Canton niet bevestigd.");
+      if ((v.compareId === "superb-iv" || v.compareId === "enyaq-80") && !p.premiumAudio) warnings.push("Canton niet bevestigd in de advertentie.");
       if (v.kind !== "ev" && !p.towHitch) warnings.push("Geen trekhaak: reken op een dakkoffer (+~10–15% verbruik als hij erop zit, niet meegerekend).");
       rows.push({
         key: p.id,
@@ -249,7 +249,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
           <CardDescription>
             Beste aanbiedingen binnen {BC_MAX_DISTANCE_KM} km van Rotterdam, laagst geprijsd t.o.v. de markt, ≤ 150.000 km, SoH ≥ 92% of
             onbekend, geen valkuil. EV&apos;s: trekhaak (voor een trekhaakkoffer — een dakkoffer kost te veel bereik) + premium audio
-            (ID.4: alleen trekhaak). Superb: Canton, dakkoffer kan. Octavia: simpel, geen eisen. Groen = goedkoopste.
+            (Enyaq en ID.4: alleen trekhaak — met Canton/Harman Kardon staat er geen in de buurt). Superb: Canton, dakkoffer kan. Octavia: simpel, geen eisen. Groen = goedkoopste.
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-x-auto p-0 sm:p-6 sm:pt-0">

@@ -76,6 +76,16 @@ export const BC_VEHICLES: BcVehicle[] = [
     notes: "Onderhoud elke 2 jaar / 30.000 km. Check recall 22S41 (HV-hoofdrelais) en de 12V-accu.",
   },
   {
+    compareId: "enyaq-80", name: "Enyaq iV 80", dataset: "enyaq", modelKey: "Enyaq",
+    // Canton + tow hitch: none within 40 km, so picks on tow hitch only (Canton flagged per car).
+    kind: "ev", requireAudio: false, requireTow: true, picks: 2, kwhPer100: 18.0, fastCharge: "other", massKg: 1990,
+    insurance: { allrisk: 125, waPlus: 88 },
+    maintenancePerYear: 350, tyresPerKm: 0.023,
+    batteryWarranty: { years: 8, km: 160_000 },
+    roadsideNote: "Skoda Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
+    notes: "Grootste kofferbak van de EV's na de Model Y (585 L). Laadt 125 kW tot bouw jan 2022, daarna 135 kW. Onderhoud elke 2 jaar / 30.000 km.",
+  },
+  {
     compareId: "id4-pro", name: "ID.4 Pro 77 kWh", dataset: "id4", modelKey: "ID.4",
     kind: "ev", requireAudio: false, requireTow: true, picks: 2, kwhPer100: 19.2, fastCharge: "other", massKg: 2050,
     insurance: { allrisk: 120, waPlus: 85 },
