@@ -10,6 +10,7 @@ import {
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
 } from "@/lib/business-case";
 import { cn, eur, km } from "@/lib/utils";
+import { GoalSeek } from "@/components/goal-seek";
 
 // Total cost of ownership per shortlisted car vs. keeping the current Skoda.
 // All maths lives in lib/business-case.ts; this view only holds the inputs.
@@ -439,6 +440,14 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
           </p>
         </CardContent>
       </Card>
+
+      <GoalSeek
+        inputs={inp}
+        setInputs={setInp}
+        cars={rows.filter((r) => r.vehicle && r.pick && deps[r.vehicle.compareId]).map((r) => ({
+          key: r.key, vehicle: r.vehicle!, pick: r.pick!, dep: deps[r.vehicle!.compareId],
+        }))}
+      />
 
       <Card>
         <CardHeader>

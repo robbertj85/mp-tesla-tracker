@@ -75,7 +75,7 @@ export default function BusinessCasePage() {
       }));
   }
   return (
-    <div className="container max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
+    <div className="container max-w-screen-2xl px-3 py-6 sm:px-4 sm:py-8">
       <SiteHeader active="businesscase"
         subtitle={`Totale kosten van de beste auto's binnen ${BC_MAX_DISTANCE_KM} km van Rotterdam vs. de huidige Skoda houden · live data van ${dates.sort().at(-1) ?? "—"}`} />
       <BusinessCaseView picks={picks} deps={deps} />
