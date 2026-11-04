@@ -6,21 +6,29 @@
 // (€ per year of age + € per km), so it follows the live market.
 
 import type { BrandKey } from "./brands";
+import type { Listing } from "./types";
 
 export interface BcVehicle {
-  /** Same id as in COMPARE_VEHICLES, whose `match` picks the listings. */
+  /** Same id as in COMPARE_VEHICLES, whose `match` picks the listings (unless `match` is set). */
   compareId: string;
+  /** Own listing filter, for variants /vergelijk doesn't have (Octavia iV). */
+  match?: (l: Listing) => boolean;
   name: string;
   dataset: BrandKey;
   /** Key in dataset.models whose regression gives the depreciation. */
   modelKey: string;
-  kind: "ev" | "phev";
+  kind: "ev" | "phev" | "ice";
   /** Premium audio required for a pick (ID.4: Harman Kardon is too rare, so not). */
   requireAudio: boolean;
+  /** Tow hitch required: EVs only, for a tow-bar box (a roof box costs EV range).
+   *  The Skodas can carry a roof box instead. */
+  requireTow: boolean;
+  /** How many live listings to show. */
+  picks: number;
   /** Average consumption over the year, battery side (kWh/100 km), from the real
    *  summer/winter range on /vergelijk. PHEV: in electric mode. */
   kwhPer100: number;
-  /** Petrol (l/100 km) with an empty battery. PHEV only. */
+  /** Petrol (l/100 km): PHEV with an empty battery, or the petrol car. */
   litersPer100?: number;
   /** Where it can fast-charge: Tesla price, Supercharger with/without subscription, or not at all. */
   fastCharge: "tesla" | "other" | "none";
@@ -33,8 +41,8 @@ export interface BcVehicle {
   maintenancePerYear: number;
   /** Tyre wear, €/km (set price / life). */
   tyresPerKm: number;
-  /** HV battery warranty: years from first registration and km. */
-  batteryWarranty: { years: number; km: number };
+  /** HV battery warranty: years from first registration and km. None for petrol. */
+  batteryWarranty?: { years: number; km: number };
   roadsideNote: string;
   notes: string;
 }
@@ -42,7 +50,7 @@ export interface BcVehicle {
 export const BC_VEHICLES: BcVehicle[] = [
   {
     compareId: "tesla-y-lr", name: "Model Y LR AWD", dataset: "tesla", modelKey: "Model Y",
-    kind: "ev", requireAudio: true, kwhPer100: 17.3, fastCharge: "tesla", massKg: 1909,
+    kind: "ev", requireAudio: true, requireTow: true, picks: 2, kwhPer100: 17.3, fastCharge: "tesla", massKg: 1909,
     insurance: { allrisk: 150, waPlus: 105 },
     maintenancePerYear: 250, tyresPerKm: 0.028,
     batteryWarranty: { years: 8, km: 192_000 },
@@ -51,7 +59,7 @@ export const BC_VEHICLES: BcVehicle[] = [
   },
   {
     compareId: "superb-iv", name: "Superb Combi iV", dataset: "skoda", modelKey: "Superb",
-    kind: "phev", requireAudio: true, kwhPer100: 18.5, litersPer100: 6.5, fastCharge: "none", massKg: 1710,
+    kind: "phev", requireAudio: true, requireTow: false, picks: 2, kwhPer100: 18.5, litersPer100: 6.5, fastCharge: "none", massKg: 1710,
     insurance: { allrisk: 120, waPlus: 85 },
     maintenancePerYear: 700, tyresPerKm: 0.017,
     batteryWarranty: { years: 8, km: 160_000 },
@@ -60,7 +68,7 @@ export const BC_VEHICLES: BcVehicle[] = [
   },
   {
     compareId: "mach-e-er", name: "Mach-E ER RWD", dataset: "mach-e", modelKey: "Mustang",
-    kind: "ev", requireAudio: true, kwhPer100: 19.4, fastCharge: "other", massKg: 1993,
+    kind: "ev", requireAudio: true, requireTow: true, picks: 2, kwhPer100: 19.4, fastCharge: "other", massKg: 1993,
     insurance: { allrisk: 135, waPlus: 95 },
     maintenancePerYear: 350, tyresPerKm: 0.025,
     batteryWarranty: { years: 8, km: 160_000 },
@@ -69,18 +77,39 @@ export const BC_VEHICLES: BcVehicle[] = [
   },
   {
     compareId: "id4-pro", name: "ID.4 Pro 77 kWh", dataset: "id4", modelKey: "ID.4",
-    kind: "ev", requireAudio: false, kwhPer100: 19.2, fastCharge: "other", massKg: 2050,
+    kind: "ev", requireAudio: false, requireTow: true, picks: 2, kwhPer100: 19.2, fastCharge: "other", massKg: 2050,
     insurance: { allrisk: 120, waPlus: 85 },
     maintenancePerYear: 350, tyresPerKm: 0.023,
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "VW Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
     notes: "Harman Kardon is zeldzaam, dus picks alleen op trekhaak. Onderhoud elke 2 jaar / 30.000 km.",
   },
+  {
+    compareId: "octavia-combi", name: "Octavia Combi 1.0/1.5 TSI", dataset: "skoda", modelKey: "Octavia",
+    match: (l) => l.model === "Octavia" && l.body === "Stationwagon" && l.year != null && l.year >= 2020 && l.year <= 2024
+      && (l.power_hp ?? 0) <= 150 && l.fuel !== "Diesel" && !/\biv\b|phev|plug/i.test(l.title ?? ""),
+    kind: "ice", requireAudio: false, requireTow: false, picks: 1, kwhPer100: 0, litersPer100: 5.8, fastCharge: "none", massKg: 1330,
+    insurance: { allrisk: 105, waPlus: 75 },
+    maintenancePerYear: 500, tyresPerKm: 0.014,
+    roadsideNote: "Skoda Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
+    notes: "Simpelste optie: 1.0 e-TSI (110 pk, 48V mild hybrid) of 1.5 TSI (150 pk). Dakkoffer i.p.v. trekhaak. DSG-olie elke 60.000 km.",
+  },
+  {
+    compareId: "octavia-iv", name: "Octavia Combi iV", dataset: "skoda", modelKey: "Octavia",
+    // Real plug-ins only: the tracker labels the 1.0 e-TSI / 1.5 e-TEC mild hybrids as PHEV too. RS iV left out (sporty, pricier).
+    match: (l) => l.model === "Octavia" && l.body === "Stationwagon" && l.year != null && l.year >= 2020 && l.year <= 2024
+      && /\biv\b|phev|plug-?in/i.test(l.title ?? "") && !/\brs\b|e-?tec|e-?tsi|mild/i.test(l.title ?? ""),
+    kind: "phev", requireAudio: false, requireTow: false, picks: 1, kwhPer100: 16.5, litersPer100: 5.8, fastCharge: "none", massKg: 1560,
+    insurance: { allrisk: 110, waPlus: 80 },
+    maintenancePerYear: 650, tyresPerKm: 0.015,
+    batteryWarranty: { years: 8, km: 160_000 },
+    roadsideNote: "Skoda Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
+    notes: "Zelfde 1.4 TSI iV-aandrijving als de Superb (13 kWh, ~50 km elektrisch, AC 3,6 kW). Kofferbak 490 L (benzine-Combi 640 L).",
+  },
 ];
 
 /** Picks: only dealers/sellers within this distance of Rotterdam (3051). */
 export const BC_MAX_DISTANCE_KM = 40;
-export const BC_PICKS_PER_VEHICLE = 2;
 
 export interface BcInputs {
   kmPerYear: number;
@@ -95,7 +124,7 @@ export interface BcInputs {
   scSubscriptionPerYear: number;
   /** Share of kWh charged at a Supercharger (rest at the street pole). */
   fastSharePct: number;
-  /** Superb iV: share of km driven electrically. */
+  /** PHEVs (Superb iV, Octavia iV): share of km driven electrically. */
   phevElectricPct: number;
   /** Insurance €/month per vehicle (keyed by compareId); presets from `insurance`. */
   insurance: Record<string, number>;
@@ -181,6 +210,7 @@ function finish(c: Omit<CostBreakdown, "total" | "perMonth">, years: number): Co
 
 export function energyPerYear(v: BcVehicle, i: BcInputs): number {
   const k = i.kmPerYear / 100;
+  if (v.kind === "ice") return k * (v.litersPer100 ?? 6) * i.petrolEur;
   if (v.kind === "phev") {
     const e = i.phevElectricPct / 100;
     return k * e * v.kwhPer100 * PHEV_AC_LOSS * i.streetKwhEur + k * (1 - e) * (v.litersPer100 ?? 6.5) * i.petrolEur;
@@ -260,6 +290,7 @@ export interface BcPick {
   soh: number | null;
   pano: boolean | null;
   premiumAudio: boolean | null;
+  towHitch: boolean | null;
   /** Price vs. the tracker's price model, in % (negative = below market). */
   vsModelPct: number | null;
   source: string | null;

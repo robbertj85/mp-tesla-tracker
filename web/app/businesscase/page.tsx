@@ -5,7 +5,7 @@ import type { Dataset } from "@/lib/types";
 import type { BrandKey } from "@/lib/brands";
 import { COMPARE_VEHICLES, KNOWN_TRAP_IDS } from "@/lib/comparison";
 import {
-  BC_MAX_DISTANCE_KM, BC_PICKS_PER_VEHICLE, BC_VEHICLES, type BcPick, type Depreciation,
+  BC_MAX_DISTANCE_KM, BC_VEHICLES, type BcPick, type Depreciation,
 } from "@/lib/business-case";
 import { soh, TRAP_RE, used } from "@/lib/listing-checks";
 import { SiteHeader } from "@/components/site-header";
@@ -38,20 +38,23 @@ export default function BusinessCasePage() {
   const dates: string[] = [];
   for (const v of BC_VEHICLES) {
     const data = loadData(v.dataset);
-    const cv = COMPARE_VEHICLES.find((c) => c.id === v.compareId);
-    if (!data || !cv) continue;
+    const match = v.match ?? COMPARE_VEHICLES.find((c) => c.id === v.compareId)?.match;
+    if (!data || !match) continue;
     dates.push(data.generatedAt);
     const dep = depreciation(data, v.modelKey);
     if (dep) deps[v.compareId] = dep;
     const rel = (l: Dataset["listings"][number]) => (l.residualEur ?? 0) / (l.predictedEur || 1);
     data.listings
-      .filter((l) => used(l) && cv.match(l) && l.predictedEur != null)
-      .filter((l) => l.tow_hitch && (!v.requireAudio || l.premium_audio))
+      .filter((l) => used(l) && match(l) && l.predictedEur != null)
+      .filter((l) => (!v.requireTow || l.tow_hitch) && (!v.requireAudio || l.premium_audio))
       .filter((l) => !TRAP_RE.test(l.title ?? "") && !KNOWN_TRAP_IDS.has(l.id) && (l.mileage_km ?? 0) <= 150_000)
       .filter((l) => { const s = soh(l); return s == null || s >= 92; })
       .filter((l) => l.distance_km != null && l.distance_km <= BC_MAX_DISTANCE_KM)
       .sort((a, b) => rel(a) - rel(b))
-      .slice(0, BC_PICKS_PER_VEHICLE)
+      // The same car is sometimes listed twice by one seller.
+      .filter((l, idx, arr) => arr.findIndex((o) =>
+        o.seller_name === l.seller_name && o.year === l.year && o.mileage_km === l.mileage_km && o.price_eur === l.price_eur) === idx)
+      .slice(0, v.picks)
       .forEach((l) => picks.push({
         compareId: v.compareId,
         id: l.id,
@@ -66,6 +69,7 @@ export default function BusinessCasePage() {
         soh: soh(l),
         pano: l.pano ?? null,
         premiumAudio: l.premium_audio ?? null,
+        towHitch: l.tow_hitch ?? null,
         vsModelPct: l.predictedEur ? rel(l) * 100 : null,
         source: l.source,
       }));

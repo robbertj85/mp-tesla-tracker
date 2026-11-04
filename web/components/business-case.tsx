@@ -105,15 +105,18 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
       if (!dep) continue;
       const warnings: string[] = [];
       const kmEnd = (p.mileageKm ?? 0) + inp.years * inp.kmPerYear;
-      const warrantyEndYear = (p.year ?? 0) + v.batteryWarranty.years;
-      if (kmEnd > v.batteryWarranty.km || warrantyEndYear < endYear) {
+      const w = v.batteryWarranty;
+      const warrantyEndYear = (p.year ?? 0) + (w?.years ?? 0);
+      if (w && (kmEnd > w.km || warrantyEndYear < endYear)) {
         warnings.push(
-          `Accugarantie (${v.batteryWarranty.years} jr / ${km(v.batteryWarranty.km)}) loopt af tijdens de looptijd: ` +
-          `${kmEnd > v.batteryWarranty.km ? `eind-km ~${km(kmEnd)}` : `garantie tot ~${warrantyEndYear}`}.`,
+          `Accugarantie (${w.years} jr / ${km(w.km)}) loopt af tijdens de looptijd: ` +
+          `${kmEnd > w.km ? `eind-km ~${km(kmEnd)}` : `garantie tot ~${warrantyEndYear}`}.`,
         );
       }
+      if (/bemiddel/i.test(p.seller ?? "")) warnings.push("Verkoper is een bemiddelaar (verkoopt namens een ander): vraag naar garantie, onderhoudshistorie en wie de eigenaar is.");
       if (p.soh == null && v.kind === "ev") warnings.push("Geen SoH in de advertentie: vraag een accurapport.");
       if (v.compareId === "superb-iv" && p.premiumAudio == null) warnings.push("Canton niet bevestigd.");
+      if (v.kind !== "ev" && !p.towHitch) warnings.push("Geen trekhaak: reken op een dakkoffer (+~10–15% verbruik als hij erop zit, niet meegerekend).");
       rows.push({
         key: p.id,
         vehicle: v,
@@ -192,7 +195,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             <Range label="Looptijd" value={inp.years} onChange={set("years")} min={2} max={8} step={1} format={(v) => `${v} jaar`} />
             <Range label="Snelladen (Supercharger dal)" value={inp.fastSharePct} onChange={set("fastSharePct")} min={0} max={100} step={5}
               format={pct} />
-            <Range label="Superb iV elektrisch gereden" value={inp.phevElectricPct} onChange={set("phevElectricPct")} min={0} max={90} step={5}
+            <Range label="Plug-in hybrides elektrisch gereden" value={inp.phevElectricPct} onChange={set("phevElectricPct")} min={0} max={90} step={5}
               format={pct} />
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -244,8 +247,9 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         <CardHeader>
           <CardTitle>Totale kosten over {inp.years} jaar</CardTitle>
           <CardDescription>
-            Top {2} per model binnen {BC_MAX_DISTANCE_KM} km van Rotterdam: trekhaak + premium audio (ID.4: alleen trekhaak), ≤ 150.000 km,
-            SoH ≥ 92% of onbekend, geen valkuil, laagst geprijsd t.o.v. de markt. Groen = goedkoopste.
+            Beste aanbiedingen binnen {BC_MAX_DISTANCE_KM} km van Rotterdam, laagst geprijsd t.o.v. de markt, ≤ 150.000 km, SoH ≥ 92% of
+            onbekend, geen valkuil. EV&apos;s: trekhaak (voor een trekhaakkoffer — een dakkoffer kost te veel bereik) + premium audio
+            (ID.4: alleen trekhaak). Superb: Canton, dakkoffer kan. Octavia: simpel, geen eisen. Groen = goedkoopste.
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-x-auto p-0 sm:p-6 sm:pt-0">
@@ -340,7 +344,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                   <tr key={v.compareId} className="border-b align-top">
                     <td className="px-3 py-2 font-medium">{v.name}</td>
                     <td className="px-2 py-2 text-xs">
-                      {v.kwhPer100} kWh/100 km{v.litersPer100 ? ` · ${v.litersPer100} l/100 km (lege accu)` : ""}
+                      {v.kind === "ice" ? `${v.litersPer100} l/100 km`
+                        : `${v.kwhPer100} kWh/100 km${v.litersPer100 ? ` · ${v.litersPer100} l/100 km (lege accu)` : ""}`}
                     </td>
                     <td className="px-2 py-2 text-right tabular-nums">{eur(energyPerYear(v, inp))}</td>
                     <td className="px-2 py-2 text-right tabular-nums">
@@ -366,8 +371,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         <CardContent className="space-y-2 text-sm text-muted-foreground">
           <p>
             <span className="font-medium text-foreground">Energie:</span> verbruik aan de accu uit het echte zomer/winterbereik op /vergelijk,
-            plus 10% laadverlies aan de paal (11 kW), 12% voor de Superb (3,6 kW) en 5% aan de Supercharger. Niet-Tesla's kiezen per
-            jaar het goedkoopste van wel/geen Supercharger-abonnement. De Superb kan niet snelladen.
+            plus 10% laadverlies aan de paal (11 kW), 12% voor de plug-in hybrides (3,6 kW) en 5% aan de Supercharger. Niet-Tesla's kiezen per
+            jaar het goedkoopste van wel/geen Supercharger-abonnement. De Skoda’s kunnen niet snelladen.
           </p>
           <p>
             <span className="font-medium text-foreground">Wegenbelasting:</span> Zuid-Holland (104,4 opcenten), tarieven 2026 zonder
