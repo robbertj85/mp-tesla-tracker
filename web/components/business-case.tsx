@@ -6,11 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import {
   BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyPerYear, energySplit,
   SOLAR_PROFILE, solarToCar,
-  evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost,
+  evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost, depPctPerYear, depPctPer10kKm, MAINT_REF_KM, MAINT_GROWTH_PER_100K,
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
 } from "@/lib/business-case";
 import { cn, eur, km } from "@/lib/utils";
 import { GoalSeek } from "@/components/goal-seek";
+
+const pct1 = (x: number) => `${(x * 100).toLocaleString("nl-NL", { maximumFractionDigits: 1 })}%`;
 
 // Total cost of ownership per shortlisted car vs. keeping the current Skoda.
 // All maths lives in lib/business-case.ts; this view only holds the inputs.
@@ -125,7 +127,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         key: p.id,
         vehicle: v,
         pick: p,
-        cost: vehicleCost(v, p.priceEur, dep, inp),
+        cost: vehicleCost(v, p.priceEur, p.mileageKm ?? MAINT_REF_KM, dep, inp),
         warnings,
         label: (
           <a href={p.url} target="_blank" rel="noreferrer" className="group block text-xs">
@@ -178,8 +180,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             </p>
           )}
           <p className="text-muted-foreground">
-            Netto investering nu = vraagprijs − {eur(inp.current.residualEur)} voor de huidige Skoda. De afschrijving komt uit het
-            prijsmodel van elke tracker (waardeverlies per jaar en per km in de huidige markt).
+            Netto investering nu = vraagprijs − {eur(inp.current.residualEur)} voor de huidige Skoda. De afschrijving komt uit de
+            huidige markt van elk model: een percentage van de waarde per jaar ouder en per km.
           </p>
           {cheapest.key === "current" && (
             <p className="text-muted-foreground">Puur op kosten blijft houden het goedkoopst; de overstap koop je voor ruimte, comfort, betrouwbaarheid en een trekhaak die je kunt gebruiken.</p>
@@ -502,9 +504,17 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                     <td className="px-2 py-2 text-right tabular-nums">
                       {v.kind === "ev" ? `${eur(tax * evRoadTaxFactor(inp.startYear))} → ${eur(tax)}` : eur(tax)}
                     </td>
-                    <td className="px-2 py-2 text-right tabular-nums">{eur(v.maintenancePerYear + v.tyresPerKm * inp.kmPerYear)}</td>
+                    <td className="px-2 py-2 text-right tabular-nums">
+                      {eur(v.maintenancePerYear + v.tyresPerKm * inp.kmPerYear)}
+                      <span className="block text-xs text-muted-foreground">+{Math.round(MAINT_GROWTH_PER_100K[v.kind] * 100)}% per 100.000 km</span>
+                    </td>
                     <td className="px-2 py-2 text-right text-xs tabular-nums">
-                      {dep ? `${eur(dep.perYear)}/jr + ${eur(dep.perKm * 1000)}/1.000 km` : "—"}
+                      {dep ? (
+                        <>
+                          {pct1(depPctPerYear(dep))}/jr + {pct1(depPctPer10kKm(dep))}/10.000 km
+                          <span className="block text-muted-foreground">{dep.n} adv. · R² {dep.r2.toFixed(2)}</span>
+                        </>
+                      ) : "—"}
                     </td>
                     <td className="px-3 py-2 text-xs text-muted-foreground">{v.notes} {v.roadsideNote}.</td>
                   </tr>
@@ -533,8 +543,16 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             benzinetarief. Gewicht is een benadering van de massa ledig voertuig — check het exacte bedrag met het kenteken.
           </p>
           <p>
-            <span className="font-medium text-foreground">Afschrijving:</span> de vraagprijs min het waardeverlies volgens het
-            prijsmodel van de tracker (per jaar ouder en per km), met een bodem van 20% van de aankoopprijs.
+            <span className="font-medium text-foreground">Afschrijving:</span> een percentage per jaar ouder en per km, gefit op de
+            huidige advertenties van elk model (ln(prijs) tegen leeftijd en km, met een eigen niveau per uitvoering). Een goedkope auto
+            verliest daardoor minder euro's dan een dure, en de restwaarde komt nooit onder nul. De vraagprijs is het startpunt, dus
+            een auto die je onder de marktprijs koopt, heeft ook een lagere restwaarde (voorzichtig gerekend).
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Onderhoud:</span> het budget per model geldt voor een auto rond de{" "}
+            {MAINT_REF_KM.toLocaleString("nl-NL")} km en stijgt met de kilometerstand per jaar: +25% per 100.000 km voor EV's, +50% voor
+            benzine en +60% voor plug-in hybrides (koppeling/DSG, uitlaat, twee aandrijflijnen). Onder de 100.000 km is het tot 20%
+            lager. Je huidige Skoda stijgt vanaf je ingevulde budget met +50% per 100.000 km extra.
           </p>
           <p>
             <span className="font-medium text-foreground">Niet meegenomen:</span> parkeervergunning, onverwachte grote reparaties

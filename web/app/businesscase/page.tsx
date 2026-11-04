@@ -5,7 +5,7 @@ import type { Dataset } from "@/lib/types";
 import type { BrandKey } from "@/lib/brands";
 import { COMPARE_VEHICLES, KNOWN_TRAP_IDS } from "@/lib/comparison";
 import {
-  BC_MAX_DISTANCE_KM, BC_VEHICLES, type BcPick, type Depreciation,
+  BC_MAX_DISTANCE_KM, BC_VEHICLES, fitDepreciation, type BcPick, type Depreciation,
 } from "@/lib/business-case";
 import { soh, TRAP_RE, used } from "@/lib/listing-checks";
 import { SiteHeader } from "@/components/site-header";
@@ -23,13 +23,10 @@ function loadData(brand: BrandKey): Dataset | undefined {
   return JSON.parse(fs.readFileSync(file, "utf-8")) as Dataset;
 }
 
-/** € per year of age and € per km from the tracker's per-model regression. */
+/** % per year of age and % per km, fitted on this model's live used listings. */
 function depreciation(data: Dataset, modelKey: string): Depreciation | null {
-  const lm = data.models?.[modelKey]?.linearModel;
-  const age = lm?.numeric.age;
-  const mileage = lm?.numeric.mileage_km;
-  if (!age || !mileage) return null;
-  return { perYear: -age.coef / age.std, perKm: -mileage.coef / mileage.std };
+  const refYear = new Date(data.generatedAt).getFullYear();
+  return fitDepreciation(data.listings.filter((l) => used(l) && l.model === modelKey), refYear);
 }
 
 export default function BusinessCasePage() {

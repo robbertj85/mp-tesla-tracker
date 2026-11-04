@@ -2,8 +2,9 @@
 // cars near Rotterdam vs. keeping the current (damaged, 272k km) Skoda.
 //
 // Static assumptions researched 2026-11-04. Insurance and maintenance are
-// estimates, not quotes. Depreciation comes from each tracker's own price model
-// (€ per year of age + € per km), so it follows the live market.
+// estimates, not quotes. Depreciation is fitted on each tracker's live listings
+// as a percentage per year of age and per km (log-price regression), so it
+// follows the market and a cheap car loses fewer euros than an expensive one.
 
 import type { BrandKey } from "./brands";
 import type { Listing } from "./types";
@@ -37,7 +38,8 @@ export interface BcVehicle {
   /** Insurance €/month, Zuid-Holland 3051, 7 claim-free years. EVs: the €165/month
    *  quote for the Hosni Model Y, used for all EVs. Skodas: estimate. */
   insurance: { allrisk: number; waPlus: number };
-  /** Servicing, APK, wipers, brake fluid etc. per year, excl. tyres. */
+  /** Servicing, APK, wipers, brake fluid etc. per year, excl. tyres, for a car
+   *  around MAINT_REF_KM; it rises with the odometer (see maintenanceFactor). */
   maintenancePerYear: number;
   /** Tyre wear, €/km (set price / life). */
   tyresPerKm: number;
@@ -207,10 +209,76 @@ export function evRoadTaxFactor(year: number): number {
 }
 
 export interface Depreciation {
-  /** € lost per extra year of age (positive). */
-  perYear: number;
-  /** € lost per extra km (positive). */
-  perKm: number;
+  /** ln(price) change per extra year of age (negative). */
+  logPerYear: number;
+  /** ln(price) change per extra km (negative). */
+  logPerKm: number;
+  /** Listings the fit used, and its R² (incl. the segment dummies). */
+  n: number;
+  r2: number;
+}
+
+/** Share of the value lost per year of age, and per 10,000 km (for display). */
+export const depPctPerYear = (d: Depreciation) => 1 - Math.exp(d.logPerYear);
+export const depPctPer10kKm = (d: Depreciation) => 1 - Math.exp(d.logPerKm * 10_000);
+
+interface DepListing {
+  year: number | null; mileage_km: number | null; price_eur: number | null;
+  trim?: string | null; fuel?: string | null; is_juniper?: boolean | null; drivetrain?: string | null;
+}
+
+/** Fit ln(price) = segment + b·age + c·km on a model's live used listings. Segments
+ *  (trim × fuel × Juniper × drivetrain, ≥10 cars each) get their own intercept so
+ *  the age/km slopes aren't confounded by the trim mix. Null when there's too little data. */
+export function fitDepreciation(listings: DepListing[], refYear: number): Depreciation | null {
+  const seg = (l: DepListing) => `${l.trim}|${l.fuel}|${l.is_juniper}|${l.drivetrain}`;
+  const rows = listings.filter((l) => l.year != null && l.mileage_km != null && l.price_eur != null);
+  const counts = new Map<string, number>();
+  for (const l of rows) counts.set(seg(l), (counts.get(seg(l)) ?? 0) + 1);
+  const segs = [...counts].filter(([, c]) => c >= 10).map(([s]) => s);
+  const data = rows.filter((l) => segs.includes(seg(l)));
+  if (data.length < 30) return null;
+  const k = segs.length + 2;
+  const xs = data.map((l) => [...segs.map((s) => (seg(l) === s ? 1 : 0)), refYear - l.year!, l.mileage_km! / 1000]);
+  const ys = data.map((l) => Math.log(l.price_eur!));
+  // Normal equations (X'X) b = X'y, solved by Gaussian elimination with pivoting.
+  const a = Array.from({ length: k }, (_, r) => [
+    ...Array.from({ length: k }, (_, c) => xs.reduce((sum, x) => sum + x[r] * x[c], 0)),
+    xs.reduce((sum, x, idx) => sum + x[r] * ys[idx], 0),
+  ]);
+  for (let col = 0; col < k; col++) {
+    let piv = col;
+    for (let r = col + 1; r < k; r++) if (Math.abs(a[r][col]) > Math.abs(a[piv][col])) piv = r;
+    if (Math.abs(a[piv][col]) < 1e-9) return null;
+    [a[col], a[piv]] = [a[piv], a[col]];
+    for (let r = 0; r < k; r++) {
+      if (r === col) continue;
+      const f = a[r][col] / a[col][col];
+      for (let c = col; c <= k; c++) a[r][c] -= f * a[col][c];
+    }
+  }
+  const b = a.map((row, r) => row[k] / row[r]);
+  const mean = ys.reduce((x, y) => x + y, 0) / ys.length;
+  let ssRes = 0;
+  let ssTot = 0;
+  xs.forEach((x, idx) => {
+    const pred = x.reduce((sum, v, c) => sum + v * b[c], 0);
+    ssRes += (ys[idx] - pred) ** 2;
+    ssTot += (ys[idx] - mean) ** 2;
+  });
+  const logPerYear = b[k - 2];
+  const logPerKm = b[k - 1] / 1000;
+  if (!(logPerYear < 0 && logPerKm < 0)) return null;
+  return { logPerYear, logPerKm, n: data.length, r2: 1 - ssRes / ssTot };
+}
+
+/** Maintenance budgets are set for a car around this odometer reading. */
+export const MAINT_REF_KM = 100_000;
+/** Extra maintenance per 100,000 km above (or below, down to −20%) the reference:
+ *  petrol/PHEV wear (clutch/DSG, exhaust, two drive systems) far more than an EV. */
+export const MAINT_GROWTH_PER_100K: Record<BcVehicle["kind"], number> = { ev: 0.25, phev: 0.6, ice: 0.5 };
+export function maintenanceFactor(kind: BcVehicle["kind"], odometerKm: number): number {
+  return Math.max(0.8, 1 + MAINT_GROWTH_PER_100K[kind] * (odometerKm - MAINT_REF_KM) / 100_000);
 }
 
 export interface CostBreakdown {
@@ -285,11 +353,14 @@ export function energyPerYear(v: BcVehicle, i: BcInputs): number {
   return energySplit(v, i).total;
 }
 
-export function vehicleCost(v: BcVehicle, priceEur: number, dep: Depreciation, i: BcInputs): CostBreakdown {
+export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep: Depreciation, i: BcInputs): CostBreakdown {
   const n = i.years;
-  const lost = n * dep.perYear + n * i.kmPerYear * dep.perKm;
-  // A linear model can run past zero for old/high-km cars; keep a 20% floor.
-  const residualEnd = Math.max(priceEur * 0.2, priceEur - lost);
+  const residualEnd = priceEur * Math.exp(n * (dep.logPerYear + i.kmPerYear * dep.logPerKm));
+  let maintenance = 0;
+  for (let y = 0; y < n; y++) {
+    const odo = startKm + (y + 0.5) * i.kmPerYear;
+    maintenance += v.maintenancePerYear * maintenanceFactor(v.kind, odo) + v.tyresPerKm * i.kmPerYear;
+  }
   let roadTax = 0;
   for (let y = 0; y < n; y++) {
     const factor = v.kind === "ev" ? evRoadTaxFactor(i.startYear + y) : 1;
@@ -303,16 +374,21 @@ export function vehicleCost(v: BcVehicle, priceEur: number, dep: Depreciation, i
     energy: energyPerYear(v, i) * n,
     roadTax,
     insurance: (i.insurance[v.compareId] ?? v.insurance.allrisk) * 12 * n,
-    maintenance: (v.maintenancePerYear + v.tyresPerKm * i.kmPerYear) * n,
+    maintenance,
     roadside: i.roadsidePerYear * n,
     interest: ((priceEur + residualEnd) / 2) * (i.interestPct / 100) * n,
   }, n);
 }
 
-/** Keep the current Skoda: repair it once, then run it until it's worth nothing. */
+/** Keep the current Skoda: repair it once, then run it until it's worth nothing.
+ *  Its maintenance budget is for today (272,000 km) and grows like a petrol car's. */
 export function currentCarCost(i: BcInputs): CostBreakdown {
   const c = i.current;
   const n = i.years;
+  let maintenance = 0;
+  for (let y = 0; y < n; y++) {
+    maintenance += c.maintenancePerYear * (1 + MAINT_GROWTH_PER_100K.ice * ((y + 0.5) * i.kmPerYear) / 100_000);
+  }
   return finish({
     purchase: c.residualEur,
     residualEnd: 0,
@@ -321,7 +397,7 @@ export function currentCarCost(i: BcInputs): CostBreakdown {
     energy: (i.kmPerYear / 100) * c.litersPer100 * i.petrolEur * n,
     roadTax: c.roadTaxMonthly * 12 * n,
     insurance: c.insuranceMonthly * 12 * n,
-    maintenance: c.maintenancePerYear * n,
+    maintenance,
     roadside: i.roadsidePerYear * n,
     interest: (c.residualEur / 2) * (i.interestPct / 100) * n,
   }, n);

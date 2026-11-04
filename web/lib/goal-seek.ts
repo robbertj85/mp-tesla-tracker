@@ -5,7 +5,7 @@
 // with caps), so a sign change between the bounds means exactly one answer.
 
 import {
-  currentCarCost, vehicleCost,
+  currentCarCost, MAINT_REF_KM, vehicleCost,
   type BcInputs, type BcPick, type BcVehicle, type Depreciation,
 } from "./business-case";
 
@@ -87,14 +87,14 @@ export const SEEK_VARS: SeekVar[] = [
 function gapFn(c: SeekCar, v: SeekVar, i: BcInputs, targetPerMonth: number): (x: number) => number {
   if (v.key === "price") {
     // Same resale value at the end: each euro off the price is a euro less depreciation, plus less interest.
-    const base = vehicleCost(c.vehicle, c.pick.priceEur, c.dep, i);
+    const base = vehicleCost(c.vehicle, c.pick.priceEur, c.pick.mileageKm ?? MAINT_REF_KM, c.dep, i);
     const months = i.years * 12;
     const cur = currentCarCost(i).perMonth;
     return (x) => base.perMonth + ((x - c.pick.priceEur) * (1 + (i.interestPct / 100) * i.years / 2)) / months - cur - targetPerMonth;
   }
   return (x) => {
     const j = v.set(i, x, c);
-    return vehicleCost(c.vehicle, c.pick.priceEur, c.dep, j).perMonth - currentCarCost(j).perMonth - targetPerMonth;
+    return vehicleCost(c.vehicle, c.pick.priceEur, c.pick.mileageKm ?? MAINT_REF_KM, c.dep, j).perMonth - currentCarCost(j).perMonth - targetPerMonth;
   };
 }
 
