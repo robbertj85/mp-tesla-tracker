@@ -24,7 +24,7 @@ export default function VergelijkPage() {
   for (const b of COMPARE_DATASETS) datasets[b] = loadData(b);
   const dates = Object.values(datasets).map((d) => d?.generatedAt).filter(Boolean).sort();
   return (
-    <div className="container max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
+    <div className="container max-w-screen-2xl px-3 py-6 sm:px-4 sm:py-8">
       <SiteHeader active="vergelijk"
         subtitle={`Ruimte, audio, bereik, accugezondheid en markt per model · live data van ${dates.at(-1) ?? "—"}`} />
       <ComparisonView datasets={datasets} />

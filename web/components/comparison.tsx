@@ -206,14 +206,14 @@ export function ComparisonView({ datasets }: { datasets: Partial<Record<BrandKey
         </CardHeader>
         <CardContent className="px-0 pb-2">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[1400px] border-separate border-spacing-0 text-sm">
+            <table className="w-full min-w-[920px] table-fixed border-separate border-spacing-0 text-[13px] leading-snug">
               <thead>
                 <tr>
-                  <th className="sticky left-0 z-10 w-52 min-w-[13rem] border-b bg-card px-4 py-2 text-left align-bottom text-xs font-medium text-muted-foreground">
+                  <th className="sticky left-0 z-10 w-52 border-b bg-card px-3 py-2 text-left align-bottom text-xs font-medium text-muted-foreground">
                     Model
                   </th>
                   {vehicles.map((v) => (
-                    <th key={v.id} className="min-w-[130px] border-b px-3 py-2 text-left align-bottom">
+                    <th key={v.id} className="border-b px-2 py-2 text-left align-bottom">
                       <div className="font-semibold">{v.name}</div>
                       <div className="text-xs font-normal text-muted-foreground">{v.years}</div>
                       <Badge variant={v.kind === "ev" ? "good" : "secondary"} className="mt-1">
@@ -270,13 +270,13 @@ function Group({ group, vehicles, lives }: { group: Group; vehicles: CompareVehi
         const best = bestIndex(cells, r.best);
         return (
           <tr key={r.label}>
-            <th scope="row" className="sticky left-0 z-10 border-b bg-card px-4 py-2 text-left align-top font-medium">
+            <th scope="row" className="sticky left-0 z-10 border-b bg-card px-3 py-2 text-left align-top font-medium">
               {r.label}
               {r.hint && <div className="text-xs font-normal text-muted-foreground">{r.hint}</div>}
             </th>
             {cells.map((c, i) => (
               <td key={vehicles[i].id}
-                className={cn("border-b px-3 py-2 align-top tabular-nums",
+                className={cn("border-b px-2 py-2 align-top tabular-nums break-words",
                   best.has(i) && "font-semibold text-emerald-600 dark:text-emerald-400")}>
                 {c.node}
               </td>
