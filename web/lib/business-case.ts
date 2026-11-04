@@ -141,6 +141,20 @@ export interface BcInputs {
   /** Opportunity cost: savings rate on the money tied up in the car. */
   interestPct: number;
   roadsidePerYear: number;
+  /** Charging from the home solar panels while the car is parked (summer weekdays). */
+  solar: {
+    enabled: boolean;
+    /** Yearly generation (kWh). Spread over the months with SOLAR_PROFILE. */
+    yearKwh: number;
+    /** Share of each month's generation that can go into the car: not used by the
+     *  house, sun out while the car is home and plugged in, above the 1.4 kW minimum. */
+    availablePct: number;
+    /** Share of the car's normal (non-fast) charging that can happen at home at all;
+     *  the rest happens away from home or when the battery is already full. */
+    maxHomePct: number;
+    /** What a solar kWh is worth when fed back instead (no net metering from 2027). */
+    feedInEur: number;
+  };
   /** First calendar year of ownership (road-tax discount steps by year). */
   startYear: number;
   current: {
@@ -166,6 +180,7 @@ export const BC_DEFAULTS: BcInputs = {
   insurance: Object.fromEntries(BC_VEHICLES.map((v) => [v.compareId, v.insurance.allrisk])),
   interestPct: 2,
   roadsidePerYear: 100,
+  solar: { enabled: true, yearKwh: 2500, availablePct: 40, maxHomePct: 70, feedInEur: 0.05 },
   startYear: 2027,
   current: {
     residualEur: 1500,
@@ -218,21 +233,56 @@ function finish(c: Omit<CostBreakdown, "total" | "perMonth">, years: number): Co
   return { ...c, total, perMonth: total / (years * 12) };
 }
 
-export function energyPerYear(v: BcVehicle, i: BcInputs): number {
+/** Monthly generation shape, Jan–Dec (NL; peak ~350, worst ~50 kWh at 2.5 MWh/yr). */
+export const SOLAR_PROFILE = [55, 110, 190, 280, 340, 350, 345, 290, 220, 150, 70, 50];
+const SOLAR_PROFILE_SUM = SOLAR_PROFILE.reduce((a, b) => a + b, 0);
+
+/** kWh per month from the panels into the car (drawn from the wall, incl. losses),
+ *  given the car's yearly AC charging need at the wall. */
+export function solarToCar(acDrawnPerYear: number, i: BcInputs): number[] {
+  if (!i.solar.enabled) return SOLAR_PROFILE.map(() => 0);
+  const needPerMonth = (acDrawnPerYear / 12) * (i.solar.maxHomePct / 100);
+  return SOLAR_PROFILE.map((w) =>
+    Math.min((w / SOLAR_PROFILE_SUM) * i.solar.yearKwh * (i.solar.availablePct / 100), needPerMonth));
+}
+
+export interface EnergySplit {
+  total: number;
+  /** kWh per year from the panels (at the wall). */
+  solarKwh: number;
+  /** What those kWh would have cost at the street pole, minus the lost feed-in. */
+  solarSaving: number;
+}
+
+export function energySplit(v: BcVehicle, i: BcInputs): EnergySplit {
   const k = i.kmPerYear / 100;
-  if (v.kind === "ice") return k * (v.litersPer100 ?? 6) * i.petrolEur;
+  if (v.kind === "ice") return { total: k * (v.litersPer100 ?? 6) * i.petrolEur, solarKwh: 0, solarSaving: 0 };
+  const street = (drawn: number) => {
+    const solarKwh = solarToCar(drawn, i).reduce((a, b) => a + b, 0);
+    return {
+      cost: (drawn - solarKwh) * i.streetKwhEur + solarKwh * i.solar.feedInEur,
+      solarKwh,
+      solarSaving: solarKwh * (i.streetKwhEur - i.solar.feedInEur),
+    };
+  };
   if (v.kind === "phev") {
     const e = i.phevElectricPct / 100;
-    return k * e * v.kwhPer100 * PHEV_AC_LOSS * i.streetKwhEur + k * (1 - e) * (v.litersPer100 ?? 6.5) * i.petrolEur;
+    const ac = street(k * e * v.kwhPer100 * PHEV_AC_LOSS);
+    return { total: ac.cost + k * (1 - e) * (v.litersPer100 ?? 6.5) * i.petrolEur, solarKwh: ac.solarKwh, solarSaving: ac.solarSaving };
   }
   const kwh = k * v.kwhPer100;
   const f = v.fastCharge === "none" ? 0 : i.fastSharePct / 100;
-  const ac = kwh * (1 - f) * AC_LOSS * i.streetKwhEur;
+  const acPart = street(kwh * (1 - f) * AC_LOSS);
+  const ac = acPart.cost;
   const dcKwh = kwh * f * DC_LOSS;
   const dc = v.fastCharge === "tesla"
     ? dcKwh * i.scOffpeakKwhEur
     : f === 0 ? 0 : Math.min(dcKwh * i.scNonTeslaKwhEur, dcKwh * i.scOffpeakKwhEur + i.scSubscriptionPerYear);
-  return ac + dc;
+  return { total: ac + dc, solarKwh: acPart.solarKwh, solarSaving: acPart.solarSaving };
+}
+
+export function energyPerYear(v: BcVehicle, i: BcInputs): number {
+  return energySplit(v, i).total;
 }
 
 export function vehicleCost(v: BcVehicle, priceEur: number, dep: Depreciation, i: BcInputs): CostBreakdown {

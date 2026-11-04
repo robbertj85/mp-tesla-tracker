@@ -4,7 +4,8 @@ import * as React from "react";
 import { AlertTriangle, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyPerYear,
+  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyPerYear, energySplit,
+  SOLAR_PROFILE, solarToCar,
   evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost,
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
 } from "@/lib/business-case";
@@ -76,6 +77,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
   const set = <K extends keyof BcInputs>(k: K) => (v: BcInputs[K]) => setInp((s) => ({ ...s, [k]: v }));
   const setCur = <K extends keyof BcInputs["current"]>(k: K) => (v: number) =>
     setInp((s) => ({ ...s, current: { ...s.current, [k]: v } }));
+  const setSolar = <K extends keyof BcInputs["solar"]>(k: K) => (v: BcInputs["solar"][K]) =>
+    setInp((s) => ({ ...s, solar: { ...s.solar, [k]: v } }));
   const setIns = (id: string) => (v: number) => setInp((s) => ({ ...s, insurance: { ...s.insurance, [id]: v } }));
   const preset = (cover: "allrisk" | "waPlus") =>
     setInp((s) => ({ ...s, insurance: Object.fromEntries(BC_VEHICLES.map((v) => [v.compareId, v.insurance[cover]])) }));
@@ -209,6 +212,67 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             <Num label="Pechhulp" value={inp.roadsidePerYear} onChange={set("roadsidePerYear")} step={5} suffix="€/jr"
               hint="ANWB Wegenwacht NL" />
             <Num label="Spaarrente" value={inp.interestPct} onChange={set("interestPct")} step={0.25} suffix="%" />
+          </div>
+          <div className="rounded-lg border p-3">
+            <label className="flex items-center gap-2 text-sm font-medium">
+              <input type="checkbox" checked={inp.solar.enabled} onChange={(e) => setSolar("enabled")(e.target.checked)}
+                className="h-4 w-4 accent-primary" />
+              Gratis thuis laden met de zonnepanelen
+            </label>
+            {inp.solar.enabled && (
+              <div className="mt-3 space-y-3">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  <Num label="Opwek per jaar" value={inp.solar.yearKwh} onChange={setSolar("yearKwh")} step={100} suffix="kWh"
+                    hint="piek ~350, dal ~50 kWh/mnd" />
+                  <Num label="Deel opwek naar de auto" value={inp.solar.availablePct} onChange={setSolar("availablePct")} step={5} max={100} suffix="%"
+                    hint="niet door het huis gebruikt, auto thuis + aan de stekker" />
+                  <Num label="Max. deel laden thuis" value={inp.solar.maxHomePct} onChange={setSolar("maxHomePct")} step={5} max={100} suffix="%"
+                    hint="weinig gereden = accu zit vaak vol" />
+                  <Num label="Gemiste teruglevering" value={inp.solar.feedInEur} onChange={setSolar("feedInEur")} step={0.01} suffix="€/kWh"
+                    hint="saldering stopt per 2027" />
+                </div>
+                {(() => {
+                  const my = BC_VEHICLES[0];
+                  const kwh = (inp.kmPerYear / 100) * my.kwhPer100 * (1 - inp.fastSharePct / 100) * 1.1;
+                  const months = solarToCar(kwh, inp);
+                  const max = Math.max(...SOLAR_PROFILE.map((w) => (w / SOLAR_PROFILE.reduce((a, b) => a + b, 0)) * inp.solar.yearKwh), 1);
+                  return (
+                    <div>
+                      <p className="mb-1 text-xs text-muted-foreground">
+                        {my.name} per maand: zon in de auto (groen) van de totale opwek (grijs)
+                      </p>
+                      <div className="grid grid-cols-12 items-end gap-1" style={{ height: 64 }}>
+                        {SOLAR_PROFILE.map((w, m) => {
+                          const gen = (w / SOLAR_PROFILE.reduce((a, b) => a + b, 0)) * inp.solar.yearKwh;
+                          return (
+                            <div key={m} className="relative h-full" title={`${Math.round(months[m])} van ${Math.round(gen)} kWh`}>
+                              <div className="absolute bottom-0 w-full rounded-sm bg-muted-foreground/20" style={{ height: `${(gen / max) * 100}%` }} />
+                              <div className="absolute bottom-0 w-full rounded-sm bg-emerald-500" style={{ height: `${(months[m] / max) * 100}%` }} />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="mt-0.5 grid grid-cols-12 gap-1 text-center text-[10px] text-muted-foreground">
+                        {["j", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"].map((l, m) => <span key={m}>{l}</span>)}
+                      </div>
+                    </div>
+                  );
+                })()}
+                <ul className="grid gap-x-6 gap-y-0.5 text-xs text-muted-foreground sm:grid-cols-2">
+                  {BC_VEHICLES.filter((v) => v.kind !== "ice").map((v) => {
+                    const e = energySplit(v, inp);
+                    const off = energySplit(v, { ...inp, solar: { ...inp.solar, enabled: false } });
+                    const drawn = off.total > 0 ? e.solarKwh : 0;
+                    return (
+                      <li key={v.compareId}>
+                        <span className="font-medium text-foreground">{v.name}:</span> ~{Math.round(drawn).toLocaleString("nl-NL")} kWh/jr uit de zon,
+                        bespaart {eur(off.total - e.total)}/jr
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Huidige Skoda</p>
@@ -450,7 +514,9 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
           <p>
             <span className="font-medium text-foreground">Energie:</span> verbruik aan de accu uit het echte zomer/winterbereik op /vergelijk,
             plus 10% laadverlies aan de paal (11 kW), 12% voor de plug-in hybrides (3,6 kW) en 5% aan de Supercharger. Niet-Tesla's kiezen per
-            jaar het goedkoopste van wel/geen Supercharger-abonnement. De Skoda’s kunnen niet snelladen.
+            jaar het goedkoopste van wel/geen Supercharger-abonnement. De Skoda’s kunnen niet snelladen. Zonnepanelen: de opwek per maand
+            (profiel jan–dec) maal het deel dat naar de auto kan, met als plafond wat de auto die maand thuis zou laden; die kWh kosten
+            alleen de gemiste terugleververgoeding. Snelladen op reis blijft ongewijzigd.
           </p>
           <p>
             <span className="font-medium text-foreground">Wegenbelasting:</span> Zuid-Holland (104,4 opcenten), tarieven 2026 zonder
