@@ -164,6 +164,8 @@ pip install -e ".[dev]"                       # add ",browser" for the Playwrigh
 python -m mp_tesla.run --limit 20             # dev: all brands, cap listings/brand
 python -m mp_tesla.run --brand skoda --limit 20   # one brand only
 python -m mp_tesla.run --no-gaspedaal          # Marktplaats (+ Tesla.com) only
+python -m mp_tesla.run --only-gaspedaal        # only Gaspedaal, on top of today's stored Marktplaats/Tesla.com run
+                                              # (CI's Gaspedaal crawl gets blocked; run this from a home connection)
 python -m mp_tesla.rederive --brand tesla     # recompute from stored data (no network)
 pytest                                        # unit tests
 ```

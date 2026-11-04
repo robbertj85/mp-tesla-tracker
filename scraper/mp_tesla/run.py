@@ -67,7 +67,22 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
     use_browser = not args.no_browser
     records: list[dict] = []
     count = 0
-    for raw in search.iter_search_listings(brand):
+    data_dir = brand_data_dir(args.data_dir, brand.key)
+    listings_path = data_dir / "listings.json"
+    history_path = data_dir / "price_history.json"
+    # --only-gaspedaal: refresh just Gaspedaal on top of a run that already scraped
+    # Marktplaats/Tesla.com today (e.g. from a laptop when CI is blocked). Those
+    # sources are left untouched (not aged), and Gaspedaal dedups against their
+    # cars stored as seen today.
+    already_seen: list[dict] = []
+    if args.only_gaspedaal:
+        stored = store._load(listings_path)
+        already_seen = [r for r in stored.values()
+                        if r.get("source") != "gaspedaal" and r.get("last_seen") == run_date]
+        log.info("[%s] --only-gaspedaal: dedup against %d cars already scraped on %s",
+                 brand.key, len(already_seen), run_date)
+    search_iter = iter(()) if args.only_gaspedaal else search.iter_search_listings(brand)
+    for raw in search_iter:
         if args.limit and count >= args.limit:
             break
         count += 1
@@ -86,7 +101,7 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
     # Also pull Tesla.com's official used inventory into the same store (source=
     # "tesla"). Best-effort: a block/error inside the generator just yields fewer
     # (or zero) cars, leaving the Marktplaats records above untouched.
-    if brand.tesla_inventory_models and not args.no_tesla:
+    if brand.tesla_inventory_models and not args.no_tesla and not args.only_gaspedaal:
         log.info("[%s] fetching Tesla.com used inventory (%s)",
                  brand.key, ", ".join(brand.tesla_inventory_models))
         tesla_count = 0
@@ -104,7 +119,9 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
     # gaspedaal.dedup_key). Best-effort like the Tesla source: when the crawl yields
     # nothing at all (blocked / site change) its stored cars are kept as they are
     # rather than aged out as sold.
-    keep_sources: set[str] = set()
+    keep_sources: set[str | None] = set()
+    if args.only_gaspedaal:
+        keep_sources |= {"marktplaats", "tesla", None}  # None: legacy Marktplaats records
     if args.no_gaspedaal:
         keep_sources.add("gaspedaal")  # skipped on purpose, not sold
     elif brand.gaspedaal_models:
@@ -114,7 +131,7 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
         gp_count = 0
         try:
             for grec in gaspedaal.iter_listings(brand, run_date, args.limit,
-                                                gaspedaal.SeenCars(records), stats):
+                                                gaspedaal.SeenCars([*records, *already_seen]), stats):
                 records.append(grec)
                 gp_count += 1
         except Exception:  # pragma: no cover - best-effort source
@@ -125,9 +142,6 @@ def _scrape_brand(brand: config.Brand, args, run_date: str, run_year: int) -> No
         log.info("[%s] Gaspedaal added %d records", brand.key, gp_count)
 
     log.info("[%s] scraped %d listings; upserting", brand.key, len(records))
-    data_dir = brand_data_dir(args.data_dir, brand.key)
-    listings_path = data_dir / "listings.json"
-    history_path = data_dir / "price_history.json"
     store.upsert(records, run_date, listings_path, history_path, keep_sources=keep_sources)
 
     # Reload the full store (including still-active listings from prior runs).
@@ -154,6 +168,9 @@ def main() -> None:
                         help="skip the Tesla.com official-inventory source")
     parser.add_argument("--no-gaspedaal", action="store_true",
                         help="skip the Gaspedaal.nl dealer-stock source")
+    parser.add_argument("--only-gaspedaal", action="store_true",
+                        help="refresh only Gaspedaal.nl on top of today's stored Marktplaats/"
+                             "Tesla.com data (those sources are not re-scraped or aged)")
     parser.add_argument("--tesla-dumps", type=Path, default=DEFAULT_TESLA_DUMPS,
                         help="dir of hand-saved Tesla inventory JSON (<slug>.json); "
                              "used in preference to the (Akamai-blocked) live fetch")
@@ -180,6 +197,9 @@ def main() -> None:
     failed: list[str] = []
     for key in brand_keys:
         brand = config.BRANDS[key]
+        if args.only_gaspedaal and (args.no_gaspedaal or not brand.gaspedaal_models):
+            log.info("[%s] no Gaspedaal source; skipped (--only-gaspedaal)", key)
+            continue
         log.info("=== scraping brand: %s ===", brand.label)
         try:
             _scrape_brand(brand, args, run_date, run_year)
