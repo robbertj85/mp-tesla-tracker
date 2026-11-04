@@ -6,6 +6,7 @@ import type { BrandKey } from "@/lib/brands";
 import { sourceLabel } from "@/lib/sources";
 import type { Dataset, Listing } from "@/lib/types";
 import { cn, eur, km } from "@/lib/utils";
+import { soh, TRAP_RE, used } from "@/lib/listing-checks";
 
 // Side-by-side comparison of every tracked vehicle: static spec research
 // (lib/comparison.ts) next to live stats from each tracker's dataset.
@@ -16,24 +17,6 @@ function median(xs: number[]): number | null {
   const m = Math.floor(v.length / 2);
   return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
 }
-
-// Seller-quoted battery health ("SOH 93,5%"). Tesla records carry a parsed
-// soh_percent; the other EVs only have it in the title.
-const SOH_RE = /\bsoh\b\D{0,15}(\d{2}(?:[.,]\d+)?)|(\d{2}(?:[.,]\d)?)\s*%\s*soh/i;
-function soh(l: Listing): number | null {
-  if (l.soh_percent != null) return l.soh_percent <= 1.5 ? l.soh_percent * 100 : l.soh_percent;
-  const m = SOH_RE.exec(l.title ?? "");
-  if (!m) return null;
-  const v = parseFloat((m[1] ?? m[2]).replace(",", "."));
-  return v >= 70 && v <= 100 ? v : null;
-}
-
-// Ads that look cheap for a reason: export/trade-only, defects, ex-VAT, US
-// imports, "pay 50% now" schemes, wanted ads. Title-only (the dataset has no text).
-const TRAP_RE = /defect|export|ex\.? ?btw|excl\.? ?btw|onderdel|schade|gezocht|\bntb\b|betaal nu|handel|import|\busa\b|amerika|lease|p\/m|per maand/i;
-
-const used = (l: Listing) =>
-  (l.active ?? true) && l.price_eur != null && l.price_eur > 5000 && (l.mileage_km ?? 0) > 1000;
 
 const KM_BANDS: [number, number, string][] = [
   [0, 50_000, "< 50k km"],

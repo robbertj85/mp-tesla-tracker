@@ -8,7 +8,7 @@ export function SiteHeader({ brand, subtitle, active }: {
   /** Omitted on cross-brand pages (/vergelijk): no brand selected, no per-brand tabs. */
   brand?: BrandConfig;
   subtitle?: React.ReactNode;
-  active: "dashboard" | "modellen" | "uitvoeringen" | "koopgids" | "vergelijk";
+  active: "dashboard" | "modellen" | "uitvoeringen" | "koopgids" | "vergelijk" | "businesscase";
 }) {
   const navLink = (href: string, label: string, key: string) => (
     <Link
@@ -39,18 +39,22 @@ export function SiteHeader({ brand, subtitle, active }: {
               {BRANDS[key].label}
             </Link>
           ))}
+          {([["/vergelijk", "Vergelijk", "vergelijk"], ["/businesscase", "Business case", "businesscase"]] as const).map(([href, label, key], idx) => (
           <Link
-            href="/vergelijk"
+            key={key}
+            href={href}
             className={cn(
-              "whitespace-nowrap rounded-md border-l px-3 py-1 text-sm font-semibold transition-colors",
-              active === "vergelijk" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+              "whitespace-nowrap rounded-md px-3 py-1 text-sm font-semibold transition-colors",
+              idx === 0 && "border-l",
+              active === key ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            Vergelijk
+            {label}
           </Link>
+          ))}
         </nav>
         <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
-          {brand ? `${brand.label} Prijstracker` : "Vergelijk alle modellen"}
+          {brand ? `${brand.label} Prijstracker` : active === "businesscase" ? "Business case" : "Vergelijk alle modellen"}
         </h1>
         {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
       </div>

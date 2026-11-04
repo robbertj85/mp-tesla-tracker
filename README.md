@@ -48,7 +48,7 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
 | `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`, `enyaq.json`, `mach-e.json`, `id4.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4` (+ `/modellen`, `/uitvoeringen`, and `/koopgids` — a buying guide, Mach-E only, content in `web/lib/buying-guide.ts`); plus the cross-brand `/vergelijk` — every tracked vehicle side by side (specs in `web/lib/comparison.ts`, live SoH/price/best match per model) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4` (+ `/modellen`, `/uitvoeringen`, and `/koopgids` — a buying guide, Mach-E only, content in `web/lib/buying-guide.ts`); plus the cross-brand `/vergelijk` — every tracked vehicle side by side (specs in `web/lib/comparison.ts`, live SoH/price/best match per model) and `/businesscase` — total cost of ownership of the best cars near Rotterdam vs. keeping the current car (assumptions in `web/lib/business-case.ts`) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
