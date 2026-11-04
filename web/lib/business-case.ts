@@ -34,8 +34,8 @@ export interface BcVehicle {
   fastCharge: "tesla" | "other" | "none";
   /** Empty mass (RDW "massa ledig voertuig", approx.) for road tax. */
   massKg: number;
-  /** Insurance estimate €/month, Zuid-Holland 3051, 7 claim-free years. Scaled to
-   *  the €110/month the user pays now for the old Skoda — get real quotes. */
+  /** Insurance €/month, Zuid-Holland 3051, 7 claim-free years. EVs: the €165/month
+   *  quote for the Hosni Model Y, used for all EVs. Skodas: estimate. */
   insurance: { allrisk: number; waPlus: number };
   /** Servicing, APK, wipers, brake fluid etc. per year, excl. tyres. */
   maintenancePerYear: number;
@@ -51,7 +51,7 @@ export const BC_VEHICLES: BcVehicle[] = [
   {
     compareId: "tesla-y-lr", name: "Model Y LR AWD", dataset: "tesla", modelKey: "Model Y",
     kind: "ev", requireAudio: true, requireTow: true, picks: 2, kwhPer100: 17.3, fastCharge: "tesla", massKg: 1909,
-    insurance: { allrisk: 150, waPlus: 105 },
+    insurance: { allrisk: 165, waPlus: 115 },
     maintenancePerYear: 250, tyresPerKm: 0.028,
     batteryWarranty: { years: 8, km: 192_000 },
     roadsideNote: "Tesla Roadside alleen binnen de basisgarantie (4 jaar / 80.000 km)",
@@ -69,7 +69,7 @@ export const BC_VEHICLES: BcVehicle[] = [
   {
     compareId: "mach-e-er", name: "Mach-E ER RWD", dataset: "mach-e", modelKey: "Mustang",
     kind: "ev", requireAudio: true, requireTow: true, picks: 2, kwhPer100: 19.4, fastCharge: "other", massKg: 1993,
-    insurance: { allrisk: 135, waPlus: 95 },
+    insurance: { allrisk: 165, waPlus: 115 },
     maintenancePerYear: 350, tyresPerKm: 0.025,
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "Ford Assistance verlengt bij onderhoud bij de dealer",
@@ -79,7 +79,7 @@ export const BC_VEHICLES: BcVehicle[] = [
     compareId: "enyaq-80", name: "Enyaq iV 80", dataset: "enyaq", modelKey: "Enyaq",
     // Canton + tow hitch: none within 40 km, so picks on tow hitch only (Canton flagged per car).
     kind: "ev", requireAudio: false, requireTow: true, picks: 2, kwhPer100: 18.0, fastCharge: "other", massKg: 1990,
-    insurance: { allrisk: 125, waPlus: 88 },
+    insurance: { allrisk: 165, waPlus: 115 },
     maintenancePerYear: 350, tyresPerKm: 0.023,
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "Skoda Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
@@ -88,7 +88,7 @@ export const BC_VEHICLES: BcVehicle[] = [
   {
     compareId: "id4-pro", name: "ID.4 Pro 77 kWh", dataset: "id4", modelKey: "ID.4",
     kind: "ev", requireAudio: false, requireTow: true, picks: 2, kwhPer100: 19.2, fastCharge: "other", massKg: 2050,
-    insurance: { allrisk: 120, waPlus: 85 },
+    insurance: { allrisk: 165, waPlus: 115 },
     maintenancePerYear: 350, tyresPerKm: 0.023,
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "VW Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
@@ -304,4 +304,46 @@ export interface BcPick {
   /** Price vs. the tracker's price model, in % (negative = below market). */
   vsModelPct: number | null;
   source: string | null;
+}
+
+export interface BreakEven {
+  /** Extra (positive) or saved (negative) cost vs. keeping the current car, over the whole period. */
+  gap: number;
+  /** Asking price at which this car costs the same as keeping the current one,
+   *  with the same resale value at the end (every euro off the price is a euro less depreciation). */
+  priceEur: number;
+  /** Energy/fuel budget per year at which it breaks even, and what that means per kWh or litre. */
+  energyPerYear: number;
+  /** Average €/kWh (EV, incl. charging losses) or €/l (petrol car) at break-even. Null for PHEVs. */
+  unitPrice: number | null;
+  unit: "kWh" | "l" | null;
+  /** Petrol price at which it breaks even (both this car and the current one burn petrol). Null = never. */
+  petrolEur: number | null;
+}
+
+export function breakEven(v: BcVehicle, cost: CostBreakdown, current: CostBreakdown, i: BcInputs): BreakEven {
+  const n = i.years;
+  const gap = cost.total - current.total;
+  // d(total)/d(price) with a fixed resale value: depreciation 1:1 plus interest on the average capital.
+  const priceEur = cost.purchase - gap / (1 + (i.interestPct / 100) * n / 2);
+  const energyPerYearBE = (cost.energy - gap) / n;
+  const k = i.kmPerYear / 100;
+  let unitPrice: number | null = null;
+  let unit: BreakEven["unit"] = null;
+  if (v.kind === "ev") {
+    const f = v.fastCharge === "none" ? 0 : i.fastSharePct / 100;
+    const kwhDrawn = k * v.kwhPer100 * ((1 - f) * AC_LOSS + f * DC_LOSS);
+    unitPrice = energyPerYearBE / kwhDrawn;
+    unit = "kWh";
+  } else if (v.kind === "ice") {
+    unitPrice = energyPerYearBE / (k * (v.litersPer100 ?? 6));
+    unit = "l";
+  }
+  // Petrol price: both totals are linear in it.
+  const litresRow = v.kind === "ice" ? k * (v.litersPer100 ?? 6)
+    : v.kind === "phev" ? k * (1 - i.phevElectricPct / 100) * (v.litersPer100 ?? 6.5) : 0;
+  const litresCur = k * i.current.litersPer100;
+  const slope = (litresCur - litresRow) * n; // how much faster keeping gets expensive per €/l
+  const petrolEur = slope > 0 ? Math.max(0, i.petrolEur + gap / slope) : null;
+  return { gap, priceEur, energyPerYear: energyPerYearBE, unitPrice, unit, petrolEur };
 }

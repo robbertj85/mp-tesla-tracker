@@ -4,7 +4,7 @@ import * as React from "react";
 import { AlertTriangle, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, currentCarCost, energyPerYear,
+  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyPerYear,
   evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost,
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
 } from "@/lib/business-case";
@@ -236,8 +236,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
               ))}
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
-              Zuid-Holland, postcode 3051, 7 schadevrije jaren; opgeschaald naar de €110/mnd die je nu voor de oude Skoda betaalt.
-              Geen offertes — vraag ze op met kenteken.
+              Zuid-Holland, postcode 3051, 7 schadevrije jaren. EV&apos;s: €165/mnd allrisk, de premie voor de Model Y van Hosni,
+              aangehouden voor alle elektrische auto&apos;s. Skoda&apos;s: schatting — vraag een offerte op met kenteken.
             </p>
           </div>
         </CardContent>
@@ -295,6 +295,84 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
               })}
             </tbody>
           </table>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Break-even met de huidige Skoda</CardTitle>
+          <CardDescription>
+            Wat er moet veranderen om over {inp.years} jaar even duur uit te komen als houden ({eur(current.total)}), telkens met de rest
+            gelijk. Rekent mee met de instellingen hierboven.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="overflow-x-auto p-0 sm:p-6 sm:pt-0">
+          <table className="w-full min-w-[900px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b text-left text-xs text-muted-foreground">
+                <th className="sticky left-0 z-10 bg-card px-3 py-2 font-medium">Auto</th>
+                <th className="px-2 py-2 text-right font-medium">Meerkosten</th>
+                <th className="px-2 py-2 text-right font-medium" title="bij dezelfde restwaarde aan het eind">Max. aanschafprijs</th>
+                <th className="px-2 py-2 text-right font-medium">Nodige korting</th>
+                <th className="px-2 py-2 text-right font-medium">Max. energie/jr</th>
+                <th className="px-2 py-2 text-right font-medium">= max. per kWh / l</th>
+                <th className="px-3 py-2 text-right font-medium" title="benzineprijs waarbij houden even duur wordt">Break-even benzine</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.slice(1).map((r, idx) => {
+                const be = breakEven(r.vehicle!, r.cost, current, inp);
+                const cheaper = be.gap <= 0;
+                const firstOfModel = idx === 0 || rows[idx].vehicle?.compareId !== r.vehicle?.compareId;
+                const nowEnergy = r.cost.energy / inp.years;
+                return (
+                  <tr key={r.key} className={cn("border-b align-top", firstOfModel && idx > 0 && "border-t-2")}>
+                    <td className="sticky left-0 z-10 bg-card px-3 py-2">
+                      <div className="w-56 text-xs">
+                        <span className="font-semibold">{r.vehicle!.name}</span>
+                        <span className="block text-muted-foreground">
+                          {r.pick?.year} · {km(r.pick?.mileageKm)} · {eur(r.pick?.priceEur)} · {r.pick?.seller ?? r.pick?.city}
+                        </span>
+                      </div>
+                    </td>
+                    <td className={cn("px-2 py-2 text-right tabular-nums", cheaper ? "text-emerald-600" : "text-amber-600")}>
+                      {cheaper ? "−" : "+"}{eur(Math.abs(be.gap))}
+                      <span className="block text-xs text-muted-foreground">{eur(Math.abs(be.gap) / (inp.years * 12))}/mnd</span>
+                    </td>
+                    <td className="px-2 py-2 text-right font-semibold tabular-nums">
+                      {cheaper ? <span className="font-normal text-emerald-600">al goedkoper</span> : eur(be.priceEur)}
+                    </td>
+                    <td className="px-2 py-2 text-right tabular-nums">
+                      {cheaper ? "—" : `${eur(r.cost.purchase - be.priceEur)} (${(((r.cost.purchase - be.priceEur) / r.cost.purchase) * 100).toFixed(0)}%)`}
+                    </td>
+                    <td className="px-2 py-2 text-right tabular-nums">
+                      {be.energyPerYear < 0
+                        ? <span className="text-rose-600">zelfs gratis niet</span>
+                        : <>{eur(be.energyPerYear)}<span className="block text-xs text-muted-foreground">nu {eur(nowEnergy)}</span></>}
+                    </td>
+                    <td className="px-2 py-2 text-right tabular-nums">
+                      {be.unitPrice == null || be.energyPerYear < 0 ? "—"
+                        : `€${be.unitPrice.toFixed(2).replace(".", ",")}/${be.unit}`}
+                      {be.unit === "kWh" && be.energyPerYear >= 0 && (
+                        <span className="block text-xs text-muted-foreground">gem., incl. laadverlies</span>
+                      )}
+                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums">
+                      {cheaper ? <span className="text-emerald-600">al goedkoper</span>
+                        : be.petrolEur == null ? <span className="text-muted-foreground">nooit</span>
+                        : `€${be.petrolEur.toFixed(2).replace(".", ",")}/l`}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <p className="px-3 pt-3 text-xs text-muted-foreground sm:px-0">
+            Max. aanschafprijs: elke euro korting is een euro minder afschrijving (restwaarde aan het eind blijft gelijk), plus minder gemiste
+            rente. Max. energie: het jaarbudget voor laden/tanken waarbij het verschil wegvalt; &quot;zelfs gratis niet&quot; = de overige
+            kosten zijn al hoger dan houden. Break-even benzine: de literprijs waarbij houden (6,5 l/100) even duur wordt — bij
+            plug-ins telt hun eigen benzineverbruik mee.
+          </p>
         </CardContent>
       </Card>
 
