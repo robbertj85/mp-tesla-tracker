@@ -53,3 +53,20 @@ export function wishTitle(w: WishFit): string {
   if (w.bonus.length) parts.push(`+ ${w.bonus.join(", ")}`);
   return `${head}: ${parts.join(" · ")}`;
 }
+
+// "Bijna": ads that miss exactly one must-have, and only by a small margin.
+// Audio and tow hitch are yes/no, so they never count as "just missed".
+export const NEAR_MAX_KM = 165_000;
+export const NEAR_MIN_SOH = 90;
+
+/** What a near-miss ad just misses ("162k km", "SoH 91%"), or null if it fits or
+ *  misses by more. */
+export function nearMiss(l: Listing): string | null {
+  const w = wishFit(l);
+  if (w.fits || w.missing.length !== 1) return null;
+  const kmOver = l.mileage_km != null && l.mileage_km > WISH_MAX_KM && l.mileage_km <= NEAR_MAX_KM;
+  if (kmOver) return `${Math.round(l.mileage_km! / 1000)}k km`;
+  const s = isEv(l) ? soh(l) : null;
+  if (s != null && s >= NEAR_MIN_SOH && s < WISH_MIN_SOH) return `SoH ${s}%`;
+  return null;
+}
