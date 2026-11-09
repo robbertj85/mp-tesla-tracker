@@ -6,7 +6,8 @@
 // `bron: "schatting"`. NL real-world sits roughly between the winter and summer
 // numbers; motorway (110 km/h) is the worst common case. Enyaq and Mach-E rows
 // are EV Database throughout (winter = combined at -10 °C with heating). ID.4
-// rows are Volkswagen's WLTP with estimated real-world figures.
+// rows are Volkswagen's WLTP with estimated real-world figures. Niro EV rows are
+// EV Database throughout, WLTP cross-checked with Kia NL's price lists.
 import type { BrandKey } from "@/lib/brands";
 
 export interface RangeFigures {
@@ -25,7 +26,7 @@ export interface RangeFigures {
 
 export interface TrimSpec {
   trim: string;
-  drivetrain: "RWD" | "AWD";
+  drivetrain: "FWD" | "RWD" | "AWD";
   years: string;
   /** Usable battery (kWh), approx. */
   batteryKwh?: number;
@@ -38,7 +39,7 @@ export interface TrimSpec {
 
 export interface TrimMatch {
   trim: string;
-  drivetrain?: "RWD" | "AWD";
+  drivetrain?: "FWD" | "RWD" | "AWD";
   body?: string;
   yearFrom?: number;
   yearTo?: number;
@@ -463,6 +464,44 @@ export const TRIM_GUIDE: Partial<Record<BrandKey, ModelTrims[]>> = {
           note: "340 pk.",
           range: { wltp: 510, ...est(510) },
           match: { trim: "GTX", yearFrom: 2024 },
+        },
+      ],
+    },
+  ],
+  // Niro EV: EV Database figures per pack (e-Niro 39 = the MY21 entry, the only
+  // year it was sold in NL). Both generations are front-wheel drive only.
+  niro: [
+    {
+      model: "Niro",
+      blurb:
+        "Eerste generatie e-Niro (2019–2022) met 39 of 64 kWh, of de tweede generatie Niro EV (vanaf juli 2022) met 64,8 kWh. Altijd voorwielaandrijving. De Niro EV is iets ruimer en zuiniger, maar laadt niet sneller.",
+      trims: [
+        {
+          trim: "e-Niro 39 kWh",
+          drivetrain: "FWD",
+          years: "2020–2022",
+          batteryKwh: 39,
+          note: "136 pk. Alleen ComfortLine t/m DynamicPlusLine, dus nooit JBL. Snelladen max. 44 kW.",
+          range: evdb(289, 235, 200, 275, 165, 215),
+          match: { trim: "e-Niro 39" },
+        },
+        {
+          trim: "e-Niro 64 kWh",
+          drivetrain: "FWD",
+          years: "2019–2022",
+          batteryKwh: 64,
+          note: "204 pk. JBL alleen op ExecutiveLine. Snelladen max. 77 kW, 10–80% in ~46 min.",
+          range: evdb(455, 375, 315, 430, 265, 340),
+          match: { trim: "e-Niro 64" },
+        },
+        {
+          trim: "Niro EV 64,8 kWh",
+          drivetrain: "FWD",
+          years: "2022+",
+          batteryKwh: 64.8,
+          note: "204 pk, tweede generatie. Harman Kardon alleen op ExecutiveLine / Plus Advanced. 11 kW 3-fase standaard.",
+          range: evdb(460, 385, 325, 445, 275, 355),
+          match: { trim: "Niro EV" },
         },
       ],
     },

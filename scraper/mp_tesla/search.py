@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import logging
 import random
+import re
 import time
 from typing import Iterator
 
@@ -151,6 +152,8 @@ def _canonical_model(listing: dict, brand: Brand) -> str | None:
     if brand.allowed_transmissions and _attr(listing, "transmission") not in brand.allowed_transmissions:
         return None
     if brand.allowed_bodies and _attr(listing, "body") not in brand.allowed_bodies:
+        return None
+    if brand.title_exclude and re.search(brand.title_exclude, title, re.I):
         return None
     return matched
 

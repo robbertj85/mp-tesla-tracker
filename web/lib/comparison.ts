@@ -101,6 +101,40 @@ export const COMPARE_VEHICLES: CompareVehicle[] = [
     ],
   },
   {
+    id: "e-niro-64", name: "e-Niro 64 kWh", years: "2019–2022", kind: "ev", dataset: "niro",
+    match: (l) => l.trim === "e-Niro 64" && inYears(l, 2019, 2022),
+    bootL: 451, bootMaxL: 1405, frunkL: 0, towKg: 300,
+    audio: "JBL, 8 speakers + sub, 320 W (standaard op ExecutiveLine, anders niet leverbaar)", pano: "nee; schuif/kanteldak op DynamicPlusLine en ExecutiveLine vanaf MY21",
+    batteryKwh: 64, wltpKm: 455, realSummerKm: 430, realWinterKm: 315, realWinterHighwayKm: 265,
+    dcKw: 77, dc10to80min: 46, heatPump: "MY19–20 standaard (DynamicLine, ExecutiveLine); MY21+ optie",
+    degradation: "Carla/Aviloo (Zweden, 9.954 tests, 2026): gemiddeld 97,3% SoH na >100.000 km — de beste van de ranglijst.",
+    upgrades: "MY20: 10,25\"-navigatie, 3-fase 11 kW als optie. MY21 (nov 2020): 3-fase vanaf DynamicLine standaard, schuifdak, trekgewicht 0 → 300 kg. Recall aug 2026 (BMS-update) voor bouw mei 2020 – mrt 2022.",
+    note: "Trekhaak vooral voor fietsendrager of trekhaakkoffer: kogeldruk 100 kg vanaf MY21, officieel 0 kg ervoor. Kia-garantie 7 jaar / 150.000 km, met dealeronderhoud verlengbaar tot 10 jaar.",
+    sources: [
+      { label: "EV Database – e-Niro 64 kWh (MY21)", url: "https://ev-database.org/car/1338/Kia-e-Niro-64-kWh" },
+      { label: "Kia NL prijslijst e-Niro jan 2021 (PDF)", url: "https://www.kia.com/content/dam/kwcms/kme/nl/nl/assets/contents/utility/price-list/eerdere-bouwjaren/2021/kia-netherlands-e-niro-archief-prijslijst-januari21.pdf" },
+      { label: "Kia NL prijslijst e-Niro jan 2020 (PDF)", url: "https://www.kia.com/content/dam/kwcms/kme/nl/nl/assets/contents/utility/price-list/eerdere-bouwjaren/2020/kia-netherlands-e-niro-archief-prijslijst-januari20.pdf" },
+      { label: "electrive – Carla/Aviloo: e-Niro beste SoH", url: "https://electrive.com/2026/07/21/study-kia-e-niro-leads-battery-health-ranking-after-high-mileage" },
+      { label: "electrive – recall e-Niro aug 2026", url: "https://electrive.com/2026/08/06/kia-recalls-first-generation-e-niro-over-fire-risk" },
+    ],
+  },
+  {
+    id: "niro-ev", name: "Niro EV 64,8 kWh", years: "2022–2025", kind: "ev", dataset: "niro",
+    match: (l) => l.trim === "Niro EV" && inYears(l, 2022, 2025),
+    bootL: 475, bootMaxL: 1392, frunkL: 20, towKg: 750,
+    audio: "Harman Kardon, 8 speakers + sub (alleen ExecutiveLine / Plus Advanced)", pano: "schuif/kanteldak op DynamicPlusLine, ExecutiveLine, Plus (Advanced)",
+    batteryKwh: 64.8, wltpKm: 460, realSummerKm: 445, realWinterKm: 325, realWinterHighwayKm: 275,
+    dcKw: 94, dc10to80min: 41, heatPump: "niet in de NL-prijslijsten; per auto checken",
+    degradation: "Geen gepubliceerde SoH-studie gevonden voor deze generatie.",
+    upgrades: "Geen facelift voor de EV (de Niro 2026 is alleen hybride). 2023: ComfortLine vervalt, Edition erbij. 2025: nieuwe namen Light, Light Advanced, Air, Plus, Plus Advanced.",
+    note: "Snelladen: EV Database 94 kW; andere tests 72–80 kW en 43–45 min. 11 kW 3-fase standaard. Kia-garantie 7 jaar / 150.000 km, met dealeronderhoud verlengbaar tot 10 jaar.",
+    sources: [
+      { label: "EV Database – Niro EV", url: "https://ev-database.org/car/1666/Kia-Niro-EV" },
+      { label: "Kia NL prijslijst Niro EV jan 2026 (PDF)", url: "https://www.kia.com/content/dam/kwcms/kme/nl/nl/assets/contents/utility/price-list/Kia-Netherlands-Niro-EV-prijslijst.pdf" },
+      { label: "Kia NL prijslijst Niro EV juli 2022 (PDF)", url: "https://www.kia.com/content/dam/kwcms/kme/nl/nl/assets/contents/utility/price-list/eerdere-bouwjaren/2022/kia-netherlands-niro-ev-archief-prijslijst-juli.pdf" },
+    ],
+  },
+  {
     id: "superb-iv", name: "Superb Combi iV", years: "2020–2023", kind: "phev", dataset: "skoda",
     match: (l) => l.model === "Superb" && l.fuel === "PHEV" && inYears(l, 2020, 2023),
     bootL: 510, bootMaxL: 1800, frunkL: 0, towKg: 1600,
@@ -190,6 +224,20 @@ export const CHARGING_HISTORY: { model: string; phev?: boolean; steps: ChargeSte
     ],
   },
   {
+    model: "e-Niro 64 kWh",
+    steps: [
+      { period: "dec 2018 – apr 2022", batteryKwh: 64, dcKw: 77, min10to80: 46, note: "Fastned: 44 min; AC 3-fase 11 kW vanaf MY21 standaard (MY20 optie)",
+        source: { label: "EV Database", url: "https://ev-database.org/car/1338/Kia-e-Niro-64-kWh" } },
+    ],
+  },
+  {
+    model: "Niro EV 64,8 kWh",
+    steps: [
+      { period: "jul 2022+", batteryKwh: 64.8, dcKw: 94, min10to80: 41, note: "andere tests: 72–80 kW piek, 43–45 min",
+        source: { label: "EV Database", url: "https://ev-database.org/car/1666/Kia-Niro-EV" } },
+    ],
+  },
+  {
     model: "Superb Combi iV",
     phev: true,
     steps: [
@@ -201,12 +249,6 @@ export const CHARGING_HISTORY: { model: string; phev?: boolean; steps: ChargeSte
   },
 ];
 
-/** Listings that look cheap for a reason only stated in the ad text (which the
- *  web dataset doesn't carry), so the title-based trap filter misses them. */
-export const KNOWN_TRAP_IDS = new Set<string>([
-  "m2458110004", // Model Y LR 2022 €23.999 — US import
-  "m2457923764", // Model Y Dual Motor 2023 €26.000 — export/trade only
-]);
 
 /** Battery-health studies used across the EV columns. */
 export const COMPARE_SHARED_SOURCES = [

@@ -1,12 +1,12 @@
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CHARGING_HISTORY, COMPARE_SHARED_SOURCES, COMPARE_VEHICLES, KNOWN_TRAP_IDS, type CompareVehicle } from "@/lib/comparison";
+import { CHARGING_HISTORY, COMPARE_SHARED_SOURCES, COMPARE_VEHICLES, type CompareVehicle } from "@/lib/comparison";
 import type { BrandKey } from "@/lib/brands";
 import { sourceLabel } from "@/lib/sources";
 import type { Dataset, Listing } from "@/lib/types";
 import { cn, eur, km } from "@/lib/utils";
-import { soh, TRAP_RE, used } from "@/lib/listing-checks";
+import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "@/lib/listing-checks";
 
 // Side-by-side comparison of every tracked vehicle: static spec research
 // (lib/comparison.ts) next to live stats from each tracker's dataset.
@@ -206,7 +206,7 @@ export function ComparisonView({ datasets }: { datasets: Partial<Record<BrandKey
         </CardHeader>
         <CardContent className="px-0 pb-2">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[920px] table-fixed border-separate border-spacing-0 text-[13px] leading-snug">
+            <table className="w-full min-w-[1180px] table-fixed border-separate border-spacing-0 text-[13px] leading-snug">
               <thead>
                 <tr>
                   <th className="sticky left-0 z-10 w-52 border-b bg-card px-3 py-2 text-left align-bottom text-xs font-medium text-muted-foreground">

@@ -19,7 +19,7 @@ export interface BcVehicle {
   /** Key in dataset.models whose regression gives the depreciation. */
   modelKey: string;
   kind: "ev" | "phev" | "ice";
-  /** Premium audio required for a pick (ID.4: Harman Kardon is too rare, so not). */
+  /** Premium audio required for a pick (ID.4 / Niro EV: Harman Kardon is too rare, so not). */
   requireAudio: boolean;
   /** Tow hitch required: EVs only, for a tow-bar box (a roof box costs EV range).
    *  The Skodas can carry a roof box instead. */
@@ -95,6 +95,28 @@ export const BC_VEHICLES: BcVehicle[] = [
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "VW Mobiliteitsgarantie verlengt bij onderhoud bij de dealer",
     notes: "Harman Kardon is zeldzaam, dus picks alleen op trekhaak. Onderhoud elke 2 jaar / 30.000 km.",
+  },
+  {
+    compareId: "e-niro-64", name: "e-Niro 64 kWh", dataset: "niro", modelKey: "Niro",
+    // massKg: EV Database EU kerb weight (incl. 75 kg driver) minus the driver.
+    kind: "ev", requireAudio: true, requireTow: true, picks: 2, kwhPer100: 17.6, fastCharge: "other", massKg: 1737,
+    insurance: { allrisk: 165, waPlus: 115 },
+    maintenancePerYear: 300, tyresPerKm: 0.017,
+    // Kia Tot 10 Jaar Garantie: 10 years / 150,000 km while it is serviced yearly at
+    // a Kia dealer (the maintenance budget assumes that); otherwise 7 years.
+    batteryWarranty: { years: 10, km: 150_000 },
+    roadsideNote: "Kia-pechhulp: check bij de dealer of die nog loopt (gekoppeld aan onderhoud)",
+    notes: "JBL zit alleen op de ExecutiveLine. Kleinste kofferbak (451 L); trekhaak alleen voor fietsendrager of trekhaakkoffer (100 kg kogeldruk vanaf MY21). Garantie 10 jaar bij jaarlijks Kia-dealeronderhoud, anders 7. Check de BMS-recall (bouw mei 2020 – mrt 2022).",
+  },
+  {
+    compareId: "niro-ev", name: "Niro EV 64,8 kWh", dataset: "niro", modelKey: "Niro",
+    // Harman Kardon (ExecutiveLine / Plus Advanced only) is too rare, so picks on tow hitch only.
+    kind: "ev", requireAudio: false, requireTow: true, picks: 1, kwhPer100: 17.3, fastCharge: "other", massKg: 1682,
+    insurance: { allrisk: 165, waPlus: 115 },
+    maintenancePerYear: 300, tyresPerKm: 0.017,
+    batteryWarranty: { years: 10, km: 150_000 },
+    roadsideNote: "Kia-pechhulp: check bij de dealer of die nog loopt (gekoppeld aan onderhoud)",
+    notes: "Tweede generatie: 475 L + 20 L frunk, 750 kg trekgewicht, 11 kW 3-fase standaard. Harman Kardon alleen op ExecutiveLine / Plus Advanced. Garantie 10 jaar bij jaarlijks Kia-dealeronderhoud, anders 7.",
   },
   {
     compareId: "octavia-combi", name: "Octavia Combi 1.0/1.5 TSI", dataset: "skoda", modelKey: "Octavia",
@@ -430,6 +452,9 @@ export interface BcPick {
   /** Price vs. the tracker's price model, in % (negative = below market). */
   vsModelPct: number | null;
   source: string | null;
+  /** Meets every must-have in lib/wishes.ts (the picks themselves may relax audio). */
+  fitsWishes: boolean;
+  wishTitle: string;
 }
 
 export interface BreakEven {

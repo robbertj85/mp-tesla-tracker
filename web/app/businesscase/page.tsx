@@ -3,11 +3,12 @@ import path from "node:path";
 import type { Metadata } from "next";
 import type { Dataset } from "@/lib/types";
 import type { BrandKey } from "@/lib/brands";
-import { COMPARE_VEHICLES, KNOWN_TRAP_IDS } from "@/lib/comparison";
+import { COMPARE_VEHICLES } from "@/lib/comparison";
 import {
   BC_MAX_DISTANCE_KM, BC_VEHICLES, fitDepreciation, type BcPick, type Depreciation,
 } from "@/lib/business-case";
-import { soh, TRAP_RE, used } from "@/lib/listing-checks";
+import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "@/lib/listing-checks";
+import { wishFit, wishTitle } from "@/lib/wishes";
 import { SiteHeader } from "@/components/site-header";
 import { BusinessCaseView } from "@/components/business-case";
 
@@ -69,6 +70,8 @@ export default function BusinessCasePage() {
         towHitch: l.tow_hitch ?? null,
         vsModelPct: l.predictedEur ? rel(l) * 100 : null,
         source: l.source,
+        fitsWishes: wishFit(l).fits,
+        wishTitle: wishTitle(wishFit(l)),
       }));
   }
   return (

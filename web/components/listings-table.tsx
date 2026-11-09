@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, Heart, History, Sparkles, X } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ExternalLink, Heart, History, Sparkles, Star, X } from "lucide-react";
 import type { Listing, PricePoint } from "@/lib/types";
 import type { BrandConfig } from "@/lib/brands";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,7 @@ import { PriceHistoryChart } from "@/components/price-history-chart";
 import { useFavorites } from "@/lib/use-favorites";
 import { EQUIPMENT } from "@/components/filter-bar";
 import { openOnLabel } from "@/lib/sources";
+import { wishFit, wishTitle } from "@/lib/wishes";
 
 const daysBetween = (from: string, to: string) =>
   (Date.parse(to.slice(0, 10)) - Date.parse(from.slice(0, 10))) / 86_400_000;
@@ -205,6 +206,7 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
             <tbody>
               {rows.map((l) => {
                 const deal = l.dealLabel ? dealBadge[l.dealLabel] : null;
+                const wish = brand.wishStars !== false ? wishFit(l) : null;
                 const hist = history[l.id];
                 const changed = hist && hist.length > 1;
                 const isOpen = open === l.id;
@@ -213,6 +215,11 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                     <tr className="border-b last:border-0 hover:bg-muted/40">
                       <td className="max-w-[160px] px-3 py-2 sm:max-w-[260px]">
                         <div className="flex flex-wrap items-center gap-1.5 font-medium">
+                          {wish?.fits && (
+                            <span title={wishTitle(wish)} aria-label="Past bij je wensen" className="inline-flex text-amber-500">
+                              <Star className="h-3.5 w-3.5 fill-current" />
+                            </span>
+                          )}
                           <span>{l.model} {l.trim ?? ""}</span>
                           {isNew(l) && (
                             <span className="inline-flex items-center gap-0.5 rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"

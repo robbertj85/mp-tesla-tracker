@@ -7,6 +7,7 @@ brand-specific block selected by `brand.pipeline`:
   * enyaq — the skoda block plus variant/battery/equipment line/Coupé-vs-SUV.
   * mache — the skoda block plus the Mach-E battery variant (as `trim`).
   * id4 — the skoda block plus the ID.4 variant (as `trim`), battery, equipment line.
+  * niro — the skoda block plus the Niro EV variant (as `trim`), battery, equipment line.
 Every record carries the union of keys (brand-irrelevant ones are None) so the
 exporter and regression frame stay uniform.
 """
@@ -14,7 +15,7 @@ from __future__ import annotations
 
 import re
 
-from . import config, enyaq, extract, id4, infer, mache
+from . import config, enyaq, extract, id4, infer, mache, niro
 from .config import Brand
 
 
@@ -78,6 +79,22 @@ def apply_id4_spec(rec: dict) -> dict:
     rec["trim"] = id4.detect_variant(title, rec.get("power_hp"), rec.get("drivetrain"))
     rec["battery_kwh"] = id4.battery_kwh(rec["trim"])
     rec["equipment_line"] = id4.detect_equipment_line(title)
+    return rec
+
+
+def apply_niro_spec(rec: dict) -> dict:
+    """Niro EV variant (generation + battery, as `trim`), usable battery and
+    equipment line, from the title + structured power and build year; the top
+    lines imply premium audio + memory seats. Shared by build_record and the
+    re-derive path (which recomputes the option flags first)."""
+    title = rec.get("title", "") or ""
+    rec["trim"] = niro.detect_variant(title, rec.get("power_hp"), rec.get("year"))
+    rec["battery_kwh"] = niro.battery_kwh(rec["trim"])
+    rec["equipment_line"] = niro.detect_equipment_line(title)
+    # ExecutiveLine / Plus Advanced: JBL or Harman Kardon and memory seats as standard.
+    if rec["equipment_line"] in config.NIRO_PREMIUM_LINES:
+        rec["premium_audio"] = True
+        rec["seat_memory"] = True
     return rec
 
 
@@ -284,6 +301,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     elif brand.pipeline == "id4":
         rec.update(_derive_skoda(raw, detail))
         apply_id4_spec(rec)
+    elif brand.pipeline == "niro":
+        rec.update(_derive_skoda(raw, detail))
+        apply_niro_spec(rec)
     elif brand.pipeline == "skoda":
         rec.update(_derive_skoda(raw, detail))
     else:

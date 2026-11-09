@@ -115,9 +115,9 @@ def _fuel(raw_fuel: str | None, title: str, power_hp: int | None) -> str | None:
 # 80x / RS / 85x and the ID.4 Pro 4MOTION / GTX. Their titles rarely say "AWD".
 _AWD_ONLY_HP = {"enyaq": {265, 299, 300, 340}, "id4": {265, 299, 300, 340}}
 # The driveline every other car of the pipeline has (Octavia/Superb are FWD unless
-# 4x4; the MEB EVs are RWD unless dual-motor). Tesla/Mach-E: read from the title.
+# 4x4; the MEB EVs are RWD unless dual-motor; the Niro EV is FWD only). Tesla/Mach-E: read from the title.
 _DEFAULT_DRIVETRAIN = {"skoda": "Voorwielaandrijving", "enyaq": "Achterwielaandrijving",
-                       "id4": "Achterwielaandrijving"}
+                       "id4": "Achterwielaandrijving", "niro": "Voorwielaandrijving"}
 
 
 def _drivetrain_attr(title: str, power_hp: int | None, pipeline: str | None) -> str | None:
@@ -198,6 +198,8 @@ def in_scope(parsed: dict, brand: Brand) -> bool:
     if brand.allowed_transmissions and parsed.get("transmission") not in brand.allowed_transmissions:
         return False
     if brand.allowed_bodies and parsed.get("body") not in brand.allowed_bodies:
+        return False
+    if brand.title_exclude and re.search(brand.title_exclude, parsed.get("title") or "", re.I):
         return False
     return True
 

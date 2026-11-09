@@ -106,6 +106,10 @@ class Brand:
     # "gaspedaal"), as (canonical model, "<make>/<model>" path) pairs. The brand's
     # year/price/mileage/fuel/transmission/body scope is applied after fetching.
     gaspedaal_models: tuple = ()
+    # Regex (case-insensitive) on the title that drops a listing from the scope —
+    # for brands whose model id also covers non-EV versions a seller can mis-file
+    # as electric (the Niro hybrid / PHEV). None = no title guard.
+    title_exclude: str | None = None
 
     @property
     def search_attr_ids(self) -> list[int]:
@@ -242,6 +246,28 @@ BRANDS: dict[str, Brand] = {
         gaspedaal_models=(("ID.4", "volkswagen/id4"),),
         source_query="auto-s/volkswagen | ID.4 | elektrisch | constructionYear>=2020 | price<=60000 + Gaspedaal",
     ),
+    # Kia Niro EV (full-electric compact crossover). Marktplaats files both
+    # generations under one model "Niro" (11678) together with the hybrid and the
+    # PHEV, so the fuel filter Elektrisch (11756) keeps only the EV. niro.py
+    # derives the variant (as `trim`): the first-gen e-Niro 39 / 64 kWh or the
+    # second-gen Niro EV 64.8 kWh, plus the usable battery and the equipment line.
+    # Gaspedaal lists the two generations as separate models.
+    "niro": Brand(
+        key="niro",
+        label="Kia Niro EV",
+        l2_category_id=119,
+        models={"Niro": 11678},
+        fuel_ids=(11756,),
+        allowed_fuels=("Elektrisch",),
+        year_from=2019,
+        year_to=None,
+        price_cents_to=5_000_000,   # <= €50,000 (a new Niro EV sits around €45k)
+        min_price_eur=5000,
+        pipeline="niro",
+        gaspedaal_models=(("Niro", "kia/e-niro"), ("Niro", "kia/niro-ev")),
+        title_exclude=r"\bphev\b|plug[\s-]*in|\bhybrid|\b1[.,]6\s*t?-?gdi",
+        source_query="auto-s/kia | Niro (e-Niro + Niro EV) | elektrisch | constructionYear>=2019 | price<=50000 + Gaspedaal",
+    ),
     # Tesla Model S resale view from build year 2013 on, mileage capped at 250,000 km.
     # Reuses the Tesla extraction pipeline; the Autopilot platform (HW1/2/2.5/3/4) is
     # inferred from build year per config.HW_INFERENCE["Model S"] when the ad is silent.
@@ -299,6 +325,15 @@ FEATURE_SPECS: dict[str, dict] = {
         "numeric": ["age", "mileage_km", "power_hp"],
         "categorical": ["model", "trim", "equipment_line", "drivetrain", "color", "condition"],
     },
+    # Niro EV: every car is front-wheel drive, so the driveline carries no signal.
+    # The variant (in `trim`) carries generation + battery; the equipment line
+    # (DynamicLine … ExecutiveLine) the trim-level spread. Power is left out: it
+    # follows from the variant (136 / 204 hp), and ~5% of ads state a wrong
+    # figure (39, 68, 87 hp) that would only add noise.
+    "niro": {
+        "numeric": ["age", "mileage_km"],
+        "categorical": ["model", "trim", "equipment_line", "color", "condition"],
+    },
 }
 
 # =================================================================================
@@ -343,6 +378,52 @@ ID4_EQUIPMENT_LINES: list[tuple[str, list[str]]] = [
     ("City", [r"\bcity\b"]),
     ("Goal", [r"\bgoal\b"]),
     ("Advantage", [r"\badvantage\b"]),
+]
+
+# =================================================================================
+# Kia Niro EV variants (see niro.py)
+# =================================================================================
+# The first-gen e-Niro ran to 2022, the second-gen Niro EV was delivered from
+# mid-2022. Outside 2022 the build year decides; 2022 cars go by the title and
+# stay unknown without a generation cue.
+NIRO_GEN1_LAST_YEAR = 2021
+NIRO_GEN2_FIRST_YEAR = 2023
+
+# 136 hp (100 kW) is the 39 kWh e-Niro; every 64 / 64.8 kWh car makes 204 hp.
+NIRO_SMALL_PACK_HP = (135, 136)
+NIRO_39_PATTERN = re.compile(r"\b39(?:[.,]\d)?\s*kwh", re.I)
+# Kia's own names: "e-Niro … 64 kWh" (gen 1), "Niro EV … 64.8 kWh" (gen 2).
+# "Niro EV" alone is not enough when the title also says e-Niro.
+NIRO_GEN2_PATTERN = re.compile(
+    r"\b64[.,]8\s*kwh|\b(?:light|air|plus)\s+(?:edition|advanced)\b|\bedition\s+advanced\b"
+    r"|(?<![e-])\bniro\s+ev\b(?!.*\be-?niro\b)", re.I)
+NIRO_GEN1_PATTERN = re.compile(r"\be[\s-]?niro\b|\b64\s*kwh", re.I)
+
+# Equipment lines that ship premium audio and memory seats as standard (Kia NL
+# price lists 2019–2026): JBL on every e-Niro ExecutiveLine, Harman Kardon on the
+# Niro EV ExecutiveLine / Plus Advanced. ExecutiveLine was 64 kWh only.
+NIRO_PREMIUM_LINES = ("ExecutiveLine", "Plus Advanced")
+
+# Usable battery capacity per variant (kWh).
+NIRO_BATTERY_KWH = {"e-Niro 39": 39.2, "e-Niro 64": 64.0, "Niro EV": 64.8}
+
+# Equipment lines, most specific first (first match wins), matched on the TITLE.
+# The "…Line" names exist in both generations; Light / Air / Edition / Plus
+# (Advanced) are second-gen names. Sellers write "DynamicPlusLine" as
+# "Dynamic Plus Line" too.
+NIRO_EQUIPMENT_LINES: list[tuple[str, list[str]]] = [
+    ("DynamicPlusLine", [r"dynamic\s*plus\s*line"]),
+    ("DynamicLine", [r"dynamic\s*line"]),
+    ("ExecutiveLine", [r"executive\s*line"]),
+    ("ComfortLine", [r"comfort\s*line"]),
+    ("Edition Advanced", [r"\bedition\s+advanced\b"]),
+    ("Plus Advanced", [r"\bplus\s+advanced\b"]),
+    ("Light Advanced", [r"\blight\s+advanced\b"]),
+    ("Light Edition", [r"\blight\s+edition\b"]),
+    ("Light", [r"\blight\b"]),
+    ("Air", [r"\bair\b"]),
+    ("First Edition", [r"\b(?:first|1st)\s+edition\b"]),
+    ("Edition", [r"\bedition\b"]),
 ]
 
 # =================================================================================

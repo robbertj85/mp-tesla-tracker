@@ -3,7 +3,7 @@
 // shared components show the right dimensions (Tesla: trim/HW/FSD/range; Skoda:
 // fuel/transmission/drivetrain) without mixing the two brands.
 
-export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq" | "mach-e" | "id4";
+export type BrandKey = "tesla" | "skoda" | "octavia" | "model-s" | "enyaq" | "mach-e" | "id4" | "niro";
 
 /** Which categorical/numeric dimensions are meaningful for a brand. Drives the
  *  filter bar, listings columns, estimator inputs, scatter axes and archetypes. */
@@ -39,8 +39,11 @@ export interface BrandConfig {
    *  trims, the Enyaq has battery variants ("Uitvoering"). Defaults to "Trim". */
   trimLabel?: string;
   /** Price-ladder order of the `trim` values, for brands whose archetypes group
-   *  by trim (Enyaq / ID.4 variants, Mach-E battery packs). */
+   *  by trim (Enyaq / ID.4 / Niro variants, Mach-E battery packs). */
   trimOrder?: string[];
+  /** Whether ads get the "past bij je wensen" star (lib/wishes.ts). Off for the
+   *  Octavia '06–'14 view, which prices the current car for resale. Default on. */
+  wishStars?: boolean;
   dimensions: BrandDimensions;
 }
 
@@ -86,6 +89,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     label: "Octavia '06–'14",
     modelsLabel: "Skoda Octavia 2006–2014 · automaat vs handgeschakeld",
     modelColors: { Octavia: "#059669" },
+    wishStars: false,
     dimensions: {
       trim: false, hw: false, fsd: false, range: false,
       fuel: true, transmission: true, drivetrain: true, source: false,
@@ -140,6 +144,24 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     dimensions: {
       trim: true, hw: false, fsd: false, range: false,
       fuel: false, transmission: false, drivetrain: true, source: false,
+      battery: false, equipmentLine: true, body: false,
+    },
+  },
+  // Kia Niro EV (full-electric compact crossover, build years 2019+). Two
+  // generations under one Marktplaats model: the first-gen e-Niro (39 or 64 kWh)
+  // and the second-gen Niro EV (64.8 kWh, mid-2022+). The variant carries both,
+  // plus the equipment line (DynamicLine … ExecutiveLine). Front-wheel drive only,
+  // so no driveline dimension.
+  niro: {
+    key: "niro",
+    label: "Niro EV",
+    modelsLabel: "Kia e-Niro & Niro EV · volledig elektrisch",
+    modelColors: { Niro: "#059669" },
+    trimLabel: "Uitvoering",
+    trimOrder: ["e-Niro 39", "e-Niro 64", "Niro EV"],
+    dimensions: {
+      trim: true, hw: false, fsd: false, range: false,
+      fuel: false, transmission: false, drivetrain: false, source: false,
       battery: false, equipmentLine: true, body: false,
     },
   },

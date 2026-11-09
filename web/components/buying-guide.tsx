@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BUYING_GUIDE, type Verdict } from "@/lib/buying-guide";
@@ -6,6 +6,7 @@ import type { BrandConfig } from "@/lib/brands";
 import { openOnLabel, sourceLabel } from "@/lib/sources";
 import type { Dataset, Listing } from "@/lib/types";
 import { eur, km } from "@/lib/utils";
+import { wishFit, wishTitle } from "@/lib/wishes";
 
 function median(xs: number[]): number | null {
   const v = xs.filter((x) => Number.isFinite(x)).sort((a, b) => a - b);
@@ -46,7 +47,7 @@ function Section({ title, description, children }: {
 }
 
 /** Median price / km / SoH per build year × variant, from the live data. */
-function VariantByYear({ data, variants }: { data: Dataset; variants: string[] }) {
+function VariantByYear({ data, variants, pair }: { data: Dataset; variants: string[]; pair: [string, string] }) {
   const rows = data.listings.filter(used);
   const years = [...new Set(rows.map((l) => l.year).filter((y): y is number => y != null))].sort();
   const cell = (y: number, v: string) => {
@@ -57,7 +58,7 @@ function VariantByYear({ data, variants }: { data: Dataset; variants: string[] }
       km: median(c.map((l) => l.mileage_km ?? NaN)),
     };
   };
-  const [small, big] = variants;
+  const [small, big] = pair;
   return (
     <div className="-mx-6 overflow-x-auto">
       <table className="w-full text-sm">
@@ -74,7 +75,7 @@ function VariantByYear({ data, variants }: { data: Dataset; variants: string[] }
           {years.map((y) => {
             const cells = variants.map((v) => cell(y, v));
             if (cells.every((c) => c.n === 0)) return null;
-            const s = cells[0], b = cells[1];
+            const s = cells[variants.indexOf(small)], b = cells[variants.indexOf(big)];
             const premium = s.n >= 3 && b.n >= 3 && s.price != null && b.price != null ? b.price - s.price : null;
             return (
               <tr key={y} className="border-b last:border-0">
@@ -128,7 +129,7 @@ function SohSummary({ data, variants }: { data: Dataset; variants: string[] }) {
   );
 }
 
-function Shortlist({ data, variants }: { data: Dataset; variants: string[] }) {
+function Shortlist({ data, variants, audioLabel }: { data: Dataset; variants: string[]; audioLabel: string }) {
   const picks = data.listings
     .filter((l) => used(l) && variants.includes(l.trim ?? "") && l.premium_audio && l.residualEur != null)
     .sort((a, b) => a.residualEur! - b.residualEur!)
@@ -152,11 +153,16 @@ function Shortlist({ data, variants }: { data: Dataset; variants: string[] }) {
             return (
               <tr key={l.id} className="border-b align-top last:border-0">
                 <td className="px-6 py-2.5">
-                  <div className="font-medium">
+                  <div className="flex items-center gap-1.5 font-medium">
+                    {wishFit(l).fits && (
+                      <span title={wishTitle(wishFit(l))} aria-label="Past bij je wensen" className="inline-flex text-amber-500">
+                        <Star className="h-3.5 w-3.5 fill-current" />
+                      </span>
+                    )}
                     {l.year} {l.trim} {l.drivetrain ?? ""} · {km(l.mileage_km)}
                   </div>
                   <div className="mt-1 flex flex-wrap gap-1">
-                    <Badge variant="secondary">B&amp;O</Badge>
+                    <Badge variant="secondary">{audioLabel}</Badge>
                     {l.tow_hitch && <Badge variant="warn">Trekhaak</Badge>}
                     {l.pano && <Badge variant="secondary">Pano</Badge>}
                   </div>
@@ -195,10 +201,11 @@ export function BuyingGuideView({ data, brand }: { data: Dataset; brand: BrandCo
     <div className="space-y-6">
       <p className="max-w-3xl text-sm text-muted-foreground">{g.intro}</p>
 
-      <Section title={`${g.compareVariants[0]} of ${g.compareVariants[1]}?`}
+      <Section title={g.compareTitle ?? `${g.compareVariants[0]} of ${g.compareVariants[1]}?`}
         description="Wat de grote accu op de occasionmarkt extra kost, per bouwjaar — en hoe gezond de accu's zijn.">
         <div className="space-y-5">
-          <VariantByYear data={data} variants={g.compareVariants} />
+          <VariantByYear data={data} variants={g.compareVariants}
+            pair={g.premiumPair ?? [g.compareVariants[0], g.compareVariants[1]]} />
           <SohSummary data={data} variants={g.compareVariants} />
         </div>
       </Section>
@@ -246,7 +253,7 @@ export function BuyingGuideView({ data, brand }: { data: Dataset; brand: BrandCo
       </Section>
 
       <Section title={g.shortlistTitle} description={g.shortlistNote}>
-        <Shortlist data={data} variants={g.shortlistVariants} />
+        <Shortlist data={data} variants={g.shortlistVariants} audioLabel={g.audioLabel} />
       </Section>
 
       <Section title="Bronnen">

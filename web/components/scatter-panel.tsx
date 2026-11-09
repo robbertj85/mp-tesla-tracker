@@ -10,6 +10,7 @@ import type { BrandConfig } from "@/lib/brands";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { eur } from "@/lib/utils";
+import { fitsWishes } from "@/lib/wishes";
 
 const CURRENT_YEAR = 2026;
 
@@ -120,6 +121,12 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
     return out.sort((a, b) => a.model.localeCompare(b.model));
   }, [points]);
 
+  // Ads that meet every must-have, drawn again on top as stars.
+  const wishPoints = React.useMemo(
+    () => (brand.wishStars !== false ? points.filter((p) => fitsWishes(p.listing)) : []),
+    [points, brand.wishStars]
+  );
+
   const xMeta = X_AXES[xKey];
 
   // Clicking a dot opens its Marktplaats ad. Recharts hands the clicked entry as
@@ -172,10 +179,15 @@ export function ScatterPanel({ listings, brand }: { listings: Listing[]; brand: 
                 fill={colorKey === "model" ? modelColor(group, PALETTE[i % PALETTE.length]) : PALETTE[i % PALETTE.length]}
                 fillOpacity={0.75} className="cursor-pointer" onClick={openListing} />
             ))}
+            {wishPoints.length > 0 && (
+              <Scatter name={`Past bij wensen (${wishPoints.length})`} data={wishPoints} shape="star"
+                fill="#f59e0b" stroke="#78350f" strokeWidth={0.75} legendType="star"
+                className="cursor-pointer" onClick={openListing} />
+            )}
           </ScatterChart>
         </ResponsiveContainer>
         <p className="mt-2 text-xs text-muted-foreground">
-          Klik op een punt om de advertentie te openen. Stippellijnen = aparte
+          Klik op een punt om de advertentie te openen. Sterren = past bij je wensen. Stippellijnen = aparte
           lineaire trend (kleinste kwadraten) per model. De volledige multi-feature
           schatting staat onder &quot;Prijs schatten&quot;.
         </p>

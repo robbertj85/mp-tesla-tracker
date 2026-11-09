@@ -7,6 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { cn, eur } from "@/lib/utils";
 import { sourceLabel } from "@/lib/sources";
+import { fitsWishes, WISH_MAX_KM, WISH_MIN_SOH } from "@/lib/wishes";
+import { Star } from "lucide-react";
 
 /** Equipment options offered as filters, in display order. `short` labels the
  *  listings-table chip. */
@@ -35,6 +37,8 @@ export interface Filters {
   body: string;
   condition: string;
   equipment: EquipmentFilter;
+  /** Only ads that meet every must-have (lib/wishes.ts). */
+  wishesOnly: boolean;
   yearMin: number;
   yearMax: number;
   priceMax: number;
@@ -54,6 +58,7 @@ export const defaultFilters: Filters = {
   body: "all",
   condition: "all",
   equipment: Object.fromEntries(EQUIPMENT.map((o) => [o.key, "all"])) as EquipmentFilter,
+  wishesOnly: false,
   yearMin: 2017,
   yearMax: 2026,
   priceMax: 100000,
@@ -78,6 +83,7 @@ export function applyFilters(l: Listing, f: Filters): boolean {
     if (want === "yes" && !l[key]) return false;
     if (want === "no" && l[key]) return false;
   }
+  if (f.wishesOnly && !fitsWishes(l)) return false;
   if (l.year != null && (l.year < f.yearMin || l.year > f.yearMax)) return false;
   if (l.price_eur != null && l.price_eur > f.priceMax) return false;
   if (l.mileage_km != null && l.mileage_km > f.mileageMax) return false;
@@ -174,7 +180,10 @@ export function FilterBar({ data, brand, filters, setFilters, resetTo, resultCou
         </div>
 
         <EquipmentChips data={data} value={filters.equipment}
-          onChange={(equipment) => set({ equipment })} />
+          onChange={(equipment) => set({ equipment })}
+          wishes={brand.wishStars !== false
+            ? { on: filters.wishesOnly, toggle: () => set({ wishesOnly: !filters.wishesOnly }) }
+            : null} />
 
         <div className="ml-auto flex items-center gap-3">
           <span className="text-sm text-muted-foreground">{resultCount} resultaten</span>
@@ -189,16 +198,30 @@ const NEXT_STATE = { all: "yes", yes: "no", no: "all" } as const;
 
 /** One chip per option; a click cycles Alle → Met → Zonder. The count is how many
  *  listings in the whole dataset have the option (text detection misses some). */
-function EquipmentChips({ data, value, onChange }: {
+function EquipmentChips({ data, value, onChange, wishes }: {
   data: Dataset; value: EquipmentFilter; onChange: (v: EquipmentFilter) => void;
+  wishes: { on: boolean; toggle: () => void } | null;
 }) {
   const counts = React.useMemo(() => Object.fromEntries(EQUIPMENT.map(({ key }) =>
     [key, data.listings.filter((l) => l[key]).length])) as Record<EquipmentKey, number>,
   [data.listings]);
+  const wishCount = React.useMemo(() => data.listings.filter(fitsWishes).length, [data.listings]);
   return (
     <div className="flex basis-full flex-col gap-1">
       <label className="text-xs text-muted-foreground">Uitrusting (klik: met → zonder → alle)</label>
       <div className="flex flex-wrap gap-1.5">
+        {wishes && (
+          <button type="button" onClick={wishes.toggle} aria-pressed={wishes.on}
+            title={`Alleen advertenties die bij je wensen passen: premium audio, trekhaak (EV), ≤ ${WISH_MAX_KM / 1000}k km, SoH ≥ ${WISH_MIN_SOH}% of onbekend, geen valkuil`}
+            className={cn(
+              "inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+              wishes.on ? "border-amber-500 bg-amber-500 text-white" : "border-amber-300 text-amber-700 hover:bg-amber-50 dark:text-amber-300 dark:hover:bg-amber-950",
+            )}>
+            <Star className={cn("h-3 w-3", wishes.on && "fill-current")} />
+            Past bij wensen
+            <span className="ml-0.5 opacity-70">{wishCount}</span>
+          </button>
+        )}
         {EQUIPMENT.map(({ key, label }) => {
           const state = value[key];
           return (

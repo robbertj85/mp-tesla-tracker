@@ -117,7 +117,7 @@ function ModelCard({ m, max, data }: { m: ModelTrims; max: number; data: Dataset
                   </td>
                   <td className="whitespace-nowrap px-3 py-2.5 text-muted-foreground">{t.years}</td>
                   <td className="px-3 py-2.5 text-right tabular-nums text-muted-foreground">
-                    {t.batteryKwh ? `${t.batteryKwh} kWh` : "—"}
+                    {t.batteryKwh ? `${t.batteryKwh.toLocaleString("nl-NL")} kWh` : "—"}
                   </td>
                   <td className="px-3 py-2.5 text-right tabular-nums font-medium">{km(t.range.wltp)}</td>
                   <td className="px-3 py-2.5 text-right tabular-nums">
@@ -185,6 +185,7 @@ export function TrimGuide({ data, brand }: { data: Dataset; brand: BrandConfig }
       {brand.key === "enyaq" && <EnyaqNotes />}
       {brand.key === "mach-e" && <MachENotes />}
       {brand.key === "id4" && <Id4Notes />}
+      {brand.key === "niro" && <NiroNotes />}
 
       {/* RWD vs Long Range AWD — the SoH break-even, embedded from the analysis. */}
       {brand.key === "tesla" && (
@@ -275,6 +276,25 @@ function Id4Notes() {
         Bagageruimte: <span className="font-medium text-foreground">543 l</span>, met de achterbank plat{" "}
         <span className="font-medium text-foreground">1.575 l</span>. Een frunk heeft de ID.4 niet — onder de
         motorkap zitten de airco en elektronica (en bij 4MOTION/GTX de voorste motor).
+      </p>
+    </NotesCard>
+  );
+}
+
+function NiroNotes() {
+  return (
+    <NotesCard title="e-Niro of Niro EV — en wat past erin?">
+      <p>
+        Een e-Niro 64 kWh haalt in de winter gecombineerd zo&apos;n{" "}
+        <span className="font-medium text-foreground">315 km</span>, op de snelweg bij vorst{" "}
+        <span className="font-medium text-foreground">~265 km</span>. De Niro EV doet daar ~10 km bovenop; de e-Niro
+        39 kWh haalt 's winters maar ~200 km. Snelladen is bij alle drie traag (10–80% in ~41–47 min).
+      </p>
+      <p>
+        Bagageruimte: e-Niro <span className="font-medium text-foreground">451 l</span> (1.405 l met de achterbank
+        plat), Niro EV <span className="font-medium text-foreground">475 l</span> (1.392 l) plus een frunk van 20 l.
+        Trekgewicht: e-Niro tot MY20 <span className="font-medium text-foreground">0 kg</span> (alleen een
+        fietsendragerhaak), vanaf MY21 300 kg met 100 kg kogeldruk; Niro EV 750 kg.
       </p>
     </NotesCard>
   );
