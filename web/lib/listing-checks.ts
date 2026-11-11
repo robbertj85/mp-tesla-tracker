@@ -15,7 +15,7 @@ export function soh(l: Listing): number | null {
 
 // Ads that look cheap for a reason: export/trade-only, defects, ex-VAT, US
 // imports, "pay 50% now" schemes, wanted ads. Title-only (the dataset has no text).
-export const TRAP_RE = /defect|export|ex\.? ?btw|excl\.? ?btw|onderdel|schade|gezocht|\bntb\b|betaal nu|handel|import|\busa\b|amerika|lease|p\/m|per maand/i;
+export const TRAP_RE = /defect|kapot|export|ex\.? ?btw|excl\.? ?btw|onderdel|schade|gezocht|\bntb\b|betaal nu|handel|import|\busa\b|amerika|lease|p\/m|per maand/i;
 
 /** Listings that look cheap for a reason only stated in the ad text (which the
  *  web dataset doesn't carry), so the title-based trap filter misses them. */

@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn, eur, km } from "@/lib/utils";
 import { openOnLabel } from "@/lib/sources";
 import { useFavorites } from "@/lib/use-favorites";
-import { NEAR_MAX_KM, NEAR_MIN_SOH, WISH_MAX_KM, WISH_MIN_SOH } from "@/lib/wishes";
+import { NEAR_MIN_SOH, WISH_MIN_SOH } from "@/lib/wishes";
 
 /** One ad on /wensen: slimmed down server-side so the page stays small. */
 export interface WishRow {
@@ -33,7 +33,7 @@ export interface WishRow {
   rangeKm: number | null;
   pano: boolean;
   firstSeen: string;
-  /** Set on near-misses: the one must-have it just misses ("158k km", "SoH 91%"). */
+  /** Set on near-misses: the one must-have it just misses ("SoH 91%"). */
   near: string | null;
   wishTitle: string;
 }
@@ -220,10 +220,10 @@ export function WishList({ rows }: { rows: WishRow[] }) {
       <Card>
         <CardContent className="space-y-3 p-4 text-sm">
           <p className="text-muted-foreground">
-            Een ster betekent: premium audio, trekhaak (bij EV&apos;s), maximaal {WISH_MAX_KM / 1000}k km,
+            Een ster betekent: premium audio, trekhaak (bij EV&apos;s),
             SoH vanaf {WISH_MIN_SOH}% of onbekend, en geen valkuil in de titel.
-            &quot;Bijna&quot; toont ook auto&apos;s die precies één wens net missen: tot {NEAR_MAX_KM / 1000}k km
-            of een SoH van {NEAR_MIN_SOH}–{WISH_MIN_SOH}%.
+            Er is geen grens op kilometerstand. &quot;Bijna&quot; toont ook auto&apos;s die alleen
+            een SoH van {NEAR_MIN_SOH}–{WISH_MIN_SOH}% missen.
           </p>
           <div className="flex flex-wrap items-center gap-2">
             <button type="button" onClick={() => setShowNear((v) => !v)} aria-pressed={showNear}

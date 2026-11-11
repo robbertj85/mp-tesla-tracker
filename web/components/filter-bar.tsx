@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { cn, eur } from "@/lib/utils";
 import { sourceLabel } from "@/lib/sources";
-import { fitsWishes, WISH_MAX_KM, WISH_MIN_SOH } from "@/lib/wishes";
+import { fitsWishes, WISH_MIN_SOH } from "@/lib/wishes";
 import { Star } from "lucide-react";
 
 /** Equipment options offered as filters, in display order. `short` labels the
@@ -212,7 +212,7 @@ function EquipmentChips({ data, value, onChange, wishes }: {
       <div className="flex flex-wrap gap-1.5">
         {wishes && (
           <button type="button" onClick={wishes.toggle} aria-pressed={wishes.on}
-            title={`Alleen advertenties die bij je wensen passen: premium audio, trekhaak (EV), ≤ ${WISH_MAX_KM / 1000}k km, SoH ≥ ${WISH_MIN_SOH}% of onbekend, geen valkuil`}
+            title={`Alleen advertenties die bij je wensen passen: premium audio, trekhaak (EV), SoH ≥ ${WISH_MIN_SOH}% of onbekend, geen valkuil`}
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
               wishes.on ? "border-amber-500 bg-amber-500 text-white" : "border-amber-300 text-amber-700 hover:bg-amber-50 dark:text-amber-300 dark:hover:bg-amber-950",

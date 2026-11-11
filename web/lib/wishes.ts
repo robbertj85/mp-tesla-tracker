@@ -1,18 +1,18 @@
 // "Past bij je wensen": does an ad meet the buyer's must-haves? One rule for every
-// tracker, the same bar /businesscase and /vergelijk use for their picks:
+// tracker; /businesscase uses the same bar plus a 150,000 km cap for its picks:
 //   * premium audio (B&O, Canton, JBL, Harman Kardon, Tesla premium, …);
 //   * a tow hitch on EVs, for a tow-bar box (a roof box costs too much range);
 //     petrol and PHEV cars can carry a roof box instead;
-//   * at most 150,000 km;
 //   * EVs: a seller-stated SoH of at least 92%, or none stated (ask for a report);
 //   * no trap in the title (export, defect, ex-VAT, lease quote, …).
-// A panoramic roof is a bonus, not a requirement. Boot size is a property of the
-// model, not the ad, so it lives on /vergelijk instead.
+// No mileage cap: high-km cars (200k+) can be priced attractively, so km is a
+// column to sort on, not a must-have. A panoramic roof is a bonus, not a
+// requirement. Boot size is a property of the model, not the ad, so it lives on
+// /vergelijk instead.
 
 import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "./listing-checks";
 import type { Listing } from "./types";
 
-export const WISH_MAX_KM = 150_000;
 export const WISH_MIN_SOH = 92;
 
 export interface WishFit {
@@ -33,7 +33,6 @@ export function wishFit(l: Listing): WishFit {
 
   check(!!l.premium_audio, "premium audio");
   if (isEv(l)) check(!!l.tow_hitch, "trekhaak");
-  check(l.mileage_km != null && l.mileage_km <= WISH_MAX_KM, `≤ ${WISH_MAX_KM / 1000}k km`);
   if (isEv(l)) {
     const s = soh(l);
     check(s == null || s >= WISH_MIN_SOH, s == null ? "SoH onbekend (vraag een rapport)" : `SoH ${s}%`);
@@ -55,17 +54,15 @@ export function wishTitle(w: WishFit): string {
 }
 
 // "Bijna": ads that miss exactly one must-have, and only by a small margin.
-// Audio and tow hitch are yes/no, so they never count as "just missed".
-export const NEAR_MAX_KM = 165_000;
+// Audio and tow hitch are yes/no, so they never count as "just missed"; that
+// leaves a SoH just under the bar.
 export const NEAR_MIN_SOH = 90;
 
-/** What a near-miss ad just misses ("162k km", "SoH 91%"), or null if it fits or
+/** What a near-miss ad just misses ("SoH 91%"), or null if it fits or
  *  misses by more. */
 export function nearMiss(l: Listing): string | null {
   const w = wishFit(l);
   if (w.fits || w.missing.length !== 1) return null;
-  const kmOver = l.mileage_km != null && l.mileage_km > WISH_MAX_KM && l.mileage_km <= NEAR_MAX_KM;
-  if (kmOver) return `${Math.round(l.mileage_km! / 1000)}k km`;
   const s = isEv(l) ? soh(l) : null;
   if (s != null && s >= NEAR_MIN_SOH && s < WISH_MIN_SOH) return `SoH ${s}%`;
   return null;
