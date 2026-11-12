@@ -22,7 +22,7 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     # All tracked brands (Tesla, Skoda, Octavia, Model S, Enyaq, Mach-E, ID.4, Niro EV), each with throttled detail fetches.
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v7
         with:
