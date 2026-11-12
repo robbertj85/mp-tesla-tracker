@@ -8,7 +8,7 @@ import {
   BC_MAX_DISTANCE_KM, BC_VEHICLES, fitDepreciation, type BcPick, type Depreciation,
 } from "@/lib/business-case";
 import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "@/lib/listing-checks";
-import { wishFit, wishTitle } from "@/lib/wishes";
+import { WISH_MIN_SOH, wishFit, wishTitle } from "@/lib/wishes";
 import { SiteHeader } from "@/components/site-header";
 import { BusinessCaseView } from "@/components/business-case";
 
@@ -46,7 +46,7 @@ export default function BusinessCasePage() {
       .filter((l) => used(l) && match(l) && l.predictedEur != null)
       .filter((l) => (!v.requireTow || l.tow_hitch) && (!v.requireAudio || l.premium_audio))
       .filter((l) => !TRAP_RE.test(l.title ?? "") && !KNOWN_TRAP_IDS.has(l.id) && (l.mileage_km ?? 0) <= 150_000)
-      .filter((l) => { const s = soh(l); return s == null || s >= 92; })
+      .filter((l) => { const s = soh(l); return s == null || s >= WISH_MIN_SOH; })
       .filter((l) => l.distance_km != null && l.distance_km <= BC_MAX_DISTANCE_KM)
       .sort((a, b) => rel(a) - rel(b))
       // The same car is sometimes listed twice by one seller.

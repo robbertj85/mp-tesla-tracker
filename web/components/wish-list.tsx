@@ -33,7 +33,7 @@ export interface WishRow {
   rangeKm: number | null;
   pano: boolean;
   firstSeen: string;
-  /** Set on near-misses: the one must-have it just misses ("SoH 91%"). */
+  /** Set on near-misses: the one must-have it just misses ("SoH 87%"). */
   near: string | null;
   wishTitle: string;
 }

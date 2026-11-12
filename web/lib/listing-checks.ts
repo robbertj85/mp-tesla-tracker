@@ -2,9 +2,9 @@
 
 import type { Listing } from "./types";
 
-// Seller-quoted battery health ("SOH 93,5%"). Tesla records carry a parsed
+// Seller-quoted battery health ("SOH 93,5%", "SOH 100%"). Tesla records carry a parsed
 // soh_percent; the other EVs only have it in the title.
-const SOH_RE = /\bsoh\b\D{0,15}(\d{2}(?:[.,]\d+)?)|(?<![\d.,])(\d{2}(?:[.,]\d+)?)\s*%\s*soh/i;
+const SOH_RE = /\bsoh\b\D{0,15}(\d{2,3}(?:[.,]\d+)?)|(?<![\d.,])(\d{2,3}(?:[.,]\d+)?)\s*%\s*soh/i;
 export function soh(l: Listing): number | null {
   if (l.soh_percent != null) return l.soh_percent <= 1.5 ? l.soh_percent * 100 : l.soh_percent;
   const m = SOH_RE.exec(l.title ?? "");

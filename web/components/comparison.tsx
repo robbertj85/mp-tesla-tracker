@@ -7,6 +7,7 @@ import { sourceLabel } from "@/lib/sources";
 import type { Dataset, Listing } from "@/lib/types";
 import { cn, eur, km } from "@/lib/utils";
 import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "@/lib/listing-checks";
+import { WISH_MIN_SOH } from "@/lib/wishes";
 
 // Side-by-side comparison of every tracked vehicle: static spec research
 // (lib/comparison.ts) next to live stats from each tracker's dataset.
@@ -44,7 +45,7 @@ function liveStats(v: CompareVehicle, data: Dataset): Live {
     // A car that may not tow (towKg 0) can't meet the tow-hitch wish; pick on audio alone.
     .filter((l) => l.premium_audio && (l.tow_hitch || v.towKg === 0) && l.predictedEur != null)
     .filter((l) => !TRAP_RE.test(l.title ?? "") && !KNOWN_TRAP_IDS.has(l.id) && (l.mileage_km ?? 0) <= 150_000)
-    .filter((l) => { const s = soh(l); return s == null || s >= 92; })
+    .filter((l) => { const s = soh(l); return s == null || s >= WISH_MIN_SOH; })
     .sort((a, b) => rel(a) - rel(b))[0] ?? null;
   return {
     n: rows.length,
@@ -138,7 +139,7 @@ const GROUPS: Group[] = [
       { label: "Met audio + trekhaak", best: "max", cell: (_, l) => n0(l.audioTow) },
       {
         label: "Beste match nu",
-        hint: "audio + trekhaak, ≤ 150k km, SoH ≥ 92% of onbekend, laagst t.o.v. prijsmodel",
+        hint: `audio + trekhaak, ≤ 150k km, SoH ≥ ${WISH_MIN_SOH}% of onbekend, laagst t.o.v. prijsmodel`,
         cell: (_, l) => {
           const p = l.pick;
           if (!p) return { node: <span className="text-xs text-muted-foreground">geen match</span> };

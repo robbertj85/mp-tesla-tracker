@@ -9,6 +9,7 @@ import {
   evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost, depPctPerYear, depPctPer10kKm, MAINT_REF_KM, MAINT_GROWTH_PER_100K,
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
 } from "@/lib/business-case";
+import { WISH_MIN_SOH } from "@/lib/wishes";
 import { cn, eur, km } from "@/lib/utils";
 import { GoalSeek } from "@/components/goal-seek";
 
@@ -320,7 +321,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         <CardHeader>
           <CardTitle>Totale kosten over {inp.years} jaar</CardTitle>
           <CardDescription>
-            Beste aanbiedingen binnen {BC_MAX_DISTANCE_KM} km van Rotterdam, laagst geprijsd t.o.v. de markt, ≤ 150.000 km, SoH ≥ 92% of
+            Beste aanbiedingen binnen {BC_MAX_DISTANCE_KM} km van Rotterdam, laagst geprijsd t.o.v. de markt, ≤ 150.000 km, SoH ≥ {WISH_MIN_SOH}% of
             onbekend, geen valkuil. EV&apos;s: trekhaak (voor een trekhaakkoffer — een dakkoffer kost te veel bereik) + premium audio
             (Enyaq, ID.4 en Niro EV: alleen trekhaak — met Canton/Harman Kardon staat er geen in de buurt; e-Niro: JBL). Superb: Canton, dakkoffer kan. Octavia: simpel, geen eisen. Groen = goedkoopste.
           </CardDescription>

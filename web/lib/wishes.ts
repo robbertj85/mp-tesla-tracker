@@ -3,7 +3,7 @@
 //   * premium audio (B&O, Canton, JBL, Harman Kardon, Tesla premium, …);
 //   * a tow hitch on EVs, for a tow-bar box (a roof box costs too much range);
 //     petrol and PHEV cars can carry a roof box instead;
-//   * EVs: a seller-stated SoH of at least 92%, or none stated (ask for a report);
+//   * EVs: a seller-stated SoH of at least 88%, or none stated (ask for a report);
 //   * no trap in the title (export, defect, ex-VAT, lease quote, …).
 // No mileage cap: high-km cars (200k+) can be priced attractively, so km is a
 // column to sort on, not a must-have. A panoramic roof is a bonus, not a
@@ -13,7 +13,7 @@
 import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "./listing-checks";
 import type { Listing } from "./types";
 
-export const WISH_MIN_SOH = 92;
+export const WISH_MIN_SOH = 88;
 
 export interface WishFit {
   fits: boolean;
@@ -56,9 +56,9 @@ export function wishTitle(w: WishFit): string {
 // "Bijna": ads that miss exactly one must-have, and only by a small margin.
 // Audio and tow hitch are yes/no, so they never count as "just missed"; that
 // leaves a SoH just under the bar.
-export const NEAR_MIN_SOH = 90;
+export const NEAR_MIN_SOH = 86;
 
-/** What a near-miss ad just misses ("SoH 91%"), or null if it fits or
+/** What a near-miss ad just misses ("SoH 87%"), or null if it fits or
  *  misses by more. */
 export function nearMiss(l: Listing): string | null {
   const w = wishFit(l);

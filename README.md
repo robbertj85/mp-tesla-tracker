@@ -49,7 +49,7 @@ commits updates, which triggers a Vercel redeploy.
 | `data/<brand>/price_history.json` | `{id: [{date, priceEur}]}` — appended only on price change |
 | `web/` | Next.js + Tailwind + shadcn/ui + Recharts dashboard (Vercel root) |
 | `web/public/<brand>.json` | Generated artifact the frontend reads (`tesla.json`, `skoda.json`, `octavia.json`, `model-s.json`, `enyaq.json`, `mach-e.json`, `id4.json`, `niro.json`) |
-| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4`, `/niro` (+ `/modellen`, `/uitvoeringen`, and `/koopgids` — a buying guide, Mach-E and Niro EV, content in `web/lib/buying-guide.ts`); plus the cross-brand `/vergelijk` — every tracked vehicle side by side (specs in `web/lib/comparison.ts`, live SoH/price/best match per model) and `/businesscase` — total cost of ownership of the best cars near Rotterdam vs. keeping the current car (assumptions in `web/lib/business-case.ts`); and `/wensen` — every ad that fits the must-haves in `web/lib/wishes.ts`, from all trackers in one sortable table, no mileage cap, with a "Bijna" toggle for ads that just miss the SoH bar (90–92%) |
+| `web/app/[brand]/` | Per-brand routes: `/tesla`, `/skoda`, `/octavia`, `/model-s`, `/enyaq`, `/mach-e`, `/id4`, `/niro` (+ `/modellen`, `/uitvoeringen`, and `/koopgids` — a buying guide, Mach-E and Niro EV, content in `web/lib/buying-guide.ts`); plus the cross-brand `/vergelijk` — every tracked vehicle side by side (specs in `web/lib/comparison.ts`, live SoH/price/best match per model) and `/businesscase` — total cost of ownership of the best cars near Rotterdam vs. keeping the current car (assumptions in `web/lib/business-case.ts`); and `/wensen` — every ad that fits the must-haves in `web/lib/wishes.ts`, from all trackers in one sortable table, no mileage cap, with a "Bijna" toggle for ads that just miss the SoH bar (86–88%) |
 | `web/lib/brands.ts` | Per-brand UI config (which dimensions/columns/filters to show) |
 | `.github/workflows/scrape.yml` | Daily cron + manual `workflow_dispatch` |
 
@@ -168,7 +168,7 @@ filter means "not mentioned", not "certainly absent".
 **"Past bij wensen" (★).** Every buying tracker (all but the Octavia '06–'14
 resale view) stars the ads that meet the buyer's must-haves, in one rule
 (`web/lib/wishes.ts`): premium audio, a tow hitch on EVs (petrol/PHEV can carry a
-roof box), ≤ 150,000 km, a stated SoH ≥ 92% or none stated (EVs), and no trap in
+roof box), a stated SoH ≥ 88% or none stated (EVs), and no trap in
 the title. The star shows in the listings table, the scatter plot, the koopgids
 shortlist and the business-case picks; a "Past bij wensen" chip filters on it.
 Panoramic roof is a bonus (tooltip), boot size is per model (/vergelijk).
