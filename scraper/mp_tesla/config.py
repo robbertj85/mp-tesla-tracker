@@ -450,6 +450,8 @@ MACHE_POWER_VARIANTS: list[tuple[int, int, str]] = [
 # Trim level from the title. Ford NL sold the Mach-E as the base car or the richer
 # "Premium" (2021+), plus the launch "First Edition"; 2024+ the base is "Select".
 # "Premium audio/sound" in a dealer's option list is the sound system, not the trim.
+# Trim levels that count as having Bang & Olufsen audio even when the ad doesn't say so.
+MACHE_BO_LINES = ("Premium",)
 MACHE_EQUIPMENT_LINES: list[tuple[str, re.Pattern]] = [
     ("First Edition", re.compile(r"first\s*edition", re.I)),
     ("Premium", re.compile(r"\bpremium\b(?![\s-]*(?:audio|sound|geluid|hi-?fi|speakers?|pakket|pack))", re.I)),

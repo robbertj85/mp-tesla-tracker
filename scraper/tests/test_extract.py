@@ -164,3 +164,13 @@ def test_mache_equipment_line():
     # The sound system in an option list is not the trim.
     assert mache.detect_equipment_line("Mach-E Extended RWD 98 kWh | SOH 97% | Premium Audio") is None
     assert mache.detect_equipment_line("Ford Mustang Mach-E RWD 75 kWh") is None
+
+
+def test_mache_premium_counts_as_bo():
+    from mp_tesla import record
+    rec = record.apply_mache_spec({"title": "Ford Mustang Mach-E Extended Premium RWD 88 kWh", "power_hp": 294,
+                                   "premium_audio": False})
+    assert rec["equipment_line"] == "Premium" and rec["premium_audio"] is True
+    rec = record.apply_mache_spec({"title": "Ford Mustang Mach-E Extended RWD 88 kWh", "power_hp": 294,
+                                   "premium_audio": False})
+    assert rec["premium_audio"] is False

@@ -58,7 +58,7 @@ export const BUYING_GUIDE: Partial<Record<BrandKey, BuyingGuide>> = {
     audioLabel: "B&O",
     shortlistTitle: "Extended Range met B&O — nu het scherpst geprijsd",
     shortlistNote:
-      "Gebruikte Extended Range (geen GT) met Bang & Olufsen in de advertentie, gesorteerd op prijs t.o.v. het prijsmodel. " +
+      "Gebruikte Extended Range (geen GT) met Bang & Olufsen in de advertentie of als Premium, gesorteerd op prijs t.o.v. het prijsmodel. " +
       "Trekhaak, panoramadak en SoH staan erbij voor zover de advertentie ze noemt.",
     years: [
       {
@@ -136,7 +136,7 @@ export const BUYING_GUIDE: Partial<Record<BrandKey, BuyingGuide>> = {
       { title: "Trekgewicht", text: "Check het geregistreerde trekgewicht op het kenteken bij de RDW (“maximum trekken massa geremd”). Indicatie, niet geverifieerd: RWD ~750 kg, AWD ~1.000 kg." },
       { title: "Kofferbak", text: "Ongeveer 400 l achter plus een kleine voorbak — kleiner dan een Model Y of Enyaq." },
       { title: "Winter", text: "Een warmtepomp zit er pas vanaf 2025 standaard in; oudere exemplaren verbruiken in de winter merkbaar meer." },
-      { title: "Uitrusting", text: "B&O, trekhaak en panoramadak komen in de tracker uit de advertentie. “Niet vermeld” betekent niet per se afwezig — vraag het na." },
+      { title: "Uitrusting", text: "B&O, trekhaak en panoramadak komen in de tracker uit de advertentie; een Premium telt als B&O (niet per bouwjaar gecontroleerd). “Niet vermeld” betekent niet per se afwezig — vraag het na." },
     ],
     sources: [
       { label: "Ford Europe persbericht 2025 (warmtepomp, Superstalk)", url: "https://fordpers.be/content/documents/news/2025/2025-04-16-mustang-mach-e-2025-en.pdf" },

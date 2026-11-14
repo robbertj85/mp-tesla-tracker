@@ -158,7 +158,7 @@ per car:
 | Skoda Octavia / Superb | Canton sound system (option; standard on Superb L&K) | "Sound system" checkbox + text |
 | Octavia '06–'14 | Canton (rare in this era) | checkbox + text |
 | Enyaq | Canton (option) | checkbox + text |
-| Mach-E | Bang & Olufsen | checkbox + text |
+| Mach-E | Bang & Olufsen (counted as present on the Premium trim) | checkbox + text + trim |
 | ID.4 | Harman Kardon (option) | checkbox + text |
 | Niro EV | JBL (e-Niro) / Harman Kardon (Niro EV) | checkbox + text |
 
