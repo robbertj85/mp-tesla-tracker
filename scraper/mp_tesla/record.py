@@ -65,9 +65,11 @@ def apply_tesla_premium_audio(rec: dict) -> dict:
 
 
 def apply_mache_spec(rec: dict) -> dict:
-    """Mach-E battery pack (as `trim`); the GT ships MagneRide adaptive dampers."""
+    """Mach-E battery pack (as `trim`) and trim level (Premium / First Edition, as
+    `equipment_line`); the GT ships MagneRide adaptive dampers."""
     rec["trim"] = mache.detect_variant(rec.get("title", ""), rec.get("description", "") or "",
                                        rec.get("power_hp"))
+    rec["equipment_line"] = mache.detect_equipment_line(rec.get("title", "") or "")
     rec["adaptive_suspension"] = bool(rec.get("adaptive_suspension")) or rec["trim"] == "GT"
     return rec
 

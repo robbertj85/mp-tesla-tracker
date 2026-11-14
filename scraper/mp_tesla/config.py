@@ -447,6 +447,15 @@ MACHE_POWER_VARIANTS: list[tuple[int, int, str]] = [
     (330, 370, "Extended Range"),
 ]
 
+# Trim level from the title. Ford NL sold the Mach-E as the base car or the richer
+# "Premium" (2021+), plus the launch "First Edition"; 2024+ the base is "Select".
+# "Premium audio/sound" in a dealer's option list is the sound system, not the trim.
+MACHE_EQUIPMENT_LINES: list[tuple[str, re.Pattern]] = [
+    ("First Edition", re.compile(r"first\s*edition", re.I)),
+    ("Premium", re.compile(r"\bpremium\b(?![\s-]*(?:audio|sound|geluid|hi-?fi|speakers?|pakket|pack))", re.I)),
+    ("Select", re.compile(r"\bselect\b", re.I)),
+]
+
 # =================================================================================
 # Skoda Enyaq variants (see enyaq.py for how these are applied)
 # =================================================================================

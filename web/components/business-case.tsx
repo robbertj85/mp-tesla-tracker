@@ -143,6 +143,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             </span>
             <span className="block text-muted-foreground">
               {p.year} · {km(p.mileageKm)}{p.soh != null ? ` · SoH ${p.soh}%` : ""}
+              {p.tags.length > 0 && ` · ${p.tags.join(" · ")}`}
             </span>
             <span className="block text-muted-foreground">
               {p.seller ?? p.city} · {p.distanceKm} km

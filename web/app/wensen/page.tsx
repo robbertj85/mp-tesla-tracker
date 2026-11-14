@@ -3,7 +3,7 @@ import path from "node:path";
 import type { Metadata } from "next";
 import type { Dataset, Listing } from "@/lib/types";
 import { BRANDS, BRAND_KEYS, type BrandKey } from "@/lib/brands";
-import { soh } from "@/lib/listing-checks";
+import { macheTags, soh } from "@/lib/listing-checks";
 import { nearMiss, wishFit, wishTitle } from "@/lib/wishes";
 import { SiteHeader } from "@/components/site-header";
 import { WishList, type WishRow } from "@/components/wish-list";
@@ -27,7 +27,9 @@ function toRow(brand: BrandKey, data: Dataset, l: Listing, near: string | null):
     brand,
     // Single-model trackers read better by their own name ("Mach-E", not "Mustang").
     model: data.facets.models.length > 1 ? l.model : BRANDS[brand].label,
-    variant: [l.trim ?? (l.fuel === "Electric" ? null : l.fuel), l.equipment_line].filter(Boolean).join(" · ") || null,
+    // Mach-E: also the trim level and AWD ("Extended Range · Premium · AWD").
+    variant: [l.trim ?? (l.fuel === "Electric" ? null : l.fuel),
+      ...(brand === "mach-e" ? macheTags(brand, l) : [l.equipment_line])].filter(Boolean).join(" · ") || null,
     url: l.url,
     title: l.title,
     source: l.source,

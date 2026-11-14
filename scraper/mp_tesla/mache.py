@@ -26,3 +26,12 @@ def detect_variant(title: str, description: str, power_hp) -> str | None:
             if lo <= power_hp <= hi:
                 return variant
     return None
+
+
+def detect_equipment_line(title: str) -> str | None:
+    """'First Edition' | 'Premium' | 'Select' from the title, or None (base car or
+    not stated). Title only: dealer descriptions list option names too freely."""
+    for line, pattern in config.MACHE_EQUIPMENT_LINES:
+        if pattern.search(title or ""):
+            return line
+    return None

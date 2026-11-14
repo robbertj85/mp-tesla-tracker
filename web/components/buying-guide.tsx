@@ -163,6 +163,7 @@ function Shortlist({ data, variants, audioLabel }: { data: Dataset; variants: st
                   </div>
                   <div className="mt-1 flex flex-wrap gap-1">
                     <Badge variant="secondary">{audioLabel}</Badge>
+                    {l.equipment_line && <Badge variant="secondary">{l.equipment_line}</Badge>}
                     {l.tow_hitch && <Badge variant="warn">Trekhaak</Badge>}
                     {l.pano && <Badge variant="secondary">Pano</Badge>}
                   </div>

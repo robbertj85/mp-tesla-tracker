@@ -12,6 +12,7 @@ import { useFavorites } from "@/lib/use-favorites";
 import { EQUIPMENT } from "@/components/filter-bar";
 import { openOnLabel } from "@/lib/sources";
 import { wishFit, wishTitle } from "@/lib/wishes";
+import { macheTags } from "@/lib/listing-checks";
 
 const daysBetween = (from: string, to: string) =>
   (Date.parse(to.slice(0, 10)) - Date.parse(from.slice(0, 10))) / 86_400_000;
@@ -221,6 +222,10 @@ export function ListingsTable({ listings, history, brand, generatedAt }: {
                             </span>
                           )}
                           <span>{l.model} {l.trim ?? ""}</span>
+                          {macheTags(brand.key, l).map((t) => (
+                            <span key={t} className="rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-blue-800"
+                              title={t === "AWD" ? "Vierwielaandrijving" : `Uitvoering ${t} (uit de titel)`}>{t}</span>
+                          ))}
                           {isNew(l) && (
                             <span className="inline-flex items-center gap-0.5 rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white"
                               title={`Nieuw geplaatst op ${l.first_seen}`}>

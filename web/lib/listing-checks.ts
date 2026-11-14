@@ -13,6 +13,13 @@ export function soh(l: Listing): number | null {
   return v >= 70 && v <= 100 ? v : null;
 }
 
+/** Mach-E extras named next to the battery pack: the trim level (Premium / First
+ *  Edition, from the title) and all-wheel drive. Empty for the other trackers. */
+export function macheTags(brand: string, l: Pick<Listing, "equipment_line" | "drivetrain">): string[] {
+  if (brand !== "mach-e") return [];
+  return [l.equipment_line, l.drivetrain === "AWD" ? "AWD" : null].filter((t): t is string => !!t);
+}
+
 // Ads that look cheap for a reason: export/trade-only, defects, ex-VAT, US
 // imports, "pay 50% now" schemes, wanted ads. Title-only (the dataset has no text).
 export const TRAP_RE = /defect|kapot|export|ex\.? ?btw|excl\.? ?btw|onderdel|schade|gezocht|\bntb\b|betaal nu|handel|import|\busa\b|amerika|lease|p\/m|per maand/i;

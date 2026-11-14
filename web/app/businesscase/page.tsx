@@ -7,7 +7,7 @@ import { COMPARE_VEHICLES } from "@/lib/comparison";
 import {
   BC_MAX_DISTANCE_KM, BC_VEHICLES, fitDepreciation, type BcPick, type Depreciation,
 } from "@/lib/business-case";
-import { KNOWN_TRAP_IDS, soh, TRAP_RE, used } from "@/lib/listing-checks";
+import { KNOWN_TRAP_IDS, macheTags, soh, TRAP_RE, used } from "@/lib/listing-checks";
 import { WISH_MIN_SOH, wishFit, wishTitle } from "@/lib/wishes";
 import { SiteHeader } from "@/components/site-header";
 import { BusinessCaseView } from "@/components/business-case";
@@ -68,6 +68,7 @@ export default function BusinessCasePage() {
         pano: l.pano ?? null,
         premiumAudio: l.premium_audio ?? null,
         towHitch: l.tow_hitch ?? null,
+        tags: macheTags(v.dataset, l),
         vsModelPct: l.predictedEur ? rel(l) * 100 : null,
         source: l.source,
         fitsWishes: wishFit(l).fits,

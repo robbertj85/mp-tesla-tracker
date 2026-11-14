@@ -154,3 +154,13 @@ def test_mache_variant():
     assert mache.detect_variant("Ford Mustang Mach-E GT Extended AWD 91 kWh", "", 487) == "GT"
     assert mache.detect_variant("Ford Mustang Mach-E", "", 351) == "Extended Range"
     assert mache.detect_variant("Ford Mustang Mach-E", "", 269) is None
+
+
+def test_mache_equipment_line():
+    from mp_tesla import mache
+    assert mache.detect_equipment_line("Ford Mustang Mach-E Extended Premium RWD 88 kWh | Pano") == "Premium"
+    assert mache.detect_equipment_line("Ford Mustang Mach-E Premium AWD 75 kWh") == "Premium"
+    assert mache.detect_equipment_line("Ford Mustang Mach-E Extended First Edition AWD 98 kWh") == "First Edition"
+    # The sound system in an option list is not the trim.
+    assert mache.detect_equipment_line("Mach-E Extended RWD 98 kWh | SOH 97% | Premium Audio") is None
+    assert mache.detect_equipment_line("Ford Mustang Mach-E RWD 75 kWh") is None

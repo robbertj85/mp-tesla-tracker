@@ -449,6 +449,8 @@ export interface BcPick {
   pano: boolean | null;
   premiumAudio: boolean | null;
   towHitch: boolean | null;
+  /** Mach-E: trim level and AWD ("Premium", "AWD"); empty elsewhere. */
+  tags: string[];
   /** Price vs. the tracker's price model, in % (negative = below market). */
   vsModelPct: number | null;
   source: string | null;
