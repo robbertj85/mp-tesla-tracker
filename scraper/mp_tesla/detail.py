@@ -74,10 +74,13 @@ def extract_config(html: str) -> dict | None:
 def extract_description(html: str) -> str:
     """Return the cleaned plain-text description from the Description block."""
     tree = HTMLParser(html)
-    # The description body renders in `<div class="Description-description">`
-    # (a sibling `Description-title` holds the "Beschrijving" heading — skip it).
+    # The description body renders in `<div class="Description-module-description">`
+    # (older pages: `Description-description`); a sibling `...-title` holds the
+    # "Beschrijving" heading — skip it. Without a match we only get the ~145-char
+    # meta description, and tow hitch / B&O / SoH in the body go unseen.
     node = (
-        tree.css_first('[class*="Description-description"]')
+        tree.css_first('[class*="Description-module-description"]')
+        or tree.css_first('[class*="Description-description"]')
         or tree.css_first('#description')
     )
     if node is None:

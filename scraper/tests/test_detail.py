@@ -17,6 +17,20 @@ def test_parse_real_vip_fixture():
     assert d["price_cents"] and d["price_cents"] > 0
 
 
+def test_description_css_module_markup():
+    # Marktplaats' current VIP markup (CSS modules); seen 2026-11-18.
+    html = (
+        '<meta name="description" content="Ford Mustang Mach-E Extended RWD 98 kWh | SOH 92">'
+        '<section class="hz-Page-section Description-module-root">'
+        '<h2 class="Description-module-title">Beschrijving</h2>'
+        '<div class="Description-module-description">Ford Mustang Mach-E<br/>'
+        'Bang &amp; Olufsen audio<br/>Afneembare trekhaak</div></section>'
+    )
+    text = detail.extract_description(html)
+    assert "trekhaak" in text and "Bang & Olufsen" in text
+    assert not text.startswith("Beschrijving")
+
+
 def test_build_record_from_fixtures():
     search = json.loads((FIXTURES / "search_sample.json").read_text(encoding="utf-8"))
     html = (FIXTURES / "vip_model3_highland.html").read_text(encoding="utf-8")
