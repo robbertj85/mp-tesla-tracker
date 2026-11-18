@@ -174,3 +174,20 @@ def test_mache_premium_counts_as_bo():
     rec = record.apply_mache_spec({"title": "Ford Mustang Mach-E Extended RWD 88 kWh", "power_hp": 294,
                                    "premium_audio": False})
     assert rec["premium_audio"] is False
+
+
+def test_mileage_from_text_keyword():
+    # Hardenberg Mach-E (m2442630938): no structured mileage, two readings in the text.
+    txt = ("Bouwjaar: 2021 Kilometerstand: 119.789 km Aandrijving: RWD ... "
+           "de kilometerstand van 119.266km is aantoonbaar via de NAP")
+    assert extract.extract_mileage_from_text(txt) == 119789
+    assert extract.extract_mileage_from_text("Tellerstand: 111.368 km") == 111368
+    assert extract.extract_mileage_from_text("km-stand 45000") == 45000
+
+
+def test_mileage_from_text_needs_keyword():
+    # Range and warranty km are not the odometer.
+    assert extract.extract_mileage_from_text("Actieradius (WLTP): 610 km, garantie 160.000 km") is None
+    assert extract.extract_mileage_from_text("Kilometerstand: onbekend") is None
+    assert extract.extract_mileage_from_text("Kilometerstand: ?, bouwjaar 2021") is None
+    assert extract.extract_mileage_from_text("Kilometerstand (NAP): 87.500") == 87500

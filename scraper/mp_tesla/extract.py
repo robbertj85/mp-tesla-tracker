@@ -170,6 +170,31 @@ def extract_price_from_text(text: str) -> int | None:
     return next(iter(neutral)) if len(neutral) == 1 else None
 
 
+# "Kilometerstand: 119.789 km", "Tellerstand 111.368", "km-stand van 119.266km".
+# A keyword is required: bare "610 km" is usually range (WLTP) or a warranty limit.
+_MILEAGE_RE = re.compile(
+    # Only filler between keyword and number ("(NAP):", "van", "ca."), so
+    # "Kilometerstand: ?, bouwjaar 2021" doesn't read the year.
+    r"(?:kilometerstand|tellerstand|km[- ]?stand)\b\s*(?:\([^)]{0,12}\)\s*)?(?:[:=\-–]\s*)?"
+    r"(?:(?:van|is|ca\.?|circa|ongeveer|slechts)\s+)?"
+    r"(\d{1,3}(?:[.\s]\d{3})+|\d{1,6})(?![\d.,]*\s*%)",
+    re.IGNORECASE,
+)
+MAX_MILEAGE_KM = 600_000
+
+
+def extract_mileage_from_text(text: str) -> int | None:
+    """The odometer reading stated next to a mileage keyword, or None.
+
+    For ads where Marktplaats has no structured mileage. The first plausible
+    keyword hit wins (the spec block usually comes before the prose)."""
+    for m in _MILEAGE_RE.finditer(text):
+        km = _parse_amount(m.group(1))
+        if km is not None and km <= MAX_MILEAGE_KM:
+            return km
+    return None
+
+
 def normalise_color(raw: str | None) -> str | None:
     if not raw:
         return None

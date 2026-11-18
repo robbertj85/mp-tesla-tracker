@@ -40,6 +40,9 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
         rec.update(extract.detect_options(
             f"{rec.get('title', '')}\n{rec.get('description', '')}",
             rec.get("mp_options")))
+        if rec.get("mileage_km") is None:
+            rec["mileage_km"] = extract.extract_mileage_from_text(
+                f"{rec.get('title', '')}\n{rec.get('description', '')}")
         if brand.pipeline == "tesla":
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")

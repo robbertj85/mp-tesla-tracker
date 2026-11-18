@@ -242,6 +242,9 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
 
     title = raw.get("title", "")
     description = detail.get("description", "") or raw.get("description", "")
+    if mileage is None:
+        # Some sellers leave the structured field empty but state it in the text.
+        mileage = extract.extract_mileage_from_text(f"{title}\n{description}")
 
     # Reject implausibly low headline prices (monthly lease / "vanaf" teasers) and
     # try to recover the real asking price from the description instead.
