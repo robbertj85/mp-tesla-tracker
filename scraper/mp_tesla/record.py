@@ -318,6 +318,20 @@ def build_record(raw: dict, detail: dict | None, run_date: str, brand: Brand) ->
     else:
         rec.update(_derive_tesla(raw, detail, model, year, title, description, power_hp))
         apply_tesla_premium_audio(rec)
+    apply_ev_soh(rec, brand.pipeline)
+    return rec
+
+
+# Non-Tesla EV pipelines: SoH is seller-stated in the title/description, as for Tesla.
+EV_SOH_PIPELINES = ("enyaq", "mache", "id4", "niro")
+
+
+def apply_ev_soh(rec: dict, pipeline: str) -> dict:
+    """Read a seller-stated SoH from the title + description (Gaspedaal records
+    have only a title). Tesla gets this in _derive_tesla; Skoda petrol/PHEV not at all."""
+    if pipeline in EV_SOH_PIPELINES:
+        rec["soh_percent"] = extract.detect_soh(
+            f"{rec.get('title') or ''}\n{rec.get('description') or ''}")
     return rec
 
 

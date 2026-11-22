@@ -69,6 +69,16 @@ def test_build_record_runs_brand_pipeline(page):
     assert (awd["trim"], awd["drivetrain"]) == ("Extended Range", "AWD")
 
 
+def test_build_record_reads_soh_from_title(page):
+    p = _by_id(page, 142308207)                     # title states "SOH 93,3%"
+    assert gaspedaal.record.build_gaspedaal_record(p, "2026-11-02", MACHE)["soh_percent"] == 93.3
+    p["title"] = "Ford Mustang Mach-E Extended RWD 98 kWh | 92% SOH | Trekhaak"
+    rec = gaspedaal.record.build_gaspedaal_record(p, "2026-11-02", MACHE)
+    assert rec["soh_percent"] == 92.0 and rec["tow_hitch"]
+    p["title"] = "Ford Mustang Mach-E Extended RWD 98 kWh"
+    assert gaspedaal.record.build_gaspedaal_record(p, "2026-11-02", MACHE)["soh_percent"] is None
+
+
 def _occ(uitvoering, fuel, kw, model="Superb", body="STATIONWAGEN", gearbox="AUTOMATISCH",
          year=2022, km=80000, price=25000):
     return {

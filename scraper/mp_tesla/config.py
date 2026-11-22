@@ -708,8 +708,9 @@ EQUIPMENT_OPTIONS: dict[str, dict] = {
 
 # State-of-Health: look for a battery-health phrase, then a nearby percentage.
 SOH_CONTEXT_PATTERNS = [
-    r"state\s*of\s*health", r"\bsoh\b", r"batterij\s*(gezondheid|conditie|status)",
-    r"accu\s*(gezondheid|conditie)", r"battery\s*health", r"degradatie",
+    # "soh" may run straight into the number ("SOH93%"), so no trailing \b.
+    r"state\s*of\s*health", r"\bsoh(?![a-z])", r"batterij\s*(?:gezondheid|conditie|status)",
+    r"accu\s*(?:gezondheid|conditie)", r"battery\s*health", r"degradatie",
 ]
 
 # Exterior colour normalisation (Marktplaats Dutch palette + common marketing names).

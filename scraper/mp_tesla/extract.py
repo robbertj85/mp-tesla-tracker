@@ -67,22 +67,48 @@ def detect_fsd(text: str) -> bool:
     return detect_autopilot_package(text) == "fsd"
 
 
+# A whole number, never the tail of a longer one ("91,55" must not yield "55").
+_SOH_NUM = r"(?<![\d.,])(\d{2,3}(?:[.,]\d+)?)"
+
+
+def _soh_value(raw: str) -> float | None:
+    val = float(raw.replace(",", "."))
+    return val if 50.0 < val <= 100.0 else None
+
+
 def detect_soh(text: str) -> float | None:
     """Find a battery State-of-Health percentage near a battery-health phrase.
 
     Returns a percentage in (50, 100] or None. We require the percentage to be
     within ~60 characters of a health keyword to avoid grabbing unrelated numbers
-    (financing %, VAT, etc.).
+    (financing %, VAT, etc.). Handles the forms dealers use in titles:
+    "SOH 93,1%", "SOH93%", "{SoH-88%}", "87% SOH", "(91%SOH)", and a bare
+    "SOH 92" where a long title got cut off before the % sign.
     """
     low = text.lower()
+    # A labelled value, % optional: "SOH: 93.12" (MOBA certificate), "soh=90,1%".
+    for m in re.finditer(r"\bsoh(?![a-z])\s*(?:waarde|score)?\s*[:=]\s*(\d{2,3}(?:[.,]\d+)?)(?![\d.,])", low):
+        if (val := _soh_value(m.group(1))) is not None:
+            return val
     for ctx in config.SOH_CONTEXT_PATTERNS:
-        for m in re.finditer(ctx, low, re.IGNORECASE):
-            window = low[m.start(): m.end() + 60]
-            pct = re.search(r"(\d{2,3}(?:[.,]\d)?)\s*%", window)
-            if pct:
-                val = float(pct.group(1).replace(",", "."))
-                if 50.0 < val <= 100.0:
-                    return val
+        for m in re.finditer(ctx, low):
+            window = low[m.end(): m.end() + 60]
+            pct = re.search(_SOH_NUM + r"\s*%", window)
+            # Skip a charge level in between ("batterijniveau bij de meting: 55.6%").
+            if pct and re.search(r"niveau|\bsoc\b|lading", window[:pct.start()]):
+                pct = None
+            if pct and (val := _soh_value(pct.group(1))) is not None:
+                return val
+            # Bare number right after the keyword, with nothing after it but a
+            # separator or the end of the text ("| SOH 92" at a cut-off title end).
+            bare = re.match(r"[\s:=-]{0,3}(\d{2,3}(?:[.,]\d+)?)(?![\d.,%]|\s*\w)", window)
+            if bare and (val := _soh_value(bare.group(1))) is not None:
+                return val
+    # Percentage first, keyword after: "87% SOH", "(91%SOH)".
+    after = "|".join(config.SOH_CONTEXT_PATTERNS)
+    for m in re.finditer(_SOH_NUM + r"\s*%\s*-?\s*(?:" + after + ")", low):
+        if (val := _soh_value(m.group(1))) is not None:
+            return val
     return None
 
 

@@ -43,6 +43,7 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
         if rec.get("mileage_km") is None:
             rec["mileage_km"] = extract.extract_mileage_from_text(
                 f"{rec.get('title', '')}\n{rec.get('description', '')}")
+        record.apply_ev_soh(rec, brand.pipeline)
         if brand.pipeline == "tesla":
             rec.setdefault("fuel", "Electric")
             rec.setdefault("transmission", "Automatic")

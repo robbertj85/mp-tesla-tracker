@@ -1,3 +1,5 @@
+import pytest
+
 from mp_tesla import extract, infer
 
 
@@ -35,6 +37,30 @@ def test_soh_within_context_only():
     assert extract.detect_soh("batterijgezondheid 94% gemeten") == 94.0
     # A stray percentage far from any battery word must be ignored.
     assert extract.detect_soh("financiering vanaf 4,9% rente per jaar") is None
+
+
+@pytest.mark.parametrize("title, expected", [
+    ("Ford Mustang Mach-E Extended RWD 98 kWh | SOH 95% | Trekhaak", 95.0),
+    ("Ford Mustang Mach-E RWD 75 kWh SOH93% Leder Clima", 93.0),
+    ("Mach-E Extended RWD 98 kWh | SOH 93,1% | B&O", 93.1),
+    ("Skoda Enyaq iV 60 | SOH 91,55% | TREKHAAK", 91.55),   # not "55"
+    ("Skoda Enyaq iV 60 [ 3-Fase-11kW ] {SoH-88%} (INCL-BTW)", 88.0),
+    ("Skoda Enyaq iV 80|87% SOH|GROTE ACCU", 87.0),
+    ("Enyaq iV Sport 80 (91%SOH) H-Leder", 91.0),
+    ("Enyaq Coupé iV 80 RS | SOH: 95,1% | Pano", 95.1),
+    ("Skoda Enyaq iV 60 | 180 PK | SoH 91 % | Cruise control", 91.0),
+    ("Mach-E Extended RWD 98 kWh | Snelladen | SOH 92", 92.0),   # cut-off title
+    ("Skoda Enyaq iV 60 | 180 PK | SoH % | Camera", None),
+    ("Volkswagen ID.4 Pro 77 kWh | 21% korting | Trekhaak", None),
+    ("Skoda Enyaq iV 80 | SOH 82 kWh accu", None),   # bare number followed by a unit
+    # MOBA certificate block: the SoH has no %, the later % is the charge level.
+    ("moba soh certificaat voertuig: skoda enyaq 80 moba soh certificaat soh: 92.66 "
+     "moba soh certificaat afgifte datum: 2026-10-27", 92.66),
+    ("moba soh certificaat batterijniveau bij de meting: 55.6% opties", None),
+    ("de foto's spreken voor zich. soh=90,1%", 90.1),
+])
+def test_soh_title_forms(title, expected):
+    assert extract.detect_soh(title) == expected
 
 
 def test_hw_mention():
