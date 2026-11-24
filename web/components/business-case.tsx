@@ -4,14 +4,17 @@ import * as React from "react";
 import { AlertTriangle, ExternalLink, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyPerYear, energySplit,
-  SOLAR_PROFILE, solarToCar,
+  BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyOverPeriod, energySplit,
+  SOLAR_PROFILE, solarToCar, PRICE_SCENARIOS, PRICE_BUTTONS, PRICE_PATH_END, PRICE_SOURCES, INFLATION_PCT, priceDelta, periodYears,
   evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost, depPctPerYear, depPctPer10kKm, MAINT_REF_KM, MAINT_GROWTH_PER_100K,
-  type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation,
+  type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation, type PriceScenario,
 } from "@/lib/business-case";
 import { WISH_MIN_SOH } from "@/lib/wishes";
 import { cn, eur, km } from "@/lib/utils";
 import { GoalSeek } from "@/components/goal-seek";
+
+const eur2 = (x: number) => `€${x.toFixed(2).replace(".", ",")}`;
+const signedPct = (x: number) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(0)}%`;
 
 const pct1 = (x: number) => `${(x * 100).toLocaleString("nl-NL", { maximumFractionDigits: 1 })}%`;
 
@@ -169,7 +172,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         <CardHeader>
           <CardTitle>Conclusie bij deze instellingen</CardTitle>
           <CardDescription>
-            {inp.years} jaar, {km(inp.kmPerYear)} per jaar ({inp.startYear}–{endYear}). Alles incl. btw.
+            {inp.years} jaar, {km(inp.kmPerYear)} per jaar ({inp.startYear}–{endYear}). Alles incl. btw, in euro&apos;s van nu.
+            Energieprijzen: {PRICE_SCENARIOS.find((s) => s.key === inp.priceScenario)?.label.toLowerCase()}.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
@@ -206,23 +210,39 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Range label="Km per jaar" value={inp.kmPerYear} onChange={set("kmPerYear")} min={8000} max={30000} step={500}
               format={(v) => km(v)} />
-            <Range label="Looptijd" value={inp.years} onChange={set("years")} min={2} max={8} step={1} format={(v) => `${v} jaar`} />
+            <Range label="Looptijd" value={inp.years} onChange={set("years")} min={2} max={9} step={1} format={(v) => `${v} jaar`} />
             <Range label="Snelladen (Supercharger dal)" value={inp.fastSharePct} onChange={set("fastSharePct")} min={0} max={100} step={5}
               format={pct} />
             <Range label="Plug-in hybrides elektrisch gereden" value={inp.phevElectricPct} onChange={set("phevElectricPct")} min={0} max={90} step={5}
               format={pct} />
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            <Num label="Benzine" value={inp.petrolEur} onChange={set("petrolEur")} step={0.01} suffix="€/l" />
-            <Num label="Laadpaal straat" value={inp.streetKwhEur} onChange={set("streetKwhEur")} step={0.01} suffix="€/kWh"
+            <Num label="Benzine nu" value={inp.petrolEur} onChange={set("petrolEur")} step={0.01} suffix="€/l"
+              hint="2026; daarna volgens de gekozen tarieven" />
+            <Num label="Laadpaal straat nu" value={inp.streetKwhEur} onChange={set("streetKwhEur")} step={0.01} suffix="€/kWh"
               hint="Equans incl. btw + pas" />
-            <Num label="Supercharger dal" value={inp.scOffpeakKwhEur} onChange={set("scOffpeakKwhEur")} step={0.01} suffix="€/kWh"
+            <Num label="Supercharger dal nu" value={inp.scOffpeakKwhEur} onChange={set("scOffpeakKwhEur")} step={0.01} suffix="€/kWh"
               hint="Tesla / met abonnement" />
-            <Num label="Supercharger niet-Tesla" value={inp.scNonTeslaKwhEur} onChange={set("scNonTeslaKwhEur")} step={0.01} suffix="€/kWh"
+            <Num label="Supercharger niet-Tesla nu" value={inp.scNonTeslaKwhEur} onChange={set("scNonTeslaKwhEur")} step={0.01} suffix="€/kWh"
               hint={`zonder abo; abo ${eur(inp.scSubscriptionPerYear)}/jr`} />
             <Num label="Pechhulp" value={inp.roadsidePerYear} onChange={set("roadsidePerYear")} step={5} suffix="€/jr"
               hint="ANWB Wegenwacht NL" />
             <Num label="Spaarrente" value={inp.interestPct} onChange={set("interestPct")} step={0.25} suffix="%" />
+          </div>
+          <div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Energieprijzen {inp.startYear}–{endYear}</p>
+            <div className="flex flex-wrap gap-2">
+              {PRICE_SCENARIOS.filter((s) => PRICE_BUTTONS.includes(s.key)).map((s) => (
+                <button key={s.key} onClick={() => set("priceScenario")(s.key)} title={s.hint}
+                  className={cn("rounded-md border px-3 py-1.5 text-sm",
+                    inp.priceScenario === s.key ? "border-primary bg-primary text-primary-foreground" : "hover:bg-secondary")}>
+                  {s.label}
+                </button>
+              ))}
+            </div>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {PRICE_SCENARIOS.find((s) => s.key === inp.priceScenario)?.hint}. Zie &quot;Energieprijzen per jaar&quot; hieronder.
+            </p>
           </div>
           <div className="rounded-lg border p-3">
             <label className="flex items-center gap-2 text-sm font-medium">
@@ -318,6 +338,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         </CardContent>
       </Card>
 
+      <EnergyPrices inp={inp} current={current} cheapestNew={cheapestNew} />
+
       <Card>
         <CardHeader>
           <CardTitle>Totale kosten over {inp.years} jaar</CardTitle>
@@ -391,7 +413,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                 <th className="px-2 py-2 text-right font-medium">Nodige korting</th>
                 <th className="px-2 py-2 text-right font-medium">Max. energie/jr</th>
                 <th className="px-2 py-2 text-right font-medium">= max. per kWh / l</th>
-                <th className="px-3 py-2 text-right font-medium" title="benzineprijs waarbij houden even duur wordt">Break-even benzine</th>
+                <th className="px-3 py-2 text-right font-medium" title="benzineprijs van nu waarbij houden even duur wordt; de verwachte stijging komt er elk jaar bovenop">Break-even benzine nu</th>
               </tr>
             </thead>
             <tbody>
@@ -399,7 +421,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                 const be = breakEven(r.vehicle!, r.cost, current, inp);
                 const cheaper = be.gap <= 0;
                 const firstOfModel = idx === 0 || rows[idx].vehicle?.compareId !== r.vehicle?.compareId;
-                const nowEnergy = r.cost.energy / inp.years;
+                const avgEnergy = r.cost.energy / inp.years;
                 return (
                   <tr key={r.key} className={cn("border-b align-top", firstOfModel && idx > 0 && "border-t-2")}>
                     <td className="sticky left-0 z-10 bg-card px-3 py-2">
@@ -423,7 +445,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                     <td className="px-2 py-2 text-right tabular-nums">
                       {be.energyPerYear < 0
                         ? <span className="text-rose-600">zelfs gratis niet</span>
-                        : <>{eur(be.energyPerYear)}<span className="block text-xs text-muted-foreground">nu {eur(nowEnergy)}</span></>}
+                        : <>{eur(be.energyPerYear)}<span className="block text-xs text-muted-foreground">gem. verwacht {eur(avgEnergy)}</span></>}
                     </td>
                     <td className="px-2 py-2 text-right tabular-nums">
                       {be.unitPrice == null || be.energyPerYear < 0 ? "—"
@@ -445,8 +467,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
           <p className="px-3 pt-3 text-xs text-muted-foreground sm:px-0">
             Max. aanschafprijs: elke euro korting is een euro minder afschrijving (restwaarde aan het eind blijft gelijk), plus minder gemiste
             rente. Max. energie: het jaarbudget voor laden/tanken waarbij het verschil wegvalt; &quot;zelfs gratis niet&quot; = de overige
-            kosten zijn al hoger dan houden. Break-even benzine: de literprijs waarbij houden (6,5 l/100) even duur wordt — bij
-            plug-ins telt hun eigen benzineverbruik mee.
+            kosten zijn al hoger dan houden. Break-even benzine nu: de literprijs van vandaag waarbij houden (6,5 l/100) even duur wordt,
+            met de verwachte stijging er elk jaar bovenop — bij plug-ins telt hun eigen benzineverbruik mee.
           </p>
         </CardContent>
       </Card>
@@ -490,7 +512,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
               <tr className="border-b text-left text-xs text-muted-foreground">
                 <th className="px-3 py-2 font-medium">Model</th>
                 <th className="px-2 py-2 font-medium">Verbruik</th>
-                <th className="px-2 py-2 text-right font-medium">Energie/jr</th>
+                <th className="px-2 py-2 text-right font-medium" title="gemiddeld over de looptijd, met de gekozen tarieven">Energie/jr (gem.)</th>
                 <th className="px-2 py-2 text-right font-medium">Wegenbel./jr</th>
                 <th className="px-2 py-2 text-right font-medium">Onderhoud/jr</th>
                 <th className="px-2 py-2 text-right font-medium">Waardeverlies</th>
@@ -508,7 +530,7 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
                       {v.kind === "ice" ? `${v.litersPer100} l/100 km`
                         : `${v.kwhPer100} kWh/100 km${v.litersPer100 ? ` · ${v.litersPer100} l/100 km (lege accu)` : ""}`}
                     </td>
-                    <td className="px-2 py-2 text-right tabular-nums">{eur(energyPerYear(v, inp))}</td>
+                    <td className="px-2 py-2 text-right tabular-nums">{eur(energyOverPeriod(v, inp) / inp.years)}</td>
                     <td className="px-2 py-2 text-right tabular-nums">
                       {v.kind === "ev" ? `${eur(tax * evRoadTaxFactor(inp.startYear))} → ${eur(tax)}` : eur(tax)}
                     </td>
@@ -543,7 +565,8 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
             plus 10% laadverlies aan de paal (11 kW), 12% voor de plug-in hybrides (3,6 kW) en 5% aan de Supercharger. Niet-Tesla's kiezen per
             jaar het goedkoopste van wel/geen Supercharger-abonnement. De Skoda’s kunnen niet snelladen. Zonnepanelen: de opwek per maand
             (profiel jan–dec) maal het deel dat naar de auto kan, met als plafond wat de auto die maand thuis zou laden; die kWh kosten
-            alleen de gemiste terugleververgoeding. Snelladen op reis blijft ongewijzigd.
+            alleen de gemiste terugleververgoeding. Snelladen op reis blijft ongewijzigd. De prijzen per jaar volgen de gekozen
+            tarieven: die van nu, of de verwachte (zie &quot;Energieprijzen per jaar&quot;), in euro&apos;s van nu.
           </p>
           <p>
             <span className="font-medium text-foreground">Wegenbelasting:</span> Zuid-Holland (104,4 opcenten), tarieven 2026 zonder
@@ -578,5 +601,154 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+/** Expected yearly energy prices up to PRICE_PATH_END (with the low–high range), and what they do to the totals. */
+function EnergyPrices({ inp, current, cheapestNew }: { inp: BcInputs; current: CostBreakdown; cheapestNew: Row | null }) {
+  const years = Array.from({ length: PRICE_PATH_END - 2026 }, (_, k) => 2027 + k);
+  const inPeriod = new Set(periodYears(inp));
+  const nominal = (x: number, year: number) => x * (1 + INFLATION_PCT / 100) ** (year - 2026);
+  const withScenario = (key: PriceScenario) => ({ ...inp, priceScenario: key });
+  const newCar = cheapestNew?.vehicle && cheapestNew.pick ? cheapestNew : null;
+  const scen = PRICE_SCENARIOS.map((s) => {
+    const j = withScenario(s.key);
+    const cur = currentCarCost(j).energy;
+    const car = newCar ? energyOverPeriod(newCar.vehicle!, j) : null;
+    return { ...s, cur, car };
+  });
+  const flat = scen.find((s) => s.key === "vlak")!;
+  const usingFlat = inp.priceScenario === "vlak";
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Energieprijzen per jaar</CardTitle>
+        <CardDescription>
+          Verwachte tarieven 2027–{PRICE_PATH_END}, vanaf je prijzen van nu, met de bandbreedte (laag–hoog) eronder.
+          {usingFlat
+            ? " De berekening gebruikt nu de huidige tarieven; kies \"Verwachte tarieven\" om deze mee te rekenen."
+            : " Vet = jaren in je looptijd, die zo meerekenen."}{" "}
+          Grote getallen in euro&apos;s van nu (zoals de rest van de berekening); met {INFLATION_PCT}% inflatie per jaar zie je
+          het laatste getal aan de pomp of paal.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b text-left text-xs text-muted-foreground">
+                <th className="px-2 py-2 font-medium">Jaar</th>
+                <th className="px-2 py-2 text-right font-medium">Benzine €/l</th>
+                <th className="px-2 py-2 text-right font-medium">Laadpaal straat €/kWh</th>
+                <th className="px-2 py-2 text-right font-medium">Supercharger dal €/kWh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b text-muted-foreground">
+                <td className="px-2 py-1.5">2026 (nu)</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">{eur2(inp.petrolEur)}</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">{eur2(inp.streetKwhEur)}</td>
+                <td className="px-2 py-1.5 text-right tabular-nums">{eur2(inp.scOffpeakKwhEur)}</td>
+              </tr>
+              {years.map((y) => {
+                const [d, lo, hi] = (["midden", "laag", "hoog"] as const).map((k) => priceDelta(k, y));
+                const cells = ([["petrol", inp.petrolEur], ["street", inp.streetKwhEur], ["sc", inp.scOffpeakKwhEur]] as const)
+                  .map(([k, base]) => ({ base, delta: d[k], lo: base + lo[k], hi: base + hi[k] }));
+                return (
+                  <tr key={y} className={cn("border-b", !usingFlat && inPeriod.has(y) ? "font-semibold" : "text-muted-foreground")}>
+                    <td className="px-2 py-1.5">{y}</td>
+                    {cells.map(({ base, delta, lo: l, hi: h }, c) => (
+                      <td key={c} className="px-2 py-1.5 text-right tabular-nums">
+                        {eur2(base + delta)}{" "}
+                        <span className={cn("text-xs font-normal", delta > 0.0005 ? "text-amber-600" : delta < -0.0005 ? "text-emerald-600" : "text-muted-foreground")}>
+                          {signedPct(delta / base)}
+                        </span>
+                        <span className="block text-xs font-normal text-muted-foreground">{eur2(Math.min(l, h))}–{eur2(Math.max(l, h))}</span>
+                        <span className="block text-xs font-normal text-muted-foreground">{eur2(nominal(base + delta, y))} incl. inflatie</span>
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overflow-x-auto">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Effect op de energiekosten over {inp.startYear}–{inp.startYear + inp.years - 1}
+          </p>
+          <table className="w-full min-w-[640px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b text-left text-xs text-muted-foreground">
+                <th className="px-2 py-2 font-medium">Tarieven</th>
+                <th className="px-2 py-2 text-right font-medium">Benzine huidige Skoda</th>
+                {newCar && <th className="px-2 py-2 text-right font-medium">Laden {newCar.vehicle!.name}</th>}
+                {newCar && <th className="px-2 py-2 text-right font-medium">Voordeel overstap t.o.v. huidige tarieven</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {scen.map((s) => {
+                const gain = newCar ? (s.cur - flat.cur) - (s.car! - flat.car!) : 0;
+                return (
+                  <tr key={s.key} className={cn("border-b", s.key === inp.priceScenario && "bg-muted/40 font-semibold",
+                    !PRICE_BUTTONS.includes(s.key) && "text-xs text-muted-foreground")}>
+                    <td className="px-2 py-1.5" title={s.hint}>{s.label}</td>
+                    <td className="px-2 py-1.5 text-right tabular-nums">{eur(s.cur)}</td>
+                    {newCar && <td className="px-2 py-1.5 text-right tabular-nums">{eur(s.car)}</td>}
+                    {newCar && (
+                      <td className={cn("px-2 py-1.5 text-right tabular-nums", gain > 0.5 ? "text-emerald-600" : gain < -0.5 ? "text-amber-600" : "text-muted-foreground")}>
+                        {Math.abs(gain) < 0.5 ? "—" : `${gain > 0 ? "+" : "−"}${eur(Math.abs(gain))} (${eur(Math.abs(gain) / (inp.years * 12))}/mnd)`}
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {newCar && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Voor de goedkoopste overstap ({newCar.vehicle!.name}, {newCar.pick!.year}). Het verschil met houden ({eur(current.total)})
+              zit al in de tabellen hieronder.
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-2 text-sm text-muted-foreground">
+          <p>
+            <span className="font-medium text-foreground">Benzine stijgt hard, stroom nauwelijks.</span> Het grootste deel van de
+            benzinestijging ligt al vast: de accijnskorting van 2022 wordt in 2028 deels en in 2029 helemaal afgebouwd (+€0,19/l
+            incl. btw; die korting is sinds 2022 wel elk jaar verlengd, de lage kant van de bandbreedte gaat daarvan uit), en vanaf 2028 komt er een
+            CO₂-prijs op brandstof (ETS2): +€0,17 tot +€0,39/l in 2030, afhankelijk van de CO₂-prijs (57–135 €/ton), en daarna
+            verder omhoog. De Europese bijmengplicht voor biobrandstof (RED III) raakt vooral diesel; benzine wordt er volgens het
+            kabinet 1–3 cent goedkoper door. De olieprijs zelf is niet te voorspellen en blijft gelijk; 2026 liet al schommelingen van
+            €0,30/l zien.
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Stroom:</span> volgens de officiële raming (KEV 2026) daalt de kale
+            stroomprijs voor huishoudens van €0,12 naar €0,09/kWh en verlaagt het kabinet de energiebelasting van €0,089 naar
+            €0,076/kWh in 2030. Daartegenover stijgen de netkosten met +15% in 2027 en daarna ~7,5% per jaar boven op de inflatie. Bij een
+            laadpaal op straat zijn die netkosten nu maar ~€0,03 van de €0,46/kWh. Het echte risico is het{" "}
+            <span className="font-medium text-foreground">tijdsafhankelijke nettarief vanaf 2029</span> voor aansluitingen tot 3×80 A:
+            dan betaal je netkosten per kWh, het duurst tussen 16 en 21 uur, precies wanneer straatpalen laden. Of en hoe dat op
+            publieke laadpalen doorwerkt, is nog niet bekend; de verwachte tarieven rekenen het half en vanaf 2030 mee, de hoge kant
+            van de bandbreedte volledig vanaf 2029 (+€0,10/kWh).
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Zonnestroom</span> rekent gewoon mee: elke kWh uit de panelen kost alleen de
+            gemiste terugleververgoeding (~€0,05, blijft volgens TNO zo t/m 2031), dus een duurdere straatpaal maakt de panelen meer waard.
+          </p>
+          <ul className="space-y-1 pt-1 text-xs">
+            {PRICE_SOURCES.map((s) => (
+              <li key={s.url}>
+                <a href={s.url} target="_blank" rel="noreferrer" className="hover:underline">
+                  {s.label} <ExternalLink className="inline h-3 w-3" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

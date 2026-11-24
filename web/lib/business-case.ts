@@ -145,11 +145,132 @@ export const BC_VEHICLES: BcVehicle[] = [
 /** Picks: only dealers/sellers within this distance of Rotterdam (3051). */
 export const BC_MAX_DISTANCE_KM = 40;
 
+/** How energy prices move from today's (2026) prices over the ownership period.
+ *  "vlak" = today's prices for every year (the old model). */
+export type PriceScenario = "vlak" | "laag" | "midden" | "hoog";
+
+export interface PricePathYear {
+  year: number;
+  /** Change vs. 2026, €/l incl. VAT, 2026 prices (no inflation). */
+  petrol: number;
+  /** Change vs. 2026, €/kWh incl. VAT at the street pole. */
+  street: number;
+  /** Change vs. 2026, €/kWh incl. VAT at the Supercharger (Tesla and non-Tesla). */
+  sc: number;
+}
+
+// Energy prices 2027–2035, researched 2026-11-24. All deltas vs. 2026, incl. 21% VAT,
+// in 2026 euros (real), like the rest of the model (road tax, insurance, maintenance
+// are not indexed either). Adding ~2% inflation a year gives the pump/pole price.
+//
+// Petrol = excise + ETS2 + RED III (crude oil itself: flat; it swings ±€0.30 a year):
+// - Excise 2026 €0.845/l. The 2022 discount is extended to 2027 (€0.85), partly phased
+//   out in 2028 (€0.95) and gone in 2029 (≈€1.00/l in 2026 prices; PBL tabel 3.1).
+//   Incl. VAT: +€0.08 in 2028, +€0.19 from 2029. Laag: the discount is extended again.
+// - ETS2 starts 2028. PBL: €0.00237/l per €/t CO2 excl. VAT (€0.14/0.20/0.32 at
+//   €57/86/135 per tonne). Laag 45→57 €/t (MSR price brake, continued after 2030);
+//   midden = KEV 2026 (71 €/t in 2028 +10%/yr → 86 in 2030); hoog 100 → 135 in 2030 → 220 in 2035.
+// - RED III biofuel obligation: the government expects petrol 1–3 ct/l (excl. VAT) cheaper
+//   by 2030 (E10 is already near its blend limit; the extra blending lands on diesel), the
+//   4th RED III progress letter 4–6 ct/l more for road fuel. Laag −€0.02, midden 0, hoog +€0.06.
+//
+// Street pole (€0.38 excl. VAT now) = power + energy tax + grid + operator margin:
+// - Power: KEV 2026 supply price €0.12 (2026) → €0.10 (2027) → €0.09/kWh (2028+).
+//   Laag passes it on in full, midden half (pole tariffs move slowly), hoog not at all.
+// - Energy tax (Belastingplan 2026): €0.089 → 0.083 → 0.079 → 0.075 → 0.076 (2030),
+//   then flat. Hoog: the cut is reversed.
+// - Grid: a 3×25 A pole pays the household capacity tariff, ~€400/yr excl. VAT over
+//   ~15 MWh ≈ €0.027/kWh; +15% in 2027 (ACM), then +7.5%/yr real (FIEN 2026).
+// - Time-of-use grid tariffs for connections ≤3×80 A from 2029 (Netbeheer Nederland /
+//   ACM): 2/3 of the transport cost per kWh, peak 16–21h. A pole that charges in
+//   the evening then pays ~€0.11/kWh excl. VAT instead of ~€0.04 (own estimate from
+//   CE Delft's 2030 grid tariffs; no source covers public poles yet). Hoog: in full
+//   from 2029. Midden: half of it from 2030 (start slips, smart charging at night). Laag: none.
+// Supercharger (large connection, no time-of-use grid tariff): power as for the pole,
+// and a grid share of ~€0.05/kWh growing like the pole's capacity tariff.
+export const PRICE_PATHS: Record<Exclude<PriceScenario, "vlak">, PricePathYear[]> = {
+  laag: [
+    { year: 2027, petrol: 0, street: -0.027, sc: -0.015 },
+    { year: 2028, petrol: 0.12, street: -0.041, sc: -0.022 },
+    { year: 2029, petrol: 0.13, street: -0.042, sc: -0.016 },
+    { year: 2030, petrol: 0.14, street: -0.038, sc: -0.01 },
+    { year: 2031, petrol: 0.14, street: -0.034, sc: -0.004 },
+    { year: 2032, petrol: 0.14, street: -0.031, sc: 0.003 },
+    { year: 2033, petrol: 0.14, street: -0.027, sc: 0.011 },
+    { year: 2034, petrol: 0.14, street: -0.022, sc: 0.019 },
+    { year: 2035, petrol: 0.14, street: -0.018, sc: 0.027 },
+  ],
+  midden: [
+    { year: 2027, petrol: 0, street: -0.014, sc: -0.003 },
+    { year: 2028, petrol: 0.28, street: -0.023, sc: -0.004 },
+    { year: 2029, petrol: 0.41, street: -0.024, sc: 0.002 },
+    { year: 2030, petrol: 0.44, street: 0.027, sc: 0.008 },
+    { year: 2031, petrol: 0.46, street: 0.034, sc: 0.014 },
+    { year: 2032, petrol: 0.49, street: 0.042, sc: 0.021 },
+    { year: 2033, petrol: 0.52, street: 0.049, sc: 0.029 },
+    { year: 2034, petrol: 0.55, street: 0.059, sc: 0.037 },
+    { year: 2035, petrol: 0.59, street: 0.068, sc: 0.045 },
+  ],
+  hoog: [
+    { year: 2027, petrol: 0.02, street: 0.005, sc: 0.009 },
+    { year: 2028, petrol: 0.51, street: 0.008, sc: 0.014 },
+    { year: 2029, petrol: 0.57, street: 0.099, sc: 0.02 },
+    { year: 2030, petrol: 0.64, street: 0.108, sc: 0.026 },
+    { year: 2031, petrol: 0.68, street: 0.119, sc: 0.032 },
+    { year: 2032, petrol: 0.72, street: 0.13, sc: 0.039 },
+    { year: 2033, petrol: 0.77, street: 0.143, sc: 0.047 },
+    { year: 2034, petrol: 0.82, street: 0.155, sc: 0.055 },
+    { year: 2035, petrol: 0.88, street: 0.17, sc: 0.064 },
+  ],
+};
+
+export const PRICE_SCENARIOS: { key: PriceScenario; label: string; hint: string }[] = [
+  { key: "vlak", label: "Huidige tarieven", hint: "de prijzen van nu, elk jaar gelijk" },
+  { key: "midden", label: "Verwachte tarieven t/m 2035", hint: "accijnskorting weg in 2029, ETS2 volgens de KEV (86 €/t in 2030), half tijdsafhankelijk nettarief vanaf 2030" },
+  { key: "laag", label: "Verwacht, laag", hint: "accijnskorting blijft, CO₂-prijs ETS2 laag (~57 €/t), stroom volgt de KEV-daling" },
+  { key: "hoog", label: "Verwacht, hoog", hint: "accijnskorting weg in 2028, ETS2 hoog (135 €/t in 2030), geen stroomdaling, volledig tijdsafhankelijk nettarief vanaf 2029" },
+];
+
+/** The two choices on the page; laag/hoog only show the range. */
+export const PRICE_BUTTONS: PriceScenario[] = ["vlak", "midden"];
+
+/** Last year with a forecast. */
+export const PRICE_PATH_END = 2035;
+
+/** Assumed inflation, only to show what the real prices mean at the pump. */
+export const INFLATION_PCT = 2;
+
+/** Price change vs. 2026 for a calendar year (before 2027: none; after 2035: as 2035). */
+export function priceDelta(scenario: PriceScenario, year: number): Omit<PricePathYear, "year"> {
+  if (scenario === "vlak" || year < 2027) return { petrol: 0, street: 0, sc: 0 };
+  const path = PRICE_PATHS[scenario];
+  const p = path.find((x) => x.year === year) ?? path[path.length - 1];
+  return { petrol: p.petrol, street: p.street, sc: p.sc };
+}
+
+/** The inputs with that year's energy prices filled in. */
+export function pricesInYear(i: BcInputs, year: number): BcInputs {
+  const d = priceDelta(i.priceScenario, year);
+  return {
+    ...i,
+    petrolEur: i.petrolEur + d.petrol,
+    streetKwhEur: i.streetKwhEur + d.street,
+    scOffpeakKwhEur: i.scOffpeakKwhEur + d.sc,
+    scNonTeslaKwhEur: i.scNonTeslaKwhEur + d.sc,
+  };
+}
+
+/** Calendar years of the ownership period. */
+export const periodYears = (i: BcInputs) => Array.from({ length: i.years }, (_, y) => i.startYear + y);
+
 export interface BcInputs {
   kmPerYear: number;
   years: number;
+  /** Energy price path from today's prices (see PRICE_PATHS). */
+  priceScenario: PriceScenario;
+  /** Today's (2026) petrol price; later years follow priceScenario. */
   petrolEur: number;
-  /** Equans street pole near Robijnstraat, incl. VAT and a typical card markup. */
+  /** Equans street pole near Robijnstraat, incl. VAT and a typical card markup (2026). */
   streetKwhEur: number;
   /** Supercharger off-peak (22–08), Tesla price / non-Tesla with subscription. */
   scOffpeakKwhEur: number;
@@ -194,6 +315,7 @@ export interface BcInputs {
 export const BC_DEFAULTS: BcInputs = {
   kmPerYear: 14_000,
   years: 4,
+  priceScenario: "midden",
   petrolEur: 2.3,
   streetKwhEur: 0.46,
   scOffpeakKwhEur: 0.3,
@@ -375,6 +497,16 @@ export function energyPerYear(v: BcVehicle, i: BcInputs): number {
   return energySplit(v, i).total;
 }
 
+/** Energy over the whole period, each year at that year's prices. */
+export function energyOverPeriod(v: BcVehicle, i: BcInputs): number {
+  return periodYears(i).reduce((sum, y) => sum + energyPerYear(v, pricesInYear(i, y)), 0);
+}
+
+/** Petrol for the current Skoda over the whole period. */
+export function currentEnergyOverPeriod(i: BcInputs): number {
+  return periodYears(i).reduce((sum, y) => sum + (i.kmPerYear / 100) * i.current.litersPer100 * pricesInYear(i, y).petrolEur, 0);
+}
+
 export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep: Depreciation, i: BcInputs): CostBreakdown {
   const n = i.years;
   const residualEnd = priceEur * Math.exp(n * (dep.logPerYear + i.kmPerYear * dep.logPerKm));
@@ -393,7 +525,7 @@ export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep
     residualEnd,
     depreciation: priceEur - residualEnd,
     repair: 0,
-    energy: energyPerYear(v, i) * n,
+    energy: energyOverPeriod(v, i),
     roadTax,
     insurance: (i.insurance[v.compareId] ?? v.insurance.allrisk) * 12 * n,
     maintenance,
@@ -416,7 +548,7 @@ export function currentCarCost(i: BcInputs): CostBreakdown {
     residualEnd: 0,
     depreciation: c.residualEur,
     repair: c.repairEur,
-    energy: (i.kmPerYear / 100) * c.litersPer100 * i.petrolEur * n,
+    energy: currentEnergyOverPeriod(i),
     roadTax: c.roadTaxMonthly * 12 * n,
     insurance: c.insuranceMonthly * 12 * n,
     maintenance,
@@ -424,6 +556,17 @@ export function currentCarCost(i: BcInputs): CostBreakdown {
     interest: (c.residualEur / 2) * (i.interestPct / 100) * n,
   }, n);
 }
+
+export const PRICE_SOURCES: { label: string; url: string }[] = [
+  { label: "TNO – Prognose energierekening huishoudens 2026–2031 (KEV 2026-prijzen, netkosten FIEN 2026), sept. 2026", url: "https://open.overheid.nl/overheid/openbaarmakingen/api/v0/attachment/a23071ba-774e-49f1-adb8-db3d5833d2f5" },
+  { label: "CE Delft – Beheersbare energiekosten voor huishoudens in 2030 (energiebelasting, nettarieven +7,5%/jr, tijdsafhankelijk nettarief)", url: "https://ce.nl/wp-content/uploads/2026/09/CE_Delft_260266_Beheersbare_energiekosten_voor_huishoudens_in_2030_Def.pdf" },
+  { label: "Netbeheer Nederland – Nettarieven 2027 stijgen", url: "https://www.netbeheernederland.nl/artikelen/nieuws/nettarieven-2027-stijgen-maar-slimme-keuzes-kunnen-stijging-remmen" },
+  { label: "Solar Magazine – Tijdsafhankelijke nettarieven consumenten vanaf 2029", url: "https://solarmagazine.nl/nieuws-zonne-energie/i43666/tijdsafhankelijke-nettarieven-consumenten-in-2029-van-start-prijs-verschilt-per-seizoen" },
+  { label: "PBL – Het ETS2 en de gevolgen voor huishoudens (start 2028, 57–135 €/t, €0,14–0,32/l benzine excl. btw), mei 2026", url: "https://www.pbl.nl/system/files/document/2026-05/pbl-2026-ets2-en-de-gevolgen-voor-huishoudens-5921.pdf" },
+  { label: "PwC – Belastingplan 2027: benzineaccijns €0,85 (2027), €0,95 (2028), korting weg per 2029", url: "https://www.pwc.nl/nl/belastingplan/fiscale-maatregelen.html" },
+  { label: "Tweede Kamer – Analyse brandstofaccijns en pompprijzen (RED III: benzine 1–3 ct/l goedkoper in 2030)", url: "https://www.tweedekamer.nl/downloads/document?id=2025D33387" },
+  { label: "TopGear – Benzine-adviesprijs 2,415 €/l op 13 nov. 2026, record 2,732 op 10 okt.", url: "https://topgear.nl/autonieuws/benzine-diesel-ruim-30-cent-goedkoper-recordprijzen/" },
+];
 
 export const BC_SOURCES: { label: string; url: string }[] = [
   { label: "Laadpalenviewer Rotterdam – Equans €0,37–0,39/kWh excl. btw rond de Robijnstraat", url: "https://prototype.transportlab.app/laadpalenviewer/?gemeente=rotterdam" },
@@ -470,7 +613,8 @@ export interface BreakEven {
   /** Average €/kWh (EV, incl. charging losses) or €/l (petrol car) at break-even. Null for PHEVs. */
   unitPrice: number | null;
   unit: "kWh" | "l" | null;
-  /** Petrol price at which it breaks even (both this car and the current one burn petrol). Null = never. */
+  /** Today's petrol price at which it breaks even (later years keep the scenario's increase on top;
+   *  both this car and the current one burn petrol). Null = never. */
   petrolEur: number | null;
 }
 
@@ -492,7 +636,7 @@ export function breakEven(v: BcVehicle, cost: CostBreakdown, current: CostBreakd
     unitPrice = energyPerYearBE / (k * (v.litersPer100 ?? 6));
     unit = "l";
   }
-  // Petrol price: both totals are linear in it.
+  // Petrol price: both totals are linear in it (the scenario adds the same €/l every year).
   const litresRow = v.kind === "ice" ? k * (v.litersPer100 ?? 6)
     : v.kind === "phev" ? k * (1 - i.phevElectricPct / 100) * (v.litersPer100 ?? 6.5) : 0;
   const litresCur = k * i.current.litersPer100;

@@ -38,7 +38,7 @@ export const SEEK_VARS: SeekVar[] = [
     get: (_, c) => c.pick.priceEur, set: (i) => i,
   },
   {
-    key: "streetKwhEur", label: "Laadprijs straat", unit: "€/kWh", min: 0, max: 2, digits: 2, scope: "global",
+    key: "streetKwhEur", label: "Laadprijs straat nu (2026)", unit: "€/kWh", min: 0, max: 2, digits: 2, scope: "global",
     get: (i) => i.streetKwhEur, set: (i, x) => ({ ...i, streetKwhEur: x }),
   },
   {
@@ -65,7 +65,7 @@ export const SEEK_VARS: SeekVar[] = [
     get: (i) => i.kmPerYear, set: (i, x) => ({ ...i, kmPerYear: x }),
   },
   {
-    key: "petrolEur", label: "Benzineprijs", unit: "€/l", min: 0, max: 15, digits: 2, scope: "global",
+    key: "petrolEur", label: "Benzineprijs nu (2026)", unit: "€/l", min: 0, max: 15, digits: 2, scope: "global",
     get: (i) => i.petrolEur, set: (i, x) => ({ ...i, petrolEur: x }),
   },
   {
