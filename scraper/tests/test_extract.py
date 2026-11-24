@@ -217,3 +217,18 @@ def test_mileage_from_text_needs_keyword():
     assert extract.extract_mileage_from_text("Kilometerstand: onbekend") is None
     assert extract.extract_mileage_from_text("Kilometerstand: ?, bouwjaar 2021") is None
     assert extract.extract_mileage_from_text("Kilometerstand (NAP): 87.500") == 87500
+
+
+def test_mache_drivetrain():
+    from mp_tesla import mache
+    # Title wins over a wrong seller field (no Mach-E is front-wheel drive).
+    assert mache.detect_drivetrain("Ford Mustang Mach-E Extended RWD 98 kWh", "FWD", "Extended Range", 300) == "RWD"
+    assert mache.detect_drivetrain("Ford Mustang Mach-E Extended RWD 98 kWh", "AWD", "Extended Range", 294) == "RWD"
+    assert mache.detect_drivetrain("Mach-E Extended Premium AWD 98 kWh", "RWD", "Extended Range", None) == "AWD"
+    # No driveline in the title: variant and power decide where they can.
+    assert mache.detect_drivetrain("Ford Mustang Mach-E GT", None, "GT", 487) == "AWD"
+    assert mache.detect_drivetrain("Ford Mustang Mach-E 98 kWh", "RWD", "Extended Range", 351) == "AWD"
+    assert mache.detect_drivetrain("Ford Mustang Mach-E 98 kWh", "AWD", "Extended Range", 294) == "RWD"
+    # Standard Range RWD/AWD share 269 hp: keep the seller's field, but never FWD.
+    assert mache.detect_drivetrain("Ford Mustang Mach-E 75 kWh", "AWD", "Standard Range", 269) == "AWD"
+    assert mache.detect_drivetrain("Ford Mustang Mach-E 75 kWh", "FWD", "Standard Range", 269) is None

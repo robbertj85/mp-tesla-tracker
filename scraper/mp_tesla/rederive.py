@@ -67,9 +67,9 @@ def _rederive_brand(brand: config.Brand, args, run_year: int) -> None:
         )
     elif brand.pipeline == "mache":
         for rec in listings.values():
-            before = (rec.get("trim"), rec.get("equipment_line"), rec.get("premium_audio"))
+            before = (rec.get("trim"), rec.get("equipment_line"), rec.get("premium_audio"), rec.get("drivetrain"))
             record.apply_mache_spec(rec)
-            changed += before != (rec["trim"], rec["equipment_line"], rec["premium_audio"])
+            changed += before != (rec["trim"], rec["equipment_line"], rec["premium_audio"], rec["drivetrain"])
         listings_path.write_text(
             json.dumps(listings, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
             encoding="utf-8",
