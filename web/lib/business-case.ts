@@ -24,6 +24,9 @@ export interface BcVehicle {
   /** Tow hitch required: EVs only, for a tow-bar box (a roof box costs EV range).
    *  The Skodas can carry a roof box instead. */
   requireTow: boolean;
+  /** Picks without a tow hitch get one fitted afterwards: this one-off cost (€, fitted,
+   *  incl. wiring and coding) is counted under "Reparatie / eenmalig". */
+  towRetrofitEur?: number;
   /** How many live listings to show. */
   picks: number;
   /** Average consumption over the year, battery side (kWh/100 km), from the real
@@ -76,6 +79,19 @@ export const BC_VEHICLES: BcVehicle[] = [
     batteryWarranty: { years: 8, km: 160_000 },
     roadsideNote: "Ford Assistance verlengt bij onderhoud bij de dealer",
     notes: "Onderhoud elke 2 jaar / 30.000 km. Check recall 22S41 (HV-hoofdrelais) en de 12V-accu.",
+  },
+  {
+    compareId: "mach-e-er-awd", name: "Mach-E ER AWD", dataset: "mach-e", modelKey: "Mustang",
+    match: (l) => l.trim === "Extended Range" && l.drivetrain === "AWD" && l.year != null && l.year >= 2021 && l.year <= 2022,
+    // Within 40 km no ER AWD has a tow hitch, so picks on audio only and the hitch is fitted afterwards.
+    // kwhPer100: EV Database real range is ~8% below the RWD (485/305 vs 530/330 km on 88 kWh).
+    // massKg: EV Database EU kerb weight (2,182 kg incl. 75 kg driver) minus the driver.
+    kind: "ev", requireAudio: true, requireTow: false, towRetrofitEur: 1200, picks: 2, kwhPer100: 21.0, fastCharge: "other", massKg: 2107,
+    insurance: { allrisk: 165, waPlus: 115 },
+    maintenancePerYear: 350, tyresPerKm: 0.025,
+    batteryWarranty: { years: 8, km: 160_000 },
+    roadsideNote: "Ford Assistance verlengt bij onderhoud bij de dealer",
+    notes: "351 pk (First Edition / 2021: 337–371 pk), 0–100 in ~5,1 s i.p.v. ~7,0 s; ~8% meer verbruik en ~115 kg zwaarder dan de RWD. Trekhaak achteraf (afneembaar, incl. kabelset en codering) ~€1.000–1.400; €1.200 meegerekend. Trekgewicht 750 kg, na de update van mei 2022 1.000 kg. Check recall 22S41 en de 12V-accu.",
   },
   {
     compareId: "enyaq-80", name: "Enyaq iV 80", dataset: "enyaq", modelKey: "Enyaq",
@@ -507,7 +523,12 @@ export function currentEnergyOverPeriod(i: BcInputs): number {
   return periodYears(i).reduce((sum, y) => sum + (i.kmPerYear / 100) * i.current.litersPer100 * pricesInYear(i, y).petrolEur, 0);
 }
 
-export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep: Depreciation, i: BcInputs): CostBreakdown {
+/** One-off cost on top of the price: fitting a tow hitch when the car has none (see towRetrofitEur). */
+export function oneOffCost(v: BcVehicle, towHitch: boolean | null): number {
+  return v.towRetrofitEur && !towHitch ? v.towRetrofitEur : 0;
+}
+
+export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep: Depreciation, i: BcInputs, oneOffEur = 0): CostBreakdown {
   const n = i.years;
   const residualEnd = priceEur * Math.exp(n * (dep.logPerYear + i.kmPerYear * dep.logPerKm));
   let maintenance = 0;
@@ -524,7 +545,7 @@ export function vehicleCost(v: BcVehicle, priceEur: number, startKm: number, dep
     purchase: priceEur,
     residualEnd,
     depreciation: priceEur - residualEnd,
-    repair: 0,
+    repair: oneOffEur,
     energy: energyOverPeriod(v, i),
     roadTax,
     insurance: (i.insurance[v.compareId] ?? v.insurance.allrisk) * 12 * n,

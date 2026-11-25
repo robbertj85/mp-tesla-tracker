@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import {
   BC_DEFAULTS, BC_MAX_DISTANCE_KM, BC_SOURCES, BC_VEHICLES, breakEven, currentCarCost, energyOverPeriod, energySplit,
   SOLAR_PROFILE, solarToCar, PRICE_SCENARIOS, PRICE_BUTTONS, PRICE_PATH_END, PRICE_SOURCES, INFLATION_PCT, priceDelta, periodYears,
-  evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost, depPctPerYear, depPctPer10kKm, MAINT_REF_KM, MAINT_GROWTH_PER_100K,
+  evRoadTaxFactor, roadTaxFullPerQuarter, vehicleCost, oneOffCost, depPctPerYear, depPctPer10kKm, MAINT_REF_KM, MAINT_GROWTH_PER_100K,
   type BcInputs, type BcPick, type BcVehicle, type CostBreakdown, type Depreciation, type PriceScenario,
 } from "@/lib/business-case";
 import { WISH_MIN_SOH } from "@/lib/wishes";
@@ -70,7 +70,7 @@ const COLUMNS: { key: keyof CostBreakdown; label: string; hint?: string }[] = [
   { key: "purchase", label: "Aankoop", hint: "vraagprijs; huidige Skoda: wat hij nu nog oplevert" },
   { key: "residualEnd", label: "Restwaarde eind" },
   { key: "depreciation", label: "Afschrijving" },
-  { key: "repair", label: "Reparatie" },
+  { key: "repair", label: "Reparatie / eenmalig", hint: "huidige Skoda: schade repareren; Mach-E AWD zonder trekhaak: trekhaak laten inbouwen" },
   { key: "energy", label: "Energie" },
   { key: "roadTax", label: "Wegenbel." },
   { key: "insurance", label: "Verzekering" },
@@ -127,12 +127,14 @@ export function BusinessCaseView({ picks, deps }: { picks: BcPick[]; deps: Recor
       if (p.soh == null && v.kind === "ev") warnings.push("Geen SoH in de advertentie: vraag een accurapport.");
       if ((v.compareId === "superb-iv" || v.compareId === "enyaq-80") && !p.premiumAudio) warnings.push("Canton niet bevestigd in de advertentie.");
       if (v.compareId === "niro-ev" && !p.premiumAudio) warnings.push("Geen Harman Kardon (alleen ExecutiveLine / Plus Advanced).");
+      const oneOff = oneOffCost(v, p.towHitch);
+      if (oneOff > 0) warnings.push(`Geen trekhaak: ${eur(oneOff)} voor achteraf inbouwen meegerekend (afneembaar, incl. kabelset en codering).`);
       if (v.kind !== "ev" && !p.towHitch) warnings.push("Geen trekhaak: reken op een dakkoffer (+~10–15% verbruik als hij erop zit, niet meegerekend).");
       rows.push({
         key: p.id,
         vehicle: v,
         pick: p,
-        cost: vehicleCost(v, p.priceEur, p.mileageKm ?? MAINT_REF_KM, dep, inp),
+        cost: vehicleCost(v, p.priceEur, p.mileageKm ?? MAINT_REF_KM, dep, inp, oneOff),
         warnings,
         label: (
           <a href={p.url} target="_blank" rel="noreferrer" className="group block text-xs">
